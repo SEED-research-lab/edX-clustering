@@ -21,9 +21,22 @@
         <h2 flex md-truncate style="margin-left:2em;"><font color="white">Clustering Tool</font></h2>
       </div>
     </md-toolbar>
-    <div layout="column">
-      <input type = "file" file-model = "myFile"/>
-      <button ng-click = "uploadFile()">upload me</button>
+    <div layout="column" layout-align="center center">
+      <div layout="column" style="margin:6em">
+        <div layout="row" layout-xs="column" flex>
+          <div layout="column" flex>
+            <h2 class="md-subhead"> File 1</h2>
+            <input type="file" file-model = "myFile"/>
+          </div>
+          <div layout="column" flex>
+            <h2 class="md-subhead"> File 2</h2>
+            <input type="file" file-model = "myFile2"/>
+          </div>
+        </div>
+        <div layout="row" style="margin:2em;">
+          <md-button class="md-raised md-primary" ng-click="uploadFile()">Upload Files</button>
+        </div>
+      </div>
     </div>
   </div>
 </body>

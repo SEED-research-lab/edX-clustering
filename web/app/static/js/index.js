@@ -43,11 +43,15 @@ app.service('fileUpload', ['$http', function ($http) {
 app.controller("mainCtrl", function($scope, $http, $window, fileUpload) {
     $scope.uploadFile = function(){
     var file = $scope.myFile;
-
-    console.log('file is ' );
-    console.dir(file);
+    var file2 = $scope.myFile2;
+    // console.log('file is ' );
+    // console.dir(file);
 
     var uploadUrl = "/fileUploadAPI";
-    fileUpload.uploadFileToUrl(file, uploadUrl);
+    var files = [];
+    files.push(file);
+    files.push(file2);
+    console.log(files);
+    fileUpload.uploadFileToUrl(files, uploadUrl);
   };
 });

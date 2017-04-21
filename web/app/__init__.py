@@ -5,6 +5,6 @@ app = Flask(__name__)
 def loadIndex():
     return render_template('index.html')
 
-@app.route("/fileUploadAPI")
+@app.route("/fileUploadAPI", methods=["POST"])
 def uploadHandle():
     return jsonify({"result":False})
