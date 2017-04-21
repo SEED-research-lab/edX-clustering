@@ -1,0 +1,31 @@
+{%raw%}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Sid Shah">
+  <script src="../static/js/jquery-3.1.1.min.js"></script>
+  <script src="../static/node_modules/angular/angular.js"></script>
+  <script src="../static/node_modules/angular-aria/angular-aria.js"></script>
+  <script src="../static/node_modules/angular-animate/angular-animate.js"></script>
+  <script src="../static/node_modules/angular-material/angular-material.min.js"></script>
+  <script src="../static/node_modules/angular-messages/angular-messages.min.js"></script>
+  <link rel="stylesheet" href="../static/css/angular-material.min.css">
+  <link rel="stylesheet" href="../static/css/index.css">
+  <script src="../static/js/index.js"></script>
+  <title> Clustering Tool </title>
+</head>
+<body ng-app="dvisual">
+  <div ng-controller="mainCtrl">
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools" flex>
+        <h2 flex md-truncate style="margin-left:2em;"><font color="white">Clustering Tool</font></h2>
+      </div>
+    </md-toolbar>
+    <div layout="column">
+      <input type = "file" file-model = "myFile"/>
+      <button ng-click = "uploadFile()">upload me</button>
+    </div>
+  </div>
+</body>
+</html>
+{%endraw%}

@@ -1,6 +1,10 @@
-import flask import Flask
+from flask import Flask, jsonify, request, session, redirect, abort, render_template
 app = Flask(__name__)
 
 @app.route("/")
-def hello():
-    return "Hello World!"
+def loadIndex():
+    return render_template('index.html')
+
+@app.route("/fileUploadAPI")
+def uploadHandle():
+    return jsonify({"result":False})
