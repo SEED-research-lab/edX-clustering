@@ -31,7 +31,8 @@ app.directive('fileModel', ['$parse', function ($parse) {
 app.service('fileUpload', ['$http', function ($http) {
   this.uploadFileToUrl = function(file, uploadUrl){
      var fd = new FormData();
-     fd.append('file', file);
+     fd.append('file', file[0]);
+     fd.append('file', file[1])
 
      $http.post(uploadUrl, fd, {transformRequest: angular.identity,headers: {'Content-Type': undefined}})
       .then(function(data, status, headers, config){
