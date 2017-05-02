@@ -1,7 +1,9 @@
 
 #ChangeLog
-# 2017.04.13    Added GUI user selection of Clickstream file
+# 2017.04.13.   Added GUI user selection of Clickstream file
 #               Retained student_id for output file (it's needed for identifying gendered subsets)
+# 2017.05.02.   Input files read from subdirectory
+#               Created output files placed into a seperate subdirectory
 
 ##########Reading files, converting to dataframe object, eliminating irrelevant columns#####
 
@@ -14,8 +16,24 @@ dataClickstream <- readr::read_tsv(filenameClickstream)
 dataClickstream <- dataClickstream[names(dataClickstream) %in% c("module_id","student_id","created")]
 
 #read in the ordered module information
-module_markers <- readr::read_csv("module_order_file.csv")
-module_markers <- as.data.frame(module_markers)
+  #set parameters for file location
+  mainDir <- getwd()
+  subDir <- "1_extractModulesOutput"
+  
+  #store the CSV module order file path 
+  moduleOrderFilePath <- paste(file.path(mainDir, subDir), "/module_order_file.csv", sep = "", collapse = "/")
+  
+  #check for existance of CSV module order file
+  if(file.exists(moduleOrderFilePath)){
+    cat("module_order_file.csv found -- continuing")
+  }else{
+    cat("ERROR: module_order_file.csv not found")
+    return()  #exit script if file not found
+  }
+  
+  #read in CSV data and convert to data frame
+  module_markers <- readr::read_csv(moduleOrderFilePath)
+  module_markers <- as.data.frame(module_markers)
 
 ##Ordering both dataClickstream and module_marker object by module_id field
 dataClickstream=dataClickstream[order(dataClickstream$module_id,decreasing=F),]
@@ -73,7 +91,7 @@ for(i in sort(unique(dataClickstream$student_id),decreasing=F))
   counter=counter+1
 }
 dataClickstream<-cbind(dataClickstream,u_id)
-return(dataClickstream)
+#return(dataClickstream)    #TW (2017.05.02) I think this line should be deleted
 
 
 ############################################################################################
@@ -83,5 +101,32 @@ return(dataClickstream)
 
 dataClickstream<-dataClickstream[names(dataClickstream) %in% c("student_id","marker_list","u_id","time")]
 names(dataClickstream)<-c("orig_student_id","module_number","time","temp_student_id")
-write.csv(dataClickstream,"preprocessed_data.csv")
+
+
+
+#Check for existance of subdirectory, create if it doesn't exist.
+#set directory variables
+mainDir <- getwd()
+subDir <- "2_PreprocessingOutput"
+#check for/create subdirectory
+if(!dir.exists(file.path(mainDir, subDir))){
+  cat("subDir does not exist in mainDir - creating")
+  dir.create(file.path(mainDir, subDir))
+  subDirPath <- file.path(mainDir, subDir)
+  cat
+}else{
+  cat("subDir exists in mainDir")
+}
+
+
+#set output file paths
+preprocessedDataFilePath <- paste(subDirPath, "/preprocessed_data.csv", sep = "", collapse = "/")
+
+
+#write a CSV file for the next step in processing. 
+write.csv(x = dataClickstream, file = preprocessedDataFilePath)
+
+
+
+## Clear the environment  #############
 rm(list=ls())

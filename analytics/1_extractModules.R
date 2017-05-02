@@ -61,7 +61,7 @@ moduleNames <- names(data)
 #create variable to track which level the module should be sorted at (top, child, grandchild, etc)
 hierarchicalLvl <- 0
 #build empty matrix to store hierarchy for entire course
-courseHierarchy <- matrix(, nrow = 0, ncol = 3, byrow = FALSE)
+courseHierarchy <- matrix(nrow = 0, ncol = 3, byrow = FALSE)
 
 
 #Check for category type "course" for each module in the file; 
@@ -159,9 +159,9 @@ courseHierarchy <- cbind(courseHierarchy,module_no)
       cat("subDir does not exist in mainDir - creating")
       dir.create(file.path(mainDir, subDir))
       subDirPath <- file.path(mainDir, subDir)
-      cat
     }else{
       cat("subDir exists in mainDir")
+      subDirPath <- file.path(mainDir, subDir)
     }
 
 
