@@ -1,0 +1,172 @@
+"","module_id","module_title","module_hierarchy_level"
+"",i4x://PurdueX/nano515x/vertical/84289b1748564a869296d01d6ed282e0,"Technical Overview",3
+".2",i4x://PurdueX/nano515x/html/df36625008b14c98875ed660278d46d7,"WELCOME",4
+".4",i4x://PurdueX/nano515x/html/d80080a315454778806fa092452dafe6,"Table of Contents",4
+".5",i4x://PurdueX/nano515x/discussion/e1251b3a5cbf4af18f09ae47d60a6748,"NULL",4
+".7",i4x://PurdueX/nano515x/vertical/9ee691f86a3e493dac3a0bf2e5e1c68c,"Overview",3
+".8",i4x://PurdueX/nano515x/html/77ec6ce885064dd9bfa94755e5a359cd,"Overview",4
+".9",i4x://PurdueX/nano515x/discussion/43e215367c4e43c097e747b09b3d6157,"NULL",4
+".10",i4x://PurdueX/nano515x/vertical/4c171fb50f904386957cc83ff6be878d,"Grading",3
+".11",i4x://PurdueX/nano515x/html/b07630c949354877868fa6f89424a29b,"Grading",4
+".12",i4x://PurdueX/nano515x/discussion/b2b7438859534d0b944618ea71b9a0a3,"NULL",4
+".13",i4x://PurdueX/nano515x/vertical/ca8ce9f100ad48e39d75380ee9fe78dd,"Schedule",3
+".14",i4x://PurdueX/nano515x/html/f67f41c519df41d3854cb10f6c555999,"Schedule",4
+".15",i4x://PurdueX/nano515x/discussion/6b9f9027418c47c0adcf5ee67f20c5e8,"NULL",4
+".16",i4x://PurdueX/nano515x/vertical/c1d59f8d9add470e906e1789f31e985e,"Getting Help",3
+".17",i4x://PurdueX/nano515x/html/8f9bcc3bb3fd4cdcb56153d4bc7a443d,"Getting Help",4
+".19",i4x://PurdueX/nano515x/vertical/37800b323b4c41c8a9f650d6cd22b572,"Prerequisites",3
+".20",i4x://PurdueX/nano515x/html/6530779f0ab049e799d126e11c889fb8,"Prereqs and Reading",4
+".21",i4x://PurdueX/nano515x/discussion/0d9cc0dabfe44fd7a9265747b8bae8b4,"NULL",4
+".24",i4x://PurdueX/nano515x/vertical/2d359aec7c034ef3b742c3712c85052b,"L1.1 Lecture",3
+".26",i4x://PurdueX/nano515x/html/f56d84dc70a34914b9c9a186df499ff6,"L1.1 Table of Contents",4
+".27",i4x://PurdueX/nano515x/discussion/f567bbf864d1478ea059f792db9afc84,"L1.1 Lecture Discussion",4
+".28",i4x://PurdueX/nano515x/vertical/63512df7292e4f25a8d73d6d2ab68169,"L1.1 Quiz",3
+".32",i4x://PurdueX/nano515x/discussion/ef38177889274282b979d7b5b1b20780,"L1.1 Quiz Discussion ",4
+".34",i4x://PurdueX/nano515x/vertical/800f284081534f04862cf120a3708bff,"L1.2 Lecture",3
+".36",i4x://PurdueX/nano515x/html/afc444d479e64620903d3bc70273c400,"L1.2 Table of Contents",4
+".37",i4x://PurdueX/nano515x/discussion/fcc005cdb78d45ab824fa096855e3355,"L1.2 Lecture Discussion",4
+".38",i4x://PurdueX/nano515x/vertical/002ea34231b44512b481a74ce9766ead,"L1.2 Quiz",3
+".42",i4x://PurdueX/nano515x/discussion/3513a4ce7e59411c90762370293675d4,"L1.2 Quiz Discussion ",4
+".44",i4x://PurdueX/nano515x/vertical/0c5fa8905a114a4ab840fe9079daf8b4,"L1.3 Lecture",3
+".46",i4x://PurdueX/nano515x/html/155f5a02523b42b9a4920338ad76c9c0,"L1.3 Table of Contents",4
+".47",i4x://PurdueX/nano515x/discussion/128466fd37bc49f9b9c9fdc30ba67d00,"L1.3 Lecture Discussion",4
+".48",i4x://PurdueX/nano515x/vertical/b5d56252b99948dd89db524a59b0e243,"L1.3 Quiz",3
+".52",i4x://PurdueX/nano515x/discussion/586ffa0a51db4166b3cc06f41c1de8c2,"L1.3 Quiz Discussion",4
+".54",i4x://PurdueX/nano515x/vertical/196efc2e7151456d9c2036d4fa9ffcbd,"L1.4 Lecture",3
+".56",i4x://PurdueX/nano515x/html/499ad3f69cda454489bff9805a69d56b,"L1.4 Table of Contents",4
+".57",i4x://PurdueX/nano515x/discussion/5517cf12450a49e7ada1786cfdf7819e,"L1.4 Lecture DIscussion ",4
+".58",i4x://PurdueX/nano515x/vertical/9ab5c3573da94915a2c53b5650643714,"L1.4 Quiz",3
+".62",i4x://PurdueX/nano515x/discussion/95b6e054ee03483f8a5b8e5011fcb964,"L1.4 Quiz Discussion",4
+".64",i4x://PurdueX/nano515x/vertical/04780b52db184ccf90cab25175a2af0b,"L1.5 Lecture",3
+".66",i4x://PurdueX/nano515x/html/e973cd4adcdc4082a9b969d4ceac4934,"L1.5 Table of Contents",4
+".67",i4x://PurdueX/nano515x/discussion/270c3326fae545f5b98ddbd55c74a414,"L1.5 Lecture Discussion ",4
+".68",i4x://PurdueX/nano515x/vertical/1b6d35de4392429e9725d0f44e208e7e,"L1.5 Quiz",3
+".72",i4x://PurdueX/nano515x/discussion/40f675f16558482fbcb64c6fb789483f,"L1.5 Quiz Discussion",4
+".74",i4x://PurdueX/nano515x/vertical/2d2144b73d6044148f57aa3492d4bc97,"L1.1 - L1.5 Homework",3
+".96",i4x://PurdueX/nano515x/discussion/6c6bea4b01e8481eb9896f7ed58b50e2,"Week 1: Homework  Discussion ",4
+".98",i4x://PurdueX/nano515x/vertical/7c316e6075364b84902c94973f45f982,"L1.1 - L1.5 Tutorial Video and Solutions",3
+".100",i4x://PurdueX/nano515x/html/f44053fd5d4a461583171e1674bc9ecf,"Week 1: Homework Tutuorial Table of Contents",4
+".101",i4x://PurdueX/nano515x/discussion/b207e7e7dc1f48a885f3bf9bc4d266bb,"Week 1: Homework Tutorial Discussion",4
+".103",i4x://PurdueX/nano515x/vertical/2b9a9e6eec5e448dba36d8baabdecd63,"Week 1: Exam",3
+".124",i4x://PurdueX/nano515x/vertical/9cded9f6592544e5bbb22bae938019d5,"L2.1 Lecture",3
+".126",i4x://PurdueX/nano515x/html/747a7aae79f74bf3a846a6e6e40924bb,"L2.1 Table of Contents",4
+".127",i4x://PurdueX/nano515x/discussion/978257e987c447fdb4bec4205b70caa2,"L2.1 Lecture Discussion",4
+".128",i4x://PurdueX/nano515x/vertical/194bdf342d574e3fb906016950d450ea,"L2.1 Quiz",3
+".132",i4x://PurdueX/nano515x/discussion/26ae612560ef4e59b8f7c97cc8d8f3de,"L2.1 Quiz Discussion ",4
+".134",i4x://PurdueX/nano515x/vertical/2def028c54e44c509d42c787843cdfd3,"L2.2 Lecture",3
+".136",i4x://PurdueX/nano515x/html/054dd117e1b84b6d9846a373c758bfba,"L2.2 Table of Contents",4
+".137",i4x://PurdueX/nano515x/discussion/52b540e7a3d24248b0bd1dbdff2b2b17,"L2.2 Lecture Discussion ",4
+".138",i4x://PurdueX/nano515x/vertical/7342f2a197644f868a3fbfe4f0237cd0,"L2.2 Quiz",3
+".142",i4x://PurdueX/nano515x/discussion/5faea1cc99a2410b9c0757a156041ed4,"L2.2 Quiz Discussion",4
+".144",i4x://PurdueX/nano515x/vertical/7f4db54bf5b54fa498ff0f83ebbe2afd,"L2.3 Lecture",3
+".146",i4x://PurdueX/nano515x/html/cdf1a35e7b3e405b997ee096ccda3c7c,"L2.3 Table of Contents",4
+".147",i4x://PurdueX/nano515x/discussion/12a7580eec1e42789b126aad6fb88c42,"L2.3 Lecture Discussion",4
+".148",i4x://PurdueX/nano515x/vertical/edce86937e8f44f3a688cb496f887dfb,"L2.3 Quiz",3
+".152",i4x://PurdueX/nano515x/discussion/6917d43db12e48f0a6d192ae8097b891,"L2.3 Quiz Discussion",4
+".154",i4x://PurdueX/nano515x/vertical/84d712b732344b9ab453cc3850a7e8d5,"L2.4 Lecture",3
+".156",i4x://PurdueX/nano515x/html/34bf0609cbdd430bb01c5e28b3a881a6,"L2.4 Table of Contents",4
+".157",i4x://PurdueX/nano515x/discussion/75a984ff868f4e83ba0c48824319fc7a,"L2.4 Lecture Discussion ",4
+".158",i4x://PurdueX/nano515x/vertical/9b0b7288eec5473e9c2f3aae258ebe70,"L2.4 Quiz",3
+".162",i4x://PurdueX/nano515x/discussion/446178ccdd8e46319adcc688da016aef,"L2.4 Quiz Discussion ",4
+".164",i4x://PurdueX/nano515x/vertical/d9d6bc973d8f4c4e912d23e77675a41e,"L2.5 Lecture",3
+".166",i4x://PurdueX/nano515x/html/dd3cd0c79da34cb9a312c0339426ccea,"L2.5 Table of Contents",4
+".167",i4x://PurdueX/nano515x/discussion/999c483c02914e13affd4cea6a72592a,"L2.5 Lecture Discussion",4
+".168",i4x://PurdueX/nano515x/vertical/3f9cd5acaf6641f29f8223ea5097951a,"L2.5 Quiz",3
+".172",i4x://PurdueX/nano515x/discussion/84f45abbf62849cb9afa06febb65bb82,"L2.5 Quiz Discussion ",4
+".174",i4x://PurdueX/nano515x/vertical/0cc18fc3737745048497b2dd11b26558,"L2.1 - L2.5 Homework",3
+".179",i4x://PurdueX/nano515x/discussion/7c26422f917f450e827fca78852da1d9,"Week 2: Homework Discussion ",4
+".181",i4x://PurdueX/nano515x/vertical/7e4033f50fe64563849989aa7b6084d9,"L2.1 - L2.5 Tutorial Video and Solutions",3
+".183",i4x://PurdueX/nano515x/html/2ac9044a029c4ccdbfb0a164b5e8caf9,"Week 2: Homework Tutorial Table of Contents",4
+".184",i4x://PurdueX/nano515x/discussion/9634e0ef4dfa4364b708376e335c6d55,"Week 2: Homework Tutorial Discussion ",4
+".186",i4x://PurdueX/nano515x/vertical/8fce3308a38a4924a91c094a4140ccc6,"Week 2: Exam",3
+".200",i4x://PurdueX/nano515x/vertical/3dc93178167c4762ae7f9f81e33730ad,"L3.1 Lecture",3
+".202",i4x://PurdueX/nano515x/html/230fe8e4026443989eb65485a786bf1b,"L3.1 Table of Contents",4
+".203",i4x://PurdueX/nano515x/discussion/713c51c1168f4a3f8540e049568b2d0e,"L3.1 Lecture Discussion",4
+".204",i4x://PurdueX/nano515x/vertical/a81eb41ee5d7489db3eabd7e5e3f0776,"L3.1 Quiz",3
+".208",i4x://PurdueX/nano515x/discussion/35fc25052ca74f5a90683b65a55a3c99,"L3.1 Quiz Discussion",4
+".210",i4x://PurdueX/nano515x/vertical/d2dd740e77424a4dae2041a5c49c54cf,"L3.2 Lecture",3
+".212",i4x://PurdueX/nano515x/html/c8eb29e3ab194fcba1d95024356f8486,"L3.2 Table of Contents ",4
+".213",i4x://PurdueX/nano515x/discussion/57dbf0071e8647b38ef16d3596287430,"L3.2 Lecture Discussion",4
+".214",i4x://PurdueX/nano515x/vertical/07692d15594540148a1a26db35ee9d1c,"L3.2 Quiz",3
+".218",i4x://PurdueX/nano515x/discussion/b13163dfd11a4b6cbb1332649d52fdbf,"L3.2 Quiz Discussion ",4
+".220",i4x://PurdueX/nano515x/vertical/09395c80b17f4f218267b631f76e4dc7,"L3.3 Lecture",3
+".222",i4x://PurdueX/nano515x/html/880986ad850340c193af479a62309542,"L3.3 Table of Contents",4
+".223",i4x://PurdueX/nano515x/discussion/b4ffafd06cc74df2a041fb50b69a729b,"L3.3 Lecture Discussion",4
+".224",i4x://PurdueX/nano515x/vertical/bd520b2143f141a7a92841f4ced0aadf,"L3.3 Quiz",3
+".228",i4x://PurdueX/nano515x/discussion/df03c73d44c94533bb692176a9fd5c94,"L3.3 Quiz Discussion",4
+".230",i4x://PurdueX/nano515x/vertical/7b9896ca35014d92b3503217afbb464f,"L3.4 Lecture",3
+".232",i4x://PurdueX/nano515x/html/33f88e7a991644c98497774b857faec5,"L3.4 Table of Contents ",4
+".233",i4x://PurdueX/nano515x/discussion/4603567a0c7a4dd781689530a7ab45da,"L3.4 Lecture Discussion ",4
+".234",i4x://PurdueX/nano515x/vertical/2f50fa90c64b47be879a73264deafe7d,"L3.4 Quiz",3
+".237",i4x://PurdueX/nano515x/discussion/908370a0f6484112b8f7fdb6f70ecbca,"L3.4 Quiz Discussion",4
+".239",i4x://PurdueX/nano515x/vertical/c390887d12e84577b760cb36682f9981,"L3.5 Lecture",3
+".241",i4x://PurdueX/nano515x/html/f22074ad970e4c87adf0ac39073e4590,"L3:5 Table of Contents",4
+".242",i4x://PurdueX/nano515x/discussion/2a3acd035aaf43f5b438dc36a9779104,"L3.5 Lecture Discussion",4
+".243",i4x://PurdueX/nano515x/vertical/cf0dd0359a37439193bd05b034416369,"L3.5 Quiz",3
+".247",i4x://PurdueX/nano515x/discussion/7b02c6044fcb4cc6949b0b7897ed6eba,"L3.5 Quiz Discussion ",4
+".249",i4x://PurdueX/nano515x/vertical/f1efec71c398462e841d6a17ccaf6cd5,"L3.1 - L3.5: Homework",3
+".255",i4x://PurdueX/nano515x/discussion/9d40fbdc065748959c8671283016c339,"Week 3: Homework Discussion",4
+".257",i4x://PurdueX/nano515x/vertical/d16d2e4b65b0462b95131973618fabc4,"L3.1 - L3.5 Tutorial Video and Solution",3
+".259",i4x://PurdueX/nano515x/html/36f09d6195e648999b92c33435766b79,"Week 3: Tutorial Table of Contents",4
+".260",i4x://PurdueX/nano515x/discussion/2a8ddbdd092141c393662946eee11716,"Week 3: Homework Tutorial Discussion",4
+".262",i4x://PurdueX/nano515x/vertical/f54f37d867eb471fbbeb95cc187b025d,"Week 3: Exam",3
+".274",i4x://PurdueX/nano515x/vertical/6735a2c3c3604500bf8ee4af492c533d,"L4.1 Lecture",3
+".276",i4x://PurdueX/nano515x/html/7af53107507d4f4497b35b223792fe02,"L4.1 Table of Contents",4
+".277",i4x://PurdueX/nano515x/discussion/83745596d7ed4ef9bd10e8ad1cfd630d,"L4.1 Lecture Discussion",4
+".278",i4x://PurdueX/nano515x/vertical/bf420bfbc4a24acdb6ed21355284e267,"L4.1 Quiz",3
+".282",i4x://PurdueX/nano515x/discussion/a38278fb63964f688fef5e8136e77dc6,"L4.1 Quiz Discussion",4
+".284",i4x://PurdueX/nano515x/vertical/aebd839aba6644e88aa58b425680de8b,"L4.2 Lecture",3
+".286",i4x://PurdueX/nano515x/html/fe04885056594629a04ef4cef180e365,"L4.2 Table of Contents",4
+".287",i4x://PurdueX/nano515x/discussion/978fb3d4c335499784516f58abdd3e00,"L4.2 Lecture Discussion",4
+".288",i4x://PurdueX/nano515x/vertical/930dfc7f850c4f3b8cfcfe23595258a7,"L4.2 Quiz",3
+".292",i4x://PurdueX/nano515x/discussion/8b43cba5aba048eba518192656688912,"L4.2 Quiz Discussion",4
+".294",i4x://PurdueX/nano515x/vertical/df36a344541e434a9342b175534bbeb5,"L4.3 Lecture",3
+".296",i4x://PurdueX/nano515x/html/1ed62ef1d94446c3a5e672b4bf4feac8,"L4.3 Table of Contents",4
+".297",i4x://PurdueX/nano515x/discussion/a8db41dbc439439c8c6a5abe95b4866a,"L4.3 Lecture Discussion",4
+".298",i4x://PurdueX/nano515x/vertical/ad7ad0a090eb42fe95c0a03c25070e35,"L4.3 Quiz",3
+".302",i4x://PurdueX/nano515x/discussion/0a4ff2e7a9234b1c998ec094f0886ceb,"L4.3 Quiz Discussion",4
+".304",i4x://PurdueX/nano515x/vertical/0a0e4799b6c44f319c6ff4c00173c95d,"L4.4 Lecture",3
+".306",i4x://PurdueX/nano515x/html/f6dd131eaa4b47ffb6be0bc872bc132f,"L4.4 Table of Contents",4
+".307",i4x://PurdueX/nano515x/discussion/3a886e6b985d401a952485e644b3784b,"L4.4 Lecture Discussion",4
+".308",i4x://PurdueX/nano515x/vertical/d026162dc5f44d78b98073eb536b69fb,"L4.4 Quiz",3
+".312",i4x://PurdueX/nano515x/discussion/936e8c86e1c5476885c4b81f6238f9d3,"L4.4 Quiz Discussion ",4
+".314",i4x://PurdueX/nano515x/vertical/ef6c06a30a2d4f54b618f7c8a8403842,"L4.5 Lecture",3
+".316",i4x://PurdueX/nano515x/html/d5d8bd5365af4ce29865c7e9d139869c,"L4.5 Table of Contents",4
+".317",i4x://PurdueX/nano515x/discussion/5166ad236914446b96f8da98653084ce,"L4.5 Lecture Discussion",4
+".318",i4x://PurdueX/nano515x/vertical/152c43507c014220a24f4833a26d77be,"L4.5 Quiz",3
+".322",i4x://PurdueX/nano515x/discussion/eb60e839e85b45e48e9bad387bd57507,"L4.5 Quiz Discussion",4
+".324",i4x://PurdueX/nano515x/vertical/f7cb63019fb04576810ca2b4573fe1d9,"L4.1 - L4.5 Homework",3
+".329",i4x://PurdueX/nano515x/discussion/89c9d7dd3d714d28b2e9d5a68eb9596b,"Week 4: Homework Discussion ",4
+".331",i4x://PurdueX/nano515x/vertical/2acd8486322843e1b43b8d91af92ef4e,"L4.1 - L4.5 Tutorial Video and Solution",3
+".333",i4x://PurdueX/nano515x/html/1b8c244393084ea68f9db6bb33d9246b,"Week 4: Tutorial Table of Contents",4
+".334",i4x://PurdueX/nano515x/discussion/bb0a290976c042edb0c8cacd00be7755,"Week 4: Homework Tutorial Discussion",4
+".336",i4x://PurdueX/nano515x/vertical/2490e465d00d45f197f69ad9d0e6a2d1,"Week 4: Exam",3
+".356",i4x://PurdueX/nano515x/vertical/34e9ce3e34864be6b96fb6b336107c23,"L5.1 Lecture",3
+".358",i4x://PurdueX/nano515x/html/af12bfbb45cd4f7b89ac32601bffc7ea,"L5.1 Table of Contents ",4
+".359",i4x://PurdueX/nano515x/discussion/0b07e4e6283f409f80b4d9179fec3121,"L5.1 Lecture Discussion",4
+".360",i4x://PurdueX/nano515x/vertical/5999998076a646d78eb64471dd46e4fc,"L5.1 Quiz",3
+".364",i4x://PurdueX/nano515x/discussion/6427102ce43c43b088b1b6b819b3f87d,"L5.1 Quiz Discussion",4
+".366",i4x://PurdueX/nano515x/vertical/bed92dee70a44d1db698230693df2a1c,"L5.2 Lecture",3
+".368",i4x://PurdueX/nano515x/html/3f6504ab279342cea06adbbd677569da,"L5.2 Table of Contents",4
+".369",i4x://PurdueX/nano515x/discussion/85093978149f4364b79749aa17406dfa,"L5.2 Lecture Discussion",4
+".370",i4x://PurdueX/nano515x/vertical/900919d47de543e68270623cd379f24c,"L5.2 Quiz",3
+".374",i4x://PurdueX/nano515x/discussion/3902d1fc3c684503a26a04da2f17b7a5,"L5.2 Quiz Discussion",4
+".376",i4x://PurdueX/nano515x/vertical/acbc57bf97f34beabbe484dedaf1e46e,"L5.3 Lecture",3
+".378",i4x://PurdueX/nano515x/html/41bdcb8ca2c0440595f4073ee25c898b,"L5.3 Table of Contents ",4
+".379",i4x://PurdueX/nano515x/discussion/b38887d9a0d74fd3889cb2a534ef2617,"L5.3 Lecture Discussion",4
+".380",i4x://PurdueX/nano515x/vertical/46ea071c65f84d1f948879ef03e5df63,"L5.3 Quiz",3
+".384",i4x://PurdueX/nano515x/discussion/188e2a2bc7254e43a937cd77360ed77b,"L5.3 Quiz Discussion",4
+".386",i4x://PurdueX/nano515x/vertical/286bc95805ce465caea7691c4ea075c6,"L5.4 Lecture",3
+".388",i4x://PurdueX/nano515x/html/a7e37fbe6293408eb1f43a72ab370796,"L5.4 Table of Contents",4
+".389",i4x://PurdueX/nano515x/discussion/89719090112e414aa89d23589ca31968,"L5.4 Lecture Discussion",4
+".390",i4x://PurdueX/nano515x/vertical/a1762240db1a4e5990f68af4010c4ce6,"L5.4 Quiz",3
+".394",i4x://PurdueX/nano515x/discussion/af9278e6cdbf40148dcb83aa0f9660ba,"L5.4 Quiz Discussion",4
+".396",i4x://PurdueX/nano515x/vertical/660cd542eed140a8ac1cd15f8b7f0120,"L5.5 Lecture",3
+".398",i4x://PurdueX/nano515x/html/2cc43330b8a84d7a913c18641b881636,"L5.5 Table of Contents",4
+".399",i4x://PurdueX/nano515x/discussion/f2cd75100b54406faf62443472bb7de0,"L5.5 Lecture Discussion",4
+".401",i4x://PurdueX/nano515x/vertical/28bb5cd953b4421b9681b4cfd05a1387,"L5.1 - L5.5: Homework",3
+".414",i4x://PurdueX/nano515x/discussion/0d7dd1d98f5742579bb49d9da6c0c553,"Week 5: Homework Discussion ",4
+".416",i4x://PurdueX/nano515x/vertical/3b724209b7404a41a569e473b0b83bf9,"L5.1 - L5.5 Homework Tutorial and Solutions",3
+".418",i4x://PurdueX/nano515x/html/bbf68b0a448844fe99bb78c7535b5ebe,"Week 5: Tutorial Table of Contents",4
+".419",i4x://PurdueX/nano515x/discussion/f9d23b56ee42405ba517002e40a944d4,"Week 5: Homework Tutorial Discussion ",4
+".421",i4x://PurdueX/nano515x/vertical/73caa874548642fbaae982f5e83df556,"Week 5: Exam",3
