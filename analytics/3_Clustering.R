@@ -2,9 +2,34 @@
 #ChangeLog
 # 2017.04.13    Added gendered clickstream user choices
 #               Changed gap plots to only go up to 10 clusters (previously was set to 20 clusters)
+# 2017.05.02.   Input files read from subdirectory
+#               Created output files placed into a seperate subdirectory
+
 
 
 ##########Reading preprocessed file, converting to dataframe object, eliminating irrelevant columns############################################################################################################################
+
+##from 2_Preprocessing.R.  Need to incorporate here
+# #read in the ordered module information
+# #set parameters for file location
+# mainDir <- getwd()
+# subDir <- "1_extractModulesOutput"
+# 
+# #store the CSV module order file path 
+# moduleOrderFilePath <- paste(file.path(mainDir, subDir), "/module_order_file.csv", sep = "", collapse = "/")
+# 
+# #check for existance of CSV module order file
+# if(file.exists(moduleOrderFilePath)){
+#   cat("module_order_file.csv found -- continuing")
+# }else{
+#   cat("ERROR: module_order_file.csv not found")
+#   return()  #exit script if file not found
+# }
+# 
+# #read in CSV data and convert to data frame
+# module_markers <- readr::read_csv(moduleOrderFilePath)
+# module_markers <- as.data.frame(module_markers)
+
 
 ##Choose clickstream data(sub)set (repeating to sanitize user input)
 repeat{
@@ -31,6 +56,24 @@ repeat{
 data<-data[names(data) %in% c("temp_student_id","module_number","time")]
 ##Ordering dataframe by student_id column
 data<-data[order(data$temp_student_id,decreasing=F),]
+
+
+##Save the current working directory.  Set the output directory to the working directory. 
+##  (wd will be restored at the end of the script)
+##  [collowing code from 2_Preprocessing.R;  needs to be incorporated]
+# mainDir <- getwd()
+# subDir <- "2_PreprocessingOutput"
+# #check for/create subdirectory
+# if(!dir.exists(file.path(mainDir, subDir))){
+#   cat("subDir does not exist in mainDir - creating")
+#   dir.create(file.path(mainDir, subDir))
+#   subDirPath <- file.path(mainDir, subDir)
+#   cat
+# }else{
+#   cat("subDir exists in mainDir")
+# }
+
+
 
 ###############################################################################################################################################################################################################################
 
