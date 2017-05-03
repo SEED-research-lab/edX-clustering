@@ -360,7 +360,7 @@ if(n==1)
   }
   dev.off()
   print("Done!")
-  rm(list=ls())
+  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
   
 } else if(n==2)
 {
@@ -399,7 +399,7 @@ if(n==1)
       break
     }
   }
-  rm(list=ls())
+  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
   
   ##User input for number of clusters
   K<-readline("Enter the desired number of clusters (maximum 10): ");
@@ -539,7 +539,7 @@ if(n==1)
   }
   dev.off()
   print("Done!")
-  rm(list=ls())
+  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
 } else
 {
   print("Invalid choice! Please enter 1 or 2...")
@@ -549,3 +549,7 @@ if(n==1)
 
 ## Restore the working directory from when the script began
 setwd(initialWD_save)
+
+
+## Clear the environment  #############
+rm(list=ls())
