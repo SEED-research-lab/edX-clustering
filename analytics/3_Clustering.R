@@ -2,29 +2,112 @@
 #ChangeLog
 # 2017.04.13    Added gendered clickstream user choices
 #               Changed gap plots to only go up to 10 clusters (previously was set to 20 clusters)
+# 2017.05.03.   Input files read from subdirectory
+#               Created output files placed into a seperate subdirectory
+# 2017.05.03.   Put subdirectory and file checking code into functions
+
 
 
 ##########Reading preprocessed file, converting to dataframe object, eliminating irrelevant columns############################################################################################################################
 
-##Choose clickstream data(sub)set (repeating to sanitize user input)
-repeat{
-  n<-readline(prompt="Enter 1 for all users, 2 for female users, 3 for male users: ");
-  
-  if(n == 1){
-    data<-readr::read_csv("preprocessed_data.csv")
-    break
-  }
-  else if(n == 2){
-    data<-readr::read_csv("preprocessed_data_females.csv")
-    break
-  } 
-  else if(n == 3){
-    data<-readr::read_csv("preprocessed_data_males.csv")
-    break
-  }
 
-  #repeat if none of the conditions were met (i.e., user input was invalid)
+
+## Functions ##########
+##TW (2017.05.03): I want to get these external to the script
+
+#Function: Interactively select working directory (OS independant)
+InteractiveSetWD <- function() {
+  cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
+  setwd('~')
+  #tcltk package provides an OS independant way to select a folder
+  library(tcltk)
+  #setting the arguments (see package documentation for details)
+  .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
+  # open a folder selection window (defaults to 'My Documents').  Sometimes this opens in the background.
+  dir <- tclvalue(tkchooseDirectory()) 
+  setwd(dir)
+  
+  return() 
 }
+
+#Function: Check for existance of subdirectory, create if it doesn't exist.
+DirCheckCreate <- function(subDir) {
+  #set directory variables
+  mainDir <- getwd()
+  
+  #check for/create subdirectory
+  if(!dir.exists(file.path(mainDir, subDir))){
+    cat(paste(subDir, " does not exist in '", mainDir, "' -- creating"))
+    dir.create(file.path(mainDir, subDir))
+    subDirPath <- file.path(mainDir, subDir)
+  }else{
+    cat(paste(subDir, " exists in '", mainDir, "' -- continuing"))
+    subDirPath <- file.path(mainDir, subDir)
+  }
+  return(subDirPath)
+}
+
+#Function: Check for existance of file passed in 
+FileExistCheck <- function(subDir, filename) {
+  
+  #set parameters for file location
+  mainDir <- getwd()
+  
+  #store the file path 
+  filePath <- file.path(mainDir, subDir, filename, fsep = "/")
+  
+  #check for existance of CSV module order file
+  if(file.exists(filePath)){
+    cat(paste(filename, "found -- continuing"))
+    return(filePath)
+  }else{
+    cat(paste("ERROR: ", filename, "not found -- exiting script"))
+    rm(list=ls()) ## Clear the environment
+    return(FALSE)  #retun signal to exit script if file not found
+  }
+}
+
+
+## Setup and data import##########
+## trying to get this working from an external function
+# if(!exists("InteractiveSetWD", mode="function")) 
+#   source(file.path(getwd(), "analytics", "fun_InteractiveSetWD.R", fsep = "/"))
+InteractiveSetWD()
+
+#User selection of data set to process
+  ## [[choossing temporatially commented until subset datasets are working]]
+  #Choose clickstream data(sub)set (repeating to sanitize user input)
+# repeat{
+#   n<-readline(prompt="Enter 1 for all users, 2 for female users, 3 for male users: ");
+# 
+#   if(n == 1){  #dataset: all users
+    #check for datafile existance
+    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data.csv")
+    #exit script if file not found, otherwise continue
+    ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+#     break
+#   }
+#   else if(n == 2){  #dataset: female users
+#     #check for datafile existance
+#     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_females.csv")
+#     #exit script if file not found, otherwise continue
+#     ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+#     break
+#   }
+#   else if(n == 3){  #dataset: male users
+#     #check for datafile existance
+#     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_males.csv")
+#     #exit script if file not found, otherwise continue
+#     ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+#     break
+#   }
+# 
+#   #repeat if none of the conditions were met (i.e., user input was invalid)
+# }
+
+## Read data and retain needed columns
+#read in data
+data <- readr::read_csv(preprocessedDataFilePath)
 
 ####data<-as.data.frame(data)
 ##retain relevant columns
@@ -32,9 +115,28 @@ data<-data[names(data) %in% c("temp_student_id","module_number","time")]
 ##Ordering dataframe by student_id column
 data<-data[order(data$temp_student_id,decreasing=F),]
 
-###############################################################################################################################################################################################################################
 
-##########Calculating number of unique module accesses for each student and saving to file#####################################################################################################################################
+##Save the current working directory.  Set the output directory to the working directory. 
+##  (wd will be restored at the end of the script)
+  
+#save current working directory
+initialWD_save <- getwd()
+
+## TW (2017.05.03): I'm trying to get this working from an external function
+# if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
+#call function to check for the existance of the subdirectory; create it if it doesn't exist
+subDirPath <- DirCheckCreate(subDir = "3_ClusteringOutput")
+
+#set working directory for the remainder of the script
+setwd(subDirPath)
+
+
+
+
+
+#################################################################################
+
+##########Calculating number of unique module accesses for each student and saving to file########
 
 print("Calculating number of access events for each learner...")
 access_list=c()
@@ -47,18 +149,18 @@ print("Done! Saving to file...")
 data_final=data.frame(1:length(unique(data$temp_student_id)),access_list)
 names(data_final)<-c("temp_student_id","number_accesses")
 write.csv(data_final,"access_data.csv")
-rm(list=ls())
+#rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
 
-###############################################################################################################################################################################################################################
+###################################################################################################
 
-##########Choose clustering technique##########################################################################################################################################################################################
+##########Choose clustering technique###############################################################
 
 n<-readline(prompt="Enter 1 for K-means clustering, 2 for Fuzzy means clustering: ");
 n<-as.integer(n);
 
-###############################################################################################################################################################################################################################
+####################################################################################################
 
-##########If choice is K means#################################################################################################################################################################################################
+##########If choice is K means######################################################################
 
 if(n==1)
 {
@@ -120,14 +222,14 @@ if(n==1)
       break
     }
   }
-  rm(list=ls())
+  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
   
   ##User input for number of clusters
   K<-readline("Enter the desired number of clusters (maximum 10): ");
   K<-as.integer(K);
   
   ##Reading access file and performing K-means on access data using user's choice of number of clusters
-  data_preprocessed<-read.csv("preprocessed_data.csv",header=T)
+  data_preprocessed<-readr::read_csv(preprocessedDataFilePath)
   data_preprocessed<-data_preprocessed[names(data_preprocessed) %in% c("temp_student_id","module_number")]
   data_access<-read.csv("access_data.csv",header=T)
   data_access<-data_access[names(data_access) %in% c("temp_student_id","number_accesses")]
@@ -176,61 +278,81 @@ if(n==1)
       }
       if(k==1)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="red",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="red",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==2)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="blue",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="blue",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==3)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="black",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="black",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==4)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="green",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="green",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==5)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="yellow",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="yellow",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==6)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="pink",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="pink",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==7)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="orange",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="orange",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==8)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="brown",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="brown",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==9)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="darkgrey",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="darkgrey",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==10)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="cyan",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="cyan",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
@@ -238,12 +360,12 @@ if(n==1)
   }
   dev.off()
   print("Done!")
-  rm(list=ls())
+  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
   
 } else if(n==2)
 {
 
-##########If choice is fuzzy means#############################################################################################################################################################################################
+##########If choice is fuzzy means##################################################################
 
   ##Read access data file and delete irrelevant columns
   data<-read.csv("access_data.csv",header=T)
@@ -277,7 +399,7 @@ if(n==1)
       break
     }
   }
-  rm(list=ls())
+  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
   
   ##User input for number of clusters
   K<-readline("Enter the desired number of clusters (maximum 10): ");
@@ -314,7 +436,9 @@ if(n==1)
   x=1:length(unique(data_preprocessed$module_number))
   setEPS()
   postscript("Cluster_plot_fuzzy.eps")
-  plot(1,pch=".",col="white",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab="Module number",ylab="Users",main="Users clustered by courseware access")
+  plot(1,pch=".",col="white",xlim=c(0,length(unique(data_preprocessed$module_number))),
+       ylim=c(0,max(data_access$temp_student_id)),xlab="Module number",ylab="Users",
+       main="Users clustered by courseware access")
   par(new=T)
   for(k in cluster_order)
   {
@@ -333,61 +457,81 @@ if(n==1)
       }
       if(k==1)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="red",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="red",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==2)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="blue",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="blue",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==3)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="black",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="black",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==4)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="green",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="green",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==5)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="yellow",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="yellow",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==6)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="pink",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="pink",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==7)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="orange",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="orange",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==8)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="brown",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="brown",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==9)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="darkgrey",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="darkgrey",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
       else if(k==10)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="cyan",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="cyan",
+             xlim=c(0,length(unique(data_preprocessed$module_number))),
+             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter=counter+1
       }
@@ -395,8 +539,17 @@ if(n==1)
   }
   dev.off()
   print("Done!")
-  rm(list=ls())
+  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
 } else
 {
   print("Invalid choice! Please enter 1 or 2...")
 }
+
+
+
+## Restore the working directory from when the script began
+setwd(initialWD_save)
+
+
+## Clear the environment  #############
+rm(list=ls())

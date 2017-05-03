@@ -16,30 +16,73 @@
 #                   a "2" for the chapter's children, 
 #                   a "3" for the chapter's children's children, and so on.
 # 
-# Package dependancies: jsonlite, readr
+# Package dependancies: jsonlite, readr, tcltk
 #
 # Changelog:
-# rev2017a    10 Mar. 2017    Initial distributed version (emailed to Doipayan)
-# rev2017b    10 Mar. 2017    Minor updates including header comments
+# rev2017a    2017.03.10.   Initial distributed version (emailed to Doipayan)
+# rev2017b    2017.03.10.   Minor updates including header comments
 #                             Distributed internally to MOOC research group through Dropbox
-# rev2017c    10 Mar. 2017    Transitioned code identifying "course" as the highest level 
+# rev2017c    2017.03.10.   Transitioned code identifying "course" as the highest level 
 #                               (rather than the previously used "chapter"). This was done to (1) clean up 
 #                               the code logic and (2) to take advanage of the chapters being properly 
 #                               ordered in the "course" module.
 #                             Modified output csv filename to contain the origional JSON filename. 
-# rev2017d    22 Mar. 2017    Minor updates to improve clarity
-# rev2017e    30 Mar. 2017    Removed all modules from courseHierarchy that were never clicked by ANY user
-# rev2017f    05 Apr. 2017    Automated generation of module_order_file.csv to feed directly into Preprossing.r. 
+# rev2017d    2017.03.22.   Minor updates to improve clarity
+# rev2017e    2017.03.30.   Removed all modules from courseHierarchy that were never clicked by ANY user
+# rev2017f    2017.04.05.   Automated generation of module_order_file.csv to feed directly into Preprossing.r. 
 #                             Saving deleted modules into a seperate csv file for examinateion
-# rev2017g    11 Apr. 2017    Changed file selection to a GUI file browser. 
+# rev2017g    2017.04.11.   Changed file selection to a GUI file browser. 
 #                             Direct read in from sql clickstream file eliminates the external conversion from SQL to CSV
-# rev2017h    20 Apr. 2017    Fixed csv export bug if a module title contains a comma 
+# rev2017h    2017.04.20.   Fixed csv export bug if a module title contains a comma 
 #                             Added section headings
+# rev2017i    2017.05.02.   Created output files placed into a seperate subdirectory
+# rev2017j    2017.05.03.   Put subdirectory and file checking code into functions
 ##################################
 
-## Setup and data import##########
-#IMPORTANT: Set your working directory
+
+## Functions ##########
+
+#Function: Interactively select working directory (OS independant)
+InteractiveSetWD <- function() {
+    cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
+  setwd('~')
+  #tcltk package provides an OS independant way to select a folder
+  library(tcltk)
+  #setting the arguments (see package documentation for details)
+  .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
+  # open a folder selection window (defaults to 'My Documents').  Sometimes this opens in the background.
+  dir <- tclvalue(tkchooseDirectory()) 
+  setwd(dir)
   
+  return() 
+}
+
+#Function: Check for existance of subdirectory, create if it doesn't exist.
+DirCheckCreate <- function(subDir) {
+  #set directory variables
+  mainDir <- getwd()
+  
+  #check for/create subdirectory
+  if(!dir.exists(file.path(mainDir, subDir))){
+    cat(paste(subDir, " does not exist in '", mainDir, "' -- creating"))
+    dir.create(file.path(mainDir, subDir))
+    subDirPath <- file.path(mainDir, subDir)
+  }else{
+    cat(paste(subDir, " exists in '", mainDir, "' -- continuing"))
+    subDirPath <- file.path(mainDir, subDir)
+  }
+  return(subDirPath)
+}
+
+
+
+## Setup and data import##########
+  ## trying to get this working from an external function
+  # if(!exists("InteractiveSetWD", mode="function")) 
+  #   source(file.path(getwd(), "analytics", "fun_InteractiveSetWD.R", fsep = "/"))
+  InteractiveSetWD()
+
+
 #Locate the JSON course structure data file you want processed
 print("Select the JSON course structure file. It should end with 'course_structure-prod-analytics.json'")
 filenameJSON <- file.choose()
@@ -60,7 +103,7 @@ moduleNames <- names(data)
 #create variable to track which level the module should be sorted at (top, child, grandchild, etc)
 hierarchicalLvl <- 0
 #build empty matrix to store hierarchy for entire course
-courseHierarchy <- matrix(, nrow = 0, ncol = 3, byrow = FALSE)
+courseHierarchy <- matrix(nrow = 0, ncol = 3, byrow = FALSE)
 
 
 #Check for category type "course" for each module in the file; 
@@ -119,8 +162,7 @@ names(courseHierarchy) <- c("module_id","module_title","module_hierarchy_level")
 
 
 #read in the clickstream data 
-raw_data <- readr::read_tsv(filenameClickstream)
-
+raw_data <- readr::read_tsv(file = filenameClickstream)
 
 #create an empty data frame to store the modules not clicked on by anyone
 DeletedModules <- data.frame()
@@ -149,6 +191,12 @@ courseHierarchy <- cbind(courseHierarchy,module_no)
 
 
 ##Write data to files ###############
+  ## trying to get this working from an external function
+  # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
+#call function to check for the existance of the subdirectory; create it if it doesn't exist
+subDirPath <- DirCheckCreate(subDir = "1_extractModulesOutput")
+
+
 
 #identify and save the column number index for the module titles 
 #   (To be used later in forcing quotes around the title strings.  Needed in case a module title contains a comma.)
@@ -158,10 +206,13 @@ modTitleColIndex <- grep("module_title", colnames(courseHierarchy))
 courseHierarchy <- as.matrix(courseHierarchy)
 DeletedModules <- as.matrix(DeletedModules)
 
-#write a CSV file for the next step in processing.  (Also write CSV file of those modules which were removed.)
+
+#write a CSV file for the next step in processing.  (Also write a CSV file of those modules which were removed.)
 #   quotes are forced around the module title names in case one contains a comma
-write.csv(file = "module_order_file.csv", x = courseHierarchy, quote = c(modTitleColIndex))
-write.csv(file = "modules_deleted.csv", x = DeletedModules, quote = c(modTitleColIndex))
+write.csv(file = file.path(subDirPath, "module_order_file.csv", fsep = "/"), 
+          x = courseHierarchy, quote = c(modTitleColIndex))
+write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
+          x = DeletedModules, quote = c(modTitleColIndex))
 
 
 ## Clear the environment  #############

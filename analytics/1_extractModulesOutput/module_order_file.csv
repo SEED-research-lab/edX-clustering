@@ -1,0 +1,273 @@
+"","module_id","module_title","module_hierarchy_level","module_no"
+"courseHierarchy",i4x://PurdueX/nano515x/course/2015_T2,"Organic Electronic Devices",0,0
+"",i4x://PurdueX/nano515x/chapter/f130738d2a85475e93b110487c80f462,"Welcome",1,1
+".1",i4x://PurdueX/nano515x/sequential/c5bdada0487143d296aaaef10aa0a2a4,"Technical Overview",2,2
+".3",i4x://PurdueX/nano515x/video/d0b5db07fed8429d8940c34f74103534,"Course Technical Overview",4,3
+".6",i4x://PurdueX/nano515x/sequential/92a3dc0ff08f45a9bc860eca20b718e7,"Course Information",2,4
+".18",i4x://PurdueX/nano515x/sequential/54c8e999a79e47c1a720d4e71d0cb3fc,"Prerequisites",2,5
+".22",i4x://PurdueX/nano515x/chapter/15b9d600840041ca97d179493dd649f9,"Week 1: Semiconductor Synthesis and Characterization",1,6
+".23",i4x://PurdueX/nano515x/sequential/fbb26834049d47289e985b029bc3798e,"L1.1: An Introduction to Organic Electronic Materials",2,7
+".25",i4x://PurdueX/nano515x/video/7cda5f9a3c79449da06ff11f6008e187,"L1.1 Lecture",4,8
+".29",i4x://PurdueX/nano515x/problem/e8b6b53490744061bd53ad7e01214ea0,"Question 1",4,9
+".30",i4x://PurdueX/nano515x/problem/7bf1658f3d214522a8d21bbc74f81499,"Question 2",4,10
+".31",i4x://PurdueX/nano515x/problem/60313e48953f425ea15c8f4135d08aea,"Question 3",4,11
+".33",i4x://PurdueX/nano515x/sequential/7e17c580714b4f18b8f27df61de5a6cb,"L1.2: Synthesis of Poly (3-alkylthiophenes) (P3ATs)",2,12
+".35",i4x://PurdueX/nano515x/video/1e72653a1ab945939288f65e42aea47b,"L1.2 Lecture ",4,13
+".39",i4x://PurdueX/nano515x/problem/3f35e087e89f44afa57e384899abc3dd,"Question 1 ",4,14
+".40",i4x://PurdueX/nano515x/problem/da32340d4f904abc82141e44af19e568,"Question 2",4,15
+".41",i4x://PurdueX/nano515x/problem/2e32cc0deec7404b954497e74d831504,"Question 3 ",4,16
+".43",i4x://PurdueX/nano515x/sequential/87bebc7380414ac9a8dcbab69dee9127,"L1.3: Synthesis of Low Bandgap Polymers",2,17
+".45",i4x://PurdueX/nano515x/video/40ff6f9ea9ac428dbf2e4e71bf7bd81c,"L1.3 Lecture ",4,18
+".49",i4x://PurdueX/nano515x/problem/949d25971fc64b88a8046690ad0709ec,"Question 1",4,19
+".50",i4x://PurdueX/nano515x/problem/ea173b5aaf4740fda222856ff3edc8a5,"Question 2",4,20
+".51",i4x://PurdueX/nano515x/problem/101362c4d0cf48b1a4c3b9a27c01c70d,"Question 3",4,21
+".53",i4x://PurdueX/nano515x/sequential/b9a05509df9e45daa289d39547e7a109,"L1.4: Molecular and Thermal Characterization",2,22
+".55",i4x://PurdueX/nano515x/video/9e8dff9633f142d3b983d474db359573,"L1.4 Lecture",4,23
+".59",i4x://PurdueX/nano515x/problem/9a03b6852b4a4528b04258de8a19b8a8,"Question 1",4,24
+".60",i4x://PurdueX/nano515x/problem/fc6e4bd01e6c42cda68241d934cabfaa,"Question 2",4,25
+".61",i4x://PurdueX/nano515x/problem/570a320b85ab4d9894bf46849babdc08,"Question 3",4,26
+".63",i4x://PurdueX/nano515x/sequential/e2661bd3c8fb46649258602d14debab6,"L1.5: Structural and Optical Characterization",2,27
+".65",i4x://PurdueX/nano515x/video/0a0add7a58b94aeea6e41b052737facf,"L1.5 Lecture ",4,28
+".69",i4x://PurdueX/nano515x/problem/1c68f51f81ba48edae1ba5eceb88f531,"Question 1",4,29
+".70",i4x://PurdueX/nano515x/problem/72d6ae03187140868ec7fcb1990c598a,"Question 2",4,30
+".71",i4x://PurdueX/nano515x/problem/30f7652777a044da899642e2e1b806ce,"Question 3",4,31
+".73",i4x://PurdueX/nano515x/sequential/1755806ef86c4dfc84f87006698f9265,"Week 1: Homework",2,32
+".75",i4x://PurdueX/nano515x/problem/1ba69a7efec348578e9bb713eebcf0d1,"Problem 1: Part A",4,33
+".76",i4x://PurdueX/nano515x/problem/43963431988c41ef8ec9de4023bb3c33,"Problem 1: Part B",4,34
+".77",i4x://PurdueX/nano515x/problem/c8a2aebdf5a54aec81d964f470996113,"Problem 1: Part C ",4,35
+".78",i4x://PurdueX/nano515x/problem/0670070a5cb34cecb93362802a121387,"Problem 1: Part D",4,36
+".79",i4x://PurdueX/nano515x/problem/04e5380dc04e4ba5b71c6f785916228f,"Problem 2: Part A",4,37
+".80",i4x://PurdueX/nano515x/problem/bc50c3a8889e41fb9e9c7783510a8440,"Problem   2: Part B",4,38
+".81",i4x://PurdueX/nano515x/problem/257fd7311e824a80940a755294349275,"Problem 2: Part C",4,39
+".82",i4x://PurdueX/nano515x/problem/ead52891e8da40e7add162d4333aa57f,"Problem 3: Part A ",4,40
+".83",i4x://PurdueX/nano515x/problem/b23bc4e291924041a26d17b878c205bd,"Problem 3: Part B",4,41
+".84",i4x://PurdueX/nano515x/problem/7feb99adf61543cbaf9ad2b083ebca62,"Problem 3: Part C",4,42
+".85",i4x://PurdueX/nano515x/problem/1f94f76e38b746c581bd351159ed730d,"Problem 3: Part D ",4,43
+".86",i4x://PurdueX/nano515x/problem/8449baafca034c13b2d785e34d77b16d,"Problem 4: Part A",4,44
+".87",i4x://PurdueX/nano515x/problem/359f468599014584995bb19c56f18954,"Problem 4: Part B",4,45
+".88",i4x://PurdueX/nano515x/problem/c3cbb92839324d7e96261e941f70247e,"Problem 4: Part C",4,46
+".89",i4x://PurdueX/nano515x/problem/b14dc740264148b1b3e0815cf83edf6b,"Problem 4: Part D",4,47
+".90",i4x://PurdueX/nano515x/problem/854176d7ce1349e3ac4d2417d722a701,"Problem 5: Part A",4,48
+".91",i4x://PurdueX/nano515x/problem/dc11ac823163468fbe2bc66e53e7a172,"Problem 5 A continued",4,49
+".92",i4x://PurdueX/nano515x/problem/306dbf81109c4f6b87e843d7c519c69b,"Problem 5: Part A continued",4,50
+".93",i4x://PurdueX/nano515x/problem/4b445dd5425d42a39c6a2e86b81c0314,"Problem 5: Part B",4,51
+".94",i4x://PurdueX/nano515x/problem/01d8bc36ab7a4fcba13bcfb3e4ece7aa,"Problem 5: Part B continued",4,52
+".95",i4x://PurdueX/nano515x/problem/a429857911e248f79e4ca512139a354f,"Problem 5: Part B continued",4,53
+".97",i4x://PurdueX/nano515x/sequential/35544db083c2411abac7230e8abc9a41,"Week 1: Homework Tutorial and Solutions",2,54
+".99",i4x://PurdueX/nano515x/video/85682fb7d07b47798e8891c2f79d6fc6,"Week 1: Homework Tutorial and Solutions ",4,55
+".102",i4x://PurdueX/nano515x/sequential/4b2a966bdaf445b4902a92bab43bd2b3,"Week 1: Exam",2,56
+".104",i4x://PurdueX/nano515x/problem/50eba604bd044f0eaa5b409ee466956f,"Problem 1",4,57
+".105",i4x://PurdueX/nano515x/problem/591e3721301f446599ed462f495c7389,"Problem 2",4,58
+".106",i4x://PurdueX/nano515x/problem/6d657e7eb3d04201ba71daaa965370ac,"Problem 3",4,59
+".107",i4x://PurdueX/nano515x/problem/c9dd3cd6b6a64ea697fe6517ee43280b,"Problem 4",4,60
+".108",i4x://PurdueX/nano515x/problem/7e687f49113841e9bd21b9bdf28e2d1c,"Problem 5",4,61
+".109",i4x://PurdueX/nano515x/problem/a986924ad5484e878a85d9e81ff964cb,"Problem 6",4,62
+".110",i4x://PurdueX/nano515x/problem/bd7bff4496814d3098bbffa3367d8eb0,"Problem 7",4,63
+".111",i4x://PurdueX/nano515x/problem/7a1524bb4a71429986f5e42fa6b9c953,"Problem 8: Part A ",4,64
+".112",i4x://PurdueX/nano515x/problem/2be73235a0da41328e4eb5d47a8faf7f,"Problem 8: Part B",4,65
+".113",i4x://PurdueX/nano515x/problem/33aa75547c97442c80a65ea55f579503,"Problem 8: Part C ",4,66
+".114",i4x://PurdueX/nano515x/problem/9fb5d01b82404c22a83bffd9c7f49f3f,"Problem 8: Part D",4,67
+".115",i4x://PurdueX/nano515x/problem/cec3ee4fcb0a43bba83684842ef57011,"Problem 9: Part A",4,68
+".116",i4x://PurdueX/nano515x/problem/20a1a533808249a8bbeb034fb3d51ce1,"Problem 9: Part B",4,69
+".117",i4x://PurdueX/nano515x/problem/efec20516402475288aa150014e6e63d,"Problem 10",4,70
+".118",i4x://PurdueX/nano515x/problem/34a3d9efd8aa4d08bd0cd29edaee7fba,"Problem 11",4,71
+".119",i4x://PurdueX/nano515x/problem/0af0cbba293343bbaf9a6a588f5834d0,"Problem 12",4,72
+".120",i4x://PurdueX/nano515x/problem/d6ac07fe3c50483ca9f53cfeda7b53c8,"Problem 13",4,73
+".121",i4x://PurdueX/nano515x/problem/b581899c41be448792ca06571fffbc26,"Problem 14",4,74
+".122",i4x://PurdueX/nano515x/chapter/4aa4f3e326e44d5b987e99488679d89f,"Week 2: Electronic Structure",1,75
+".123",i4x://PurdueX/nano515x/sequential/aeb3e63995494fca9d07bb76ee452bca,"L2.1: Atomic and Molecular Orbitals",2,76
+".125",i4x://PurdueX/nano515x/video/d820fc9ba8f8445b84e94d408547c752,"L2.1 Lecture",4,77
+".129",i4x://PurdueX/nano515x/problem/54e2a418155f474d8d518f5a9c928181,"Question 1",4,78
+".130",i4x://PurdueX/nano515x/problem/99232bd64b484228a13b8b93f0e5e7cf,"Question 2 ",4,79
+".131",i4x://PurdueX/nano515x/problem/2ee94ab2857b4a8ab5f3669549bc646b,"Question 3",4,80
+".133",i4x://PurdueX/nano515x/sequential/c1cdc6750769407098e1504d9a78ff78,"L2.2: The Schrödinger Equation",2,81
+".135",i4x://PurdueX/nano515x/video/d482f95607c7451d8c8baf7d39cbf5fe,"L2.2 Lecture",4,82
+".139",i4x://PurdueX/nano515x/problem/ce8185de31594a45ae12ea0a6e0dd708,"Question 1",4,83
+".140",i4x://PurdueX/nano515x/problem/e7afe2914a2b4a478d28e4938bc83e4d,"Question 2",4,84
+".141",i4x://PurdueX/nano515x/problem/0a8fb1ac9ebf474b87e8cd64eebaa4fb,"Question 3",4,85
+".143",i4x://PurdueX/nano515x/sequential/4f932173c4cf44fc83cb7b7be0d4eac7,"L2.3: Application of the Schrödinger Equation",2,86
+".145",i4x://PurdueX/nano515x/video/5480655bf0754ec98f9312e152e2ff1d,"L2.3 Lecture ",4,87
+".149",i4x://PurdueX/nano515x/problem/b6041a2b43d148809ffd4e3d07021dca,"Question 1 ",4,88
+".150",i4x://PurdueX/nano515x/problem/9ae2fa2a492e43779134a43aed25ed34,"Question 2",4,89
+".151",i4x://PurdueX/nano515x/problem/256a6505a46344b8bedeae81d9e8b435,"Question 3 ",4,90
+".153",i4x://PurdueX/nano515x/sequential/2e5c62b8be264258b7e53a6ec01ab164,"L2.4: Fermi Energy and Density of States",2,91
+".155",i4x://PurdueX/nano515x/video/ff6d64d23cee480fa8b4385ca16fc71a,"L2.4 Lecture",4,92
+".159",i4x://PurdueX/nano515x/problem/5b57f3a701c643f28c5a6902d0497041,"Question 1",4,93
+".160",i4x://PurdueX/nano515x/problem/445314d518954eb69827a94a2166a82c,"Question 2",4,94
+".161",i4x://PurdueX/nano515x/problem/bdb79445215e4e5aa2b8877c37679504,"Question 3",4,95
+".163",i4x://PurdueX/nano515x/sequential/60d5f740619c45b9b70ecaa63469c856,"L2.5: Carrier Densities in Intrinsic Semiconductors",2,96
+".165",i4x://PurdueX/nano515x/video/ebeaaf1673394101a69581b2a617c27d,"L2.5 Lecture",4,97
+".169",i4x://PurdueX/nano515x/problem/fd1663e237064ecfbd256c376497f8e7,"Question 1 ",4,98
+".170",i4x://PurdueX/nano515x/problem/0d5b993d37ce4e518c0750ad0aff716e,"Question 2",4,99
+".171",i4x://PurdueX/nano515x/problem/928def3bc096405b9059f7a6cf98295b,"Question 3",4,100
+".173",i4x://PurdueX/nano515x/sequential/c6bb0815cd2d41fba86abe56bb73ff1b,"Week 2: Homework",2,101
+".175",i4x://PurdueX/nano515x/problem/d5cacb0cb97549bda28cbc8e92e79c6b,"Problem 1",4,102
+".176",i4x://PurdueX/nano515x/problem/6321dbe61f9b49a1b4b2e1b1f6e636b3,"Problem 2 ",4,103
+".177",i4x://PurdueX/nano515x/problem/161e62cfd8a6484b9ceb484fddedb5d4,"Problem 3",4,104
+".178",i4x://PurdueX/nano515x/problem/0faf3667cc9b4ffe8f1252e1dba9e30f,"Problem 4",4,105
+".180",i4x://PurdueX/nano515x/sequential/f758e5e9c73f45b19b20be566ae3de47,"Week 2: Homework Tutorial and Solutions",2,106
+".182",i4x://PurdueX/nano515x/video/f1d2fef647a94a4287d1fb181c3ba80a,"Week 2: Homework Tutorial and Solutions ",4,107
+".185",i4x://PurdueX/nano515x/sequential/22631b3f566343d1b383ba7245fc17c7,"Week 2:  Exam",2,108
+".187",i4x://PurdueX/nano515x/problem/9017bb0cf86a4cf69ddbc10faff8d2f4,"Problem 1: Part A",4,109
+".188",i4x://PurdueX/nano515x/problem/367aaeb0ed4a41ea896ad5ba7a0fa6cd,"Problem 1: Part B",4,110
+".189",i4x://PurdueX/nano515x/problem/115a067699df46a58ce92048fbb1d607,"Problem 1: Part C",4,111
+".190",i4x://PurdueX/nano515x/problem/4e112de03d194af19f744e2ec8ff594b,"Problem 1: Part D",4,112
+".191",i4x://PurdueX/nano515x/problem/c23a6a4bac8944e7b40140b2cbc099ae,"Problem 2",4,113
+".192",i4x://PurdueX/nano515x/problem/646f24915302419aaa9970e9b48ef243,"Problem 3",4,114
+".193",i4x://PurdueX/nano515x/problem/9f820d0f54e34428bc28c29bd07508c1,"Problem 4",4,115
+".194",i4x://PurdueX/nano515x/problem/444dcb740dba44ae8da6585e1038de70,"Problem 5",4,116
+".195",i4x://PurdueX/nano515x/problem/153363c495c74bc894df99f0a2f8eced,"Problem 6",4,117
+".196",i4x://PurdueX/nano515x/problem/b5992a955b96432293c10238f12cb210,"Problem 7",4,118
+".197",i4x://PurdueX/nano515x/problem/ef2617b0e7274b0c9c2c12f8db3e62ee,"Problem 8",4,119
+".198",i4x://PurdueX/nano515x/chapter/1453a32f613943538795d7f608104a12,"Week 3: Charge Transport",1,120
+".199",i4x://PurdueX/nano515x/sequential/b2a277a6fabe472cacbf94d9a3f35218,"L3.1: Charge Transport via a Hopping Mechanism",2,121
+".201",i4x://PurdueX/nano515x/video/d010a7ab64ff48419b6297bfc1f62a78,"L3.1 Lecture",4,122
+".205",i4x://PurdueX/nano515x/problem/6cc3dfb06b154edb9946a1baa002889d,"Question 1",4,123
+".206",i4x://PurdueX/nano515x/problem/22dde00f30074426ad7b5a76f04956dc,"Question 2",4,124
+".207",i4x://PurdueX/nano515x/problem/98f26701e287426aad8dfb216a91c771,"Question 3",4,125
+".209",i4x://PurdueX/nano515x/sequential/a8ac363d47fd422d98e3068614d998bd,"L3.2: Doping in Semiconducting Materials",2,126
+".211",i4x://PurdueX/nano515x/video/5ca54c3de7fd474c995111f1c699c0fb,"L3.2 Lecture",4,127
+".215",i4x://PurdueX/nano515x/problem/894396a951f04ce9ba9e672df28aacad,"Question 1",4,128
+".216",i4x://PurdueX/nano515x/problem/5dbed68f4d5e4c8b904c320ad48cc989,"Question 2",4,129
+".217",i4x://PurdueX/nano515x/problem/aa1b6b9f0e0d4848807df93ddb64e7e9,"Question 3",4,130
+".219",i4x://PurdueX/nano515x/sequential/4b28ec7eca2d495e9bacc7084fec2dfb,"L3.3: Multiple Trap and Release (MTR) Model",2,131
+".221",i4x://PurdueX/nano515x/video/22cd54cb1da248dd9472e3e08f6bb2c4,"L3.3 Lecture",4,132
+".225",i4x://PurdueX/nano515x/problem/5058e52f92b74303acd92fd0dd7a344f,"Question 1",4,133
+".226",i4x://PurdueX/nano515x/problem/f4ece2c822134225ad22dcec8d2f3502,"Question 2",4,134
+".227",i4x://PurdueX/nano515x/problem/32b591a1104e416d95fd843e484cd27a,"Question 3",4,135
+".229",i4x://PurdueX/nano515x/sequential/15a01c56646742808c545be7712126e1,"L3.4: Transport in Disordered Semiconductors",2,136
+".231",i4x://PurdueX/nano515x/video/2a1286b625ef44cfb735e62e5ddfad71,"L3.4 Lecture ",4,137
+".235",i4x://PurdueX/nano515x/problem/052697207af4442987faaf254999fd26,"Question 1",4,138
+".236",i4x://PurdueX/nano515x/problem/957606ebccda4735ba57fa8f2360710f,"Question 2",4,139
+".238",i4x://PurdueX/nano515x/sequential/1ce5c40f00634b0ca14ec2e2ff02b203,"L3.5: Organic Field-Effect Transistors",2,140
+".240",i4x://PurdueX/nano515x/video/272a4d7943874339af8888bfccf048c9,"L3.5 Lecture",4,141
+".244",i4x://PurdueX/nano515x/problem/77b3d7f2c1734c01adb155a555bbe4c3,"Question 1",4,142
+".245",i4x://PurdueX/nano515x/problem/e272b8dca6f442d1abac26c7ecfdcf28,"Question 2",4,143
+".246",i4x://PurdueX/nano515x/problem/dcecfb5c26584ec3a0929643e59337f2,"Question 3",4,144
+".248",i4x://PurdueX/nano515x/sequential/354e8b9da8654e2c83aef86470fea6a9,"Week 3: Homework",2,145
+".250",i4x://PurdueX/nano515x/problem/64095e50d0aa434ea1b8e85ea99c8244,"Problem 1",4,146
+".251",i4x://PurdueX/nano515x/problem/37b4a20602e041249f56b7f85a4f93da,"Problem 2: Part A",4,147
+".252",i4x://PurdueX/nano515x/problem/218fac6414a944158c0f33e1bf59897f,"Problem 2: Part B",4,148
+".253",i4x://PurdueX/nano515x/problem/fd98a961c04e42e49b72b281b27ce80e,"Problem 3",4,149
+".254",i4x://PurdueX/nano515x/problem/483fba6615994f49a26f7d8f79340a60,"Problem 4",4,150
+".256",i4x://PurdueX/nano515x/sequential/826daf2f04704820923e2c6f6bbbdb7b,"Week 3: Homework Tutorial and Solutions",2,151
+".258",i4x://PurdueX/nano515x/video/e68222bfc6fa4290b082636daf393043,"Week 3: Homework Tutorial and Solutions ",4,152
+".261",i4x://PurdueX/nano515x/sequential/0e2899b7e511495d8633d68d86e58d36,"Week 3: Exams",2,153
+".263",i4x://PurdueX/nano515x/problem/ec46d734fcd94c80a93b48f38286d81b,"Problem 1",4,154
+".264",i4x://PurdueX/nano515x/problem/783f62996e83466ba4bb7613474a2dd3,"Problem 2: Part A",4,155
+".265",i4x://PurdueX/nano515x/problem/3b7f73294a4545a7b7f8d68106d44784,"Problem 2: Part B",4,156
+".266",i4x://PurdueX/nano515x/problem/24e2df9b0692489480b56536e4c83d91,"Problem 2: Part C",4,157
+".267",i4x://PurdueX/nano515x/problem/57003c14824e4b42b0da5d197c954aed,"Problem 3: Part A",4,158
+".268",i4x://PurdueX/nano515x/problem/20b6fbee48eb4a21bd8ea12456053364,"Problem 3: Part B",4,159
+".269",i4x://PurdueX/nano515x/problem/6bec6f22102b43f58165839dd56fe38e,"Problem 3: Part C",4,160
+".270",i4x://PurdueX/nano515x/problem/a8e46ea42b0546e289c0fa4b1c709bc4,"Problem 3: Part D",4,161
+".271",i4x://PurdueX/nano515x/problem/010b25542f404a8c80058222a07a8e6c,"Problem 4 ",4,162
+".272",i4x://PurdueX/nano515x/chapter/e23bdcbf795140d28597c982dd65b180,"Week 4:  Organic Photovoltaic Devices",1,163
+".273",i4x://PurdueX/nano515x/sequential/437710a20465419b958463d15385dbb2,"L4.1: Overview of Organic Photovoltaic Devices",2,164
+".275",i4x://PurdueX/nano515x/video/a108934a600c4ee8afb6fff5e75c160e,"L4.1 Lecture",4,165
+".279",i4x://PurdueX/nano515x/problem/ed1b9012f42d46eeb2132782c409cb11,"Question 1 ",4,166
+".280",i4x://PurdueX/nano515x/problem/88941e183d644d0eb6a3d6cae7f961e9,"Question 2 ",4,167
+".281",i4x://PurdueX/nano515x/problem/1628487bdaf048acb861918428b8ee1f,"Question 3",4,168
+".283",i4x://PurdueX/nano515x/sequential/e641d3fb301449a9b6f3bbbaee632cd0,"L4.2: Characterizing Device Parameters in OPVs",2,169
+".285",i4x://PurdueX/nano515x/video/2c1c05d6cfcf419da73d193916105e64,"L4.2 Lecture ",4,170
+".289",i4x://PurdueX/nano515x/problem/c94725a6e4df4151b09121321bfc49e1,"Question 1",4,171
+".290",i4x://PurdueX/nano515x/problem/5df63f84e41345768c3b9a82fa550bc4,"Question 2",4,172
+".291",i4x://PurdueX/nano515x/problem/1effe6bb42b94cc4ab519932dffc9a59,"Question 3 ",4,173
+".293",i4x://PurdueX/nano515x/sequential/089c3c65e037438981803b1679129645,"L4.3: Nanostructural Impacts in OPV Devices",2,174
+".295",i4x://PurdueX/nano515x/video/3fe1ac0513a84e51a671865e08c1dad2,"L4.3 Lecture",4,175
+".299",i4x://PurdueX/nano515x/problem/3f44c0861cda470bb8a0e237f72fb511,"Question 1",4,176
+".300",i4x://PurdueX/nano515x/problem/9916347143744be7ad4791ad3621a6cb,"Question 2",4,177
+".301",i4x://PurdueX/nano515x/problem/fb01ed19d04245c1820d85aef5c7f854,"Question 3",4,178
+".303",i4x://PurdueX/nano515x/sequential/d2ed3f8889bd42d3b4cd0c1aea0b596e,"L4.4: Interfacial Modifying Layers in OPV Devices",2,179
+".305",i4x://PurdueX/nano515x/video/82f9fe10ba8f4bf38a324eb9e0856461,"L4.4 Lecture",4,180
+".309",i4x://PurdueX/nano515x/problem/f3942dd8606846e29b9c09671da6ac5a,"Question 1",4,181
+".310",i4x://PurdueX/nano515x/problem/945d1d34accc4aea9c84585322d5bb18,"Question 2",4,182
+".311",i4x://PurdueX/nano515x/problem/0e63d268279244c2b7325c8f0d9dd726,"Question 3",4,183
+".313",i4x://PurdueX/nano515x/sequential/586cb1eb7e174dbfb42cb5308b6c4b80,"L4.5: Emerging Trends in OPV Devices",2,184
+".315",i4x://PurdueX/nano515x/video/3d30e759d10745129ae9fe58ae30f772,"L4.5 Lecture",4,185
+".319",i4x://PurdueX/nano515x/problem/c730cfa792d847a2aa3f101cc2247dd2,"Question 1",4,186
+".320",i4x://PurdueX/nano515x/problem/4d09c537dbca4cc892d9db107413e1f1,"Question 2 ",4,187
+".321",i4x://PurdueX/nano515x/problem/1535788d11ed498f8e5795ae5544bf87,"Question 3 ",4,188
+".323",i4x://PurdueX/nano515x/sequential/4ad2c982c49e4913a9539ae41ca25373,"Week 4: Homework",2,189
+".325",i4x://PurdueX/nano515x/problem/f70ccd69e77f4a78a594b9a8d7115cce,"Problem 1",4,190
+".326",i4x://PurdueX/nano515x/problem/b1459580e0ef48308d1382d2afe326bb,"Problem 2",4,191
+".327",i4x://PurdueX/nano515x/problem/bc1131baea424a72a16a959a98e1f288,"Problem 3 ",4,192
+".328",i4x://PurdueX/nano515x/problem/db23e183c3f647e69e6875656d93366a,"Problem 4",4,193
+".330",i4x://PurdueX/nano515x/sequential/77539e981b2f42f08e6160949570f15f,"Week 4: Homework Tutorial and Solutions",2,194
+".332",i4x://PurdueX/nano515x/video/6cdfcdbd174d43968a61b67dd5f8736f,"Week 4: Homework Tutorial and Solutions ",4,195
+".335",i4x://PurdueX/nano515x/sequential/232894c042714c7285232e72c1d8c3da,"Week 4: Exam",2,196
+".337",i4x://PurdueX/nano515x/problem/4acc33db30c947ea971479c1f3f77586,"Problem 1: Part A",4,197
+".338",i4x://PurdueX/nano515x/problem/e3c97a404fdd49699e02274aa8ceb450,"Problem 1: Part B",4,198
+".339",i4x://PurdueX/nano515x/problem/1394660617054697b0feadcbc0d3a4e2,"Problem 1: Part C",4,199
+".340",i4x://PurdueX/nano515x/problem/4dc27ad8ab0d45dc945915a009bf2edc,"Problem 1: Part D",4,200
+".341",i4x://PurdueX/nano515x/problem/5856ac7f2f2449ffbc417c7d6cf0521d,"Problem 2",4,201
+".342",i4x://PurdueX/nano515x/problem/b8513d9057f24219a39a60c33d38b9a1,"Problem 3: Part A ",4,202
+".343",i4x://PurdueX/nano515x/problem/8449179da23848a09d2f2e546574a2f7,"Problem 3: Part B ",4,203
+".344",i4x://PurdueX/nano515x/problem/e78eb94348754ead811095198e4029c5,"Problem 4 ",4,204
+".345",i4x://PurdueX/nano515x/problem/88010e79007f43eda1cff2fff7856e93,"Problem 5",4,205
+".346",i4x://PurdueX/nano515x/problem/cdb6517caa914cf7abe797da03634b8e,"Problem 6",4,206
+".347",i4x://PurdueX/nano515x/problem/46946bd28160424b936dd1b0f20ab3ce,"Problem 7",4,207
+".348",i4x://PurdueX/nano515x/problem/bd5b9c0fb9d94d329865fd5c367f0d93,"Problem 8",4,208
+".349",i4x://PurdueX/nano515x/problem/f268536d41a54563aa6672a371b655b4,"Problem 9",4,209
+".350",i4x://PurdueX/nano515x/problem/7e4a1c72df324b2fa515f85199cfc667,"Problem 10",4,210
+".351",i4x://PurdueX/nano515x/problem/1fe6fee5c3354aaaa161d6f2746bd10b,"Problem 11",4,211
+".352",i4x://PurdueX/nano515x/problem/11b8451b561c4b9fb2a245c68a04ad23,"Problem 12",4,212
+".353",i4x://PurdueX/nano515x/problem/152d7c1ac6af4a27ae19b430e90d38ea,"Problem 13",4,213
+".354",i4x://PurdueX/nano515x/chapter/29341818f91342da81222c5a7e460231,"Week 5: Organic Light-Emitting Devices and Emerging Technologies",1,214
+".355",i4x://PurdueX/nano515x/sequential/874399fcbed14da9ac2283f16ca006da,"L5.1: Introduction to Organic Light-emitting Devices",2,215
+".357",i4x://PurdueX/nano515x/video/3b4ac1d3427c4a89a1cebb6a00c2296c,"L5.1 Lecture",4,216
+".361",i4x://PurdueX/nano515x/problem/461aaa195600418d8d188fc74871041f,"Question 1",4,217
+".362",i4x://PurdueX/nano515x/problem/6e34c9e8da4541138656cee84fa7c561,"Question 2 ",4,218
+".363",i4x://PurdueX/nano515x/problem/8b98d32cf1b74a61926f07417139c29d,"Question 3",4,219
+".365",i4x://PurdueX/nano515x/sequential/d3043b5d2956441aa96e47436e017811,"L5.2: Design Considerations for OLEDs",2,220
+".367",i4x://PurdueX/nano515x/video/22767698adcc4e8cba477258ef721b1c,"L5.2 Lecture",4,221
+".371",i4x://PurdueX/nano515x/problem/81e11b1d41284fb4a9717da8ae88e87a,"Question 1",4,222
+".372",i4x://PurdueX/nano515x/problem/edd4b541ffbf4ce0afce781cd555af33,"Question 2",4,223
+".373",i4x://PurdueX/nano515x/problem/334b08077b664a80ba95269dcb5c608c,"Question 3",4,224
+".375",i4x://PurdueX/nano515x/sequential/5b64845a288c4859948bb611d367d6c3,"L5.3: Introduction to Polymer Thermoelectric Devices",2,225
+".377",i4x://PurdueX/nano515x/video/db1a4a06b7b24ba18ad5b44ff8f42f06,"L5.3 Lecture",4,226
+".381",i4x://PurdueX/nano515x/problem/35a751b35c074b59acde8b9ab53f2490,"Question 1",4,227
+".382",i4x://PurdueX/nano515x/problem/41c69fc38c68460c905ee479ca3917fe,"Question 2 ",4,228
+".383",i4x://PurdueX/nano515x/problem/7635ba2dcc9a42448937a3e6fcd45aa6,"Question 3",4,229
+".385",i4x://PurdueX/nano515x/sequential/45e1b9c1f159418b974ef55224c3dd7d,"L5.4: State-of-the-Art in Polymer Thermoelectrics",2,230
+".387",i4x://PurdueX/nano515x/video/6738460353064d64b1db4afa10aee2f6,"L5.4 Lecture",4,231
+".391",i4x://PurdueX/nano515x/problem/01e928939590446e850c633b8b6e0a77,"Question 1",4,232
+".392",i4x://PurdueX/nano515x/problem/2eceb8abf2344f06985ffbd947c93f08,"Question 2",4,233
+".393",i4x://PurdueX/nano515x/problem/b330a746b34f4f0893f15444b0ec03b1,"Question 3",4,234
+".395",i4x://PurdueX/nano515x/sequential/d424466352e643b2bfb861470267cd20,"L5.5: Course Review and Summary",2,235
+".397",i4x://PurdueX/nano515x/video/1f2b56116d584ec0b9d2c507f841dda5,"L5.5 Lecture",4,236
+".400",i4x://PurdueX/nano515x/sequential/7191f796fa3c4146898f6e6d8f68f8e9,"Week 5: Homework",2,237
+".402",i4x://PurdueX/nano515x/problem/05f2612985214cdeb5054eec93f7cddc,"Problem 1 ",4,238
+".403",i4x://PurdueX/nano515x/problem/8043e05bebb342729b2e2262aa4a1e71,"Problem 2",4,239
+".404",i4x://PurdueX/nano515x/problem/f814313adf8c4d2382da117ba8403e20,"Problem 3",4,240
+".405",i4x://PurdueX/nano515x/problem/e8e18616d525452bb982331a16a881cd,"Problem 4 ",4,241
+".406",i4x://PurdueX/nano515x/problem/a90b74682e8345a690ef762c1e3807d2,"Problem 5",4,242
+".407",i4x://PurdueX/nano515x/problem/c962853883ba470ca6db9909e3933f8f,"Problem 6",4,243
+".408",i4x://PurdueX/nano515x/problem/7b30eed51d80420ab2efe054d04cafa7,"Problem 7",4,244
+".409",i4x://PurdueX/nano515x/problem/8403e9293f7b4045a868b134117bf667,"Problem 8",4,245
+".410",i4x://PurdueX/nano515x/problem/7a1679c1a04847598f4c89ebe52a1105,"Problem 9 ",4,246
+".411",i4x://PurdueX/nano515x/problem/7bce9c6e251c4885b77b9de59c26d49f,"Problem 10",4,247
+".412",i4x://PurdueX/nano515x/problem/e46a1a070edf43e3a287d9591d6b4702,"Problem 11",4,248
+".413",i4x://PurdueX/nano515x/problem/8abf9df2400c4d81928b1a76cd9f7083,"Problem 12 ",4,249
+".415",i4x://PurdueX/nano515x/sequential/8479d49076f240aebf0eae0de8735781,"Week 5: Homework Tutorial and Solutions",2,250
+".417",i4x://PurdueX/nano515x/video/aed2f07296db4347be263714ff08cefd,"Week 5: Homework Tutorial and Solutions ",4,251
+".420",i4x://PurdueX/nano515x/sequential/5394d6d0a21d4d1987156adb33f1fa62,"Week 5: Exam",2,252
+".422",i4x://PurdueX/nano515x/problem/3b2783ea79c343fca137e1b2d57bea42,"Problem 1: Part A",4,253
+".423",i4x://PurdueX/nano515x/problem/99524344d19d4114a65966d5dbafc336,"Problem 1: Part B",4,254
+".424",i4x://PurdueX/nano515x/problem/a83f0793e6a44c2bb49e35cc1ec223f5,"Problem 1: Part C",4,255
+".425",i4x://PurdueX/nano515x/problem/74fdf25973cc4c2387a3f0ddd95586cb,"Problem 2: Part A",4,256
+".426",i4x://PurdueX/nano515x/problem/c8d42bfdf8e24cd0836dcf51e3a2544b,"Problem 2: Part B",4,257
+".427",i4x://PurdueX/nano515x/problem/edd954fdbdc5405e830617fc42ac84ca,"Problem 2: Part C",4,258
+".428",i4x://PurdueX/nano515x/problem/1495e5e4d27c4eeeb7958cb10b7e2015,"Problem 2: Part D",4,259
+".429",i4x://PurdueX/nano515x/problem/751bbe910c4a49d0a3e7261a7590a4e8,"Problem 2: Part E",4,260
+".430",i4x://PurdueX/nano515x/problem/51c2a4f586ec4be69f935ffa0028756d,"Problem 3",4,261
+".431",i4x://PurdueX/nano515x/problem/3e17d2136905442f8a71e1a61c3a95a8,"Problem 4 ",4,262
+".432",i4x://PurdueX/nano515x/problem/14e039c1cef14e49be5da70871c96bc7,"Problem 5",4,263
+".433",i4x://PurdueX/nano515x/problem/4705eed9909d4b28bcb0ba39aaaa6ebf,"Problem 6",4,264
+".434",i4x://PurdueX/nano515x/problem/d43a776c3fd240a9add9f3625ec30472,"Problem 7: Part A",4,265
+".435",i4x://PurdueX/nano515x/problem/71a59c753ce1444fade28b7d0b6987b7,"Problem 7: Part B",4,266
+".436",i4x://PurdueX/nano515x/problem/ff90570a814443d9bd91adba54e8af14,"Problem 8: Part A ",4,267
+".437",i4x://PurdueX/nano515x/problem/d27b4c6b9cfd4bbaa88eea2556a79581,"Problem 8: Part B",4,268
+".438",i4x://PurdueX/nano515x/problem/5949e4e428ce464483aba30c841d29c6,"Problem 9",4,269
+".439",i4x://PurdueX/nano515x/problem/870ae4547d41436196eb5b2b0bd81ba3,"Problem 10",4,270
+".440",i4x://PurdueX/nano515x/problem/6035ee671f414050ad2580728935de31,"Problem 11",4,271
