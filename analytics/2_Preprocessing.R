@@ -1,4 +1,5 @@
 
+
 #ChangeLog
 # 2017.04.13.   Added GUI user selection of Clickstream file
 #               Retained student_id for output file (it's needed for identifying gendered subsets)
@@ -7,15 +8,17 @@
 # 2017.05.03.   Put subdirectory and file checking code into functions
 
 #####################################################
+									   
 
+										 
 ## Functions ##########
     ##TW (2017.05.03): I want to get these external to the script
-    
+
 #Function: Check for existance of subdirectory, create if it doesn't exist.
 DirCheckCreate <- function(subDir) {
   #set directory variables
   mainDir <- getwd()
-  
+
   #check for/create subdirectory
   if(!dir.exists(file.path(mainDir, subDir))){
     cat(paste(subDir, " does not exist in '", mainDir, "' -- creating"))
@@ -28,15 +31,15 @@ DirCheckCreate <- function(subDir) {
   return(subDirPath)
 }
 
-#Function: Check for existance of file passed in 
+#Function: Check for existance of file passed in
 FileExistCheck <- function(subDir, filename) {
-  
+
   #set parameters for file location
   mainDir <- getwd()
-  
-  #store the file path 
+
+  #store the file path
   filePath <- file.path(mainDir, subDir, filename, fsep = "/")
-  
+
   #check for existance of CSV module order file
   if(file.exists(filePath)){
     cat(paste(filename, "found -- continuing"))
@@ -49,10 +52,56 @@ FileExistCheck <- function(subDir, filename) {
 }
 
 
+#Function: Interactively select working directory (OS independant)
+InteractiveSetWD <- function() {
+  cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
+  setwd('~')
+  #tcltk package provides an OS independant way to select a folder
+  library(tcltk)
+  #setting the arguments (see package documentation for details)
+  .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
+  # open a folder selection window (defaults to 'My Documents').  Sometimes this opens in the background.
+  dir <- tclvalue(tkchooseDirectory()) 
+  setwd(dir)
+  
+  return() 
+}
+
+
+#Function: Check to see if the current working directory contains an expected file.  
+# If not then prompt user to select the correct directory
+WorkingDirectoryCheck <- function() {
+  #set directory variables
+  curDir <- getwd()
+  #set a filename expected to exist in the working directory
+  expectedFile <- "1_extractModules.R"
+  
+  if(file.exists(file.path(curDir, expectedFile))){
+    #if file does exists in the current WD, exit the funtion returning TRUE
+    return(TRUE)
+  } else{
+    #if the file does not exist in the current WD, return FALSE
+    return(FALSE)
+  }
+}
+
+
+
+
+########## Check for correct working directory ########## 
+
+#continue checking the current working direcotry and prompting user for the correct directory 
+# while the workingDirectoryCheck returns false
+while(!WorkingDirectoryCheck()){
+  cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.")
+  
+  #have user set the working directory
+  InteractiveSetWD()
+}
 
 
 ##########Reading files, converting to dataframe object, eliminating irrelevant columns#####
-
+  
 #User selection of the CLICKSTREAM data file to process
 print("Select the SQL clickstream data file. It should end with 'courseware_studentmodule-prod-analytics.sql'")
 filenameClickstream <- file.choose()
@@ -71,13 +120,16 @@ dataClickstream <- dataClickstream[names(dataClickstream) %in% c("module_id","st
   module_markers <- as.data.frame(module_markers)
 
 ##Ordering both dataClickstream and module_marker object by module_id field
-dataClickstream=dataClickstream[order(dataClickstream$module_id,decreasing=F),]
-module_markers=module_markers[order(module_markers$module_id,decreasing=F),]
+dataClickstream <- dataClickstream[order(dataClickstream$module_id,decreasing=F),]
+module_markers <- module_markers[order(module_markers$module_id,decreasing=F),]
 
 ##Eliminating module_id from dataClickstream if that id does not appear in module_marker
-dataClickstream=subset(dataClickstream,dataClickstream$module_id %in% module_markers$module_id)
+dataClickstream <- subset(dataClickstream,dataClickstream$module_id %in% module_markers$module_id)
+																																								   
 
 ############################################################################################
+																	  
+																		
 
 ##########Mapping module_id in every row of dataClickstream to order_integer of the module#########
 
@@ -121,8 +173,11 @@ counter=1
 for(i in sort(unique(dataClickstream$student_id),decreasing=F))
 {
   temp_df=subset(dataClickstream,dataClickstream$student_id==i)
+																   
   se=rep(counter,nrow(temp_df))
+												   
   u_id=c(u_id,se)
+																				 
   counter=counter+1
 }
 dataClickstream<-cbind(dataClickstream,u_id)
@@ -130,6 +185,8 @@ dataClickstream<-cbind(dataClickstream,u_id)
 
 
 ############################################################################################
+								
+															
 
 
 ##########Retaining relevant columns, renaming columns and writing to CSV file##############
@@ -139,16 +196,15 @@ names(dataClickstream)<-c("orig_student_id","module_number","time","temp_student
 
 
 ##Write data to files ###############
-  ## TW (2017.05.03): I'm trying to get this working from an external function
-  # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
+  ## TW (2017.05.03): I'm trying to get this working from an external function. The following line is attempting this.
+    # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
 subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
-
 
 #write a CSV file for the next step in processing. 
 write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), x = dataClickstream)
 
-
-
 ## Clear the environment  #############
 rm(list=ls())
+
+							
