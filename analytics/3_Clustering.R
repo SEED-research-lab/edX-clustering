@@ -8,27 +8,9 @@
 
 
 
-##########Reading preprocessed file, converting to dataframe object, eliminating irrelevant columns############################################################################################################################
 
-
-
-## Functions ##########
+######### Functions ##########
 ##TW (2017.05.03): I want to get these external to the script
-
-#Function: Interactively select working directory (OS independant)
-InteractiveSetWD <- function() {
-  cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
-  setwd('~')
-  #tcltk package provides an OS independant way to select a folder
-  library(tcltk)
-  #setting the arguments (see package documentation for details)
-  .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
-  # open a folder selection window (defaults to 'My Documents').  Sometimes this opens in the background.
-  dir <- tclvalue(tkchooseDirectory()) 
-  setwd(dir)
-  
-  return() 
-}
 
 #Function: Check for existance of subdirectory, create if it doesn't exist.
 DirCheckCreate <- function(subDir) {
@@ -68,42 +50,84 @@ FileExistCheck <- function(subDir, filename) {
 }
 
 
-## Setup and data import##########
-## trying to get this working from an external function
-# if(!exists("InteractiveSetWD", mode="function")) 
-#   source(file.path(getwd(), "analytics", "fun_InteractiveSetWD.R", fsep = "/"))
-InteractiveSetWD()
+#Function: Interactively select working directory (OS independant)
+InteractiveSetWD <- function() {
+  cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
+  setwd('~')
+  #tcltk package provides an OS independant way to select a folder
+  library(tcltk)
+  #setting the arguments (see package documentation for details)
+  .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
+  # open a folder selection window (defaults to 'My Documents').  Sometimes this opens in the background.
+  dir <- tclvalue(tkchooseDirectory()) 
+  setwd(dir)
+  
+  return() 
+}
 
-#User selection of data set to process
-  ## [[choossing temporatially commented until subset datasets are working]]
+
+#Function: Check to see if the current working directory contains an expected file.  
+# If not then prompt user to select the correct directory
+WorkingDirectoryCheck <- function() {
+  #set directory variables
+  curDir <- getwd()
+  #set a filename expected to exist in the working directory
+  expectedFile <- "1_extractModules.R"
+  
+  if(file.exists(file.path(curDir, expectedFile))){
+    #if file does exists in the current WD, exit the funtion returning TRUE
+    return(TRUE)
+  } else{
+    #if the file does not exist in the current WD, return FALSE
+    return(FALSE)
+  }
+}
+
+
+
+
+########## Check for correct working directory ########## 
+
+#continue checking the current working direcotry and prompting user for the correct directory 
+# while the workingDirectoryCheck returns false
+while(!WorkingDirectoryCheck()){
+  cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.")
+  
+  #have user set the working directory
+  InteractiveSetWD()
+}
+
+
+
+#### User selection of data set to process #####
   #Choose clickstream data(sub)set (repeating to sanitize user input)
-# repeat{
-#   n<-readline(prompt="Enter 1 for all users, 2 for female users, 3 for male users: ");
-# 
-#   if(n == 1){  #dataset: all users
+repeat{
+  n<-readline(prompt="Enter 1 for all users, 2 for female users, 3 for male users: ");
+
+  if(n == 1){  #dataset: all users
     #check for datafile existance
     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data.csv")
     #exit script if file not found, otherwise continue
     ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
-#     break
-#   }
-#   else if(n == 2){  #dataset: female users
-#     #check for datafile existance
-#     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_females.csv")
-#     #exit script if file not found, otherwise continue
-#     ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
-#     break
-#   }
-#   else if(n == 3){  #dataset: male users
-#     #check for datafile existance
-#     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_males.csv")
-#     #exit script if file not found, otherwise continue
-#     ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
-#     break
-#   }
-# 
-#   #repeat if none of the conditions were met (i.e., user input was invalid)
-# }
+    break
+  }
+  else if(n == 2){  #dataset: female users
+    #check for datafile existance
+    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_females.csv")
+    #exit script if file not found, otherwise continue
+    ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    break
+  }
+  else if(n == 3){  #dataset: male users
+    #check for datafile existance
+    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_males.csv")
+    #exit script if file not found, otherwise continue
+    ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    break
+  }
+
+  #repeat if none of the conditions were met (i.e., user input was invalid)
+}
 
 ## Read data and retain needed columns
 #read in data

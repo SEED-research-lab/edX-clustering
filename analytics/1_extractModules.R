@@ -42,21 +42,6 @@
 
 ## Functions ##########
 
-#Function: Interactively select working directory (OS independant)
-InteractiveSetWD <- function() {
-    cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
-  setwd('~')
-  #tcltk package provides an OS independant way to select a folder
-  library(tcltk)
-  #setting the arguments (see package documentation for details)
-  .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
-  # open a folder selection window (defaults to 'My Documents').  Sometimes this opens in the background.
-  dir <- tclvalue(tkchooseDirectory()) 
-  setwd(dir)
-  
-  return() 
-}
-
 #Function: Check for existance of subdirectory, create if it doesn't exist.
 DirCheckCreate <- function(subDir) {
   #set directory variables
@@ -75,13 +60,55 @@ DirCheckCreate <- function(subDir) {
 }
 
 
+#Function: Interactively select working directory (OS independant)
+InteractiveSetWD <- function() {
+  cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
+  setwd('~')
+  #tcltk package provides an OS independant way to select a folder
+  library(tcltk)
+  #setting the arguments (see package documentation for details)
+  .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
+  # open a folder selection window (defaults to 'My Documents').  Sometimes this opens in the background.
+  dir <- tclvalue(tkchooseDirectory()) 
+  setwd(dir)
+  
+  return() 
+}
 
-## Setup and data import##########
-  ## trying to get this working from an external function
-  # if(!exists("InteractiveSetWD", mode="function")) 
-  #   source(file.path(getwd(), "analytics", "fun_InteractiveSetWD.R", fsep = "/"))
+
+#Function: Check to see if the current working directory contains an expected file.  
+# If not then prompt user to select the correct directory
+WorkingDirectoryCheck <- function() {
+  #set directory variables
+  curDir <- getwd()
+  #set a filename expected to exist in the working directory
+  expectedFile <- "1_extractModules.R"
+  
+  if(file.exists(file.path(curDir, expectedFile))){
+    #if file does exists in the current WD, exit the funtion returning TRUE
+    return(TRUE)
+  } else{
+    #if the file does not exist in the current WD, return FALSE
+    return(FALSE)
+  }
+}
+
+
+
+
+########## Check for correct working directory ########## 
+
+#continue checking the current working direcotry and prompting user for the correct directory 
+# while the workingDirectoryCheck returns false
+while(!WorkingDirectoryCheck()){
+  cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.")
+  
+  #have user set the working directory
   InteractiveSetWD()
+}
 
+
+######### Import course structure JSON file data #####
 
 #Locate the JSON course structure data file you want processed
 print("Select the JSON course structure file. It should end with 'course_structure-prod-analytics.json'")
