@@ -1,26 +1,129 @@
+## ===================================================== ##
+# Title:        Gendered subset extraction, optional additional preprocessing #####
+#
+#
+# Author(s):    Taylor Williams
+# Institution:  Purdue University
+# 
+# Description:  []
+# 
+# Package dependancies: readr ,beepr
+#
+# Changelog:
+#     2017.04.13    initial creation
+#     2017.05.05    adding in subdirectory functions  
+#     2017.05.08.   Code cleaning, header update
+#                   Audio notification for user input and script completion
+## ===================================================== ##
 
 
-#ChangeLog
-# 2017.04.13    initial creation
 
-
-#######################################
+######### Clear the environment  #############
 rm(list=ls())
 
-# #User selection of the CLICKSTREAM data file to process
-# print("Select the SQL clickstream data file. It should end with 'courseware_studentmodule-prod-analytics.sql'")
-# filenameClickstream <- file.choose()
-# 
-# #read in the clickstream data and extract needed columns
-# dataClickstream <- readr::read_tsv(filenameClickstream)
-# dataClickstream <- dataClickstream[names(dataClickstream) %in% c("module_id","orig_student_id","created")]
 
-dataClickstream <- readr::read_csv("preprocessed_data.csv")
-# dataClickstreamMale <- readr::read_csv("preprocessed_data_males.csv")
-# dataClickstreamFemale <- readr::read_csv("preprocessed_data_females.csv")
+
+######### Functions ##########
+##TW (2017.05.03): I want to get these external to the script
+
+#Function: Check for existance of subdirectory, create if it doesn't exist.
+DirCheckCreate <- function(subDir) {
+  #set directory variables
+  mainDir <- getwd()
+  
+  #check for/create subdirectory
+  if(!dir.exists(file.path(mainDir, subDir))){
+    cat(paste(subDir, " does not exist in '", mainDir, "' -- creating"))
+    dir.create(file.path(mainDir, subDir))
+    subDirPath <- file.path(mainDir, subDir)
+  }else{
+    cat(paste(subDir, " exists in '", mainDir, "' -- continuing"))
+    subDirPath <- file.path(mainDir, subDir)
+  }
+  return(subDirPath)
+}
+
+#Function: Check for existance of file passed in
+FileExistCheck <- function(subDir, filename) {
+  
+  #set parameters for file location
+  mainDir <- getwd()
+  
+  #store the file path
+  filePath <- file.path(mainDir, subDir, filename, fsep = "/")
+  
+  #check for existance of CSV module order file
+  if(file.exists(filePath)){
+    cat(paste(filename, "found -- continuing"))
+    return(filePath)
+  }else{
+    cat(paste("ERROR: ", filename, "not found -- exiting script"))
+    rm(list=ls()) ## Clear the environment
+    return(FALSE)  #retun signal to exit script if file not found
+  }
+}
+
+
+#Function: Interactively select working directory (OS independant)
+InteractiveSetWD <- function() {
+  cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
+  setwd('~')
+  #tcltk package provides an OS independant way to select a folder
+  library(tcltk)
+  #setting the arguments (see package documentation for details)
+  .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
+  # open a folder selection window (defaults to 'My Documents').  Sometimes this opens in the background.
+  dir <- tclvalue(tkchooseDirectory()) 
+  setwd(dir)
+  
+  return() 
+}
+
+
+#Function: Check to see if the current working directory contains an expected file.  
+# If not then prompt user to select the correct directory
+WorkingDirectoryCheck <- function() {
+  #set directory variables
+  curDir <- getwd()
+  #set a filename expected to exist in the working directory
+  expectedFile <- "1_extractModules.R"
+  
+  if(file.exists(file.path(curDir, expectedFile))){
+    #if file does exists in the current WD, exit the funtion returning TRUE
+    return(TRUE)
+  } else{
+    #if the file does not exist in the current WD, return FALSE
+    return(FALSE)
+  }
+}
+
+
+
+
+######### Check for correct working directory ########## 
+
+#continue checking the current working direcotry and prompting user for the correct directory 
+# while the workingDirectoryCheck returns false
+while(!WorkingDirectoryCheck()){
+  cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.\n")
+  
+  #have user set the working directory
+  beepr::beep(sound = 10)   #notify user to provide input
+  InteractiveSetWD()
+}
+
+
+######### Reading files, converting to dataframe object, identify users with gender data #####
+
+#read in the preprocessed clickstream data
+preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data.csv")
+#exit script if file not found, otherwise continue
+ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+dataClickstream <- readr::read_csv(preprocessedDataFilePath)
 
 #User selection of the USER PROFILE data file to process
-print("Select the SQL USER PROFILE data file.")
+cat("*****Select the SQL USER PROFILE data file.*****\n  (It should end with 'auth_userprofile-prod-analytics.sql')")
+beepr::beep(sound = 10)   #notify user to provide input
 filenameUserProfile <- file.choose()
 
 #read in the user profile data 
@@ -28,26 +131,29 @@ dataUserProfile <- readr::read_tsv(filenameUserProfile)
 dataUserProfile <- dataUserProfile[names(dataUserProfile) %in% c("id", "user_id", "gender", "mailing_address", "year_of_birth", "level_of_education", "country")]
 
 #find the subset for self-identified gendered profiles
-males <- subset(dataUserProfile, dataUserProfile$gender == "m")
-females <- subset(dataUserProfile, dataUserProfile$gender == "f")
+maleSubset <- subset(dataUserProfile, dataUserProfile$gender == "m")
+femaleSubset <- subset(dataUserProfile, dataUserProfile$gender == "f")
 
-##############################################
 
-############## seperate the Clickstream data into gendered subsets
 
-#create dataframes to save the gendered clickstream data to
+######### Seperate the Clickstream data into gendered subsets ###############
+
+#create empty dataframes where we will save the gendered clickstream data
 dataClickstreamMale <- data.frame()
 dataClickstreamFemale <- data.frame()
 
-#create 2 lists for each gender (1) all known student IDs and (2) empty list to save users without clickstream data (never accessed the course)
-maleID_List <- unique(males$user_id)
+#create 2 lists for each gender 
+#(1) all known student IDs for each gender and 
+#(2) empty list to save users without clickstream data (never accessed the course)
+maleID_List <- unique(maleSubset$user_id)
 noAccessMales <- c()
-femaleID_List <- unique(females$user_id)
+femaleID_List <- unique(femaleSubset$user_id)
 noAccessFemales <- c()
 
 #create progress status variables for male processing loop
 iCount <- 0 #loop counter for completion updates
 start <-  proc.time() #save the time (to compute ellapsed time of loop)
+#initialize the consule progress bar
 library(progress)
 pb <- progress_bar$new(
   format = "  processing [:bar] :percent eta: :eta",
@@ -55,7 +161,7 @@ pb <- progress_bar$new(
 
 #build up a dataframe with all rows of each male user's clickstream data
 print("Processing male user's clickstream data.")
-pb$tick(0)
+pb$tick(0)  #start the progress bar
 for(ID in maleID_List)
 {
   if(nrow(subset(dataClickstream, dataClickstream$orig_student_id == ID)) > 0) #ensure that the ID exists in the clickstream data
@@ -70,7 +176,7 @@ for(ID in maleID_List)
   #update the user on the percentage complete and elapsed time after every n users processed
   #Sys.sleep(1 / 100)
   iCount <- iCount + 1
-  #the following will run for every 1% complete
+  #update the progress bar for every 1% complete
   if(iCount%%as.integer((length(maleID_List))/100) == 0)
   {
     pb$tick()
@@ -82,6 +188,7 @@ for(ID in maleID_List)
     # print(proc.time() - start)
   }
 }
+#print the amount of time the previous loop required
 print(proc.time() - start)
 
 
@@ -122,7 +229,7 @@ for(ID in femaleID_List)
 }
 print(proc.time() - start)
 
-##########Converting student_id to integers from 1 to total_number_registered###############
+######### Converting student_id to sequential integers from 1 to total_number_registered ###############
 
 ConvertStudentID <- function(dataClickstreamTemp)
 {
@@ -145,31 +252,43 @@ ConvertStudentID <- function(dataClickstreamTemp)
   dataClickstreamTemp<-cbind(dataClickstreamTemp,temp_student_id)
 }
 
-#call temp_student_id funcion for each gender.  This sequential column is needed for the clustering.R
+#call temp_student_id funcion for each gender.  This sequential id column is needed for 3_Clustering.R
 dataClickstreamFemale <- ConvertStudentID(dataClickstreamFemale)
-dataClickstreamMale <- ConvertStudentID(dataClickstreamMale)
+dataClickstreamMale   <- ConvertStudentID(dataClickstreamMale)
 
 
 
-############################################################################################
 
 
+######### saving files and printing final printouts  #####
 
-################ saving files and printing final printouts
+######### Write data to files ###############
+## TW (2017.05.03): I'm trying to get this working from an external function
+#call function to check for the existance of the subdirectory; create it if it doesn't exist
+subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
 
 #save gendered clickstream data
-write.csv(dataClickstreamMale,"preprocessed_data_males.csv")
-write.csv(dataClickstreamFemale,"preprocessed_data_females.csv")
+write.csv(x = dataClickstreamFemale, file = file.path(subDirPath, "preprocessed_data_females.csv", fsep = "/"))
+write.csv(x = dataClickstreamMale,   file = file.path(subDirPath, "preprocessed_data_males.csv",   fsep = "/"))
+
 
 #print and save gendered no access data
-print(paste0("Percentage of females with no access data: ", sprintf("%.1f", length(noAccessFemales)/nrow(females) * 100, "%", collapse = "")))
-print(paste0("Percentage of males with no access data: ", sprintf("%.1f", length(noAccessMales)/nrow(males) * 100, "%", collapse = "")))
+print(paste0("Percentage of females with no access data: ", sprintf("%.1f", length(noAccessFemales)/nrow(femaleSubset) * 100, "%", collapse = "")))
+print(paste0("Percentage of males with no access data: ", sprintf("%.1f", length(noAccessMales)/nrow(maleSubset) * 100, "%", collapse = "")))
 
-names(noAccessMales) <- c("Count","orig_student_id")
 names(noAccessFemales) <- c("Count","orig_student_id")
+names(noAccessMales) <- c("Count","orig_student_id")
 
-write.csv(noAccessMales,"noAccess_males_UIDs.csv")
-write.csv(noAccessFemales,"noAccess_females_UIDs.csv")
+write.csv(x = noAccessFemales, file = file.path(subDirPath, "noAccess_females_UIDs.csv", fsep = "/"))
+write.csv(x = noAccessMales,   file = file.path(subDirPath, "noAccess_males_UIDs.csv",   fsep = "/"))
 
-#clear enviornment variables
-#rm(list=ls())
+
+
+######### Notify user and Clear the environment  #############
+beepr::beep(sound = 10)   #notify user script is complete
+Sys.sleep(time = 0.1)     #pause 1/10 sec
+beepr::beep(sound = 10)
+Sys.sleep(time = 0.1)
+beepr::beep(sound = 10)
+
+rm(list=ls())   #Clear environment variables
