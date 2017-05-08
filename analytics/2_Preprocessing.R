@@ -1,21 +1,34 @@
+## ===================================================== ##
+# Title:        Main Preprocessing of Clickstream Data ####
+#
+#
+# Author(s):    Doipayan Roy, Taylor Williams
+# Institution:  Purdue University
+# 
+# Description:  []
+# 
+# Package dependancies: readr, tcltk, beepr
+#
+# Changelog:
+#     2017.04.13.   Added GUI user selection of Clickstream file
+#                   Retained student_id for output file (it's needed for identifying gendered subsets)
+#     2017.05.02.   Input files read from subdirectory
+#                   Created output files placed into a seperate subdirectory
+#     2017.05.03.   Put subdirectory and file checking code into functions
+#     2017.05.08.   Code cleaning, header update
+#                   Audio notification for user input and script completion
+## ===================================================== ##
 
-#ChangeLog
-# 2017.04.13.   Added GUI user selection of Clickstream file
-#               Retained student_id for output file (it's needed for identifying gendered subsets)
-# 2017.05.02.   Input files read from subdirectory
-#               Created output files placed into a seperate subdirectory
-# 2017.05.03.   Put subdirectory and file checking code into functions
 
-#####################################################
-
-## Functions ##########
+										 
+######### Functions ##########
     ##TW (2017.05.03): I want to get these external to the script
-    
+
 #Function: Check for existance of subdirectory, create if it doesn't exist.
 DirCheckCreate <- function(subDir) {
   #set directory variables
   mainDir <- getwd()
-  
+
   #check for/create subdirectory
   if(!dir.exists(file.path(mainDir, subDir))){
     cat(paste(subDir, " does not exist in '", mainDir, "' -- creating"))
@@ -28,15 +41,15 @@ DirCheckCreate <- function(subDir) {
   return(subDirPath)
 }
 
-#Function: Check for existance of file passed in 
+#Function: Check for existance of file passed in
 FileExistCheck <- function(subDir, filename) {
-  
+
   #set parameters for file location
   mainDir <- getwd()
-  
-  #store the file path 
+
+  #store the file path
   filePath <- file.path(mainDir, subDir, filename, fsep = "/")
-  
+
   #check for existance of CSV module order file
   if(file.exists(filePath)){
     cat(paste(filename, "found -- continuing"))
@@ -49,12 +62,60 @@ FileExistCheck <- function(subDir, filename) {
 }
 
 
+#Function: Interactively select working directory (OS independant)
+InteractiveSetWD <- function() {
+  cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
+  setwd('~')
+  #tcltk package provides an OS independant way to select a folder
+  library(tcltk)
+  #setting the arguments (see package documentation for details)
+  .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
+  # open a folder selection window (defaults to 'My Documents').  Sometimes this opens in the background.
+  dir <- tclvalue(tkchooseDirectory()) 
+  setwd(dir)
+  
+  return() 
+}
 
 
-##########Reading files, converting to dataframe object, eliminating irrelevant columns#####
+#Function: Check to see if the current working directory contains an expected file.  
+# If not then prompt user to select the correct directory
+WorkingDirectoryCheck <- function() {
+  #set directory variables
+  curDir <- getwd()
+  #set a filename expected to exist in the working directory
+  expectedFile <- "1_extractModules.R"
+  
+  if(file.exists(file.path(curDir, expectedFile))){
+    #if file does exists in the current WD, exit the funtion returning TRUE
+    return(TRUE)
+  } else{
+    #if the file does not exist in the current WD, return FALSE
+    return(FALSE)
+  }
+}
 
+
+
+
+######### Check for correct working directory ########## 
+
+#continue checking the current working direcotry and prompting user for the correct directory 
+# while the workingDirectoryCheck returns false
+while(!WorkingDirectoryCheck()){
+  cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.")
+  
+  #have user set the working directory
+  beepr::beep(sound = 10)   #notify user to provide input
+  InteractiveSetWD()
+}
+
+
+######### Reading files, converting to dataframe object, eliminating irrelevant columns#####
+  
 #User selection of the CLICKSTREAM data file to process
-print("Select the SQL clickstream data file. It should end with 'courseware_studentmodule-prod-analytics.sql'")
+cat("*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
+beepr::beep(sound = 10)   #notify user to provide input
 filenameClickstream <- file.choose()
 
 #read in the clickstream data and extract needed columns
@@ -71,15 +132,18 @@ dataClickstream <- dataClickstream[names(dataClickstream) %in% c("module_id","st
   module_markers <- as.data.frame(module_markers)
 
 ##Ordering both dataClickstream and module_marker object by module_id field
-dataClickstream=dataClickstream[order(dataClickstream$module_id,decreasing=F),]
-module_markers=module_markers[order(module_markers$module_id,decreasing=F),]
+dataClickstream <- dataClickstream[order(dataClickstream$module_id,decreasing=F),]
+module_markers <- module_markers[order(module_markers$module_id,decreasing=F),]
 
 ##Eliminating module_id from dataClickstream if that id does not appear in module_marker
-dataClickstream=subset(dataClickstream,dataClickstream$module_id %in% module_markers$module_id)
+dataClickstream <- subset(dataClickstream,dataClickstream$module_id %in% module_markers$module_id)
+																																								   
 
-############################################################################################
+## ===================================================== ##
 
-##########Mapping module_id in every row of dataClickstream to order_integer of the module#########
+																		
+
+######### Mapping module_id in every row of dataClickstream to order_integer of the module#########
 
 change_list=c()
 change_list=c(change_list,0)
@@ -101,9 +165,9 @@ for(i in 1:(length(change_list)-1))
 }
 dataClickstream<-cbind(dataClickstream,marker_list)
 
-############################################################################################
+## ===================================================== ##
 
-##########Converting time to POSIXct format and adding time column to dataClickstream##############
+######### Converting time to POSIXct format and adding time column to dataClickstream##############
 
 time=as.POSIXct(dataClickstream$created,format="%m/%d/%Y %H:%M")
 dataClickstream<-cbind(dataClickstream,time)
@@ -112,43 +176,53 @@ dataClickstream<-dataClickstream[names(dataClickstream) %in% c("student_id","tim
 ##Sorting dataClickstream in order of student_id
 dataClickstream<-dataClickstream[order(dataClickstream$student_id,decreasing=F),]
 
-############################################################################################
+## ===================================================== ##
 
-##########Converting student_id to integers from 1 to total_number_registered###############
+######### Converting student_id to integers from 1 to total_number_registered###############
 
 u_id=c()
 counter=1
 for(i in sort(unique(dataClickstream$student_id),decreasing=F))
 {
   temp_df=subset(dataClickstream,dataClickstream$student_id==i)
+																   
   se=rep(counter,nrow(temp_df))
+												   
   u_id=c(u_id,se)
+																				 
   counter=counter+1
 }
 dataClickstream<-cbind(dataClickstream,u_id)
 #return(dataClickstream)    #TW (2017.05.02) I think this line should be deleted
 
 
-############################################################################################
+## ===================================================== ##
+
+															
 
 
-##########Retaining relevant columns, renaming columns and writing to CSV file##############
+######### Retaining relevant columns, renaming columns and writing to CSV file##############
 
 dataClickstream<-dataClickstream[names(dataClickstream) %in% c("student_id","marker_list","u_id","time")]
 names(dataClickstream)<-c("orig_student_id","module_number","time","temp_student_id")
 
 
-##Write data to files ###############
-  ## TW (2017.05.03): I'm trying to get this working from an external function
-  # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
+######### Write data to files ###############
+  ## TW (2017.05.03): I'm trying to get this working from an external function. The following line is attempting this.
+    # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
 subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
-
 
 #write a CSV file for the next step in processing. 
 write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), x = dataClickstream)
 
+######### Notify user and Clear the environment  #############
+beepr::beep(sound = 10)   #notify user script is complete
+Sys.sleep(time = 0.1)     #pause 1/10 sec
+beepr::beep(sound = 10)
+Sys.sleep(time = 0.1)
+beepr::beep(sound = 10)
 
+rm(list=ls())   #Clear environment variables
 
-## Clear the environment  #############
-rm(list=ls())
+							
