@@ -1,19 +1,29 @@
+## ===================================================== ##
+# Title:        Gendered subset extraction, optional additional preprocessing #####
+#
+#
+# Author(s):    Taylor Williams
+# Institution:  Purdue University
+# 
+# Description:  []
+# 
+# Package dependancies: readr ,beepr
+#
+# Changelog:
+#     2017.04.13    initial creation
+#     2017.05.05    adding in subdirectory functions  
+#     2017.05.08.   Code cleaning, header update
+#                   Audio notification for user input and script completion
+## ===================================================== ##
 
 
-#ChangeLog
-# 2017.04.13    initial creation
-# 2017.05.05    adding in subdirectory functions    
 
-
-#######################################
-
-
-## Clear the environment  #############
+######### Clear the environment  #############
 rm(list=ls())
 
 
 
-## Functions ##########
+######### Functions ##########
 ##TW (2017.05.03): I want to get these external to the script
 
 #Function: Check for existance of subdirectory, create if it doesn't exist.
@@ -90,7 +100,7 @@ WorkingDirectoryCheck <- function() {
 
 
 
-########## Check for correct working directory ########## 
+######### Check for correct working directory ########## 
 
 #continue checking the current working direcotry and prompting user for the correct directory 
 # while the workingDirectoryCheck returns false
@@ -98,11 +108,12 @@ while(!WorkingDirectoryCheck()){
   cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.\n")
   
   #have user set the working directory
+  beepr::beep(sound = 10)   #notify user to provide input
   InteractiveSetWD()
 }
 
 
-########## Reading files, converting to dataframe object, identify users with gender data #####
+######### Reading files, converting to dataframe object, identify users with gender data #####
 
 #read in the preprocessed clickstream data
 preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data.csv")
@@ -111,7 +122,8 @@ ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
 dataClickstream <- readr::read_csv(preprocessedDataFilePath)
 
 #User selection of the USER PROFILE data file to process
-print("Select the SQL USER PROFILE data file.")
+cat("*****Select the SQL USER PROFILE data file.*****\n  (It should end with 'auth_userprofile-prod-analytics.sql')")
+beepr::beep(sound = 10)   #notify user to provide input
 filenameUserProfile <- file.choose()
 
 #read in the user profile data 
@@ -124,7 +136,7 @@ femaleSubset <- subset(dataUserProfile, dataUserProfile$gender == "f")
 
 
 
-########## Seperate the Clickstream data into gendered subsets ###############
+######### Seperate the Clickstream data into gendered subsets ###############
 
 #create empty dataframes where we will save the gendered clickstream data
 dataClickstreamMale <- data.frame()
@@ -217,7 +229,7 @@ for(ID in femaleID_List)
 }
 print(proc.time() - start)
 
-########## Converting student_id to sequential integers from 1 to total_number_registered ###############
+######### Converting student_id to sequential integers from 1 to total_number_registered ###############
 
 ConvertStudentID <- function(dataClickstreamTemp)
 {
@@ -248,9 +260,9 @@ dataClickstreamMale   <- ConvertStudentID(dataClickstreamMale)
 
 
 
-################ saving files and printing final printouts  #####
+######### saving files and printing final printouts  #####
 
-## Write data to files ###############
+######### Write data to files ###############
 ## TW (2017.05.03): I'm trying to get this working from an external function
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
 subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
@@ -272,5 +284,11 @@ write.csv(x = noAccessMales,   file = file.path(subDirPath, "noAccess_males_UIDs
 
 
 
-## Clear the environment  #############
-rm(list=ls())
+######### Notify user and Clear the environment  #############
+beepr::beep(sound = 10)   #notify user script is complete
+Sys.sleep(time = 0.1)     #pause 1/10 sec
+beepr::beep(sound = 10)
+Sys.sleep(time = 0.1)
+beepr::beep(sound = 10)
+
+rm(list=ls())   #Clear environment variables

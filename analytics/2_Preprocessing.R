@@ -1,17 +1,27 @@
+## ===================================================== ##
+# Title:        Main Preprocessing of Clickstream Data ####
+#
+#
+# Author(s):    Doipayan Roy, Taylor Williams
+# Institution:  Purdue University
+# 
+# Description:  []
+# 
+# Package dependancies: readr, tcltk, beepr
+#
+# Changelog:
+#     2017.04.13.   Added GUI user selection of Clickstream file
+#                   Retained student_id for output file (it's needed for identifying gendered subsets)
+#     2017.05.02.   Input files read from subdirectory
+#                   Created output files placed into a seperate subdirectory
+#     2017.05.03.   Put subdirectory and file checking code into functions
+#     2017.05.08.   Code cleaning, header update
+#                   Audio notification for user input and script completion
+## ===================================================== ##
 
-
-#ChangeLog
-# 2017.04.13.   Added GUI user selection of Clickstream file
-#               Retained student_id for output file (it's needed for identifying gendered subsets)
-# 2017.05.02.   Input files read from subdirectory
-#               Created output files placed into a seperate subdirectory
-# 2017.05.03.   Put subdirectory and file checking code into functions
-
-#####################################################
-									   
 
 										 
-## Functions ##########
+######### Functions ##########
     ##TW (2017.05.03): I want to get these external to the script
 
 #Function: Check for existance of subdirectory, create if it doesn't exist.
@@ -88,7 +98,7 @@ WorkingDirectoryCheck <- function() {
 
 
 
-########## Check for correct working directory ########## 
+######### Check for correct working directory ########## 
 
 #continue checking the current working direcotry and prompting user for the correct directory 
 # while the workingDirectoryCheck returns false
@@ -96,14 +106,16 @@ while(!WorkingDirectoryCheck()){
   cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.")
   
   #have user set the working directory
+  beepr::beep(sound = 10)   #notify user to provide input
   InteractiveSetWD()
 }
 
 
-##########Reading files, converting to dataframe object, eliminating irrelevant columns#####
+######### Reading files, converting to dataframe object, eliminating irrelevant columns#####
   
 #User selection of the CLICKSTREAM data file to process
-print("Select the SQL clickstream data file. It should end with 'courseware_studentmodule-prod-analytics.sql'")
+cat("*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
+beepr::beep(sound = 10)   #notify user to provide input
 filenameClickstream <- file.choose()
 
 #read in the clickstream data and extract needed columns
@@ -127,11 +139,11 @@ module_markers <- module_markers[order(module_markers$module_id,decreasing=F),]
 dataClickstream <- subset(dataClickstream,dataClickstream$module_id %in% module_markers$module_id)
 																																								   
 
-############################################################################################
-																	  
+## ===================================================== ##
+
 																		
 
-##########Mapping module_id in every row of dataClickstream to order_integer of the module#########
+######### Mapping module_id in every row of dataClickstream to order_integer of the module#########
 
 change_list=c()
 change_list=c(change_list,0)
@@ -153,9 +165,9 @@ for(i in 1:(length(change_list)-1))
 }
 dataClickstream<-cbind(dataClickstream,marker_list)
 
-############################################################################################
+## ===================================================== ##
 
-##########Converting time to POSIXct format and adding time column to dataClickstream##############
+######### Converting time to POSIXct format and adding time column to dataClickstream##############
 
 time=as.POSIXct(dataClickstream$created,format="%m/%d/%Y %H:%M")
 dataClickstream<-cbind(dataClickstream,time)
@@ -164,9 +176,9 @@ dataClickstream<-dataClickstream[names(dataClickstream) %in% c("student_id","tim
 ##Sorting dataClickstream in order of student_id
 dataClickstream<-dataClickstream[order(dataClickstream$student_id,decreasing=F),]
 
-############################################################################################
+## ===================================================== ##
 
-##########Converting student_id to integers from 1 to total_number_registered###############
+######### Converting student_id to integers from 1 to total_number_registered###############
 
 u_id=c()
 counter=1
@@ -184,18 +196,18 @@ dataClickstream<-cbind(dataClickstream,u_id)
 #return(dataClickstream)    #TW (2017.05.02) I think this line should be deleted
 
 
-############################################################################################
-								
+## ===================================================== ##
+
 															
 
 
-##########Retaining relevant columns, renaming columns and writing to CSV file##############
+######### Retaining relevant columns, renaming columns and writing to CSV file##############
 
 dataClickstream<-dataClickstream[names(dataClickstream) %in% c("student_id","marker_list","u_id","time")]
 names(dataClickstream)<-c("orig_student_id","module_number","time","temp_student_id")
 
 
-##Write data to files ###############
+######### Write data to files ###############
   ## TW (2017.05.03): I'm trying to get this working from an external function. The following line is attempting this.
     # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
@@ -204,7 +216,13 @@ subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
 #write a CSV file for the next step in processing. 
 write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), x = dataClickstream)
 
-## Clear the environment  #############
-rm(list=ls())
+######### Notify user and Clear the environment  #############
+beepr::beep(sound = 10)   #notify user script is complete
+Sys.sleep(time = 0.1)     #pause 1/10 sec
+beepr::beep(sound = 10)
+Sys.sleep(time = 0.1)
+beepr::beep(sound = 10)
+
+rm(list=ls())   #Clear environment variables
 
 							

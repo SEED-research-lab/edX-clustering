@@ -1,11 +1,27 @@
-
-#ChangeLog
-# 2017.04.13    Added gendered clickstream user choices
-#               Changed gap plots to only go up to 10 clusters (previously was set to 20 clusters)
-# 2017.05.03.   Input files read from subdirectory
-#               Created output files placed into a seperate subdirectory
-# 2017.05.03.   Put subdirectory and file checking code into functions
-
+## ===================================================== ##
+# Title:        Clustering users based on boolean course module interaction ####
+#
+#
+# Author(s):    Doipayan Roy, Taylor Williams
+# Institution:  Purdue University
+# 
+# Description:  []
+# 
+# Package dependancies: readr, cluster, e1071, tcltk, beepr
+#
+# Changelog:
+#     2017.04.13    Added gendered clickstream user choices
+#                   Changed gap plots to only go up to 10 clusters (previously was set to 20 clusters)
+#     2017.05.03.   Input files read from subdirectory
+#                   Created output files placed into a seperate subdirectory
+#     2017.05.03.   Put subdirectory and file checking code into functions
+#     2017.05.08.   Code cleaning, header update
+#                   Audio notification for user input and script completion
+#                   Plot output files set to PDF (had been EPS)
+#                   Output filenames and plot subtitles are now descriptive 
+#                    (using the user provided description)
+#            TO DO: everything in fuzzy clusering needs to be updated (subdirectory, pdf, descriptions)
+## ===================================================== ##
 
 
 
@@ -86,7 +102,7 @@ WorkingDirectoryCheck <- function() {
 
 
 
-########## Check for correct working directory ########## 
+######### Check for correct working directory ########## 
 
 #continue checking the current working direcotry and prompting user for the correct directory 
 # while the workingDirectoryCheck returns false
@@ -94,35 +110,51 @@ while(!WorkingDirectoryCheck()){
   cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.")
   
   #have user set the working directory
+  beepr::beep(sound = 10)   #notify user to provide input
   InteractiveSetWD()
 }
 
+######### User providing dataset details #####
+beepr::beep(sound = 10)   #notify user to provide input
+cat("Enter a description of this datasest (to be included on graphs).\n 
+    (suggested format: [Data source, e.g., edX], [Course number, e.g., nano515x], [Data date, e.g., Data from 2016.11.18])")
+dataSetDescription <- readline(prompt="Description: ");
 
 
-#### User selection of data set to process #####
+######### Choose clustering technique #######################################################
+beepr::beep(sound = 10)   #notify user to provide input
+clusterTypeSelection <- readline(prompt="Enter 1 for K-means clustering, 2 for Fuzzy means clustering: ");
+clusterTypeSelection <- as.integer(clusterTypeSelection);
+
+
+######### User selection of data set to process #####
   #Choose clickstream data(sub)set (repeating to sanitize user input)
 repeat{
-  n<-readline(prompt="Enter 1 for all users, 2 for female users, 3 for male users: ");
+  beepr::beep(sound = 10)   #notify user to provide input
+  userSetSelection <- readline(prompt="Enter 1 for all users, 2 for female users, 3 for male users: ");
 
-  if(n == 1){  #dataset: all users
+  if(userSetSelection == 1){  #dataset: all users
     #check for datafile existance
     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data.csv")
     #exit script if file not found, otherwise continue
     ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    dataSetName <- "all users"
     break
   }
-  else if(n == 2){  #dataset: female users
+  else if(userSetSelection == 2){  #dataset: female users
     #check for datafile existance
     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_females.csv")
     #exit script if file not found, otherwise continue
     ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    dataSetName <- "females"
     break
   }
-  else if(n == 3){  #dataset: male users
+  else if(userSetSelection == 3){  #dataset: male users
     #check for datafile existance
     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_males.csv")
     #exit script if file not found, otherwise continue
     ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    dataSetName <- "males"
     break
   }
 
@@ -153,14 +185,10 @@ subDirPath <- DirCheckCreate(subDir = "3_ClusteringOutput")
 
 #set working directory for the remainder of the script
 setwd(subDirPath)
+## ===================================================== ##
 
 
-
-
-
-#################################################################################
-
-##########Calculating number of unique module accesses for each student and saving to file########
+######### Calculating number of unique module accesses for each student and saving to file########
 
 print("Calculating number of access events for each learner...")
 access_list=c()
@@ -174,51 +202,65 @@ data_final=data.frame(1:length(unique(data$temp_student_id)),access_list)
 names(data_final)<-c("temp_student_id","number_accesses")
 write.csv(data_final,"access_data.csv")
 #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
+## ===================================================== ##
 
-###################################################################################################
 
-##########Choose clustering technique###############################################################
+######### If k-means chosen ######################################################
 
-n<-readline(prompt="Enter 1 for K-means clustering, 2 for Fuzzy means clustering: ");
-n<-as.integer(n);
-
-####################################################################################################
-
-##########If choice is K means######################################################################
-
-if(n==1)
+if(clusterTypeSelection==1)
 {
+  ##Set label
+  clusterTypeName <- "k-means clustering"
+  
   ##Read access data file and delete irrelevant columns
-  data<-read.csv("access_data.csv",header=T)
-  data<-as.data.frame(data)
-  data<-data[names(data) %in% c("temp_student_id","number_accesses")]
+  data <- read.csv("access_data.csv",header=T)
+  data <- as.data.frame(data)
+  data <- data[names(data) %in% c("temp_student_id","number_accesses")]
   
   ##Generate elbow plot from access data
   print("Generating elbow plot...")
-  elbow_plot_values=c()
+  elbow_plot_values <- c()
   for(k in 1:20)
   {
-    K_m=kmeans(data$number_accesses,centers=k,iter.max=50,algorithm="Lloyd")
-    elbow_plot_values=c(elbow_plot_values,K_m$betweenss/K_m$totss)
+    K_m <- kmeans(data$number_accesses,centers=k,iter.max=50,algorithm="Lloyd")
+    elbow_plot_values <- c(elbow_plot_values,K_m$betweenss/K_m$totss)
   }
+  #set the range of x values to include in the plot
   x=1:20
-  setEPS()
-  postscript("elbow_plot.eps")
-  plot(x,elbow_plot_values,col="blue",xlim=c(0,20),ylim=c(0,1.2),xlab="Number of clusters",ylab="Between cluster sum of squares / Total sum of squares",main="Elbow plot",type="l")
+  pdf.options(reset = TRUE)
+  #set the PDF name
+  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "elbow_plot.pdf"))
+  #set plot options (including descriptive subtitle)
+  plot(x = x, y = elbow_plot_values, col="blue", type="l",
+       xlim=c(0,20), ylim=c(0,1.2), xlab="Number of clusters", 
+       ylab="Between cluster sum of squares / Total sum of squares", 
+       main = paste0("Elbow plot (", dataSetName,")\n", 
+                     clusterTypeName, "\n",
+                     dataSetDescription))
   dev.off()
   print("Done!")
+
   
   ##Generate gap plot from access data
   print("Generating gap plot...")
   gap_statistic=cluster::clusGap(as.matrix(data$number_accesses),K.max=10,FUN=kmeans,verbose=FALSE)
   gap_values=(as.data.frame(gap_statistic$Tab))$gap
+  #set the range of x values to include in plot
   x=1:10
-  setEPS()
-  postscript("gap_plot.eps")
-  plot(x,gap_values,col="black",xlim=c(0,10),ylim=c(0,0.5),xlab="Number of clusters",ylab="Gap",main="Gap plot",type="l")
+  pdf.options(reset = TRUE)
+  #set the PDF name
+  #Simple name (to delete): pdf("gap_plot.pdf")
+  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "gap_plot.pdf"))
+  #set plot options (including descriptive subtitle)
+  plot(x = x, y = gap_values, col="black", xlim = c(0,10), ylim = c(0,1),
+       xlab="Number of clusters", ylab="Gap", type="l",
+       main = paste0("Gap plot (", dataSetName,")\n", 
+                     clusterTypeName, "\n",
+                     dataSetDescription))
+  #close the PDF creation connection
   dev.off()
   print("Done!")
-  
+
   ##Make recommendation for number of clusters based on elbow plot (change less than 2%)
   for(i in 3:10)
   {
@@ -249,8 +291,9 @@ if(n==1)
   #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
   
   ##User input for number of clusters
-  K<-readline("Enter the desired number of clusters (maximum 10): ");
-  K<-as.integer(K);
+  beepr::beep(sound = 10)   #notify user to provide input
+  K <- readline("Enter the desired number of clusters (maximum 10): ");
+  K <- as.integer(K);
   
   ##Reading access file and performing K-means on access data using user's choice of number of clusters
   data_preprocessed<-readr::read_csv(preprocessedDataFilePath)
@@ -281,9 +324,17 @@ if(n==1)
   ##Plotting clusters
   print("Plotting clusters...")
   x=1:length(unique(data_preprocessed$module_number))
-  setEPS()
-  postscript("Cluster_plot_kmeans.eps")
-  plot(1,pch=".",col="white",xlim=c(0,length(unique(data_preprocessed$module_number))),ylim=c(0,max(data_access$temp_student_id)),xlab="Module number",ylab="Users",main="Users clustered by courseware access")
+  pdf.options(reset = TRUE)
+  #set the pdf name (descriptive)
+  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "k-means_cluster_plot (", K, ").pdf"))
+  #set the plot options (including descriptive subtitle)
+  plot(x = 1,pch = ".",col="white",
+       xlim = c(0,length(unique(data_preprocessed$module_number))),
+       ylim = c(0,max(data_access$temp_student_id)),
+       xlab = "Module number", ylab = "Users",
+       main = paste0("Users clustered by courseware access (", dataSetName,")\n", 
+                     clusterTypeName, " (", K, " clusters)\n",
+                     dataSetDescription))
   par(new=T)
   for(k in cluster_order)
   {
@@ -386,11 +437,14 @@ if(n==1)
   print("Done!")
   #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
   
-} else if(n==2)
+} else if(clusterTypeSelection==2)
 {
 
-##########If choice is fuzzy means##################################################################
+######### If fuzzy means chosen #####################################################
 
+  ##Set label
+  clusterTypeName <- "Fuzzy clustering"
+  
   ##Read access data file and delete irrelevant columns
   data<-read.csv("access_data.csv",header=T)
   data<-as.data.frame(data)
@@ -426,6 +480,7 @@ if(n==1)
   #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
   
   ##User input for number of clusters
+  beepr::beep(sound = 10)   #notify user to provide input
   K<-readline("Enter the desired number of clusters (maximum 10): ");
   K<-as.integer(K);
   
@@ -575,5 +630,11 @@ if(n==1)
 setwd(initialWD_save)
 
 
-## Clear the environment  #############
-rm(list=ls())
+######### Notify user and Clear the environment  #############
+beepr::beep(sound = 10)   #notify user script is complete
+Sys.sleep(time = 0.1)     #pause 1/10 sec
+beepr::beep(sound = 10)
+Sys.sleep(time = 0.1)
+beepr::beep(sound = 10)
+
+rm(list=ls())   #Clear environment variables
