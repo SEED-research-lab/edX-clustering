@@ -40,6 +40,7 @@
 #     2017.05.03.   Put subdirectory and file checking code into functions
 #     2017.05.08.   Code cleaning, header update
 #                   Audio notification for user input and script completion
+#     2017.05.09.   Added filename check of user provided files (with override option)
 ## ===================================================== ##
 
 
@@ -120,6 +121,40 @@ ChildSearch <- function(data, courseHierarchy, curModuleIndex, hierarchicalLvl) 
 }
 
 
+#Function: Check to see if the selected filename contains the expected text. 
+#   Allow user to continue with provided file if desired
+ExpectedFileCheck <- function(selectedFilename, expectedFileEnding) {
+  #check to see if the user selected file contains the expected character string
+  
+  #grep is a regular expression string search.  It looks for the pattern within x.  The index positions in x are returned
+  # where the pattern is found.  Here x only has a single entry, so if grep() returns 1 then the pattern matches.
+  matchResult <- grepl(pattern = expectedFileEnding, x = selectedFilename)
+  if(grepl(pattern = expectedFileEnding, x = selectedFilename)){
+    #the pattern is found, inform user and exit the function
+    cat("\n\nThe filename you provided MATCHES the expected text.")
+    return("matched")
+    # break
+  }else {
+    #otherwise, inform the user that the strings don't match and provide option to override (continue with provided file)
+    cat("\n\nERROR: The filename you provided DOESN'T MATCH the expected text.",
+        "\n       filename provided: ", selectedFilename,
+        "\n       expected in filename: ", expectedFileEnding)
+    
+    repeat{
+      #give the user the option to continue with the selected file
+      beepr::beep(sound = 10)   #notify user to provide input
+      overrideChoice <- readline(prompt="Enter 1 to use currently selected file, 2 to select a new file: ")
+      
+      if(overrideChoice == 1){
+        return("overridden")
+      }else if(overrideChoice == 2){
+        return("reselect")
+      }else{
+        cat("Invalid entry.\n")
+      }
+    }
+  }
+}
 
 
 ######### Check for correct working directory ########## 
@@ -127,7 +162,7 @@ ChildSearch <- function(data, courseHierarchy, curModuleIndex, hierarchicalLvl) 
 #continue checking the current working direcotry and prompting user for the correct directory 
 # while the workingDirectoryCheck returns false
 while(!WorkingDirectoryCheck()){
-  cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.")
+  cat("The current working directory is NOT CORRECT.  Please set it to the directory containing the R scripts.\n")
   
   #have user set the working directory
   beepr::beep(sound = 10)   #notify user to provide input
@@ -139,20 +174,47 @@ while(!WorkingDirectoryCheck()){
 
 ######### Import course structure JSON file data #####
 
-#Locate the JSON course structure data file you want processed
-cat("*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
-beepr::beep(sound = 10)   #notify user to provide input
-filenameJSON <- file.choose()
+#Locate the JSON course structure data file to process (with sanatized user input)
+repeat{
+  cat("*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
+  beepr::beep(sound = 10)   #notify user to provide input
+  filenameJSON <- file.choose()
+  
+  filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameJSON, expectedFileEnding = "course_structure-prod-analytics.json")
+  
+  if(filenameCheckResult == "matched"){
+    #filename matched expected string, continue with script
+    break
+  }else if(filenameCheckResult == "overridden"){
+    #continue script with the previously selected file
+    break
+  }else if(filenameCheckResult == "reselect"){
+    #repeat file selection loop
+  }
+}
 
 #import the JSON data file
 data <- jsonlite::fromJSON(filenameJSON)
 
 
-#Locate the clickstream data file you want processed
-cat("*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
-beepr::beep(sound = 10)   #notify user to provide input
-filenameClickstream <- file.choose()
-
+#Locate the clickstream data file to process (with sanatized user input)
+repeat{
+  cat("*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
+  beepr::beep(sound = 10)   #notify user to provide input
+  filenameClickstream <- file.choose()
+  
+  filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameClickstream, expectedFileEnding = "courseware_studentmodule-prod-analytics.sql")
+  
+  if(filenameCheckResult == "matched"){
+    #filename matched expected string, continue with script
+    break
+  }else if(filenameCheckResult == "overridden"){
+    #continue script with the previously selected file
+    break
+  }else if(filenameCheckResult == "reselect"){
+    #repeat file selection loop
+  }
+}
 
 
 
