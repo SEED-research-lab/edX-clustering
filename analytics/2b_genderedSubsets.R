@@ -14,6 +14,7 @@
 #     2017.05.05    adding in subdirectory functions  
 #     2017.05.08.   Code cleaning, header update
 #                   Audio notification for user input and script completion
+#     2017.05.09.   Added filename check of user provided files (with override option)
 ## ===================================================== ##
 
 
@@ -98,6 +99,40 @@ WorkingDirectoryCheck <- function() {
 }
 
 
+#Function: Check to see if the selected filename contains the expected text. 
+#   Allow user to continue with provided file if desired
+ExpectedFileCheck <- function(selectedFilename, expectedFileEnding) {
+  #check to see if the user selected file contains the expected character string
+  
+  #grep is a regular expression string search.  It looks for the pattern within x.  The index positions in x are returned
+  # where the pattern is found.  Here x only has a single entry, so if grep() returns 1 then the pattern matches.
+  matchResult <- grepl(pattern = expectedFileEnding, x = selectedFilename)
+  if(grepl(pattern = expectedFileEnding, x = selectedFilename)){
+    #the pattern is found, inform user and exit the function
+    cat("\n\nThe filename you provided MATCHES the expected text.")
+    return("matched")
+    # break
+  }else {
+    #otherwise, inform the user that the strings don't match and provide option to override (continue with provided file)
+    cat("\n\nERROR: The filename you provided DOESN'T MATCH the expected text.",
+        "\n       filename provided: ", selectedFilename,
+        "\n       expected in filename: ", expectedFileEnding)
+    
+    repeat{
+      #give the user the option to continue with the selected file
+      beepr::beep(sound = 10)   #notify user to provide input
+      overrideChoice <- readline(prompt="Enter 1 to use currently selected file, 2 to select a new file: ")
+      
+      if(overrideChoice == 1){
+        return("overridden")
+      }else if(overrideChoice == 2){
+        return("reselect")
+      }else{
+        cat("Invalid entry.\n")
+      }
+    }
+  }
+}
 
 
 ######### Check for correct working directory ########## 
@@ -121,10 +156,25 @@ preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", fil
 ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
 dataClickstream <- readr::read_csv(preprocessedDataFilePath)
 
-#User selection of the USER PROFILE data file to process
-cat("*****Select the SQL USER PROFILE data file.*****\n  (It should end with 'auth_userprofile-prod-analytics.sql')")
-beepr::beep(sound = 10)   #notify user to provide input
-filenameUserProfile <- file.choose()
+#User selection of the USER PROFILE data file to process (with sanatized user input)
+repeat{
+  cat("*****Select the SQL USER PROFILE data file.*****\n  (It should end with 'auth_userprofile-prod-analytics.sql')")
+  beepr::beep(sound = 10)   #notify user to provide input
+  filenameUserProfile <- file.choose()
+  
+  filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameUserProfile, 
+                                           expectedFileEnding = "auth_userprofile-prod-analytics.sql")
+  
+  if(filenameCheckResult == "matched"){
+    #filename matched expected string, continue with script
+    break
+  }else if(filenameCheckResult == "overridden"){
+    #continue script with the previously selected file
+    break
+  }else if(filenameCheckResult == "reselect"){
+    #repeat file selection loop
+  }
+}
 
 #read in the user profile data 
 dataUserProfile <- readr::read_tsv(filenameUserProfile)
