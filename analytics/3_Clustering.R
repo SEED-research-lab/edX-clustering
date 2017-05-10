@@ -20,7 +20,8 @@
 #                   Plot output files set to PDF (had been EPS)
 #                   Output filenames and plot subtitles are now descriptive 
 #                    (using the user provided description)
-#            TO DO: everything in fuzzy clusering needs to be updated (subdirectory, pdf, descriptions)
+#     2017.05.10.   Fuzzy code updated to match updates above (which had only been to the k-means code)
+#                   Added valid user input check for clustering technique selection
 ## ===================================================== ##
 
 
@@ -68,7 +69,7 @@ FileExistCheck <- function(subDir, filename) {
 
 #Function: Interactively select working directory (OS independant)
 InteractiveSetWD <- function() {
-  cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
+  cat("\nIMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
   setwd('~')
   #tcltk package provides an OS independant way to select a folder
   library(tcltk)
@@ -116,19 +117,28 @@ while(!WorkingDirectoryCheck()){
 
 ######### User providing dataset details #####
 beepr::beep(sound = 10)   #notify user to provide input
-cat("Enter a description of this datasest (to be included on graphs).\n 
+cat("\nEnter a description of this datasest (to be included on graphs).
     (suggested format: [Data source, e.g., edX], [Course number, e.g., nano515x], [Data date, e.g., Data from 2016.11.18])")
 dataSetDescription <- readline(prompt="Description: ");
 
 
 ######### Choose clustering technique #######################################################
-beepr::beep(sound = 10)   #notify user to provide input
-clusterTypeSelection <- readline(prompt="Enter 1 for K-means clustering, 2 for Fuzzy means clustering: ");
-clusterTypeSelection <- as.integer(clusterTypeSelection);
+#Choose clustering method (repeating to sanitize user input)
+repeat{
+  beepr::beep(sound = 10)   #notify user to provide input
+  clusterTypeSelection <- readline(prompt="Enter 1 for K-means clustering, 2 for Fuzzy means clustering: ");
+  
+  if(clusterTypeSelection == 1 || clusterTypeSelection == 2){  #valid clustering method selected
+    #exit loop and continue script
+    break
+  }
+  
+  #repeat if none of the conditions were met (i.e., user input was invalid)
+}
 
 
 ######### User selection of data set to process #####
-  #Choose clickstream data(sub)set (repeating to sanitize user input)
+#Choose clickstream data(sub)set (repeating to sanitize user input)
 repeat{
   beepr::beep(sound = 10)   #notify user to provide input
   userSetSelection <- readline(prompt="Enter 1 for all users, 2 for female users, 3 for male users: ");
@@ -137,7 +147,7 @@ repeat{
     #check for datafile existance
     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data.csv")
     #exit script if file not found, otherwise continue
-    ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
     dataSetName <- "all users"
     break
   }
@@ -145,7 +155,7 @@ repeat{
     #check for datafile existance
     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_females.csv")
     #exit script if file not found, otherwise continue
-    ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
     dataSetName <- "females"
     break
   }
@@ -153,7 +163,7 @@ repeat{
     #check for datafile existance
     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_males.csv")
     #exit script if file not found, otherwise continue
-    ifelse(test = preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
     dataSetName <- "males"
     break
   }
@@ -174,17 +184,17 @@ data<-data[order(data$temp_student_id,decreasing=F),]
 
 ##Save the current working directory.  Set the output directory to the working directory. 
 ##  (wd will be restored at the end of the script)
+    
+  #save current working directory
+  initialWD_save <- getwd()
   
-#save current working directory
-initialWD_save <- getwd()
-
-## TW (2017.05.03): I'm trying to get this working from an external function
-# if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
-#call function to check for the existance of the subdirectory; create it if it doesn't exist
-subDirPath <- DirCheckCreate(subDir = "3_ClusteringOutput")
-
-#set working directory for the remainder of the script
-setwd(subDirPath)
+  ## TW (2017.05.03): I'm trying to get this working from an external function
+  # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
+  #call function to check for the existance of the subdirectory; create it if it doesn't exist
+  subDirPath <- DirCheckCreate(subDir = "3_ClusteringOutput")
+  
+  #set working directory for the remainder of the script
+  setwd(subDirPath)
 ## ===================================================== ##
 
 
@@ -201,7 +211,6 @@ print("Done! Saving to file...")
 data_final=data.frame(1:length(unique(data$temp_student_id)),access_list)
 names(data_final)<-c("temp_student_id","number_accesses")
 write.csv(data_final,"access_data.csv")
-#rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
 ## ===================================================== ##
 
 
@@ -217,7 +226,7 @@ if(clusterTypeSelection==1)
   data <- as.data.frame(data)
   data <- data[names(data) %in% c("temp_student_id","number_accesses")]
   
-  ##Generate elbow plot from access data
+  ## **Generate elbow plot from access data ####
   print("Generating elbow plot...")
   elbow_plot_values <- c()
   for(k in 1:20)
@@ -241,7 +250,7 @@ if(clusterTypeSelection==1)
   print("Done!")
 
   
-  ##Generate gap plot from access data
+  ## **Generate gap plot from access data ####
   print("Generating gap plot...")
   gap_statistic=cluster::clusGap(as.matrix(data$number_accesses),K.max=10,FUN=kmeans,verbose=FALSE)
   gap_values=(as.data.frame(gap_statistic$Tab))$gap
@@ -261,7 +270,8 @@ if(clusterTypeSelection==1)
   dev.off()
   print("Done!")
 
-  ##Make recommendation for number of clusters based on elbow plot (change less than 2%)
+  ## **Make recommendations for cluster number ####
+  ##Make recommendation for number of clusters based on elbow plot (change less than 2)
   for(i in 3:10)
   {
     percent_inc=(elbow_plot_values[i]-elbow_plot_values[i-1])/elbow_plot_values[i-1]
@@ -273,9 +283,9 @@ if(clusterTypeSelection==1)
   }
   
   ##Make recommendation for number of clusters based on gap statistics (first peak in plot)
-  optimal_clusters=c()
-  counter=0
-  for(i in 2:19)
+  optimal_clusters <- c()
+  counter <- 0
+  for(i in 2:19)    #??????for DR??? should this be from 2:9 now?
   {
     if(gap_values[i-1]<gap_values[i] & gap_values[i+1]<gap_values[i])
     {
@@ -284,29 +294,29 @@ if(clusterTypeSelection==1)
     }
     if(counter==2)
     {
-      print(paste("Recommendation for number of clusters using gap statistics:",optimal_clusters[1],"or",optimal_clusters[2]))
+      print(paste("Recommendation for number of clusters using gap statistics:",
+                  optimal_clusters[1],"or",optimal_clusters[2]))
       break
     }
   }
-  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
-  
+
   ##User input for number of clusters
   beepr::beep(sound = 10)   #notify user to provide input
   K <- readline("Enter the desired number of clusters (maximum 10): ");
   K <- as.integer(K);
   
-  ##Reading access file and performing K-means on access data using user's choice of number of clusters
-  data_preprocessed<-readr::read_csv(preprocessedDataFilePath)
-  data_preprocessed<-data_preprocessed[names(data_preprocessed) %in% c("temp_student_id","module_number")]
-  data_access<-read.csv("access_data.csv",header=T)
-  data_access<-data_access[names(data_access) %in% c("temp_student_id","number_accesses")]
-  data_access=data_access[order(data_access$temp_student_id,decreasing=F),]
-  K_m<-kmeans(data_access$number_accesses,centers=K,iter.max=100,algorithm="Lloyd")
-  cluster_id=K_m$cluster
-  data_access=cbind(data_access,cluster_id)
-  data_access<-data_access[order(data_access$number_accesses,decreasing=F),]
+  ## **Reading access file and performing K-means on access data using user's choice of number of clusters ####
+  data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
+  data_preprocessed <- data_preprocessed[names(data_preprocessed) %in% c("temp_student_id","module_number")]
+  data_access <- read.csv("access_data.csv",header=T)
+  data_access <- data_access[names(data_access) %in% c("temp_student_id","number_accesses")]
+  data_access <- data_access[order(data_access$temp_student_id,decreasing=F),]
+  K_m <- kmeans(data_access$number_accesses,centers=K,iter.max=100,algorithm="Lloyd")
+  cluster_id <- K_m$cluster
+  data_access <- cbind(data_access,cluster_id)
+  data_access <- data_access[order(data_access$number_accesses,decreasing=F),]
   
-  ##Ordering clusters
+  ## **Ordering clusters ####
   counter=1
   mean_accesses=c()
   cluster_order=c()
@@ -321,7 +331,7 @@ if(clusterTypeSelection==1)
     cluster_order=c(cluster_order,which(mean_accesses==mean_accesses_sorted[i]))
   }
   
-  ##Plotting clusters
+  ## **Plotting clusters ####
   print("Plotting clusters...")
   x=1:length(unique(data_preprocessed$module_number))
   pdf.options(reset = TRUE)
@@ -435,8 +445,7 @@ if(clusterTypeSelection==1)
   }
   dev.off()
   print("Done!")
-  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
-  
+
 } else if(clusterTypeSelection==2)
 {
 
@@ -446,22 +455,29 @@ if(clusterTypeSelection==1)
   clusterTypeName <- "Fuzzy clustering"
   
   ##Read access data file and delete irrelevant columns
-  data<-read.csv("access_data.csv",header=T)
-  data<-as.data.frame(data)
-  data<-data[names(data) %in% c("temp_student_id","number_accesses")]
+  data <- read.csv("access_data.csv",header=T)
+  data <- as.data.frame(data)
+  data <- data[names(data) %in% c("temp_student_id","number_accesses")]
     
-  ##Generate gap plot from access data
+  ## **Generate gap plot from access data ####
   print("Generating gap plot...")
-  gap_statistic=cluster::clusGap(as.matrix(data$number_accesses),K.max=10,FUN=kmeans,verbose=FALSE)
+  gap_statistic=cluster::clusGap(as.matrix(data$number_accesses),K.max=10,FUN=kmeans,verbose=FALSE)   #??for DR??? should kmeans be being used here?  We're in the fuzzy clustering section
   gap_values=(as.data.frame(gap_statistic$Tab))$gap
+  #set the range of x values to include in the plot
   x=1:10
-  setEPS()
-  postscript("gap_plot.eps")
-  plot(x,gap_values,col="black",xlim=c(0,10),ylim=c(0,0.5),xlab="Number of clusters",ylab="Gap",main="Gap plot",type="l")
+  #set the PDF name
+  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "gap_plot.pdf"))
+  #set plot options (including descriptive subtitle)
+  plot(x = x,y = gap_values,col="black",xlim=c(0,10),ylim=c(0,1),
+       xlab="Number of clusters",ylab="Gap",type="l",
+       main = paste0("Gap plot (", dataSetName,")\n", 
+                     clusterTypeName, "\n",
+                     dataSetDescription))
+  #close the PDF creation connection
   dev.off()
   print("Done!")
   
-  ##Make recommendation for number of clusters based on gap statistics (first peak in plot)
+  ## **Make recommendation for number of clusters based on gap statistics (first peak in plot) ####
   optimal_clusters=c()
   counter=0
   for(i in 2:9)
@@ -477,25 +493,24 @@ if(clusterTypeSelection==1)
       break
     }
   }
-  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
-  
+
   ##User input for number of clusters
   beepr::beep(sound = 10)   #notify user to provide input
   K<-readline("Enter the desired number of clusters (maximum 10): ");
   K<-as.integer(K);
   
-  ##Reading access file and performing K-means on access data using user's choice of number of clusters
-  data_preprocessed<-read.csv("preprocessed_data.csv",header=T)
-  data_preprocessed<-data_preprocessed[names(data_preprocessed) %in% c("temp_student_id","module_number")]
-  data_access<-read.csv("access_data.csv",header=T)
-  data_access<-data_access[names(data_access) %in% c("temp_student_id","number_accesses")]
-  data_access=data_access[order(data_access$temp_student_id,decreasing=F),]
-  C_m<-e1071::cmeans(as.matrix(data_access$number_accesses),centers=K)
-  cluster_id=C_m$cluster
-  data_access=cbind(data_access,cluster_id)
-  data_access<-data_access[order(data_access$number_accesses,decreasing=F),]
+  ## **Reading access file and performing K-means on access data using user's choice of number of clusters ####
+  data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
+  data_preprocessed <- data_preprocessed[names(data_preprocessed) %in% c("temp_student_id","module_number")]
+  data_access <- read.csv("access_data.csv",header=T)
+  data_access <- data_access[names(data_access) %in% c("temp_student_id","number_accesses")]
+  data_access <- data_access[order(data_access$temp_student_id,decreasing=F),]
+  C_m <- e1071::cmeans(as.matrix(data_access$number_accesses),centers=K)
+  cluster_id <- C_m$cluster
+  data_access <- cbind(data_access,cluster_id)
+  data_access <- data_access[order(data_access$number_accesses,decreasing=F),]
     
-  ##Ordering clusters
+  ## **Ordering clusters ####
   counter=1
   mean_accesses=c()
   cluster_order=c()
@@ -510,14 +525,18 @@ if(clusterTypeSelection==1)
     cluster_order=c(cluster_order,which(mean_accesses==mean_accesses_sorted[i]))
   }
   
-  ##Plotting clusters
+  ## **Plotting clusters ####
   print("Plotting clusters...")
   x=1:length(unique(data_preprocessed$module_number))
-  setEPS()
-  postscript("Cluster_plot_fuzzy.eps")
+  pdf.options(reset = TRUE)
+  #set the pdf name (descriptive)
+  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "fuzzy_cluster_plot (", K, ").pdf"))
+  #set the plot options (including descriptive subtitle)
   plot(1,pch=".",col="white",xlim=c(0,length(unique(data_preprocessed$module_number))),
        ylim=c(0,max(data_access$temp_student_id)),xlab="Module number",ylab="Users",
-       main="Users clustered by courseware access")
+       main = paste0("Users clustered by courseware access (", dataSetName,")\n", 
+                     clusterTypeName, " (", K, " clusters)\n",
+                     dataSetDescription))
   par(new=T)
   for(k in cluster_order)
   {
@@ -618,7 +637,6 @@ if(clusterTypeSelection==1)
   }
   dev.off()
   print("Done!")
-  #rm(list=ls())    #TW (2017.05.03) I needed to comment this out so that we could find the preprocessed data below (Stored in a variable above)
 } else
 {
   print("Invalid choice! Please enter 1 or 2...")
