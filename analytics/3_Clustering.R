@@ -22,54 +22,19 @@
 #                    (using the user provided description)
 #     2017.05.10.   Fuzzy code updated to match updates above (which had only been to the k-means code)
 #                   Added valid user input check for clustering technique selection
+#     2017.05.11.   Extracted possible functions to external files
 ## ===================================================== ##
 
 
 
-######### Functions ##########
-##TW (2017.05.03): I want to get these external to the script
-
-#Function: Check for existance of subdirectory, create if it doesn't exist.
-DirCheckCreate <- function(subDir) {
-  #set directory variables
-  mainDir <- getwd()
-  
-  #check for/create subdirectory
-  if(!dir.exists(file.path(mainDir, subDir))){
-    cat(paste(subDir, " does not exist in '", mainDir, "' -- creating"))
-    dir.create(file.path(mainDir, subDir))
-    subDirPath <- file.path(mainDir, subDir)
-  }else{
-    cat(paste(subDir, " exists in '", mainDir, "' -- continuing"))
-    subDirPath <- file.path(mainDir, subDir)
-  }
-  return(subDirPath)
-}
-
-#Function: Check for existance of file passed in 
-FileExistCheck <- function(subDir, filename) {
-  
-  #set parameters for file location
-  mainDir <- getwd()
-  
-  #store the file path 
-  filePath <- file.path(mainDir, subDir, filename, fsep = "/")
-  
-  #check for existance of CSV module order file
-  if(file.exists(filePath)){
-    cat(paste(filename, "found -- continuing"))
-    return(filePath)
-  }else{
-    cat(paste("ERROR: ", filename, "not found -- exiting script"))
-    rm(list=ls()) ## Clear the environment
-    return(FALSE)  #retun signal to exit script if file not found
-  }
-}
+######### Clean the environment ########## 
+rm(list=ls())   
 
 
+######### Internal functions ########## 
 #Function: Interactively select working directory (OS independant)
 InteractiveSetWD <- function() {
-  cat("\nIMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
+  cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
   setwd('~')
   #tcltk package provides an OS independant way to select a folder
   library(tcltk)
@@ -102,24 +67,35 @@ WorkingDirectoryCheck <- function() {
 
 
 
-
 ######### Check for correct working directory ########## 
-
 #continue checking the current working direcotry and prompting user for the correct directory 
 # while the workingDirectoryCheck returns false
 while(!WorkingDirectoryCheck()){
-  cat("The current working directory is not correct.  Please set it to the directory containing the R scripts.")
+  cat("The current working directory is NOT CORRECT.  Please set it to the directory containing the R scripts.\n")
   
   #have user set the working directory
   beepr::beep(sound = 10)   #notify user to provide input
   InteractiveSetWD()
 }
 
+
+######### External function sourcing ########## 
+#load external functions
+source("R/file-structure-functions.R")
+
+
+# end of script setup
+## *************************************** #####
+# beginning of script functionality
+
+
+
 ######### User providing dataset details #####
 beepr::beep(sound = 10)   #notify user to provide input
 cat("\nEnter a description of this datasest (to be included on graphs).
     (suggested format: [Data source, e.g., edX], [Course number, e.g., nano515x], [Data date, e.g., Data from 2016.11.18])")
 dataSetDescription <- readline(prompt="Description: ");
+
 
 
 ######### Choose clustering technique #######################################################
