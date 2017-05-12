@@ -11,8 +11,8 @@ Hash: 14dfb3e8ffe20996118306ff4de1fab2
 
 Package: R6
 Source: CRAN
-Version: 2.2.0
-Hash: 712773a3439bd32db5c40938e1a9aac2
+Version: 2.2.1
+Hash: 530f0b839551f96ec991ce4f93156ee1
 
 Package: Rcpp
 Source: CRAN
@@ -23,6 +23,22 @@ Package: assertthat
 Source: CRAN
 Version: 0.2.0
 Hash: e8805df54c65ac96d50235c44a82615c
+
+Package: audio
+Source: CRAN
+Version: 0.1-5
+Hash: 9bfdee08c847cc05073bb78abc04b2c8
+
+Package: beepr
+Source: CRAN
+Version: 1.2
+Hash: 01dddbcdecbb5c51ce495fa1d96fe92b
+Requires: audio, stringr
+
+Package: cluster
+Source: CRAN
+Version: 2.0.6
+Hash: 8aa5c05d0394b5659e122d096aff8f63
 
 Package: e1071
 Source: CRAN
@@ -71,6 +87,17 @@ Source: CRAN
 Version: 1.1.0
 Hash: 3506086f41d307f5a78ee64e010536fa
 Requires: BH, R6, Rcpp, hms, tibble
+
+Package: stringi
+Source: CRAN
+Version: 1.1.5
+Hash: b6308e49357a0b475f433599e0d8b5eb
+
+Package: stringr
+Source: CRAN
+Version: 1.2.0
+Hash: 25a86d7f410513ebb7c0bc6a5e16bdc3
+Requires: magrittr, stringi
 
 Package: tibble
 Source: CRAN
