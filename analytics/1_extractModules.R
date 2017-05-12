@@ -5,6 +5,8 @@
 # Author(s):    Taylor Williams
 # Institution:  Purdue University
 # 
+# Project:      
+# 
 # Description:  For their course sequencing, edX provides a jumbled (yet structured) JSON file. 
 #               As provided it is not in a useful form for our analyzing user engagement with the course.  
 #               This algorythm creates an ordered csv file with 
@@ -41,29 +43,15 @@
 #     2017.05.08.   Code cleaning, header update
 #                   Audio notification for user input and script completion
 #     2017.05.09.   Added filename check of user provided files (with override option)
+#     2017.05.11.   Extracted possible functions to external files
 ## ===================================================== ##
 
 
-######### Functions ##########
-
-#Function: Check for existance of subdirectory, create if it doesn't exist.
-DirCheckCreate <- function(subDir) {
-  #set directory variables
-  mainDir <- getwd()
-  
-  #check for/create subdirectory
-  if(!dir.exists(file.path(mainDir, subDir))){
-    cat(paste(subDir, " does not exist in '", mainDir, "' -- creating"))
-    dir.create(file.path(mainDir, subDir))
-    subDirPath <- file.path(mainDir, subDir)
-  }else{
-    cat(paste(subDir, " exists in '", mainDir, "' -- continuing"))
-    subDirPath <- file.path(mainDir, subDir)
-  }
-  return(subDirPath)
-}
+######### Clean the environment ########## 
+  rm(list=ls())   
 
 
+######### Internal functions ########## 
 #Function: Interactively select working directory (OS independant)
 InteractiveSetWD <- function() {
   cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
@@ -97,68 +85,9 @@ WorkingDirectoryCheck <- function() {
   }
 }
 
-#Function: Recursive child search to build the course heirarchy
-ChildSearch <- function(data, courseHierarchy, curModuleIndex, hierarchicalLvl) {
-  #store the number of children the current module has
-  numChildren <- length(data[[curModuleIndex]][["children"]])
-  
-  #go one level deeper if the current Module has children
-  if(numChildren > 0){
-    #locate the next child and see if it has any children itself
-    for(j in 1:numChildren){
-      curChildIndex <- match(data[[curModuleIndex]][["children"]][j], moduleNames)
-      
-      ###store the data (ID, display name, lvl)
-      #concatenate matching module names into the course hierarchy (using rbind)
-      courseHierarchy <- rbind(courseHierarchy,
-                               c(names(data[curChildIndex]),
-                                 data[[curChildIndex]][["metadata"]]["display_name"], hierarchicalLvl))
-      courseHierarchy <- ChildSearch(data, courseHierarchy, curChildIndex, hierarchicalLvl+1)
-    } 
-  }
-  
-  return(courseHierarchy)
-}
-
-
-#Function: Check to see if the selected filename contains the expected text. 
-#   Allow user to continue with provided file if desired
-ExpectedFileCheck <- function(selectedFilename, expectedFileEnding) {
-  #check to see if the user selected file contains the expected character string
-  
-  #grep is a regular expression string search.  It looks for the pattern within x.  The index positions in x are returned
-  # where the pattern is found.  Here x only has a single entry, so if grep() returns 1 then the pattern matches.
-  matchResult <- grepl(pattern = expectedFileEnding, x = selectedFilename)
-  if(grepl(pattern = expectedFileEnding, x = selectedFilename)){
-    #the pattern is found, inform user and exit the function
-    cat("\n\nThe filename you provided MATCHES the expected text.")
-    return("matched")
-    # break
-  }else {
-    #otherwise, inform the user that the strings don't match and provide option to override (continue with provided file)
-    cat("\n\nERROR: The filename you provided DOESN'T MATCH the expected text.",
-        "\n       filename provided: ", selectedFilename,
-        "\n       expected in filename: ", expectedFileEnding)
-    
-    repeat{
-      #give the user the option to continue with the selected file
-      beepr::beep(sound = 10)   #notify user to provide input
-      overrideChoice <- readline(prompt="Enter 1 to use currently selected file, 2 to select a new file: ")
-      
-      if(overrideChoice == 1){
-        return("overridden")
-      }else if(overrideChoice == 2){
-        return("reselect")
-      }else{
-        cat("Invalid entry.\n")
-      }
-    }
-  }
-}
 
 
 ######### Check for correct working directory ########## 
-
 #continue checking the current working direcotry and prompting user for the correct directory 
 # while the workingDirectoryCheck returns false
 while(!WorkingDirectoryCheck()){
@@ -170,10 +99,23 @@ while(!WorkingDirectoryCheck()){
 }
 
 
+######### External function sourcing ########## 
+#load external functions
+source("R/file-structure-functions.R")
+source("R/extractModules-functions.R")
+
+
+
+
+# end of script setup
+## *************************************** #####
+# beginning of script functionality
+
+
+
 
 
 ######### Import course structure JSON file data #####
-
 #Locate the JSON course structure data file to process (with sanatized user input)
 repeat{
   cat("*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
