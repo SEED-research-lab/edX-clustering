@@ -19,7 +19,7 @@
 #                   a "3" for the chapter's children's children, and so on.
 #               (4) a sequential numbering of the modules.
 # 
-# Package dependancies: jsonlite, readr, tcltk, beepr
+# Package dependancies: jsonlite, readr, tcltk, #beepr
 #
 # Changelog:
 #     2017.03.10.   Initial distributed version
@@ -48,11 +48,11 @@
 
 
 ######### Clean the environment ########## 
-  rm(list=ls())   
+rm(list=ls())   
 
 
 ######### Internal functions ########## 
-#Function: Interactively select working directory (OS independant)
+#Function: Interactively select working directory (OS independant, but not available for RStudio Server)
 InteractiveSetWD <- function() {
   cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
   setwd('~')
@@ -70,11 +70,10 @@ InteractiveSetWD <- function() {
 
 #Function: Check to see if the current working directory contains an expected file.  
 # If not then prompt user to select the correct directory
-WorkingDirectoryCheck <- function() {
+WorkingDirectoryCheck <- function(expectedFile) {
   #set directory variables
   curDir <- getwd()
-  #set a filename expected to exist in the working directory
-  expectedFile <- "1_extractModules.R"
+  
   
   if(file.exists(file.path(curDir, expectedFile))){
     #if file does exists in the current WD, exit the funtion returning TRUE
@@ -88,14 +87,16 @@ WorkingDirectoryCheck <- function() {
 
 
 ######### Check for correct working directory ########## 
-#continue checking the current working direcotry and prompting user for the correct directory 
-# while the workingDirectoryCheck returns false
-while(!WorkingDirectoryCheck()){
-  cat("The current working directory is NOT CORRECT.  Please set it to the directory containing the R scripts.\n")
+#check the current working direcotry, inform user if incorrect and stop running script
+if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
+  cat("The current working directory is NOT CORRECT.  
+      Please set it to the directory containing the R scripts before reruning script.\n")
   
   #have user set the working directory
-  beepr::beep(sound = 10)   #notify user to provide input
-  InteractiveSetWD()
+  # beepr::beep(sound = 10)   #notify user to provide input
+  # InteractiveSetWD()
+  
+  break
 }
 
 
@@ -119,7 +120,7 @@ source("R/extractModules-functions.R")
 #Locate the JSON course structure data file to process (with sanatized user input)
 repeat{
   cat("*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
-  beepr::beep(sound = 10)   #notify user to provide input
+  #beepr::beep(sound = 10)   #notify user to provide input
   filenameJSON <- file.choose()
   
   filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameJSON, expectedFileEnding = "course_structure-prod-analytics.json")
@@ -142,7 +143,7 @@ data <- jsonlite::fromJSON(filenameJSON)
 #Locate the clickstream data file to process (with sanatized user input)
 repeat{
   cat("*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
-  beepr::beep(sound = 10)   #notify user to provide input
+  #beepr::beep(sound = 10)   #notify user to provide input
   filenameClickstream <- file.choose()
   
   filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameClickstream, expectedFileEnding = "courseware_studentmodule-prod-analytics.sql")
@@ -181,17 +182,17 @@ for(i in 1:length(moduleNames)){
 }
 
 
-          
+
 
 ######### Initiate recursive search ###############
 
 #initalize variables and initate recursive searching for children
-  #set the current hierarchy level
-  hierarchicalLvl <- 0  #course level
-  #conduct the recursive child search for each of the chapter level modules. Concatenate the results onto courseHierarchy
-  courseHierarchy <- ChildSearch(data, courseHierarchy, courseModule, hierarchicalLvl+1) 
+#set the current hierarchy level
+hierarchicalLvl <- 0  #course level
+#conduct the recursive child search for each of the chapter level modules. Concatenate the results onto courseHierarchy
+courseHierarchy <- ChildSearch(data, courseHierarchy, courseModule, hierarchicalLvl+1) 
 
-  
+
 
 ######### Remove unaccessed modules ###############
 
@@ -232,8 +233,8 @@ courseHierarchy <- cbind(courseHierarchy,module_no)
 
 
 ######### Write data to files ###############
-  ## trying to get this working from an external function
-  # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
+## trying to get this working from an external function
+# if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
 subDirPath <- DirCheckCreate(subDir = "1_extractModulesOutput")
 
@@ -257,10 +258,10 @@ write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
 
 
 ######### Notify user and Clear the environment  #############
-beepr::beep(sound = 10)   #notify user script is complete
-Sys.sleep(time = 0.1)     #pause 1/10 sec
-beepr::beep(sound = 10)
-Sys.sleep(time = 0.1)
-beepr::beep(sound = 10)
+# beepr::beep(sound = 10)   #notify user script is complete
+# Sys.sleep(time = 0.1)     #pause 1/10 sec
+# beepr::beep(sound = 10)
+# Sys.sleep(time = 0.1)
+# beepr::beep(sound = 10)
 
 rm(list=ls())   #Clear environment variables
