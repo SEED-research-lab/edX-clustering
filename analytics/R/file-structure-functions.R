@@ -5,7 +5,7 @@
 # Author(s):    Taylor Williams
 # Institution:  Purdue University
 # 
-# Project:      
+# Project:      EdX data pipeline for clustering analytics
 # 
 # Description:  []
 # 
@@ -13,6 +13,7 @@
 #
 # Changelog:
 #     2017.05.11.    initial function extraction from pipeline
+#     2017.05.11.    minor updates to console output
 ## ===================================================== ##
 
 
@@ -23,11 +24,11 @@ DirCheckCreate <- function(subDir) {
   
   #check for/create subdirectory
   if(!dir.exists(file.path(mainDir, subDir))){
-    cat(paste(subDir, " does not exist in '", mainDir, "' -- creating"))
+    cat(paste0("The directory '", subDir, "' does not exist in '", mainDir, "' -- creating directory"))
     dir.create(file.path(mainDir, subDir))
     subDirPath <- file.path(mainDir, subDir)
   }else{
-    cat(paste(subDir, " exists in '", mainDir, "' -- continuing"))
+    cat(paste0("The directory '", subDir, "' exists in '", mainDir, "' -- continuing script"))
     subDirPath <- file.path(mainDir, subDir)
   }
   return(subDirPath)
@@ -57,7 +58,7 @@ ExpectedFileCheck <- function(selectedFilename, expectedFileEnding) {
     
     repeat{
       #give the user the option to continue with the selected file
-      beepr::beep(sound = 10)   #notify user to provide input
+      #beepr::beep(sound = 10)   #notify user to provide input
       overrideChoice <- readline(prompt="Enter 1 to use currently selected file, 2 to select a new file: ")
       
       if(overrideChoice == 1){

@@ -44,6 +44,8 @@
 #                   Audio notification for user input and script completion
 #     2017.05.09.   Added filename check of user provided files (with override option)
 #     2017.05.11.   Extracted possible functions to external files
+#     2017.05.18.   Removed dependancies on beepr (for compatibility with RStudio server)
+#     2017.05.25.   Added timer to track script execution time
 ## ===================================================== ##
 
 
@@ -85,6 +87,10 @@ WorkingDirectoryCheck <- function(expectedFile) {
 }
 
 
+# end of functions
+## *************************************** #####
+# begin script setup
+
 
 ######### Check for correct working directory ########## 
 #check the current working direcotry, inform user if incorrect and stop running script
@@ -113,13 +119,14 @@ source("R/extractModules-functions.R")
 # beginning of script functionality
 
 
-
+#start a timer to track how long the script takes to execute
+start <-  proc.time() #save the time (to compute ellapsed time of loop)
 
 
 ######### Import course structure JSON file data #####
 #Locate the JSON course structure data file to process (with sanatized user input)
 repeat{
-  cat("*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
+  cat("\n*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
   #beepr::beep(sound = 10)   #notify user to provide input
   filenameJSON <- file.choose()
   
@@ -142,7 +149,7 @@ data <- jsonlite::fromJSON(filenameJSON)
 
 #Locate the clickstream data file to process (with sanatized user input)
 repeat{
-  cat("*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
+  cat("\n*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
   #beepr::beep(sound = 10)   #notify user to provide input
   filenameClickstream <- file.choose()
   
@@ -250,7 +257,8 @@ DeletedModules <- as.matrix(DeletedModules)
 
 
 #write a CSV file for the next step in processing.  (Also write a CSV file of those modules which were removed.)
-#   quotes are forced around the module title names in case one contains a comma
+#   quotes are forced around the module title names in case one contains a comma 
+cat("\nSaving CSV file.")
 write.csv(file = file.path(subDirPath, "module_order_file.csv", fsep = "/"), 
           x = courseHierarchy, quote = c(modTitleColIndex))
 write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
@@ -264,4 +272,10 @@ write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
 # Sys.sleep(time = 0.1)
 # beepr::beep(sound = 10)
 
+#print the amount of time the script required
+cat("\n\n\nScript processing time details (in sec):\n")
+print(proc.time() - start)
+
 rm(list=ls())   #Clear environment variables
+
+
