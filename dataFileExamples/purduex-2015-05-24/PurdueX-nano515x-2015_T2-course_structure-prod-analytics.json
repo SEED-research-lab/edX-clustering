@@ -1,0 +1,5027 @@
+{
+  "i4x://PurdueX/nano515x/chapter/1453a32f613943538795d7f608104a12": {
+    "category": "chapter", 
+    "children": [
+      "i4x://PurdueX/nano515x/sequential/b2a277a6fabe472cacbf94d9a3f35218", 
+      "i4x://PurdueX/nano515x/sequential/a8ac363d47fd422d98e3068614d998bd", 
+      "i4x://PurdueX/nano515x/sequential/4b28ec7eca2d495e9bacc7084fec2dfb", 
+      "i4x://PurdueX/nano515x/sequential/15a01c56646742808c545be7712126e1", 
+      "i4x://PurdueX/nano515x/sequential/1ce5c40f00634b0ca14ec2e2ff02b203", 
+      "i4x://PurdueX/nano515x/sequential/354e8b9da8654e2c83aef86470fea6a9", 
+      "i4x://PurdueX/nano515x/sequential/826daf2f04704820923e2c6f6bbbdb7b", 
+      "i4x://PurdueX/nano515x/sequential/0e2899b7e511495d8633d68d86e58d36"
+    ], 
+    "metadata": {
+      "display_name": "Week 3: Charge Transport", 
+      "start": "2015-02-26T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/chapter/15b9d600840041ca97d179493dd649f9": {
+    "category": "chapter", 
+    "children": [
+      "i4x://PurdueX/nano515x/sequential/fbb26834049d47289e985b029bc3798e", 
+      "i4x://PurdueX/nano515x/sequential/7e17c580714b4f18b8f27df61de5a6cb", 
+      "i4x://PurdueX/nano515x/sequential/87bebc7380414ac9a8dcbab69dee9127", 
+      "i4x://PurdueX/nano515x/sequential/b9a05509df9e45daa289d39547e7a109", 
+      "i4x://PurdueX/nano515x/sequential/e2661bd3c8fb46649258602d14debab6", 
+      "i4x://PurdueX/nano515x/sequential/1755806ef86c4dfc84f87006698f9265", 
+      "i4x://PurdueX/nano515x/sequential/35544db083c2411abac7230e8abc9a41", 
+      "i4x://PurdueX/nano515x/sequential/4b2a966bdaf445b4902a92bab43bd2b3"
+    ], 
+    "metadata": {
+      "display_name": "Week 1: Semiconductor Synthesis and Characterization", 
+      "start": "2015-02-12T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/chapter/29341818f91342da81222c5a7e460231": {
+    "category": "chapter", 
+    "children": [
+      "i4x://PurdueX/nano515x/sequential/874399fcbed14da9ac2283f16ca006da", 
+      "i4x://PurdueX/nano515x/sequential/d3043b5d2956441aa96e47436e017811", 
+      "i4x://PurdueX/nano515x/sequential/5b64845a288c4859948bb611d367d6c3", 
+      "i4x://PurdueX/nano515x/sequential/45e1b9c1f159418b974ef55224c3dd7d", 
+      "i4x://PurdueX/nano515x/sequential/d424466352e643b2bfb861470267cd20", 
+      "i4x://PurdueX/nano515x/sequential/7191f796fa3c4146898f6e6d8f68f8e9", 
+      "i4x://PurdueX/nano515x/sequential/8479d49076f240aebf0eae0de8735781", 
+      "i4x://PurdueX/nano515x/sequential/5394d6d0a21d4d1987156adb33f1fa62"
+    ], 
+    "metadata": {
+      "display_name": "Week 5: Organic Light-Emitting Devices and Emerging Technologies", 
+      "start": "2015-03-12T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/chapter/4aa4f3e326e44d5b987e99488679d89f": {
+    "category": "chapter", 
+    "children": [
+      "i4x://PurdueX/nano515x/sequential/aeb3e63995494fca9d07bb76ee452bca", 
+      "i4x://PurdueX/nano515x/sequential/c1cdc6750769407098e1504d9a78ff78", 
+      "i4x://PurdueX/nano515x/sequential/4f932173c4cf44fc83cb7b7be0d4eac7", 
+      "i4x://PurdueX/nano515x/sequential/2e5c62b8be264258b7e53a6ec01ab164", 
+      "i4x://PurdueX/nano515x/sequential/60d5f740619c45b9b70ecaa63469c856", 
+      "i4x://PurdueX/nano515x/sequential/c6bb0815cd2d41fba86abe56bb73ff1b", 
+      "i4x://PurdueX/nano515x/sequential/f758e5e9c73f45b19b20be566ae3de47", 
+      "i4x://PurdueX/nano515x/sequential/22631b3f566343d1b383ba7245fc17c7"
+    ], 
+    "metadata": {
+      "display_name": "Week 2: Electronic Structure", 
+      "start": "2015-02-19T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/chapter/e23bdcbf795140d28597c982dd65b180": {
+    "category": "chapter", 
+    "children": [
+      "i4x://PurdueX/nano515x/sequential/437710a20465419b958463d15385dbb2", 
+      "i4x://PurdueX/nano515x/sequential/e641d3fb301449a9b6f3bbbaee632cd0", 
+      "i4x://PurdueX/nano515x/sequential/089c3c65e037438981803b1679129645", 
+      "i4x://PurdueX/nano515x/sequential/d2ed3f8889bd42d3b4cd0c1aea0b596e", 
+      "i4x://PurdueX/nano515x/sequential/586cb1eb7e174dbfb42cb5308b6c4b80", 
+      "i4x://PurdueX/nano515x/sequential/4ad2c982c49e4913a9539ae41ca25373", 
+      "i4x://PurdueX/nano515x/sequential/77539e981b2f42f08e6160949570f15f", 
+      "i4x://PurdueX/nano515x/sequential/232894c042714c7285232e72c1d8c3da"
+    ], 
+    "metadata": {
+      "display_name": "Week 4:  Organic Photovoltaic Devices", 
+      "start": "2015-03-05T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/chapter/f130738d2a85475e93b110487c80f462": {
+    "category": "chapter", 
+    "children": [
+      "i4x://PurdueX/nano515x/sequential/c5bdada0487143d296aaaef10aa0a2a4", 
+      "i4x://PurdueX/nano515x/sequential/92a3dc0ff08f45a9bc860eca20b718e7", 
+      "i4x://PurdueX/nano515x/sequential/54c8e999a79e47c1a720d4e71d0cb3fc"
+    ], 
+    "metadata": {
+      "display_name": "Welcome", 
+      "start": "2015-02-12T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/course/2015_T2": {
+    "category": "course", 
+    "children": [
+      "i4x://PurdueX/nano515x/chapter/f130738d2a85475e93b110487c80f462", 
+      "i4x://PurdueX/nano515x/chapter/15b9d600840041ca97d179493dd649f9", 
+      "i4x://PurdueX/nano515x/chapter/4aa4f3e326e44d5b987e99488679d89f", 
+      "i4x://PurdueX/nano515x/chapter/1453a32f613943538795d7f608104a12", 
+      "i4x://PurdueX/nano515x/chapter/e23bdcbf795140d28597c982dd65b180", 
+      "i4x://PurdueX/nano515x/chapter/29341818f91342da81222c5a7e460231"
+    ], 
+    "metadata": {
+      "course_image": "EdX-BBoudouris-Thumbnail.jpg", 
+      "days_early_for_beta": 90.0, 
+      "discussion_topics": {
+        "General": {
+          "id": "i4x-PurdueX-NANO515x-course-2015_Term1"
+        }
+      }, 
+      "display_name": "Organic Electronic Devices", 
+      "end": "2015-04-16T08:00:00Z", 
+      "enrollment_end": null, 
+      "enrollment_start": "2014-12-25T00:00:00Z", 
+      "graceperiod": "1800 seconds", 
+      "mobile_available": true, 
+      "start": "2015-02-12T08:00:00Z", 
+      "tabs": [
+        {
+          "name": "Courseware", 
+          "type": "courseware"
+        }, 
+        {
+          "name": "Course Info", 
+          "type": "course_info"
+        }, 
+        {
+          "name": "Textbooks", 
+          "type": "textbooks"
+        }, 
+        {
+          "name": "Discussion", 
+          "type": "discussion"
+        }, 
+        {
+          "is_hidden": true, 
+          "name": "Wiki", 
+          "type": "wiki"
+        }, 
+        {
+          "name": "Progress", 
+          "type": "progress"
+        }
+      ], 
+      "video_upload_pipeline": {
+        "course_video_upload_token": "9093c6d9976211e4aec9685b35c5f98f"
+      }
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/0a4ff2e7a9234b1c998ec094f0886ceb": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.3 Quiz Discussion", 
+      "discussion_id": "747d1ba38aae498caab56ea822178ae8", 
+      "discussion_target": "L4.3 Quiz Discussion", 
+      "display_name": "L4.3 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/0b07e4e6283f409f80b4d9179fec3121": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L5.1 Lecture Discussion", 
+      "discussion_id": "d5413bb05ab94a1b9b672a26ae937b40", 
+      "discussion_target": "L5.1 Lecture Discussion", 
+      "display_name": "L5.1 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/0d7dd1d98f5742579bb49d9da6c0c553": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 5: Homework Discussion ", 
+      "discussion_id": "6501ef1f47cd4f8791eee457c0e2659a", 
+      "display_name": "Week 5: Homework Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/0d9cc0dabfe44fd7a9265747b8bae8b4": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_id": "a027fe4662d94e9ab4e0245d052edaff"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/128466fd37bc49f9b9c9fdc30ba67d00": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.3 Lecture Discussion ", 
+      "discussion_id": "5c9f0c0a278a4f48a73bc0b994ca0458", 
+      "discussion_target": "L1.3 Lecture Discussion", 
+      "display_name": "L1.3 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/12a7580eec1e42789b126aad6fb88c42": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.3 Lecture Discussion", 
+      "discussion_id": "759095df549c4803b70da02257e89efc", 
+      "discussion_target": "L2.3 Lecture Discussion", 
+      "display_name": "L2.3 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/188e2a2bc7254e43a937cd77360ed77b": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L5.3 Quiz Discussion", 
+      "discussion_id": "a6052613ebe24493b694e89e0727933d", 
+      "discussion_target": "L5.3 Quiz Discussion", 
+      "display_name": "L5.3 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/26ae612560ef4e59b8f7c97cc8d8f3de": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.1 Quiz Discussion ", 
+      "discussion_id": "877353e5ce684750adc3b11d9dc0f441", 
+      "discussion_target": "L2.1 Quiz Discussion", 
+      "display_name": "L2.1 Quiz Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/270c3326fae545f5b98ddbd55c74a414": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.5 Lecture Discussion ", 
+      "discussion_id": "f3745c03b4ca4160bc16bf3834e27da0", 
+      "discussion_target": "L1.5 Lecture Discussion ", 
+      "display_name": "L1.5 Lecture Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/2a3acd035aaf43f5b438dc36a9779104": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.5 Lecture Discussion", 
+      "discussion_id": "17e72b528c294eab80cbcc1eb84e6670", 
+      "discussion_target": "L3.5 Lecture Discussion", 
+      "display_name": "L3.5 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/2a8ddbdd092141c393662946eee11716": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 3: Homework Tutorial Discussion ", 
+      "discussion_id": "6a8f040b704148ea89c003e4f486d506", 
+      "display_name": "Week 3: Homework Tutorial Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/3513a4ce7e59411c90762370293675d4": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.2 Quiz Discussion ", 
+      "discussion_id": "ba12f724ce7543858aca3cbe1eb217f0", 
+      "discussion_target": "L1.2 Quiz Discussion ", 
+      "display_name": "L1.2 Quiz Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/35fc25052ca74f5a90683b65a55a3c99": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.1 Quiz Discussion", 
+      "discussion_id": "20fcc20d8e7448e1bdd49a15509a0ab5", 
+      "discussion_target": "L3.1 Quiz Discussion", 
+      "display_name": "L3.1 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/3902d1fc3c684503a26a04da2f17b7a5": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L5.2 Quiz Discussion", 
+      "discussion_id": "ff51bf19a31140d4af37a98b9a4c3fd2", 
+      "discussion_target": "L5.2 Quiz Discussion", 
+      "display_name": "L5.2 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/3a886e6b985d401a952485e644b3784b": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.4 Lecture Discussion", 
+      "discussion_id": "464fc9d663ef452c85c5929b3aaab04a", 
+      "discussion_target": "L4.4 Lecture Discussion", 
+      "display_name": "L4.4 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/40f675f16558482fbcb64c6fb789483f": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.5 Quiz Discussion ", 
+      "discussion_id": "2a4e9793ac304be4a48362c29394afaf", 
+      "discussion_target": "L1.5 Quiz Discussion", 
+      "display_name": "L1.5 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/43e215367c4e43c097e747b09b3d6157": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_id": "5d6a73f88d864cf6ba4cdda2e9f9b35e"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/446178ccdd8e46319adcc688da016aef": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.4 Quiz Discussion ", 
+      "discussion_id": "4f4e3b34891443878eea5ac889e7ba2d", 
+      "discussion_target": "L2.4 Quiz Discussion ", 
+      "display_name": "L2.4 Quiz Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/4603567a0c7a4dd781689530a7ab45da": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.4 Lecture Discussion", 
+      "discussion_id": "4224696cc3ba4e518c470056a6800529", 
+      "discussion_target": "L3.4 Lecture Discussion", 
+      "display_name": "L3.4 Lecture Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/5166ad236914446b96f8da98653084ce": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.5 Lecture Discussion", 
+      "discussion_id": "17a5dd8e841348a19216d8d9d64e3fe9", 
+      "discussion_target": "L4.5 Lecture Discussion", 
+      "display_name": "L4.5 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/52b540e7a3d24248b0bd1dbdff2b2b17": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.2 Lecture Discussion ", 
+      "discussion_id": "80d8212d6c264639a840cc15316da6ed", 
+      "discussion_target": "L2.2 Lecture Discussion", 
+      "display_name": "L2.2 Lecture Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/5517cf12450a49e7ada1786cfdf7819e": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.4 Lecture DIscussion ", 
+      "discussion_id": "669eef490c8046a285a2b78b40a0d9ed", 
+      "discussion_target": "L1.4 Lecture DIscussion ", 
+      "display_name": "L1.4 Lecture DIscussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/57dbf0071e8647b38ef16d3596287430": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.2 Lecture Discussion", 
+      "discussion_id": "e57fa09d02b54648848c3ef262ea120b", 
+      "discussion_target": "L3.2 Lecture Discussion", 
+      "display_name": "L3.2 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/586ffa0a51db4166b3cc06f41c1de8c2": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.3 Quiz Discussion", 
+      "discussion_id": "4b87871b7cd64865b5f1dbdb6e5ca18d", 
+      "discussion_target": "L1.3 Quiz Discussion", 
+      "display_name": "L1.3 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/5faea1cc99a2410b9c0757a156041ed4": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.2 Quiz Discussion", 
+      "discussion_id": "e5fa7dd41191432f8cb76dc9b31fdb46", 
+      "discussion_target": "L2.2 Quiz Discussion", 
+      "display_name": "L2.2 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/6427102ce43c43b088b1b6b819b3f87d": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L5.1 Quiz Discussion", 
+      "discussion_id": "3897e635efa445bf978b05ce88e3fcfd", 
+      "discussion_target": "L5.1 Quiz Discussion", 
+      "display_name": "L5.1 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/6917d43db12e48f0a6d192ae8097b891": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.3 Quiz Discussion", 
+      "discussion_id": "8997c3db18e048daa9d64a107c03f9ea", 
+      "discussion_target": "L2.3 Quiz Discussion", 
+      "display_name": "L2.3 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/6b9f9027418c47c0adcf5ee67f20c5e8": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_id": "891f904b13ef4c1aa87185e6fb160a3b"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/6c6bea4b01e8481eb9896f7ed58b50e2": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 1: Homework  Discussion ", 
+      "discussion_id": "36cb2e2419bf44aea819ad75441c7e78", 
+      "display_name": "Week 1: Homework  Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/713c51c1168f4a3f8540e049568b2d0e": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.1 Lecture Discussion", 
+      "discussion_id": "55430fe566cd4c0eae336fa4704d47be", 
+      "discussion_target": "L3.1 Lecture Discussion", 
+      "display_name": "L3.1 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/75a984ff868f4e83ba0c48824319fc7a": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.4 Lecture Discussion", 
+      "discussion_id": "016cb764e5ce415cb90603c66801a878", 
+      "discussion_target": "L2.4 Lecture Discussion", 
+      "display_name": "L2.4 Lecture Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/7b02c6044fcb4cc6949b0b7897ed6eba": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.5 Quiz Discussion", 
+      "discussion_id": "c76d3f2f979a4c6cb4315a03bafd79e6", 
+      "discussion_target": "L3.5 Quiz Discussion", 
+      "display_name": "L3.5 Quiz Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/7c26422f917f450e827fca78852da1d9": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 2: Homework Discussion ", 
+      "discussion_id": "1ac6ad10a7984d218367112e0a18788c", 
+      "display_name": "Week 2: Homework Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/83745596d7ed4ef9bd10e8ad1cfd630d": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.1 Lecture Discussion", 
+      "discussion_id": "18b344c3eee64e8db3cf1a162515672c", 
+      "discussion_target": "L4.1 Lecture Discussion", 
+      "display_name": "L4.1 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/84f45abbf62849cb9afa06febb65bb82": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.5 Quiz Discussion", 
+      "discussion_id": "9b368cc8c4f145b2bcae6501a2074f17", 
+      "discussion_target": "L2.5 Quiz Discussion", 
+      "display_name": "L2.5 Quiz Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/85093978149f4364b79749aa17406dfa": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L5.2 Lecture Discussion", 
+      "discussion_id": "d2408fc174d54d0abc693783ac446828", 
+      "discussion_target": "L5.2 Lecture Discussion", 
+      "display_name": "L5.2 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/89719090112e414aa89d23589ca31968": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L5.4 Lecture Discussion", 
+      "discussion_id": "f72f435a2baf4bc389a36d7933b1be66", 
+      "discussion_target": "L5.4 Lecture Discussion", 
+      "display_name": "L5.4 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/89c9d7dd3d714d28b2e9d5a68eb9596b": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 4: Homework Discussion ", 
+      "discussion_id": "dcbce513aa87405987679457dc770f2b", 
+      "display_name": "Week 4: Homework Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/8b43cba5aba048eba518192656688912": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.2 Quiz Discussion", 
+      "discussion_id": "2acc8b84da33482cba3704ec3741ac84", 
+      "discussion_target": "L4.2 Quiz Discussion", 
+      "display_name": "L4.2 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/908370a0f6484112b8f7fdb6f70ecbca": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.4 Quiz Discussion", 
+      "discussion_id": "c2c68c47f1c9448482b8448a719cfe2d", 
+      "discussion_target": "L3.4 Quiz Discussion", 
+      "display_name": "L3.4 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/936e8c86e1c5476885c4b81f6238f9d3": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.4 Quiz Discussion", 
+      "discussion_id": "18010ddbf396403393ccb2ad030c716b", 
+      "discussion_target": "L4.4 Quiz Discussion", 
+      "display_name": "L4.4 Quiz Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/95b6e054ee03483f8a5b8e5011fcb964": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.4 Quiz Discussion", 
+      "discussion_id": "7f1fed13a8c2475bbecff4e4fc7b57fb", 
+      "discussion_target": "L1.4 Quiz Discussion", 
+      "display_name": "L1.4 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/9634e0ef4dfa4364b708376e335c6d55": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 2: Homework Tutorial Discussion ", 
+      "discussion_id": "df34a583914e470aa387030786c15f90", 
+      "display_name": "Week 2: Homework Tutorial Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/978257e987c447fdb4bec4205b70caa2": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.1 Lecture Discussion ", 
+      "discussion_id": "7dabb8ce72d7442c87ebe0598451b5a5", 
+      "discussion_target": "L2.1 Lecture Discussion", 
+      "display_name": "L2.1 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/978fb3d4c335499784516f58abdd3e00": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.2 Lecture Discussion", 
+      "discussion_id": "3c09029cc0274041a7c37fa9259a4830", 
+      "discussion_target": "L4.2 Lecture Discussion", 
+      "display_name": "L4.2 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/999c483c02914e13affd4cea6a72592a": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L2.5 Lecture Discussion", 
+      "discussion_id": "fd237a44b7a24dcba859f4b74a3f6b8a", 
+      "discussion_target": "L2.5 Lecture Discussion", 
+      "display_name": "L2.5 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/9d40fbdc065748959c8671283016c339": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 3: Homework Discussion", 
+      "discussion_id": "9eb5233539194441b5fed332f933d945", 
+      "display_name": "Week 3: Homework Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/a38278fb63964f688fef5e8136e77dc6": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.1 Quiz Discussion", 
+      "discussion_id": "991d6847979f41bc88518800ddae1e02", 
+      "discussion_target": "L4.1 Quiz Discussion", 
+      "display_name": "L4.1 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/a8db41dbc439439c8c6a5abe95b4866a": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.3 Lecture Discussion", 
+      "discussion_id": "8176632de49044e6b3c4976d92d7921a", 
+      "discussion_target": "L4.3 Lecture Discussion", 
+      "display_name": "L4.3 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/af9278e6cdbf40148dcb83aa0f9660ba": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L5.4 Quiz Discussion", 
+      "discussion_id": "58187b0c012b4bb6a17d7aeca1fa1c4c", 
+      "discussion_target": "L5.4 Quiz Discussion", 
+      "display_name": "L5.4 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/b13163dfd11a4b6cbb1332649d52fdbf": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.2 Quiz Discussion ", 
+      "discussion_id": "4826b6bfb7114b938ec36f063c8a0daf", 
+      "discussion_target": "L3.2 Quiz Discussion ", 
+      "display_name": "L3.2 Quiz Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/b207e7e7dc1f48a885f3bf9bc4d266bb": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 1: Homework Tutorial Discussion ", 
+      "discussion_id": "819f8cc30bbb4b56a6c400b5dca1c16e", 
+      "display_name": "Week 1: Homework Tutorial Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/b2b7438859534d0b944618ea71b9a0a3": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_id": "b1bb8c8954414cf6b56f7ba1060d7c31"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/b38887d9a0d74fd3889cb2a534ef2617": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L5.3 Lecture Discussion", 
+      "discussion_id": "b82d589cabf3495d8636d15a8688c538", 
+      "discussion_target": "L5.3 Lecture Discussion", 
+      "display_name": "L5.3 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/b4ffafd06cc74df2a041fb50b69a729b": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.3 Lecture Discussion", 
+      "discussion_id": "d29849db9c434dfa976dc194fcb886b2", 
+      "discussion_target": "L3.3 Lecture Discussion", 
+      "display_name": "L3.3 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/bb0a290976c042edb0c8cacd00be7755": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 4: Homework Tutorial Discussion ", 
+      "discussion_id": "c677d404bad84573934eafe661c632f5", 
+      "display_name": "Week 4: Homework Tutorial Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/df03c73d44c94533bb692176a9fd5c94": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L3.3 Quiz Discussion", 
+      "discussion_id": "d6b3b0e7c6374ca494933fdf8eea8ca9", 
+      "discussion_target": "L3.3 Quiz Discussion", 
+      "display_name": "L3.3 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/e1251b3a5cbf4af18f09ae47d60a6748": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_id": "400f752daa0e406bbd3360d95d31b729"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/eb60e839e85b45e48e9bad387bd57507": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L4.5 Quiz Discussion", 
+      "discussion_id": "c235b891bcd9446a86b0f18aa9cd6d1c", 
+      "discussion_target": "L4.5 Quiz Discussion", 
+      "display_name": "L4.5 Quiz Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/ef38177889274282b979d7b5b1b20780": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.1 Quiz Discussion ", 
+      "discussion_id": "1e51142f790f4731b0a8ec2f2abc770a", 
+      "discussion_target": "L1.1 Quiz Discussion ", 
+      "display_name": "L1.1 Quiz Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/f2cd75100b54406faf62443472bb7de0": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L5.5 Lecture Discussion", 
+      "discussion_id": "3f0b52c84eae49c39ea11c1675f2bff7", 
+      "discussion_target": "L5.5 Lecture Discussion", 
+      "display_name": "L5.5 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/f567bbf864d1478ea059f792db9afc84": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.1 Lecture Discussion", 
+      "discussion_id": "32b7dd9025c34779bc6d04f26597c3fd", 
+      "discussion_target": "L1.1 Lecture Discussion", 
+      "display_name": "L1.1 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/f9d23b56ee42405ba517002e40a944d4": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "Week 5: Homework Tutorial Discussion ", 
+      "discussion_id": "db7d2422b7604ccaae3f52bc74a574a4", 
+      "display_name": "Week 5: Homework Tutorial Discussion "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/discussion/fcc005cdb78d45ab824fa096855e3355": {
+    "category": "discussion", 
+    "children": [], 
+    "metadata": {
+      "discussion_category": "L1.2 Lecture Discussion ", 
+      "discussion_id": "05e1c50aa35b4b3bbe1ff6953fc0d2dc", 
+      "discussion_target": "L1.2 Lecture Discussion", 
+      "display_name": "L1.2 Lecture Discussion"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/054dd117e1b84b6d9846a373c758bfba": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.2 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/155f5a02523b42b9a4920338ad76c9c0": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.3 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/1b8c244393084ea68f9db6bb33d9246b": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 4: Tutorial Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/1ed62ef1d94446c3a5e672b4bf4feac8": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.3 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/230fe8e4026443989eb65485a786bf1b": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3.1 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/2ac9044a029c4ccdbfb0a164b5e8caf9": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 2: Homework Tutorial Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/2cc43330b8a84d7a913c18641b881636": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.5 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/33f88e7a991644c98497774b857faec5": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3.4 Table of Contents "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/34bf0609cbdd430bb01c5e28b3a881a6": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.4 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/36f09d6195e648999b92c33435766b79": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 3: Tutorial Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/3f6504ab279342cea06adbbd677569da": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.2 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/41bdcb8ca2c0440595f4073ee25c898b": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.3 Table of Contents "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/499ad3f69cda454489bff9805a69d56b": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.4 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/6530779f0ab049e799d126e11c889fb8": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Prereqs and Reading"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/747a7aae79f74bf3a846a6e6e40924bb": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.1 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/77ec6ce885064dd9bfa94755e5a359cd": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Overview"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/7af53107507d4f4497b35b223792fe02": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.1 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/880986ad850340c193af479a62309542": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3.3 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/8f9bcc3bb3fd4cdcb56153d4bc7a443d": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Getting Help"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/a7e37fbe6293408eb1f43a72ab370796": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.4 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/af12bfbb45cd4f7b89ac32601bffc7ea": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.1 Table of Contents "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/afc444d479e64620903d3bc70273c400": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.2 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/b07630c949354877868fa6f89424a29b": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Grading"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/bbf68b0a448844fe99bb78c7535b5ebe": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 5: Tutorial Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/c8eb29e3ab194fcba1d95024356f8486": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3.2 Table of Contents "
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/cdf1a35e7b3e405b997ee096ccda3c7c": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.3 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/d5d8bd5365af4ce29865c7e9d139869c": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.5 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/d80080a315454778806fa092452dafe6": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/dd3cd0c79da34cb9a312c0339426ccea": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.5 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/df36625008b14c98875ed660278d46d7": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "WELCOME"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/e973cd4adcdc4082a9b969d4ceac4934": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.5 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/f22074ad970e4c87adf0ac39073e4590": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3:5 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/f44053fd5d4a461583171e1674bc9ecf": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 1: Homework Tutuorial Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/f56d84dc70a34914b9c9a186df499ff6": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.1 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/f67f41c519df41d3854cb10f6c555999": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Schedule"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/f6dd131eaa4b47ffb6be0bc872bc132f": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.4 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/html/fe04885056594629a04ef4cef180e365": {
+    "category": "html", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.2 Table of Contents"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/010b25542f404a8c80058222a07a8e6c": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4 ", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 20.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/01d8bc36ab7a4fcba13bcfb3e4ece7aa": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5: Part B continued", 
+      "markdown": ">>Given the above reactant in Problem 5 B, please choose the correct coupling polymerization reaction mechanism: <<\n\n(x) Stille\n( ) Suzuki \n  \n", 
+      "max_attempts": 1, 
+      "weight": 3.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/01e928939590446e850c633b8b6e0a77": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>What is the highest zT value reported for an all polymer thermoelectric device leg as of 2014?<<\n\n= 0.42\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/04e5380dc04e4ba5b71c6f785916228f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part A", 
+      "markdown": null, 
+      "max_attempts": 6, 
+      "showanswer": "finished", 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/052697207af4442987faaf254999fd26": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>In the variable range hopping (VRH) model, what are the two types of distributions that are of concern?<<\n\n[x] Energy\n[ ] Molecular Weight\n[ ] Band Gap\n[ ] Charge Carrier\n[x] Spatial\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/05f2612985214cdeb5054eec93f7cddc": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1 ", 
+      "markdown": ">>Select 3 consumer applications where organic light-emitting devices (OLEDs) currently are or soon will be playing a significant role in the technology of the module.<<\n\n[x]\tCellular telephones\n[ ]\tReal-time windshield updates for automobiles\n[x]\tTelevisions\n[x]\tSolid-state lighting\n[ ]\tLight bulbs\n[ ]\t3D Goggles\n", 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/0670070a5cb34cecb93362802a121387": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part D", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/0a8fb1ac9ebf474b87e8cd64eebaa4fb": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/0af0cbba293343bbaf9a6a588f5834d0": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 12", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/0d5b993d37ce4e518c0750ad0aff716e": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/0e63d268279244c2b7325c8f0d9dd726": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/0faf3667cc9b4ffe8f1252e1dba9e30f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4", 
+      "markdown": null, 
+      "max_attempts": 7, 
+      "weight": 25.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/101362c4d0cf48b1a4c3b9a27c01c70d": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/115a067699df46a58ce92048fbb1d607": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part C", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/11b8451b561c4b9fb2a245c68a04ad23": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 12", 
+      "markdown": ">>\tSelect three advantages of inverted solar cells relative to regular geometry solar cells<<\n\n[x]\tThere is a lower chance of oxidative degradation of the reflective metal top contact.\n[ ]\tThe inverted devices absorb more light than regular devices.\n[ ]\tThe inverted geometry increases the crystallinity of the p-type polymer phase.\n[x]\tThe p-type polymer phase tends to phase separate to the upper surface of the device.\n[x]\tIt is easier to evaporate gold and silver relative to aluminum and calcium.\n[ ]\tThe solution processability of the cell is increased.\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/1394660617054697b0feadcbc0d3a4e2": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part C", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/1495e5e4d27c4eeeb7958cb10b7e2015": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part D", 
+      "markdown": ">>Identify the color or shade of color (Note: if you need to use two colors please enter the response as Color 1 Color 2. For instance, it should be Blue Green, not Blue-green or bluegreen) associated with the following CIE coordinates<<\n>>\t(0.3, 0.3)<<\n= White \n\n\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 4.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/14e039c1cef14e49be5da70871c96bc7": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5", 
+      "markdown": ">>\tSelect 3 consumer applications where organic light-emitting devices (OLEDs) currently are or soon will be playing a significant role in the technology of the module <<\n\n[x] Cellular telephones\n[ ]\tReal-time windshield updates for automobiles\n[x]\tTelevisions\n[x]\tSolid-state lighting\n[ ]\tIncandescent Light bulbs\n[ ]\t3D Goggles\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/152d7c1ac6af4a27ae19b430e90d38ea": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 13", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/153363c495c74bc894df99f0a2f8eced": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 6", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/1535788d11ed498f8e5795ae5544bf87": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3 ", 
+      "markdown": ">>For high performance, the absorption spectrum of the polymers used in the sub-cells of multijunction organic photovoltaic devices should:<<\n( )\tBe the Same\n(x)\tAbsorb in different portions of the spectrum\n( )\tAbsorb in the same portion of the spectrum, but have different absorption coefficients\n( )\tBe as small as possible\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/161e62cfd8a6484b9ceb484fddedb5d4": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "weight": 25.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/1628487bdaf048acb861918428b8ee1f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>Assuming that everything else remains constant, if the open-circuit voltage of an organic photovoltaic device is increased by a factor of 2, the power conversion efficiency of the device will:<<\n( )\tStay the Same\n(x)\tIncrease by a Factor of 2\n( )\tDecrease by a Factor of 2\n( )\tIncrease by a Factor of 4\n( )\tDecrease by a Factor of 4\n\n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/1ba69a7efec348578e9bb713eebcf0d1": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part A", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 3.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/1c68f51f81ba48edae1ba5eceb88f531": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>Determine the domain spacing (or spacing between crystal planes), using units of nanometers, for a polymer who shows a reflection at a value of q = 5 nm-1:<<\n= 1.26 +- .05\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/1effe6bb42b94cc4ab519932dffc9a59": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3 ", 
+      "markdown": ">>Increasing the series resistance in an organic photovoltaic device will increase the fill factor of the device.<<\n     ( ) True\n     (x) False\n     \n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/1f94f76e38b746c581bd351159ed730d": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part D ", 
+      "markdown": "Calculate the number-average molecular weight, weight-average molecular weight, and the dispersity of a polymer sample that contains: 25% 20-mers, 15% 42-mers, 10% 50-mers, 20% 55-mers, and 30% 60-mers if the molecular weight of a repeat unit is 110 g mol-1. In the parlance of this course, does this polymer sample have a narrow or broad molecular weight distribution?\n\n<choiceresponse>\n  <checkboxgroup direction=\"vertical\">\n    <choice correct=\"true\">narrow molecular weight distribution</choice>\n    <choice correct=\"false\">broad molecular weight distribution</choice>\n  </checkboxgroup>\n</choiceresponse>", 
+      "max_attempts": 1, 
+      "weight": 2.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/1fe6fee5c3354aaaa161d6f2746bd10b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 11", 
+      "markdown": ">>If the nanostructure of the organic active layer is not controlled well, the domain sizes of the two semiconducting phases can become too large in an organic photovoltaic device. This results in: <<\n( )\tReduced light absorption within the semiconducting phases\n(x)\tIncreased exciton recombination\n( )\tDecreased exciton generation\n( )\tDecreased charge collection\n( )\tIncreased charge extraction\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/20a1a533808249a8bbeb034fb3d51ce1": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 9: Part B", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/20b6fbee48eb4a21bd8ea12456053364": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part B", 
+      "markdown": ">>As the density of traps in the multiple trap and release model increases, the mobility of the semiconducting material approaches that of what would be expected if the semiconductor exhibited band-like transport.<<\n     ( ) True\n     (x) False\n     ", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/218fac6414a944158c0f33e1bf59897f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part B", 
+      "markdown": "<p>On the basis of this calculation, state whether the specimen is intrinsic, n-type, or p-type.</p>\n<multiplechoiceresponse>\n  <choicegroup label=\"On the basis of this calculation, state whether the specimen is intrinsic, n-type, or p-type.\" type=\"MultipleChoice\">\n    <choice correct=\"false\">intrinsic</choice>\n    <choice correct=\"false\">n-type</choice>\n    <choice correct=\"true\">p-type</choice>\n  </choicegroup>\n</multiplechoiceresponse>", 
+      "max_attempts": 3, 
+      "weight": 2.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/22dde00f30074426ad7b5a76f04956dc": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>The change in free energy associated with hopping from one site to another site does not include the spatial vector between the two different locations.<<\n     ( ) True\n     (x) False\n    \n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/24e2df9b0692489480b56536e4c83d91": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part C", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/256a6505a46344b8bedeae81d9e8b435": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3 ", 
+      "markdown": ">>Calculate the amount of energy (in units of eV) required to overcome the first electronic transition in 1,3,5-hexatriene:<<\n= 3.5 +- 0.15\n\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/257fd7311e824a80940a755294349275": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part C", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 7.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/2be73235a0da41328e4eb5d47a8faf7f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 8: Part B", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/2e32cc0deec7404b954497e74d831504": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3 ", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/2eceb8abf2344f06985ffbd947c93f08": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>Despite the relatively high thermoelectric performance of iodine-doped polyacetylene, it is not used in practical applications because<<\n( )\tPolyacetylene is too expensive\n( )\tPolyacetylene is too rare\n(x)\tThe iodine is too volatile, which leads to device stability issues\n( )\tThe composite material is too difficult to process\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/2ee94ab2857b4a8ab5f3669549bc646b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>Match the appropriate HOMO and LUMO values of 1,3,5-hexatriene, based on the following choices. The HOMO level is listed first and the LUMO level is listed second.<<\n     ( ) 4,3\n     ( ) 2,3\n     ( ) 1,2\n     ( ) 2,1\n     (x) 3,4\n     ( ) 5,6\n     ( ) 6,5\n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/306dbf81109c4f6b87e843d7c519c69b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5: Part A continued", 
+      "markdown": ">>Chemical symbol of the metallic element incorporated in the catalyst used for this reaction:<<\n= Pd\n", 
+      "max_attempts": 3, 
+      "weight": 2.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/30f7652777a044da899642e2e1b806ce": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/32b591a1104e416d95fd843e484cd27a": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>As the density of traps in the multiple trap and release model decreases, the mobility of the semiconducting material approaches that of what would be expected if the semiconductor exhibited band-like transport.<<\n     (x) True\n     ( ) False\n\n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/334b08077b664a80ba95269dcb5c608c": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>One strategy for producing white light-emitting diodes includes the inclusion of multiple color emitters in the device geometry. These emitters have the colors of:<<\n( )\tRed, Yellow, Cyan\n( )\tCyan, Magenta, Yellow, Black\n(x)\tRed, Green, Blue\n( )\tBlue, Green, Orange\n( )\tRed, Yellow, Blue\n \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/33aa75547c97442c80a65ea55f579503": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 8: Part C ", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/34a3d9efd8aa4d08bd0cd29edaee7fba": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 11", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/359f468599014584995bb19c56f18954": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4: Part B", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/35a751b35c074b59acde8b9ab53f2490": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>In the United States, 94.6 Quads of energy are used each year, based on a 2009 survey conducted by Lawrence Livermore National Laboratory. Of those 94.6 Quads, what percentage is sent as rejected energy?<<\n\n= 57.8 +- 5\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/367aaeb0ed4a41ea896ad5ba7a0fa6cd": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part B", 
+      "markdown": ">>Match the appropriate LUMO and HOMO values of 1,3,5,7-octatetraene, based on the following choices. The LUMO level is listed first and the HOMO level is listed second.<<\n\n( )\t4,3\n( )\t2,3\n( )\t1,2\n( )\t2,1\n( )\t3,4\n( )\t4,5\n(x)\t5,4\n\n     ", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/37b4a20602e041249f56b7f85a4f93da": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part A", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/3b2783ea79c343fca137e1b2d57bea42": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part A", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 8.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/3b7f73294a4545a7b7f8d68106d44784": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part B", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/3e17d2136905442f8a71e1a61c3a95a8": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4 ", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/3f35e087e89f44afa57e384899abc3dd": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1 ", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/3f44c0861cda470bb8a0e237f72fb511": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>The most commonly-implemented organic photovoltaic (OPV) device active layer for a polymer-based device is:<<\n( )\tThe bilayer cell\n( )\tThe trilayer cell\n( )\tThe ordered bulk heterojunction\n(x)\tThe bulk heterojunction\n( )\tThe inverted bilayer cell\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/41c69fc38c68460c905ee479ca3917fe": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2 ", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/43963431988c41ef8ec9de4023bb3c33": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part B", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/444dcb740dba44ae8da6585e1038de70": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5", 
+      "markdown": ">>What assumption is made when it is stated that the intrinsic Fermi energy is located at the midway point of the energy band gap.<<\n\n( )That the temperature is room temperature\n( )\tThat the Fermi energy is not a function of temperature\n( )\tThat there are the same number of electrons and there are holes in the system\n(x)\tThat the effective mass of the electron equals the effective mass of the hole in the semiconductor\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/445314d518954eb69827a94a2166a82c": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>As temperature is increased, the Fermi-Dirac distribution will have a higher probability of having a non-zero value above the Fermi energy.<<\n     (x) True\n     ( ) False\n    \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/461aaa195600418d8d188fc74871041f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>Organic light-emitting devices (OLEDs) are present today in commercial devices.<<\n     (x) True\n     ( ) False\n\n     \n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/46946bd28160424b936dd1b0f20ab3ce": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 7", 
+      "markdown": ">>\tThe most commonly-implemented organic photovoltaic (OPV) device active layer for a polymer-based device is: <<\n( )\tThe bilayer cell\n( )\tThe trilayer cell\n( )\tThe ordered bulk heterojunction\n(x)\tThe bulk heterojunction\n( )\tThe inverted bilayer cell\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/4705eed9909d4b28bcb0ba39aaaa6ebf": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 6", 
+      "markdown": ">>\tOne strategy for producing white light-emitting diodes includes the inclusion of multiple color emitters in the device geometry. These emitters have the colors of:<<\n( ) Red, Yellow, Cyan\n( )\tCyan, Magenta, Yellow, Black\n(x)\tRed, Green, Blue\n( )\tBlue, Green, Orange\n( )\tRed, Yellow, Blue\n\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/483fba6615994f49a26f7d8f79340a60": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 40.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/4acc33db30c947ea971479c1f3f77586": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part A", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/4b445dd5425d42a39c6a2e86b81c0314": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5: Part B", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/4d09c537dbca4cc892d9db107413e1f1": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2 ", 
+      "markdown": ">>The power conversion efficiency of a tandem solar cell will be proportional to (select all that apply):<<\n[x] The short-circuit current density of the lower performing sub-cell\n[ ]\tThe short-circuit current density of the higher performing sub-cell\n[x]\tThe sum of the open-circuit voltages of the sub-cells\n[ ]\tThe product of the open-circuit voltages of the sub-cells\n[ ]\tThe sum of the short-circuit current densities of the sub-cells\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/4dc27ad8ab0d45dc945915a009bf2edc": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part D", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/4e112de03d194af19f744e2ec8ff594b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part D", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/5058e52f92b74303acd92fd0dd7a344f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>Name the two parameters that govern the slowing of charges as they move through a semiconductor according to the multiple trap and release (MTR) model.<<\n( )\tThe spatial distribution of the traps and the density of the traps\n( )\tThe band gap of the semiconductor and the energy levels of the traps\n( )\tThe molecular weight of the polymer and the molecular weight distribution of the polymer\n(x)\tThe energy levels of the traps and the density of the traps\n( )\tThe mobility of the charge carrier and the density of the traps\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/50eba604bd044f0eaa5b409ee466956f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 3.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/51c2a4f586ec4be69f935ffa0028756d": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3", 
+      "markdown": ">>\tA lumen is:<<\n( )The organic layer that emits light in an OLED.\n( )\tThe SI base unit of luminous intensity.\n( )\tThe ratio of the optical flux to the electrical input.\n(x)\tThe SI base unit of luminous flux.\n( )\tA measure of the light emitted by the sun.\n\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/54e2a418155f474d8d518f5a9c928181": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>Using electron shell notation, select the correct expression for silicon.<<\n     ( )\t1s<sup>2</sup> 2s<sup>2</sup>\n     ( ) \t1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>2</sup>\n     ( )\t1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup>\n     ( )   \t1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup>\n     (x)   \t1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>2</sup>\n     \n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/57003c14824e4b42b0da5d197c954aed": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part A", 
+      "markdown": ">>In the variable range hopping (VRH) model, what are the two types of distributions that are of concern.<<\n     [x] Energy\n     [ ] Molecular Weight\n     [ ] Band Gap \n     [ ] Charge Carrier\n     [x] Spatial \n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/570a320b85ab4d9894bf46849babdc08": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>When evaluating the thermal transitions of a organic semiconductor using DSC, one is using a:<<\n(x) Differential Scanning Calorimeter\n( )\tDefinitely Stable Calorimeter\n( )\tDistinguishable Signal Controller\n( )\tDifferential Statistical Calorimeter\n( )\tDistinguishable Scanning Controller\n\n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/5856ac7f2f2449ffbc417c7d6cf0521d": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/591e3721301f446599ed462f495c7389": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 3.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/5949e4e428ce464483aba30c841d29c6": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 9", 
+      "markdown": ">>\tA common characteristic of phosphorescent OLED materials relative to fluorescent OLED materials is the fact that they:<<\n( )\tAre not used commonly in OLED devices\n( )\tOnly emit light in the blue and green portions of the spectrum\n(x)\tContain a heavy metal atom\n( )\tCannot be purified to as high of a degree\n\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/5b57f3a701c643f28c5a6902d0497041": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>When the energy of an orbital is equal to the Fermi energy, the Fermi-Dirac distribution is equal to:<<\n     ( ) 1\n     ( ) 0.80\n     ( ) 0.75\n     (x) 0.5\n     ( ) 0.25\n     ( ) 0.2\n     ( ) 0.0\n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/5dbed68f4d5e4c8b904c320ad48cc989": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/5df63f84e41345768c3b9a82fa550bc4": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>The flux of light using AM1.5 conditions is less than the flux of light using AM0 conditions at certain wavelengths. The reason for this decrease is due to:<<\n( )\tThe reflection of sunlight from the surface of the ocean\n( )\tInterference of the spectral response due to the movement of clouds through the path of the detector\n( )\tGravitational effects caused by the moon\n(x)\tAbsorption and scattering of light due to molecules and scattering present in the atmosphere\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/60313e48953f425ea15c8f4135d08aea": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/6035ee671f414050ad2580728935de31": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 11", 
+      "markdown": ">>\tIn the United States, 94.6 Quads of energy are used each year, based on a 2009 survey conducted by Lawrence Livermore National Laboratory. Of those 94.6 Quads, what percentage is sent as rejected energy?<<\n\n= 56.13 +- 2.00\n\n\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/6321dbe61f9b49a1b4b2e1b1f6e636b3": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2 ", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "weight": 25.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/64095e50d0aa434ea1b8e85ea99c8244": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 15.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/646f24915302419aaa9970e9b48ef243": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3", 
+      "markdown": ">>As temperature is decreased, the Fermi-Dirac distribution will have a higher probability of having a non-zero value above the Fermi energy. <<\n     ( ) True\n     (x) False\n    \n     \n\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/6bec6f22102b43f58165839dd56fe38e": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part C", 
+      "markdown": ">>In the charge hopping model for transport, which of the following (check all that apply) is/are important parameter(s) for charge transfer to occur<<\n\n[ ]\tPolymer molecular weight\n[ ]\tThickness of the film used in the device\n[ ]\tSpatial distribution energy\n[ ]\tMolecular weight distribution\n[x]\tElectronic coupling between chromophoric segments\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/6cc3dfb06b154edb9946a1baa002889d": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>In the charge hopping model for transport, which of the following (check all that apply) is/are important parameter(s) for charge transfer to occur?<<\n\n[ ]\tPolymer molecular weight\n[x]\tReorganization energy\n[x]\tElectronic coupling between chromophoric segments\n[ ]\tMolecular weight distribution\n[ ]\tThickness of the film used in the device\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/6d657e7eb3d04201ba71daaa965370ac": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 3.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/6e34c9e8da4541138656cee84fa7c561": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2 ", 
+      "markdown": ">>The reason why the probability for radiative decay to occur was limited to 25% for traditional organic light-emitting device materials was:<<\n( )\tInefficiency in the design of the modules\n( )\tInability to inject enough charge in rapid manner\n( )\tIncreased phonon scattering within the semiconducting phase\n(x)\tThe ratio of singlet to triplets in the material\n( )\tPoor transport within the electron transporting layers\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/71a59c753ce1444fade28b7d0b6987b7": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 7: Part B", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/72d6ae03187140868ec7fcb1990c598a": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/74fdf25973cc4c2387a3f0ddd95586cb": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part A", 
+      "markdown": ">>Identify the color or shade of color (Note: if you need to use two colors please enter the response as Color 1 Color 2. For instance, it should be Blue Green, not Blue-green or bluegreen) associated with the following CIE coordinates: <<\n>>\t(0.1, 0.6) <<\n= Green\n\n\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 4.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/751bbe910c4a49d0a3e7261a7590a4e8": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part E", 
+      "markdown": ">>Identify the color or shade of color (Note: if you need to use two colors please enter the response as Color 1 Color 2. For instance, it should be Blue Green, not Blue-green or bluegreen) associated with the following CIE coordinates<<\n>>\t(0.1, 0.2)<<\n= Greenish Blue\n\n\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 4.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/7635ba2dcc9a42448937a3e6fcd45aa6": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>Predict which one of the following materials would be the best in terms of thermoelectric performance.<<\n( )\tCopper\n( )\tAluminum\n( )\tSilicon Dioxide\n(x)\tLead Telluride\n( )\tGold\n( )\tSilver\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/77b3d7f2c1734c01adb155a555bbe4c3": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>Assuming everything else remains constant, will the calculated mobility of a material increase, decrease, or stay the same if the dielectric constant of the capacitive layer of an organic field-effect transistor was measured and found to be lower than what was measured initially?<<\n     (x) Increase\n     ( ) Stay the Same\n     ( ) Decrease\n  \n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/783f62996e83466ba4bb7613474a2dd3": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part A", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 20.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/7a1524bb4a71429986f5e42fa6b9c953": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 8: Part A ", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/7a1679c1a04847598f4c89ebe52a1105": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 9 ", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/7b30eed51d80420ab2efe054d04cafa7": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 7", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/7bce9c6e251c4885b77b9de59c26d49f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 10", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/7bf1658f3d214522a8d21bbc74f81499": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/7e4a1c72df324b2fa515f85199cfc667": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 10", 
+      "markdown": ">> In a tandem solar cell, the active layer blend composed of the lower band gap polymer should be:<<\n\n( )\tNearer to the transparent contact than the higher band gap polymer blend\n( )\tMuch thicker than higher band gap polymer blend\n(x)\tFarther from the transparent contact than the higher band gap polymer blend\n( )\tMuch thinner than the higher band gap polymer blend\n( )\tAbsorb only ultraviolet wavelength photons\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/7e687f49113841e9bd21b9bdf28e2d1c": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 3.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/7feb99adf61543cbaf9ad2b083ebca62": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part C", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/8043e05bebb342729b2e2262aa4a1e71": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2", 
+      "markdown": ">>Identify the color (or shade of color) associated with the following CIE coordinates.<<\n\n>>(0.15, 0.4)<< \n\n( ) White\n(x) Bluish Green\n( ) Yellow\n( ) Green\n( ) Orange \n\n\t\n\n\t\n\n\t\n\n\n\n", 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/81e11b1d41284fb4a9717da8ae88e87a": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/8403e9293f7b4045a868b134117bf667": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 8", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/8449179da23848a09d2f2e546574a2f7": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part B ", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/8449baafca034c13b2d785e34d77b16d": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4: Part A", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "weight": 2.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/854176d7ce1349e3ac4d2417d722a701": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5: Part A", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/870ae4547d41436196eb5b2b0bd81ba3": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 10", 
+      "markdown": ">>\tDespite the relatively high thermoelectric performance of iodine-doped polyacetylene, it is not used in practical applications because<<\n     ( )Polyacetylene is too expensive\n( )\tPolyacetylene is too rare\n(x)\tThe iodine is too volatile, which leads to device stability issues\n( )\tThe composite material is too difficult to process\n\n     \n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/88010e79007f43eda1cff2fff7856e93": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/88941e183d644d0eb6a3d6cae7f961e9": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2 ", 
+      "markdown": ">>For typical polymer semiconductors, the exciton diffusion length is on the order of:<<\n( )\t0.1 nm\n( )\t1 nm\n(x)\t10 nm\n( )\t1 \u00b5m\n( )\t10 \u00b5m\n\n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/894396a951f04ce9ba9e672df28aacad": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>Which of the following atom(s) would serve as a p-type dopant for a silicon crystal? Check all that apply.<<\n\n[x]\tGa\n[x]\tIn\n[x]\tB\n[ ]\tAs\n[ ]\tP\n\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/8abf9df2400c4d81928b1a76cd9f7083": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 12 ", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/8b98d32cf1b74a61926f07417139c29d": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>The Candela (Cd) is:<<\n( )\tA fancy light bulb\n(x)\tThe SI base unit of luminous intensity\n( )\tThe ratio of the optical flux to the electrical input\n( )\tThe SI base unit of luminous flux\n( )\tA measure of the light emitted by the sun\n  \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/9017bb0cf86a4cf69ddbc10faff8d2f4": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part A", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/928def3bc096405b9059f7a6cf98295b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>What assumption is made when it is stated that the intrinsic Fermi energy is located at the midway point of the energy band gap?<<\n     ( ) \tThat the temperature is room temperature\n     ( ) \tThat the Fermi energy is not a function of temperature\n     ( ) \tThat there are the same number of electrons and there are holes in the system\n     (x) \tThat the effective mass of the electron equals the effective mass of the hole in the semiconductor\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/945d1d34accc4aea9c84585322d5bb18": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/949d25971fc64b88a8046690ad0709ec": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>Calculate the band gap of a polymer semiconductor in the solid state, if the longest wavelength of light that the polymer can absorb is 1050 nm.  Band gap units are in eV.<<\n\n= 1.18 +- 0.05\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/957606ebccda4735ba57fa8f2360710f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/98f26701e287426aad8dfb216a91c771": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/9916347143744be7ad4791ad3621a6cb": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>Select three desirable characteristics associated with bulk heterojunction active layers with respect to organic photovoltaic (OPV) devices.<<\n[ ]\tDomain spacings on the order of 50 nm between the electron donating and electron accepting phase.\n[x]\tConnectivity of the hole-transporting phase to the anode\n[ ]\tConnectivity of the electron-transporting phase to the anode\n[x]\tHigh charge mobility values within each of the semiconducting phases\n[x]\tHigh degree of crystallinity within each of the semiconducting phases\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/99232bd64b484228a13b8b93f0e5e7cf": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2 ", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/99524344d19d4114a65966d5dbafc336": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part B", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 9.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/9a03b6852b4a4528b04258de8a19b8a8": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>Select the molecular property that determines the time at which a polymer will elute from a size-exclusion chromatography column.<<\n\n( )\tMolecular weight\n( )\tDegree of conjugation\n( )\tNumber of repeat units\n(x)\tHydrodynamic volume\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/9ae2fa2a492e43779134a43aed25ed34": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>Calculate the length of a molecule (in units of nm), assuming it to be completely conjugated, if the amount of energy required to transition from the 2nd to 3rd energy level is 4.5 eV:<<\n= 0.646 +- 0.05\n\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/9f820d0f54e34428bc28c29bd07508c1": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4", 
+      "markdown": ">>The effective density of states of the conduction band accounts for the temperature of the system and...<<\n\n( )The effective mass of a hole\n( )\tThe Fermi energy\n( )\tThe conduction band edge energy\n(x)\tThe effective mass of an electron\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/9fb5d01b82404c22a83bffd9c7f49f3f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 8: Part D", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 3.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/a429857911e248f79e4ca512139a354f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5: Part B continued", 
+      "markdown": ">>Chemical symbol of the metallic element incorporated in the catalyst used for this reaction:<<\n= Pd\n", 
+      "max_attempts": 3, 
+      "weight": 2.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/a83f0793e6a44c2bb49e35cc1ec223f5": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part C", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 8.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/a8e46ea42b0546e289c0fa4b1c709bc4": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part D", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/a90b74682e8345a690ef762c1e3807d2": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5", 
+      "markdown": ">>Identify the color (or shade of color) associated with the following CIE coordinates.<<\n>> (0.4, 0.4)<< \n(x) White\n( ) Bluish Green\n( ) Yellow\n( ) Green\n( ) Orange \n\n", 
+      "max_attempts": 3, 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/a986924ad5484e878a85d9e81ff964cb": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 6", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/aa1b6b9f0e0d4848807df93ddb64e7e9": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/b1459580e0ef48308d1382d2afe326bb": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/b14dc740264148b1b3e0815cf83edf6b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4: Part D", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/b23bc4e291924041a26d17b878c205bd": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part B", 
+      "markdown": "<p>Calculate the number-average molecular weight, weight-average molecular weight, and the dispersity of a polymer sample that contains: 25% 20-mers, 15% 42-mers, 10% 50-mers, 20% 55-mers, and 30% 60-mers if the molecular weight of a repeat unit is 110 g mol<sup>-1</sup>. In the parlance of this course, does this polymer sample have a narrow or broad molecular weight distribution?</p>\n\n<p>Weight-average molecular weight in g mol<sup>-1</sup>       </p>\n<numericalresponse answer=\"5584\">\n  <formulaequationinput label=\"Weight-average molecular weight in g mol-1\" />\n</numericalresponse>\n", 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/b330a746b34f4f0893f15444b0ec03b1": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/b581899c41be448792ca06571fffbc26": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 14", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/b5992a955b96432293c10238f12cb210": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 7", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 20.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/b6041a2b43d148809ffd4e3d07021dca": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1 ", 
+      "markdown": ">>Calculate the amount of energy (in units of eV) required to move from the second to the third energy level in 1,3-butadiene:<<\n= 5.63 +- .01\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/b8513d9057f24219a39a60c33d38b9a1": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part A ", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/bc1131baea424a72a16a959a98e1f288": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3 ", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/bc50c3a8889e41fb9e9c7783510a8440": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem   2: Part B", 
+      "markdown": null, 
+      "max_attempts": 6, 
+      "showanswer": "finished", 
+      "weight": 7.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/bd5b9c0fb9d94d329865fd5c367f0d93": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 8", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/bd7bff4496814d3098bbffa3367d8eb0": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 7", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/bdb79445215e4e5aa2b8877c37679504": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/c23a6a4bac8944e7b40140b2cbc099ae": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/c3cbb92839324d7e96261e941f70247e": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4: Part C", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 6.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/c730cfa792d847a2aa3f101cc2247dd2": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>In the inverted device structure, the transparent electrode serves as the:<<\n( )\tHole-collecting Anode\n( )\tHole-collecting Cathode\n( )\tElectron-collecting Anode\n(x)\tElectron-collecting Cathode\n \n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/c8a2aebdf5a54aec81d964f470996113": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part C ", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/c8d42bfdf8e24cd0836dcf51e3a2544b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part B", 
+      "markdown": ">>Identify the color or shade of color (Note: if you need to use two colors please enter the response as Color 1 Color 2. For instance, it should be Blue Green, not Blue-green or bluegreen)  associated with the following CIE coordinates<<\n>>\t(0.6, 0.3)<<\n= Red\n\n\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 4.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/c94725a6e4df4151b09121321bfc49e1": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>The external quantum efficiency (EQE) can be thought of as the ratio of:<<\n( )\tThe number of charges extracted from the solar cell to the number of photons absorbed by the solar cell\n( )\tThe number of photons absorbed by the solar cell to the number of charges extracted from the solar cell\n(x)\tThe number of charges extracted from the solar cell to the number of photons incident on the solar cell\n( )\tThe number of photons incident on the solar cell to the number of charges extracted from the solar cell\n\n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/c962853883ba470ca6db9909e3933f8f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 6", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/c9dd3cd6b6a64ea697fe6517ee43280b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 3.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/cdb6517caa914cf7abe797da03634b8e": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 6", 
+      "markdown": ">>\tSelect three desirable characteristics associated with bulk heterojunction active layers with respect to organic photovoltaic (OPV) devices<<\n[x]\tDomain spacings on the order of 10 nm between the electron donating and electron accepting phase.\n[ ]\tConnectivity of the hole-transporting phase to the cathode\n[x]\tConnectivity of the electron-transporting phase to the cathode\n[x]\tHigh charge mobility values within each of the semiconducting phases\n[ ]\tLow degree of crystallinity within each of the semiconducting phases\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/ce8185de31594a45ae12ea0a6e0dd708": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/cec3ee4fcb0a43bba83684842ef57011": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 9: Part A", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/d27b4c6b9cfd4bbaa88eea2556a79581": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 8: Part B", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/d43a776c3fd240a9add9f3625ec30472": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 7: Part A", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/d5cacb0cb97549bda28cbc8e92e79c6b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "weight": 25.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/d6ac07fe3c50483ca9f53cfeda7b53c8": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 13", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/da32340d4f904abc82141e44af19e568": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": "Select 3 of the advantages of utilizing the Grignard metathesis (GRIM) method in the synthesis of poly(3-alkylthiophenes) (P3ATs)?\n\n[ ]\tDoes not require air-free reaction conditions\n[x]\tCreates highly regioregular P3ATs\n[x]\tAllows for control of the P3AT end groups\n[ ]\tCan produce regiorandom P3ATs\n[ ]\tCan be used easily to grow P3ATs from the surface of electrodes\n[x]\tEasy to purify the final polymer product\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/db23e183c3f647e69e6875656d93366a": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4", 
+      "markdown": "Select at least 4 properties of materials used as electrode-modifying layers (i.e., organic-metal interlayers) in organic photovoltaic devices.\n\n[x]\tForming ohmic contacts with the semiconducting layer\n[ ]\tLow conductivity\n[ ]\tHigh absorption coefficient\n[x] Can form relatively thin films easily\n[x]\tCan form a continuous film\n[x]\tHigh Conductivity\n[ ]\tHigh exciton diffusion coefficient\n\n\n", 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/dc11ac823163468fbe2bc66e53e7a172": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 5 A continued", 
+      "markdown": ">>Given the above reactant in Problem 5 A, please choose the correct coupling polymerization reaction mechanism: <<\n\n( ) Stille\n(x) Suzuki \n  \n\n\n\n\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/dcecfb5c26584ec3a0929643e59337f2": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>For a given electrode, semiconductor, and dielectric oxide structure, a higher current will result from the organic field-effect transistor if the length of the transistor channel is much greater than the width of the transistor channel.<<\n     ( ) True\n     (x) False\n    \n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/e272b8dca6f442d1abac26c7ecfdcf28": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>Which combination of properties would be the most desirable for a high-performance organic field-effect transistor?<<\n     ( ) High ON/OFF ratio, high threshold voltage, and high semiconductor mobility\n     ( ) Low ON/OFF ratio, low threshold voltage, and low semiconductor mobility\n     (x) High ON/OFF ratio, low threshold voltage, and high semiconductor mobility\n     ( ) Low ON/OFF ratio, high threshold voltage, and low semiconductor mobility\n     ( ) Low ON/OFF ratio, low threshold voltage, and high semiconductor mobility\n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/e3c97a404fdd49699e02274aa8ceb450": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1: Part B", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/e46a1a070edf43e3a287d9591d6b4702": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 11", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/e78eb94348754ead811095198e4029c5": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4 ", 
+      "markdown": ">>\tIn the inverted device structure, the reflective metal electrode serves as the:<<\n\n(x)\tHole-collecting Anode\n( )\tHole-collecting Cathode\n( )\tElectron-collecting Anode\n( )\tElectron-collecting Cathode\n\n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/e7afe2914a2b4a478d28e4938bc83e4d": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/e8b6b53490744061bd53ad7e01214ea0": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": "The three elements that compose the majority of organic electronic materials are (choose 3): \n\n[x] Carbon\n[ ] Boron\n[ ] Silicon\n[ ] Sodium\n[x] Hydrogen\n[ ] Selenium\n[ ] Sulfer\n[x] Oxygen\n[ ] Phosphorus\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/e8e18616d525452bb982331a16a881cd": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 4 ", 
+      "markdown": ">>Identify the color (or shade of color) associated with the following CIE coordinates.<<\n>> (0.2, 0.7)<< \n( ) White\n( ) Bluish Green\n( ) Yellow\n(x) Green\n( ) Orange \n", 
+      "max_attempts": 3, 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/ea173b5aaf4740fda222856ff3edc8a5": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>Provide the chemical symbol for the metallic element used as the other coupling functionality, besides a difunctional halide group, in the Stille coupling scheme.<<\n\n= Sn\n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/ead52891e8da40e7add162d4333aa57f": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3: Part A ", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 20.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/ec46d734fcd94c80a93b48f38286d81b": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 20.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/ed1b9012f42d46eeb2132782c409cb11": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1 ", 
+      "markdown": ">>Check the 5 steps of free charge conversion in the photoconversion process of an organic photovoltaic (OPV) device.<<\n\n[ ] Photon Reflection\n[X] Light Absorption\n[X] Charge Collection\n[ ] Charge Pairing\n[X] Exciton Separation\n[ ] Exciton Annihilation\n[X] Exciton Diffusion\n[ ] Charge Recombination\n[X] Charge Separation\n[ ] Exciton Drifting\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/edd4b541ffbf4ce0afce781cd555af33": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>A common characteristic of phosphorescent OLED materials relative to fluorescent OLED materials is the fact that they:<<\n( )\tAre not used commonly in OLED devices\n( )\tOnly emit light in the blue and green portions of the spectrum\n(x)\tContain a heavy metal atom\n( )\tCannot be purified to as high of a degree\n  \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/edd954fdbdc5405e830617fc42ac84ca": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 2: Part C", 
+      "markdown": ">>Identify the color or shade of color (Note: if you need to use two colors please enter the response as Color 1 Color 2. For instance, it should be Blue Green, not Blue-green or bluegreen) associated with the following CIE coordinates<<\n>>\t(0.4, 0.5)<<\n= Yellow Green\n\n\n", 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 4.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/ef2617b0e7274b0c9c2c12f8db3e62ee": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 8", 
+      "markdown": null, 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 20.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/efec20516402475288aa150014e6e63d": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 10", 
+      "markdown": "For the physical property of the polymer listed, check the box (or boxes) of the techniques which could be used to measure that specific physical property.  Include all of the techniques that apply.\n>>Physical Property: <<\n>>Thermal Transistions<<\n[ ] Ultraviolet-visible Light Spectrometry\n[ ]\tSize Exception Chromatography\n[x]\tDifferential Scanning Calorimetry\n[ ]\tDefinitely Stable Calorimetry\n[ ]\tDistinguishable Signal Controller\n[ ]\tAbsorbance Spectrometry\n[ ]\tSize Exclusion Chromatography\n[ ]\tMatrix-Assisted Laser Desorption Ionization Time-of-Flight Spectrometery\n[ ]\tSize Permeation Chromatography\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/f268536d41a54563aa6672a371b655b4": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 9", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 10.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/f3942dd8606846e29b9c09671da6ac5a": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1", 
+      "markdown": ">>In a regular geometry organic photovoltaic device, it is important that the electron-transporting layer not be dissolved by the solvent used to cast the polymer active layer.<<\n     ( ) True\n     (x) False\n     \n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/f4ece2c822134225ad22dcec8d2f3502": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>One of the assumptions of the multiple trap and release model is that the trap sites within the semiconductor are distributed in a broad fashion and have significant spatial reach throughout the material.<<\n     ( ) True\n     (x) False\n     \n     \n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/f70ccd69e77f4a78a594b9a8d7115cce": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 1", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 60.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/f814313adf8c4d2382da117ba8403e20": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3", 
+      "markdown": ">>Identify the color (or shade of color) associated with the following CIE coordinates.<<\n\n>>(0.6, 0.4)<< \n( ) White\n( ) Bluish Green\n( ) Yellow\n( ) Green\n(x) Orange ", 
+      "max_attempts": 3, 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/fb01ed19d04245c1820d85aef5c7f854": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 3", 
+      "markdown": ">>If the nanostructure of the organic active layer is not controlled well, the domain sizes of the two semiconducting phases can become too large in an organic photovoltaic device. This results in:<<\n( )\tReduced light absorption within the semiconducting phases\n(x)\tIncreased exciton recombination\n( )\tDecreased exciton generation\n( )\tDecreased charge collection\n( )\tIncreased charge extraction\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/fc6e4bd01e6c42cda68241d934cabfaa": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 2", 
+      "markdown": ">>For a polymer semiconductor sample of relatively high molecular weight, if one uses a MALDI-TOF instrument to estimate the overall molecular weight, there is a rather large likelihood that one will:<<\n\n( )\tOverestimate the molecular weight.\n(x)\tUnderestimate the molecular weight.\n( )\tCalculate the molecular weight precisely.\n( )\tNot be able to obtain a signal.\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/fd1663e237064ecfbd256c376497f8e7": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Question 1 ", 
+      "markdown": ">>The effective density of states of the conduction band accounts for the temperature of the system and:<<\n     ( ) The effective mass of a hole\n     ( ) The Fermi energy\n     ( ) The conduction band edge energy\n     (x) The effective mass of an electron\n     \n\n\n", 
+      "max_attempts": 1, 
+      "showanswer": "finished", 
+      "weight": 0.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/fd98a961c04e42e49b72b281b27ce80e": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 3", 
+      "markdown": null, 
+      "max_attempts": 3, 
+      "showanswer": "finished", 
+      "weight": 40.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/problem/ff90570a814443d9bd91adba54e8af14": {
+    "category": "problem", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Problem 8: Part A ", 
+      "markdown": null, 
+      "max_attempts": 2, 
+      "showanswer": "never", 
+      "weight": 5.0
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/089c3c65e037438981803b1679129645": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/df36a344541e434a9342b175534bbeb5", 
+      "i4x://PurdueX/nano515x/vertical/ad7ad0a090eb42fe95c0a03c25070e35"
+    ], 
+    "metadata": {
+      "display_name": "L4.3: Nanostructural Impacts in OPV Devices"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/0e2899b7e511495d8633d68d86e58d36": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/f54f37d867eb471fbbeb95cc187b025d"
+    ], 
+    "metadata": {
+      "display_name": "Week 3: Exams", 
+      "due": "2015-04-14T08:00:00Z", 
+      "format": "Exams", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/15a01c56646742808c545be7712126e1": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/7b9896ca35014d92b3503217afbb464f", 
+      "i4x://PurdueX/nano515x/vertical/2f50fa90c64b47be879a73264deafe7d"
+    ], 
+    "metadata": {
+      "display_name": "L3.4: Transport in Disordered Semiconductors"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/1755806ef86c4dfc84f87006698f9265": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/2d2144b73d6044148f57aa3492d4bc97"
+    ], 
+    "metadata": {
+      "display_name": "Week 1: Homework", 
+      "due": "2015-02-26T08:00:00Z", 
+      "format": "Homework", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/1ce5c40f00634b0ca14ec2e2ff02b203": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/c390887d12e84577b760cb36682f9981", 
+      "i4x://PurdueX/nano515x/vertical/cf0dd0359a37439193bd05b034416369"
+    ], 
+    "metadata": {
+      "display_name": "L3.5: Organic Field-Effect Transistors"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/22631b3f566343d1b383ba7245fc17c7": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/8fce3308a38a4924a91c094a4140ccc6"
+    ], 
+    "metadata": {
+      "display_name": "Week 2:  Exam", 
+      "due": "2015-03-12T08:00:00Z", 
+      "format": "Exams", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/232894c042714c7285232e72c1d8c3da": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/2490e465d00d45f197f69ad9d0e6a2d1"
+    ], 
+    "metadata": {
+      "display_name": "Week 4: Exam", 
+      "due": "2015-04-14T08:00:00Z", 
+      "format": "Exams", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/2e5c62b8be264258b7e53a6ec01ab164": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/84d712b732344b9ab453cc3850a7e8d5", 
+      "i4x://PurdueX/nano515x/vertical/9b0b7288eec5473e9c2f3aae258ebe70"
+    ], 
+    "metadata": {
+      "display_name": "L2.4: Fermi Energy and Density of States"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/354e8b9da8654e2c83aef86470fea6a9": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/f1efec71c398462e841d6a17ccaf6cd5"
+    ], 
+    "metadata": {
+      "display_name": "Week 3: Homework", 
+      "due": "2015-03-12T08:00:00Z", 
+      "format": "Homework", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/35544db083c2411abac7230e8abc9a41": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/7c316e6075364b84902c94973f45f982"
+    ], 
+    "metadata": {
+      "display_name": "Week 1: Homework Tutorial and Solutions", 
+      "start": "2015-02-26T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/437710a20465419b958463d15385dbb2": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/6735a2c3c3604500bf8ee4af492c533d", 
+      "i4x://PurdueX/nano515x/vertical/bf420bfbc4a24acdb6ed21355284e267"
+    ], 
+    "metadata": {
+      "display_name": "L4.1: Overview of Organic Photovoltaic Devices"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/45e1b9c1f159418b974ef55224c3dd7d": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/286bc95805ce465caea7691c4ea075c6", 
+      "i4x://PurdueX/nano515x/vertical/a1762240db1a4e5990f68af4010c4ce6"
+    ], 
+    "metadata": {
+      "display_name": "L5.4: State-of-the-Art in Polymer Thermoelectrics"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/4ad2c982c49e4913a9539ae41ca25373": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/f7cb63019fb04576810ca2b4573fe1d9"
+    ], 
+    "metadata": {
+      "display_name": "Week 4: Homework", 
+      "due": "2015-03-19T08:00:00Z", 
+      "format": "Homework", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/4b28ec7eca2d495e9bacc7084fec2dfb": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/09395c80b17f4f218267b631f76e4dc7", 
+      "i4x://PurdueX/nano515x/vertical/bd520b2143f141a7a92841f4ced0aadf"
+    ], 
+    "metadata": {
+      "display_name": "L3.3: Multiple Trap and Release (MTR) Model"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/4b2a966bdaf445b4902a92bab43bd2b3": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/2b9a9e6eec5e448dba36d8baabdecd63"
+    ], 
+    "metadata": {
+      "display_name": "Week 1: Exam", 
+      "due": "2015-03-05T08:00:00Z", 
+      "format": "Exams", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/4f932173c4cf44fc83cb7b7be0d4eac7": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/7f4db54bf5b54fa498ff0f83ebbe2afd", 
+      "i4x://PurdueX/nano515x/vertical/edce86937e8f44f3a688cb496f887dfb"
+    ], 
+    "metadata": {
+      "display_name": "L2.3: Application of the Schr\u00f6dinger Equation"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/5394d6d0a21d4d1987156adb33f1fa62": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/73caa874548642fbaae982f5e83df556"
+    ], 
+    "metadata": {
+      "display_name": "Week 5: Exam", 
+      "due": "2015-04-02T08:00:00Z", 
+      "format": "Exams", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/54c8e999a79e47c1a720d4e71d0cb3fc": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/37800b323b4c41c8a9f650d6cd22b572"
+    ], 
+    "metadata": {
+      "display_name": "Prerequisites"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/586cb1eb7e174dbfb42cb5308b6c4b80": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/ef6c06a30a2d4f54b618f7c8a8403842", 
+      "i4x://PurdueX/nano515x/vertical/152c43507c014220a24f4833a26d77be"
+    ], 
+    "metadata": {
+      "display_name": "L4.5: Emerging Trends in OPV Devices"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/5b64845a288c4859948bb611d367d6c3": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/acbc57bf97f34beabbe484dedaf1e46e", 
+      "i4x://PurdueX/nano515x/vertical/46ea071c65f84d1f948879ef03e5df63"
+    ], 
+    "metadata": {
+      "display_name": "L5.3: Introduction to Polymer Thermoelectric Devices"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/60d5f740619c45b9b70ecaa63469c856": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/d9d6bc973d8f4c4e912d23e77675a41e", 
+      "i4x://PurdueX/nano515x/vertical/3f9cd5acaf6641f29f8223ea5097951a"
+    ], 
+    "metadata": {
+      "display_name": "L2.5: Carrier Densities in Intrinsic Semiconductors"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/7191f796fa3c4146898f6e6d8f68f8e9": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/28bb5cd953b4421b9681b4cfd05a1387"
+    ], 
+    "metadata": {
+      "display_name": "Week 5: Homework", 
+      "due": "2015-03-26T08:00:00Z", 
+      "format": "Homework", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/77539e981b2f42f08e6160949570f15f": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/2acd8486322843e1b43b8d91af92ef4e"
+    ], 
+    "metadata": {
+      "display_name": "Week 4: Homework Tutorial and Solutions", 
+      "start": "2015-03-19T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/7e17c580714b4f18b8f27df61de5a6cb": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/800f284081534f04862cf120a3708bff", 
+      "i4x://PurdueX/nano515x/vertical/002ea34231b44512b481a74ce9766ead"
+    ], 
+    "metadata": {
+      "display_name": "L1.2: Synthesis of Poly (3-alkylthiophenes) (P3ATs)"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/826daf2f04704820923e2c6f6bbbdb7b": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/d16d2e4b65b0462b95131973618fabc4"
+    ], 
+    "metadata": {
+      "display_name": "Week 3: Homework Tutorial and Solutions", 
+      "start": "2015-03-12T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/8479d49076f240aebf0eae0de8735781": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/3b724209b7404a41a569e473b0b83bf9"
+    ], 
+    "metadata": {
+      "display_name": "Week 5: Homework Tutorial and Solutions", 
+      "start": "2015-03-26T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/874399fcbed14da9ac2283f16ca006da": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/34e9ce3e34864be6b96fb6b336107c23", 
+      "i4x://PurdueX/nano515x/vertical/5999998076a646d78eb64471dd46e4fc"
+    ], 
+    "metadata": {
+      "display_name": "L5.1: Introduction to Organic Light-emitting Devices"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/87bebc7380414ac9a8dcbab69dee9127": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/0c5fa8905a114a4ab840fe9079daf8b4", 
+      "i4x://PurdueX/nano515x/vertical/b5d56252b99948dd89db524a59b0e243"
+    ], 
+    "metadata": {
+      "display_name": "L1.3: Synthesis of Low Bandgap Polymers"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/92a3dc0ff08f45a9bc860eca20b718e7": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/9ee691f86a3e493dac3a0bf2e5e1c68c", 
+      "i4x://PurdueX/nano515x/vertical/4c171fb50f904386957cc83ff6be878d", 
+      "i4x://PurdueX/nano515x/vertical/ca8ce9f100ad48e39d75380ee9fe78dd", 
+      "i4x://PurdueX/nano515x/vertical/c1d59f8d9add470e906e1789f31e985e"
+    ], 
+    "metadata": {
+      "display_name": "Course Information"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/a8ac363d47fd422d98e3068614d998bd": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/d2dd740e77424a4dae2041a5c49c54cf", 
+      "i4x://PurdueX/nano515x/vertical/07692d15594540148a1a26db35ee9d1c"
+    ], 
+    "metadata": {
+      "display_name": "L3.2: Doping in Semiconducting Materials"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/aeb3e63995494fca9d07bb76ee452bca": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/9cded9f6592544e5bbb22bae938019d5", 
+      "i4x://PurdueX/nano515x/vertical/194bdf342d574e3fb906016950d450ea"
+    ], 
+    "metadata": {
+      "display_name": "L2.1: Atomic and Molecular Orbitals"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/b2a277a6fabe472cacbf94d9a3f35218": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/3dc93178167c4762ae7f9f81e33730ad", 
+      "i4x://PurdueX/nano515x/vertical/a81eb41ee5d7489db3eabd7e5e3f0776"
+    ], 
+    "metadata": {
+      "display_name": "L3.1: Charge Transport via a Hopping Mechanism"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/b9a05509df9e45daa289d39547e7a109": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/196efc2e7151456d9c2036d4fa9ffcbd", 
+      "i4x://PurdueX/nano515x/vertical/9ab5c3573da94915a2c53b5650643714"
+    ], 
+    "metadata": {
+      "display_name": "L1.4: Molecular and Thermal Characterization"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/c1cdc6750769407098e1504d9a78ff78": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/2def028c54e44c509d42c787843cdfd3", 
+      "i4x://PurdueX/nano515x/vertical/7342f2a197644f868a3fbfe4f0237cd0"
+    ], 
+    "metadata": {
+      "display_name": "L2.2: The Schr\u00f6dinger Equation"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/c5bdada0487143d296aaaef10aa0a2a4": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/84289b1748564a869296d01d6ed282e0"
+    ], 
+    "metadata": {
+      "display_name": "Technical Overview"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/c6bb0815cd2d41fba86abe56bb73ff1b": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/0cc18fc3737745048497b2dd11b26558"
+    ], 
+    "metadata": {
+      "display_name": "Week 2: Homework", 
+      "due": "2015-03-05T08:00:00Z", 
+      "format": "Homework", 
+      "graded": true
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/d2ed3f8889bd42d3b4cd0c1aea0b596e": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/0a0e4799b6c44f319c6ff4c00173c95d", 
+      "i4x://PurdueX/nano515x/vertical/d026162dc5f44d78b98073eb536b69fb"
+    ], 
+    "metadata": {
+      "display_name": "L4.4: Interfacial Modifying Layers in OPV Devices"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/d3043b5d2956441aa96e47436e017811": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/bed92dee70a44d1db698230693df2a1c", 
+      "i4x://PurdueX/nano515x/vertical/900919d47de543e68270623cd379f24c"
+    ], 
+    "metadata": {
+      "display_name": "L5.2: Design Considerations for OLEDs"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/d424466352e643b2bfb861470267cd20": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/660cd542eed140a8ac1cd15f8b7f0120"
+    ], 
+    "metadata": {
+      "display_name": "L5.5: Course Review and Summary"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/e2661bd3c8fb46649258602d14debab6": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/04780b52db184ccf90cab25175a2af0b", 
+      "i4x://PurdueX/nano515x/vertical/1b6d35de4392429e9725d0f44e208e7e"
+    ], 
+    "metadata": {
+      "display_name": "L1.5: Structural and Optical Characterization"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/e641d3fb301449a9b6f3bbbaee632cd0": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/aebd839aba6644e88aa58b425680de8b", 
+      "i4x://PurdueX/nano515x/vertical/930dfc7f850c4f3b8cfcfe23595258a7"
+    ], 
+    "metadata": {
+      "display_name": "L4.2: Characterizing Device Parameters in OPVs"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/f758e5e9c73f45b19b20be566ae3de47": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/7e4033f50fe64563849989aa7b6084d9"
+    ], 
+    "metadata": {
+      "display_name": "Week 2: Homework Tutorial and Solutions", 
+      "start": "2015-03-05T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/sequential/fbb26834049d47289e985b029bc3798e": {
+    "category": "sequential", 
+    "children": [
+      "i4x://PurdueX/nano515x/vertical/2d359aec7c034ef3b742c3712c85052b", 
+      "i4x://PurdueX/nano515x/vertical/63512df7292e4f25a8d73d6d2ab68169"
+    ], 
+    "metadata": {
+      "display_name": "L1.1: An Introduction to Organic Electronic Materials", 
+      "start": "2015-02-12T08:00:00Z"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/002ea34231b44512b481a74ce9766ead": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/3f35e087e89f44afa57e384899abc3dd", 
+      "i4x://PurdueX/nano515x/problem/da32340d4f904abc82141e44af19e568", 
+      "i4x://PurdueX/nano515x/problem/2e32cc0deec7404b954497e74d831504", 
+      "i4x://PurdueX/nano515x/discussion/3513a4ce7e59411c90762370293675d4"
+    ], 
+    "metadata": {
+      "display_name": "L1.2 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/04780b52db184ccf90cab25175a2af0b": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/0a0add7a58b94aeea6e41b052737facf", 
+      "i4x://PurdueX/nano515x/html/e973cd4adcdc4082a9b969d4ceac4934", 
+      "i4x://PurdueX/nano515x/discussion/270c3326fae545f5b98ddbd55c74a414"
+    ], 
+    "metadata": {
+      "display_name": "L1.5 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/07692d15594540148a1a26db35ee9d1c": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/894396a951f04ce9ba9e672df28aacad", 
+      "i4x://PurdueX/nano515x/problem/5dbed68f4d5e4c8b904c320ad48cc989", 
+      "i4x://PurdueX/nano515x/problem/aa1b6b9f0e0d4848807df93ddb64e7e9", 
+      "i4x://PurdueX/nano515x/discussion/b13163dfd11a4b6cbb1332649d52fdbf"
+    ], 
+    "metadata": {
+      "display_name": "L3.2 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/09395c80b17f4f218267b631f76e4dc7": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/22cd54cb1da248dd9472e3e08f6bb2c4", 
+      "i4x://PurdueX/nano515x/html/880986ad850340c193af479a62309542", 
+      "i4x://PurdueX/nano515x/discussion/b4ffafd06cc74df2a041fb50b69a729b"
+    ], 
+    "metadata": {
+      "display_name": "L3.3 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/0a0e4799b6c44f319c6ff4c00173c95d": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/82f9fe10ba8f4bf38a324eb9e0856461", 
+      "i4x://PurdueX/nano515x/html/f6dd131eaa4b47ffb6be0bc872bc132f", 
+      "i4x://PurdueX/nano515x/discussion/3a886e6b985d401a952485e644b3784b"
+    ], 
+    "metadata": {
+      "display_name": "L4.4 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/0c5fa8905a114a4ab840fe9079daf8b4": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/40ff6f9ea9ac428dbf2e4e71bf7bd81c", 
+      "i4x://PurdueX/nano515x/html/155f5a02523b42b9a4920338ad76c9c0", 
+      "i4x://PurdueX/nano515x/discussion/128466fd37bc49f9b9c9fdc30ba67d00"
+    ], 
+    "metadata": {
+      "display_name": "L1.3 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/0cc18fc3737745048497b2dd11b26558": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/d5cacb0cb97549bda28cbc8e92e79c6b", 
+      "i4x://PurdueX/nano515x/problem/6321dbe61f9b49a1b4b2e1b1f6e636b3", 
+      "i4x://PurdueX/nano515x/problem/161e62cfd8a6484b9ceb484fddedb5d4", 
+      "i4x://PurdueX/nano515x/problem/0faf3667cc9b4ffe8f1252e1dba9e30f", 
+      "i4x://PurdueX/nano515x/discussion/7c26422f917f450e827fca78852da1d9"
+    ], 
+    "metadata": {
+      "display_name": "L2.1 - L2.5 Homework"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/152c43507c014220a24f4833a26d77be": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/c730cfa792d847a2aa3f101cc2247dd2", 
+      "i4x://PurdueX/nano515x/problem/4d09c537dbca4cc892d9db107413e1f1", 
+      "i4x://PurdueX/nano515x/problem/1535788d11ed498f8e5795ae5544bf87", 
+      "i4x://PurdueX/nano515x/discussion/eb60e839e85b45e48e9bad387bd57507"
+    ], 
+    "metadata": {
+      "display_name": "L4.5 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/194bdf342d574e3fb906016950d450ea": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/54e2a418155f474d8d518f5a9c928181", 
+      "i4x://PurdueX/nano515x/problem/99232bd64b484228a13b8b93f0e5e7cf", 
+      "i4x://PurdueX/nano515x/problem/2ee94ab2857b4a8ab5f3669549bc646b", 
+      "i4x://PurdueX/nano515x/discussion/26ae612560ef4e59b8f7c97cc8d8f3de"
+    ], 
+    "metadata": {
+      "display_name": "L2.1 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/196efc2e7151456d9c2036d4fa9ffcbd": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/9e8dff9633f142d3b983d474db359573", 
+      "i4x://PurdueX/nano515x/html/499ad3f69cda454489bff9805a69d56b", 
+      "i4x://PurdueX/nano515x/discussion/5517cf12450a49e7ada1786cfdf7819e"
+    ], 
+    "metadata": {
+      "display_name": "L1.4 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/1b6d35de4392429e9725d0f44e208e7e": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/1c68f51f81ba48edae1ba5eceb88f531", 
+      "i4x://PurdueX/nano515x/problem/72d6ae03187140868ec7fcb1990c598a", 
+      "i4x://PurdueX/nano515x/problem/30f7652777a044da899642e2e1b806ce", 
+      "i4x://PurdueX/nano515x/discussion/40f675f16558482fbcb64c6fb789483f"
+    ], 
+    "metadata": {
+      "display_name": "L1.5 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/2490e465d00d45f197f69ad9d0e6a2d1": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/4acc33db30c947ea971479c1f3f77586", 
+      "i4x://PurdueX/nano515x/problem/e3c97a404fdd49699e02274aa8ceb450", 
+      "i4x://PurdueX/nano515x/problem/1394660617054697b0feadcbc0d3a4e2", 
+      "i4x://PurdueX/nano515x/problem/4dc27ad8ab0d45dc945915a009bf2edc", 
+      "i4x://PurdueX/nano515x/problem/5856ac7f2f2449ffbc417c7d6cf0521d", 
+      "i4x://PurdueX/nano515x/problem/b8513d9057f24219a39a60c33d38b9a1", 
+      "i4x://PurdueX/nano515x/problem/8449179da23848a09d2f2e546574a2f7", 
+      "i4x://PurdueX/nano515x/problem/e78eb94348754ead811095198e4029c5", 
+      "i4x://PurdueX/nano515x/problem/88010e79007f43eda1cff2fff7856e93", 
+      "i4x://PurdueX/nano515x/problem/cdb6517caa914cf7abe797da03634b8e", 
+      "i4x://PurdueX/nano515x/problem/46946bd28160424b936dd1b0f20ab3ce", 
+      "i4x://PurdueX/nano515x/problem/bd5b9c0fb9d94d329865fd5c367f0d93", 
+      "i4x://PurdueX/nano515x/problem/f268536d41a54563aa6672a371b655b4", 
+      "i4x://PurdueX/nano515x/problem/7e4a1c72df324b2fa515f85199cfc667", 
+      "i4x://PurdueX/nano515x/problem/1fe6fee5c3354aaaa161d6f2746bd10b", 
+      "i4x://PurdueX/nano515x/problem/11b8451b561c4b9fb2a245c68a04ad23", 
+      "i4x://PurdueX/nano515x/problem/152d7c1ac6af4a27ae19b430e90d38ea"
+    ], 
+    "metadata": {
+      "display_name": "Week 4: Exam"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/286bc95805ce465caea7691c4ea075c6": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/6738460353064d64b1db4afa10aee2f6", 
+      "i4x://PurdueX/nano515x/html/a7e37fbe6293408eb1f43a72ab370796", 
+      "i4x://PurdueX/nano515x/discussion/89719090112e414aa89d23589ca31968"
+    ], 
+    "metadata": {
+      "display_name": "L5.4 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/28bb5cd953b4421b9681b4cfd05a1387": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/05f2612985214cdeb5054eec93f7cddc", 
+      "i4x://PurdueX/nano515x/problem/8043e05bebb342729b2e2262aa4a1e71", 
+      "i4x://PurdueX/nano515x/problem/f814313adf8c4d2382da117ba8403e20", 
+      "i4x://PurdueX/nano515x/problem/e8e18616d525452bb982331a16a881cd", 
+      "i4x://PurdueX/nano515x/problem/a90b74682e8345a690ef762c1e3807d2", 
+      "i4x://PurdueX/nano515x/problem/c962853883ba470ca6db9909e3933f8f", 
+      "i4x://PurdueX/nano515x/problem/7b30eed51d80420ab2efe054d04cafa7", 
+      "i4x://PurdueX/nano515x/problem/8403e9293f7b4045a868b134117bf667", 
+      "i4x://PurdueX/nano515x/problem/7a1679c1a04847598f4c89ebe52a1105", 
+      "i4x://PurdueX/nano515x/problem/7bce9c6e251c4885b77b9de59c26d49f", 
+      "i4x://PurdueX/nano515x/problem/e46a1a070edf43e3a287d9591d6b4702", 
+      "i4x://PurdueX/nano515x/problem/8abf9df2400c4d81928b1a76cd9f7083", 
+      "i4x://PurdueX/nano515x/discussion/0d7dd1d98f5742579bb49d9da6c0c553"
+    ], 
+    "metadata": {
+      "display_name": "L5.1 - L5.5: Homework"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/2acd8486322843e1b43b8d91af92ef4e": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/6cdfcdbd174d43968a61b67dd5f8736f", 
+      "i4x://PurdueX/nano515x/html/1b8c244393084ea68f9db6bb33d9246b", 
+      "i4x://PurdueX/nano515x/discussion/bb0a290976c042edb0c8cacd00be7755"
+    ], 
+    "metadata": {
+      "display_name": "L4.1 - L4.5 Tutorial Video and Solution"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/2b9a9e6eec5e448dba36d8baabdecd63": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/50eba604bd044f0eaa5b409ee466956f", 
+      "i4x://PurdueX/nano515x/problem/591e3721301f446599ed462f495c7389", 
+      "i4x://PurdueX/nano515x/problem/6d657e7eb3d04201ba71daaa965370ac", 
+      "i4x://PurdueX/nano515x/problem/c9dd3cd6b6a64ea697fe6517ee43280b", 
+      "i4x://PurdueX/nano515x/problem/7e687f49113841e9bd21b9bdf28e2d1c", 
+      "i4x://PurdueX/nano515x/problem/a986924ad5484e878a85d9e81ff964cb", 
+      "i4x://PurdueX/nano515x/problem/bd7bff4496814d3098bbffa3367d8eb0", 
+      "i4x://PurdueX/nano515x/problem/7a1524bb4a71429986f5e42fa6b9c953", 
+      "i4x://PurdueX/nano515x/problem/2be73235a0da41328e4eb5d47a8faf7f", 
+      "i4x://PurdueX/nano515x/problem/33aa75547c97442c80a65ea55f579503", 
+      "i4x://PurdueX/nano515x/problem/9fb5d01b82404c22a83bffd9c7f49f3f", 
+      "i4x://PurdueX/nano515x/problem/cec3ee4fcb0a43bba83684842ef57011", 
+      "i4x://PurdueX/nano515x/problem/20a1a533808249a8bbeb034fb3d51ce1", 
+      "i4x://PurdueX/nano515x/problem/efec20516402475288aa150014e6e63d", 
+      "i4x://PurdueX/nano515x/problem/34a3d9efd8aa4d08bd0cd29edaee7fba", 
+      "i4x://PurdueX/nano515x/problem/0af0cbba293343bbaf9a6a588f5834d0", 
+      "i4x://PurdueX/nano515x/problem/d6ac07fe3c50483ca9f53cfeda7b53c8", 
+      "i4x://PurdueX/nano515x/problem/b581899c41be448792ca06571fffbc26"
+    ], 
+    "metadata": {
+      "display_name": "Week 1: Exam"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/2d2144b73d6044148f57aa3492d4bc97": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/1ba69a7efec348578e9bb713eebcf0d1", 
+      "i4x://PurdueX/nano515x/problem/43963431988c41ef8ec9de4023bb3c33", 
+      "i4x://PurdueX/nano515x/problem/c8a2aebdf5a54aec81d964f470996113", 
+      "i4x://PurdueX/nano515x/problem/0670070a5cb34cecb93362802a121387", 
+      "i4x://PurdueX/nano515x/problem/04e5380dc04e4ba5b71c6f785916228f", 
+      "i4x://PurdueX/nano515x/problem/bc50c3a8889e41fb9e9c7783510a8440", 
+      "i4x://PurdueX/nano515x/problem/257fd7311e824a80940a755294349275", 
+      "i4x://PurdueX/nano515x/problem/ead52891e8da40e7add162d4333aa57f", 
+      "i4x://PurdueX/nano515x/problem/b23bc4e291924041a26d17b878c205bd", 
+      "i4x://PurdueX/nano515x/problem/7feb99adf61543cbaf9ad2b083ebca62", 
+      "i4x://PurdueX/nano515x/problem/1f94f76e38b746c581bd351159ed730d", 
+      "i4x://PurdueX/nano515x/problem/8449baafca034c13b2d785e34d77b16d", 
+      "i4x://PurdueX/nano515x/problem/359f468599014584995bb19c56f18954", 
+      "i4x://PurdueX/nano515x/problem/c3cbb92839324d7e96261e941f70247e", 
+      "i4x://PurdueX/nano515x/problem/b14dc740264148b1b3e0815cf83edf6b", 
+      "i4x://PurdueX/nano515x/problem/854176d7ce1349e3ac4d2417d722a701", 
+      "i4x://PurdueX/nano515x/problem/dc11ac823163468fbe2bc66e53e7a172", 
+      "i4x://PurdueX/nano515x/problem/306dbf81109c4f6b87e843d7c519c69b", 
+      "i4x://PurdueX/nano515x/problem/4b445dd5425d42a39c6a2e86b81c0314", 
+      "i4x://PurdueX/nano515x/problem/01d8bc36ab7a4fcba13bcfb3e4ece7aa", 
+      "i4x://PurdueX/nano515x/problem/a429857911e248f79e4ca512139a354f", 
+      "i4x://PurdueX/nano515x/discussion/6c6bea4b01e8481eb9896f7ed58b50e2"
+    ], 
+    "metadata": {
+      "display_name": "L1.1 - L1.5 Homework"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/2d359aec7c034ef3b742c3712c85052b": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/7cda5f9a3c79449da06ff11f6008e187", 
+      "i4x://PurdueX/nano515x/html/f56d84dc70a34914b9c9a186df499ff6", 
+      "i4x://PurdueX/nano515x/discussion/f567bbf864d1478ea059f792db9afc84"
+    ], 
+    "metadata": {
+      "display_name": "L1.1 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/2def028c54e44c509d42c787843cdfd3": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/d482f95607c7451d8c8baf7d39cbf5fe", 
+      "i4x://PurdueX/nano515x/html/054dd117e1b84b6d9846a373c758bfba", 
+      "i4x://PurdueX/nano515x/discussion/52b540e7a3d24248b0bd1dbdff2b2b17"
+    ], 
+    "metadata": {
+      "display_name": "L2.2 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/2f50fa90c64b47be879a73264deafe7d": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/052697207af4442987faaf254999fd26", 
+      "i4x://PurdueX/nano515x/problem/957606ebccda4735ba57fa8f2360710f", 
+      "i4x://PurdueX/nano515x/discussion/908370a0f6484112b8f7fdb6f70ecbca"
+    ], 
+    "metadata": {
+      "display_name": "L3.4 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/34e9ce3e34864be6b96fb6b336107c23": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/3b4ac1d3427c4a89a1cebb6a00c2296c", 
+      "i4x://PurdueX/nano515x/html/af12bfbb45cd4f7b89ac32601bffc7ea", 
+      "i4x://PurdueX/nano515x/discussion/0b07e4e6283f409f80b4d9179fec3121"
+    ], 
+    "metadata": {
+      "display_name": "L5.1 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/37800b323b4c41c8a9f650d6cd22b572": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/html/6530779f0ab049e799d126e11c889fb8", 
+      "i4x://PurdueX/nano515x/discussion/0d9cc0dabfe44fd7a9265747b8bae8b4"
+    ], 
+    "metadata": {
+      "display_name": "Prerequisites"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/3b724209b7404a41a569e473b0b83bf9": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/aed2f07296db4347be263714ff08cefd", 
+      "i4x://PurdueX/nano515x/html/bbf68b0a448844fe99bb78c7535b5ebe", 
+      "i4x://PurdueX/nano515x/discussion/f9d23b56ee42405ba517002e40a944d4"
+    ], 
+    "metadata": {
+      "display_name": "L5.1 - L5.5 Homework Tutorial and Solutions"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/3dc93178167c4762ae7f9f81e33730ad": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/d010a7ab64ff48419b6297bfc1f62a78", 
+      "i4x://PurdueX/nano515x/html/230fe8e4026443989eb65485a786bf1b", 
+      "i4x://PurdueX/nano515x/discussion/713c51c1168f4a3f8540e049568b2d0e"
+    ], 
+    "metadata": {
+      "display_name": "L3.1 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/3f9cd5acaf6641f29f8223ea5097951a": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/fd1663e237064ecfbd256c376497f8e7", 
+      "i4x://PurdueX/nano515x/problem/0d5b993d37ce4e518c0750ad0aff716e", 
+      "i4x://PurdueX/nano515x/problem/928def3bc096405b9059f7a6cf98295b", 
+      "i4x://PurdueX/nano515x/discussion/84f45abbf62849cb9afa06febb65bb82"
+    ], 
+    "metadata": {
+      "display_name": "L2.5 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/46ea071c65f84d1f948879ef03e5df63": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/35a751b35c074b59acde8b9ab53f2490", 
+      "i4x://PurdueX/nano515x/problem/41c69fc38c68460c905ee479ca3917fe", 
+      "i4x://PurdueX/nano515x/problem/7635ba2dcc9a42448937a3e6fcd45aa6", 
+      "i4x://PurdueX/nano515x/discussion/188e2a2bc7254e43a937cd77360ed77b"
+    ], 
+    "metadata": {
+      "display_name": "L5.3 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/4c171fb50f904386957cc83ff6be878d": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/html/b07630c949354877868fa6f89424a29b", 
+      "i4x://PurdueX/nano515x/discussion/b2b7438859534d0b944618ea71b9a0a3"
+    ], 
+    "metadata": {
+      "display_name": "Grading"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/5999998076a646d78eb64471dd46e4fc": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/461aaa195600418d8d188fc74871041f", 
+      "i4x://PurdueX/nano515x/problem/6e34c9e8da4541138656cee84fa7c561", 
+      "i4x://PurdueX/nano515x/problem/8b98d32cf1b74a61926f07417139c29d", 
+      "i4x://PurdueX/nano515x/discussion/6427102ce43c43b088b1b6b819b3f87d"
+    ], 
+    "metadata": {
+      "display_name": "L5.1 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/63512df7292e4f25a8d73d6d2ab68169": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/e8b6b53490744061bd53ad7e01214ea0", 
+      "i4x://PurdueX/nano515x/problem/7bf1658f3d214522a8d21bbc74f81499", 
+      "i4x://PurdueX/nano515x/problem/60313e48953f425ea15c8f4135d08aea", 
+      "i4x://PurdueX/nano515x/discussion/ef38177889274282b979d7b5b1b20780"
+    ], 
+    "metadata": {
+      "display_name": "L1.1 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/660cd542eed140a8ac1cd15f8b7f0120": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/1f2b56116d584ec0b9d2c507f841dda5", 
+      "i4x://PurdueX/nano515x/html/2cc43330b8a84d7a913c18641b881636", 
+      "i4x://PurdueX/nano515x/discussion/f2cd75100b54406faf62443472bb7de0"
+    ], 
+    "metadata": {
+      "display_name": "L5.5 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/6735a2c3c3604500bf8ee4af492c533d": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/a108934a600c4ee8afb6fff5e75c160e", 
+      "i4x://PurdueX/nano515x/html/7af53107507d4f4497b35b223792fe02", 
+      "i4x://PurdueX/nano515x/discussion/83745596d7ed4ef9bd10e8ad1cfd630d"
+    ], 
+    "metadata": {
+      "display_name": "L4.1 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/7342f2a197644f868a3fbfe4f0237cd0": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/ce8185de31594a45ae12ea0a6e0dd708", 
+      "i4x://PurdueX/nano515x/problem/e7afe2914a2b4a478d28e4938bc83e4d", 
+      "i4x://PurdueX/nano515x/problem/0a8fb1ac9ebf474b87e8cd64eebaa4fb", 
+      "i4x://PurdueX/nano515x/discussion/5faea1cc99a2410b9c0757a156041ed4"
+    ], 
+    "metadata": {
+      "display_name": "L2.2 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/73caa874548642fbaae982f5e83df556": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/3b2783ea79c343fca137e1b2d57bea42", 
+      "i4x://PurdueX/nano515x/problem/99524344d19d4114a65966d5dbafc336", 
+      "i4x://PurdueX/nano515x/problem/a83f0793e6a44c2bb49e35cc1ec223f5", 
+      "i4x://PurdueX/nano515x/problem/74fdf25973cc4c2387a3f0ddd95586cb", 
+      "i4x://PurdueX/nano515x/problem/c8d42bfdf8e24cd0836dcf51e3a2544b", 
+      "i4x://PurdueX/nano515x/problem/edd954fdbdc5405e830617fc42ac84ca", 
+      "i4x://PurdueX/nano515x/problem/1495e5e4d27c4eeeb7958cb10b7e2015", 
+      "i4x://PurdueX/nano515x/problem/751bbe910c4a49d0a3e7261a7590a4e8", 
+      "i4x://PurdueX/nano515x/problem/51c2a4f586ec4be69f935ffa0028756d", 
+      "i4x://PurdueX/nano515x/problem/3e17d2136905442f8a71e1a61c3a95a8", 
+      "i4x://PurdueX/nano515x/problem/14e039c1cef14e49be5da70871c96bc7", 
+      "i4x://PurdueX/nano515x/problem/4705eed9909d4b28bcb0ba39aaaa6ebf", 
+      "i4x://PurdueX/nano515x/problem/d43a776c3fd240a9add9f3625ec30472", 
+      "i4x://PurdueX/nano515x/problem/71a59c753ce1444fade28b7d0b6987b7", 
+      "i4x://PurdueX/nano515x/problem/ff90570a814443d9bd91adba54e8af14", 
+      "i4x://PurdueX/nano515x/problem/d27b4c6b9cfd4bbaa88eea2556a79581", 
+      "i4x://PurdueX/nano515x/problem/5949e4e428ce464483aba30c841d29c6", 
+      "i4x://PurdueX/nano515x/problem/870ae4547d41436196eb5b2b0bd81ba3", 
+      "i4x://PurdueX/nano515x/problem/6035ee671f414050ad2580728935de31"
+    ], 
+    "metadata": {
+      "display_name": "Week 5: Exam"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/7b9896ca35014d92b3503217afbb464f": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/2a1286b625ef44cfb735e62e5ddfad71", 
+      "i4x://PurdueX/nano515x/html/33f88e7a991644c98497774b857faec5", 
+      "i4x://PurdueX/nano515x/discussion/4603567a0c7a4dd781689530a7ab45da"
+    ], 
+    "metadata": {
+      "display_name": "L3.4 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/7c316e6075364b84902c94973f45f982": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/85682fb7d07b47798e8891c2f79d6fc6", 
+      "i4x://PurdueX/nano515x/html/f44053fd5d4a461583171e1674bc9ecf", 
+      "i4x://PurdueX/nano515x/discussion/b207e7e7dc1f48a885f3bf9bc4d266bb"
+    ], 
+    "metadata": {
+      "display_name": "L1.1 - L1.5 Tutorial Video and Solutions"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/7e4033f50fe64563849989aa7b6084d9": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/f1d2fef647a94a4287d1fb181c3ba80a", 
+      "i4x://PurdueX/nano515x/html/2ac9044a029c4ccdbfb0a164b5e8caf9", 
+      "i4x://PurdueX/nano515x/discussion/9634e0ef4dfa4364b708376e335c6d55"
+    ], 
+    "metadata": {
+      "display_name": "L2.1 - L2.5 Tutorial Video and Solutions"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/7f4db54bf5b54fa498ff0f83ebbe2afd": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/5480655bf0754ec98f9312e152e2ff1d", 
+      "i4x://PurdueX/nano515x/html/cdf1a35e7b3e405b997ee096ccda3c7c", 
+      "i4x://PurdueX/nano515x/discussion/12a7580eec1e42789b126aad6fb88c42"
+    ], 
+    "metadata": {
+      "display_name": "L2.3 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/800f284081534f04862cf120a3708bff": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/1e72653a1ab945939288f65e42aea47b", 
+      "i4x://PurdueX/nano515x/html/afc444d479e64620903d3bc70273c400", 
+      "i4x://PurdueX/nano515x/discussion/fcc005cdb78d45ab824fa096855e3355"
+    ], 
+    "metadata": {
+      "display_name": "L1.2 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/84289b1748564a869296d01d6ed282e0": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/html/df36625008b14c98875ed660278d46d7", 
+      "i4x://PurdueX/nano515x/video/d0b5db07fed8429d8940c34f74103534", 
+      "i4x://PurdueX/nano515x/html/d80080a315454778806fa092452dafe6", 
+      "i4x://PurdueX/nano515x/discussion/e1251b3a5cbf4af18f09ae47d60a6748"
+    ], 
+    "metadata": {
+      "display_name": "Technical Overview"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/84d712b732344b9ab453cc3850a7e8d5": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/ff6d64d23cee480fa8b4385ca16fc71a", 
+      "i4x://PurdueX/nano515x/html/34bf0609cbdd430bb01c5e28b3a881a6", 
+      "i4x://PurdueX/nano515x/discussion/75a984ff868f4e83ba0c48824319fc7a"
+    ], 
+    "metadata": {
+      "display_name": "L2.4 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/8fce3308a38a4924a91c094a4140ccc6": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/9017bb0cf86a4cf69ddbc10faff8d2f4", 
+      "i4x://PurdueX/nano515x/problem/367aaeb0ed4a41ea896ad5ba7a0fa6cd", 
+      "i4x://PurdueX/nano515x/problem/115a067699df46a58ce92048fbb1d607", 
+      "i4x://PurdueX/nano515x/problem/4e112de03d194af19f744e2ec8ff594b", 
+      "i4x://PurdueX/nano515x/problem/c23a6a4bac8944e7b40140b2cbc099ae", 
+      "i4x://PurdueX/nano515x/problem/646f24915302419aaa9970e9b48ef243", 
+      "i4x://PurdueX/nano515x/problem/9f820d0f54e34428bc28c29bd07508c1", 
+      "i4x://PurdueX/nano515x/problem/444dcb740dba44ae8da6585e1038de70", 
+      "i4x://PurdueX/nano515x/problem/153363c495c74bc894df99f0a2f8eced", 
+      "i4x://PurdueX/nano515x/problem/b5992a955b96432293c10238f12cb210", 
+      "i4x://PurdueX/nano515x/problem/ef2617b0e7274b0c9c2c12f8db3e62ee"
+    ], 
+    "metadata": {
+      "display_name": "Week 2: Exam"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/900919d47de543e68270623cd379f24c": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/81e11b1d41284fb4a9717da8ae88e87a", 
+      "i4x://PurdueX/nano515x/problem/edd4b541ffbf4ce0afce781cd555af33", 
+      "i4x://PurdueX/nano515x/problem/334b08077b664a80ba95269dcb5c608c", 
+      "i4x://PurdueX/nano515x/discussion/3902d1fc3c684503a26a04da2f17b7a5"
+    ], 
+    "metadata": {
+      "display_name": "L5.2 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/930dfc7f850c4f3b8cfcfe23595258a7": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/c94725a6e4df4151b09121321bfc49e1", 
+      "i4x://PurdueX/nano515x/problem/5df63f84e41345768c3b9a82fa550bc4", 
+      "i4x://PurdueX/nano515x/problem/1effe6bb42b94cc4ab519932dffc9a59", 
+      "i4x://PurdueX/nano515x/discussion/8b43cba5aba048eba518192656688912"
+    ], 
+    "metadata": {
+      "display_name": "L4.2 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/9ab5c3573da94915a2c53b5650643714": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/9a03b6852b4a4528b04258de8a19b8a8", 
+      "i4x://PurdueX/nano515x/problem/fc6e4bd01e6c42cda68241d934cabfaa", 
+      "i4x://PurdueX/nano515x/problem/570a320b85ab4d9894bf46849babdc08", 
+      "i4x://PurdueX/nano515x/discussion/95b6e054ee03483f8a5b8e5011fcb964"
+    ], 
+    "metadata": {
+      "display_name": "L1.4 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/9b0b7288eec5473e9c2f3aae258ebe70": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/5b57f3a701c643f28c5a6902d0497041", 
+      "i4x://PurdueX/nano515x/problem/445314d518954eb69827a94a2166a82c", 
+      "i4x://PurdueX/nano515x/problem/bdb79445215e4e5aa2b8877c37679504", 
+      "i4x://PurdueX/nano515x/discussion/446178ccdd8e46319adcc688da016aef"
+    ], 
+    "metadata": {
+      "display_name": "L2.4 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/9cded9f6592544e5bbb22bae938019d5": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/d820fc9ba8f8445b84e94d408547c752", 
+      "i4x://PurdueX/nano515x/html/747a7aae79f74bf3a846a6e6e40924bb", 
+      "i4x://PurdueX/nano515x/discussion/978257e987c447fdb4bec4205b70caa2"
+    ], 
+    "metadata": {
+      "display_name": "L2.1 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/9ee691f86a3e493dac3a0bf2e5e1c68c": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/html/77ec6ce885064dd9bfa94755e5a359cd", 
+      "i4x://PurdueX/nano515x/discussion/43e215367c4e43c097e747b09b3d6157"
+    ], 
+    "metadata": {
+      "display_name": "Overview"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/a1762240db1a4e5990f68af4010c4ce6": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/01e928939590446e850c633b8b6e0a77", 
+      "i4x://PurdueX/nano515x/problem/2eceb8abf2344f06985ffbd947c93f08", 
+      "i4x://PurdueX/nano515x/problem/b330a746b34f4f0893f15444b0ec03b1", 
+      "i4x://PurdueX/nano515x/discussion/af9278e6cdbf40148dcb83aa0f9660ba"
+    ], 
+    "metadata": {
+      "display_name": "L5.4 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/a81eb41ee5d7489db3eabd7e5e3f0776": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/6cc3dfb06b154edb9946a1baa002889d", 
+      "i4x://PurdueX/nano515x/problem/22dde00f30074426ad7b5a76f04956dc", 
+      "i4x://PurdueX/nano515x/problem/98f26701e287426aad8dfb216a91c771", 
+      "i4x://PurdueX/nano515x/discussion/35fc25052ca74f5a90683b65a55a3c99"
+    ], 
+    "metadata": {
+      "display_name": "L3.1 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/acbc57bf97f34beabbe484dedaf1e46e": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/db1a4a06b7b24ba18ad5b44ff8f42f06", 
+      "i4x://PurdueX/nano515x/html/41bdcb8ca2c0440595f4073ee25c898b", 
+      "i4x://PurdueX/nano515x/discussion/b38887d9a0d74fd3889cb2a534ef2617"
+    ], 
+    "metadata": {
+      "display_name": "L5.3 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/ad7ad0a090eb42fe95c0a03c25070e35": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/3f44c0861cda470bb8a0e237f72fb511", 
+      "i4x://PurdueX/nano515x/problem/9916347143744be7ad4791ad3621a6cb", 
+      "i4x://PurdueX/nano515x/problem/fb01ed19d04245c1820d85aef5c7f854", 
+      "i4x://PurdueX/nano515x/discussion/0a4ff2e7a9234b1c998ec094f0886ceb"
+    ], 
+    "metadata": {
+      "display_name": "L4.3 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/aebd839aba6644e88aa58b425680de8b": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/2c1c05d6cfcf419da73d193916105e64", 
+      "i4x://PurdueX/nano515x/html/fe04885056594629a04ef4cef180e365", 
+      "i4x://PurdueX/nano515x/discussion/978fb3d4c335499784516f58abdd3e00"
+    ], 
+    "metadata": {
+      "display_name": "L4.2 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/b5d56252b99948dd89db524a59b0e243": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/949d25971fc64b88a8046690ad0709ec", 
+      "i4x://PurdueX/nano515x/problem/ea173b5aaf4740fda222856ff3edc8a5", 
+      "i4x://PurdueX/nano515x/problem/101362c4d0cf48b1a4c3b9a27c01c70d", 
+      "i4x://PurdueX/nano515x/discussion/586ffa0a51db4166b3cc06f41c1de8c2"
+    ], 
+    "metadata": {
+      "display_name": "L1.3 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/bd520b2143f141a7a92841f4ced0aadf": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/5058e52f92b74303acd92fd0dd7a344f", 
+      "i4x://PurdueX/nano515x/problem/f4ece2c822134225ad22dcec8d2f3502", 
+      "i4x://PurdueX/nano515x/problem/32b591a1104e416d95fd843e484cd27a", 
+      "i4x://PurdueX/nano515x/discussion/df03c73d44c94533bb692176a9fd5c94"
+    ], 
+    "metadata": {
+      "display_name": "L3.3 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/bed92dee70a44d1db698230693df2a1c": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/22767698adcc4e8cba477258ef721b1c", 
+      "i4x://PurdueX/nano515x/html/3f6504ab279342cea06adbbd677569da", 
+      "i4x://PurdueX/nano515x/discussion/85093978149f4364b79749aa17406dfa"
+    ], 
+    "metadata": {
+      "display_name": "L5.2 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/bf420bfbc4a24acdb6ed21355284e267": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/ed1b9012f42d46eeb2132782c409cb11", 
+      "i4x://PurdueX/nano515x/problem/88941e183d644d0eb6a3d6cae7f961e9", 
+      "i4x://PurdueX/nano515x/problem/1628487bdaf048acb861918428b8ee1f", 
+      "i4x://PurdueX/nano515x/discussion/a38278fb63964f688fef5e8136e77dc6"
+    ], 
+    "metadata": {
+      "display_name": "L4.1 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/c1d59f8d9add470e906e1789f31e985e": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/html/8f9bcc3bb3fd4cdcb56153d4bc7a443d"
+    ], 
+    "metadata": {
+      "display_name": "Getting Help"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/c390887d12e84577b760cb36682f9981": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/272a4d7943874339af8888bfccf048c9", 
+      "i4x://PurdueX/nano515x/html/f22074ad970e4c87adf0ac39073e4590", 
+      "i4x://PurdueX/nano515x/discussion/2a3acd035aaf43f5b438dc36a9779104"
+    ], 
+    "metadata": {
+      "display_name": "L3.5 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/ca8ce9f100ad48e39d75380ee9fe78dd": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/html/f67f41c519df41d3854cb10f6c555999", 
+      "i4x://PurdueX/nano515x/discussion/6b9f9027418c47c0adcf5ee67f20c5e8"
+    ], 
+    "metadata": {
+      "display_name": "Schedule"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/cf0dd0359a37439193bd05b034416369": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/77b3d7f2c1734c01adb155a555bbe4c3", 
+      "i4x://PurdueX/nano515x/problem/e272b8dca6f442d1abac26c7ecfdcf28", 
+      "i4x://PurdueX/nano515x/problem/dcecfb5c26584ec3a0929643e59337f2", 
+      "i4x://PurdueX/nano515x/discussion/7b02c6044fcb4cc6949b0b7897ed6eba"
+    ], 
+    "metadata": {
+      "display_name": "L3.5 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/d026162dc5f44d78b98073eb536b69fb": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/f3942dd8606846e29b9c09671da6ac5a", 
+      "i4x://PurdueX/nano515x/problem/945d1d34accc4aea9c84585322d5bb18", 
+      "i4x://PurdueX/nano515x/problem/0e63d268279244c2b7325c8f0d9dd726", 
+      "i4x://PurdueX/nano515x/discussion/936e8c86e1c5476885c4b81f6238f9d3"
+    ], 
+    "metadata": {
+      "display_name": "L4.4 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/d16d2e4b65b0462b95131973618fabc4": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/e68222bfc6fa4290b082636daf393043", 
+      "i4x://PurdueX/nano515x/html/36f09d6195e648999b92c33435766b79", 
+      "i4x://PurdueX/nano515x/discussion/2a8ddbdd092141c393662946eee11716"
+    ], 
+    "metadata": {
+      "display_name": "L3.1 - L3.5 Tutorial Video and Solution"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/d2dd740e77424a4dae2041a5c49c54cf": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/5ca54c3de7fd474c995111f1c699c0fb", 
+      "i4x://PurdueX/nano515x/html/c8eb29e3ab194fcba1d95024356f8486", 
+      "i4x://PurdueX/nano515x/discussion/57dbf0071e8647b38ef16d3596287430"
+    ], 
+    "metadata": {
+      "display_name": "L3.2 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/d9d6bc973d8f4c4e912d23e77675a41e": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/ebeaaf1673394101a69581b2a617c27d", 
+      "i4x://PurdueX/nano515x/html/dd3cd0c79da34cb9a312c0339426ccea", 
+      "i4x://PurdueX/nano515x/discussion/999c483c02914e13affd4cea6a72592a"
+    ], 
+    "metadata": {
+      "display_name": "L2.5 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/df36a344541e434a9342b175534bbeb5": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/3fe1ac0513a84e51a671865e08c1dad2", 
+      "i4x://PurdueX/nano515x/html/1ed62ef1d94446c3a5e672b4bf4feac8", 
+      "i4x://PurdueX/nano515x/discussion/a8db41dbc439439c8c6a5abe95b4866a"
+    ], 
+    "metadata": {
+      "display_name": "L4.3 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/edce86937e8f44f3a688cb496f887dfb": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/b6041a2b43d148809ffd4e3d07021dca", 
+      "i4x://PurdueX/nano515x/problem/9ae2fa2a492e43779134a43aed25ed34", 
+      "i4x://PurdueX/nano515x/problem/256a6505a46344b8bedeae81d9e8b435", 
+      "i4x://PurdueX/nano515x/discussion/6917d43db12e48f0a6d192ae8097b891"
+    ], 
+    "metadata": {
+      "display_name": "L2.3 Quiz"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/ef6c06a30a2d4f54b618f7c8a8403842": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/video/3d30e759d10745129ae9fe58ae30f772", 
+      "i4x://PurdueX/nano515x/html/d5d8bd5365af4ce29865c7e9d139869c", 
+      "i4x://PurdueX/nano515x/discussion/5166ad236914446b96f8da98653084ce"
+    ], 
+    "metadata": {
+      "display_name": "L4.5 Lecture"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/f1efec71c398462e841d6a17ccaf6cd5": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/64095e50d0aa434ea1b8e85ea99c8244", 
+      "i4x://PurdueX/nano515x/problem/37b4a20602e041249f56b7f85a4f93da", 
+      "i4x://PurdueX/nano515x/problem/218fac6414a944158c0f33e1bf59897f", 
+      "i4x://PurdueX/nano515x/problem/fd98a961c04e42e49b72b281b27ce80e", 
+      "i4x://PurdueX/nano515x/problem/483fba6615994f49a26f7d8f79340a60", 
+      "i4x://PurdueX/nano515x/discussion/9d40fbdc065748959c8671283016c339"
+    ], 
+    "metadata": {
+      "display_name": "L3.1 - L3.5: Homework"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/f54f37d867eb471fbbeb95cc187b025d": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/ec46d734fcd94c80a93b48f38286d81b", 
+      "i4x://PurdueX/nano515x/problem/783f62996e83466ba4bb7613474a2dd3", 
+      "i4x://PurdueX/nano515x/problem/3b7f73294a4545a7b7f8d68106d44784", 
+      "i4x://PurdueX/nano515x/problem/24e2df9b0692489480b56536e4c83d91", 
+      "i4x://PurdueX/nano515x/problem/57003c14824e4b42b0da5d197c954aed", 
+      "i4x://PurdueX/nano515x/problem/20b6fbee48eb4a21bd8ea12456053364", 
+      "i4x://PurdueX/nano515x/problem/6bec6f22102b43f58165839dd56fe38e", 
+      "i4x://PurdueX/nano515x/problem/a8e46ea42b0546e289c0fa4b1c709bc4", 
+      "i4x://PurdueX/nano515x/problem/010b25542f404a8c80058222a07a8e6c"
+    ], 
+    "metadata": {
+      "display_name": "Week 3: Exam"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/vertical/f7cb63019fb04576810ca2b4573fe1d9": {
+    "category": "vertical", 
+    "children": [
+      "i4x://PurdueX/nano515x/problem/f70ccd69e77f4a78a594b9a8d7115cce", 
+      "i4x://PurdueX/nano515x/problem/b1459580e0ef48308d1382d2afe326bb", 
+      "i4x://PurdueX/nano515x/problem/bc1131baea424a72a16a959a98e1f288", 
+      "i4x://PurdueX/nano515x/problem/db23e183c3f647e69e6875656d93366a", 
+      "i4x://PurdueX/nano515x/discussion/89c9d7dd3d714d28b2e9d5a68eb9596b"
+    ], 
+    "metadata": {
+      "display_name": "L4.1 - L4.5 Homework"
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/0a0add7a58b94aeea6e41b052737facf": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.5 Lecture ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001300", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L1.5.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L1.5-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L1.5-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "CXpgTYO9DxI", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/1e72653a1ab945939288f65e42aea47b": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.2 Lecture ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002000", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L1.2.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L1.2-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L1.2-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "91cOOVxhmXc", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/1f2b56116d584ec0b9d2c507f841dda5": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.5 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001000", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L5.5.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L5.5-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L5.5-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "D5kDRR1Vh3U", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/22767698adcc4e8cba477258ef721b1c": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.2 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001200", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L5.2.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L5.2-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L5.2-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "5x6rPJeOVyw", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/22cd54cb1da248dd9472e3e08f6bb2c4": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3.3 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002400", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L3.3.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L3.3-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L3.3-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "Pm22679sWSk", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/272a4d7943874339af8888bfccf048c9": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3.5 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002500", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L3.5.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L3.5-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L3.5-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "7zMKAOZ66SY", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/2a1286b625ef44cfb735e62e5ddfad71": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3.4 Lecture ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001500", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L3.4.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L3.4-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L3.4-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "zP6acLzWpYA", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/2c1c05d6cfcf419da73d193916105e64": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.2 Lecture ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002600", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L4.2.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L4.2-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L4.2-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "Cao3325Gsss", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/3b4ac1d3427c4a89a1cebb6a00c2296c": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.1 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V000400", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L5.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L5.1-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L5.1-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "fu5FBTBYE_M", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/3d30e759d10745129ae9fe58ae30f772": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.5 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V000200", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L4.5.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L4.5-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L4.5-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "nlZb7-q8ecU", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/3fe1ac0513a84e51a671865e08c1dad2": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.3 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001900", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L4.3.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L4.3-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L4.3-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "XRPyZ4IkNIQ", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/40ff6f9ea9ac428dbf2e4e71bf7bd81c": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.3 Lecture ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V000700", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L1.3.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L1.3-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L1.3-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "HbyqPcAL-OY", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/5480655bf0754ec98f9312e152e2ff1d": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.3 Lecture ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001600", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L2.3.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L2.3-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L2.3-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "hirG7BNVkVA", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/5ca54c3de7fd474c995111f1c699c0fb": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3.2 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V000100", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L3.2.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L3.2-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L3.2-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "5JrB-SqprS4", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/6738460353064d64b1db4afa10aee2f6": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.4 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V003100", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L5.4.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L5.4-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L5.4-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "u8JVLbkvQqg", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/6cdfcdbd174d43968a61b67dd5f8736f": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 4: Homework Tutorial and Solutions ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002700", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-T4.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-T4.1-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-T4.1-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "IRkM1yNdPi0", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/7cda5f9a3c79449da06ff11f6008e187": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.1 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002200", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L1.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L1.1-854x480.mp4"
+      ], 
+      "sub": "oH3x2Ws7whw", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "oH3x2Ws7whw", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/82f9fe10ba8f4bf38a324eb9e0856461": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.4 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002900", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L4.4.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L4.4-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L4.4-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "DTDA3KZNCJI", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/85682fb7d07b47798e8891c2f79d6fc6": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 1: Homework Tutorial and Solutions ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V000300", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-T1.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-T1.1-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-T1.1-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "PBZgBL6p7lw", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/9e8dff9633f142d3b983d474db359573": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L1.4 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V000900", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L1.4.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L1.4-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L1.4-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "NlpgEST8atk", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/a108934a600c4ee8afb6fff5e75c160e": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L4.1 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002100", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L4.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L4.1-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L4.1-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "YfT06GrY094", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/aed2f07296db4347be263714ff08cefd": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 5: Homework Tutorial and Solutions ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V003000", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-T5.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-T5.1-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-T5.1-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "zaOkqlpDqIY", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/d010a7ab64ff48419b6297bfc1f62a78": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L3.1 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002300", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L3.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L3.1-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L3.1-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "2JIGF0bSNss", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/d0b5db07fed8429d8940c34f74103534": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Course Technical Overview", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001100", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-Overview.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-Overview-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-Overview-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "MjOc-hBeZZE", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/d482f95607c7451d8c8baf7d39cbf5fe": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.2 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V000800", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L2.2.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L2.2-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L2.2-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "ZFrnlL503kw", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/d820fc9ba8f8445b84e94d408547c752": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.1 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V002800", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L2.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L2.1-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L2.1-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "sCQd4phu1I0", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/db1a4a06b7b24ba18ad5b44ff8f42f06": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L5.3 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001800", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L5.3.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L5.3-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L5.3-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "bmjBV5ZdJgc", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/e68222bfc6fa4290b082636daf393043": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 3: Homework Tutorial and Solutions ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V000600", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-T3.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-T3.1-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-T3.1-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "IqUMq8PAt78", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/ebeaaf1673394101a69581b2a617c27d": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.5 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001700", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L2.5.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L2.5-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L2.5-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "ImFiEH26YWU", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/f1d2fef647a94a4287d1fb181c3ba80a": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "Week 2: Homework Tutorial and Solutions ", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V001400", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-T2.1.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-T2.1-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-T2.1-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "uzk2dDDJyas", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }, 
+  "i4x://PurdueX/nano515x/video/ff6d64d23cee480fa8b4385ca16fc71a": {
+    "category": "video", 
+    "children": [], 
+    "metadata": {
+      "display_name": "L2.4 Lecture", 
+      "download_track": true, 
+      "download_video": true, 
+      "edx_video_id": "PRDNANO5T115-V000500", 
+      "handout": "/c4x/PurdueX/nano515x/asset/nanoHUB-U-OED-Boudouris-L2.4.pdf", 
+      "html5_sources": [
+        "https://nanohub.org/site/media/edX/OED/nanoHUB-U-OED-Boudouris-L2.4-854x480.mp4"
+      ], 
+      "sub": "nanoHUB-U-OED-Boudouris-L2.4-854x480", 
+      "youtube_id_0_75": "", 
+      "youtube_id_1_0": "RQ2I_qv7ed8", 
+      "youtube_id_1_25": "", 
+      "youtube_id_1_5": ""
+    }
+  }
+}

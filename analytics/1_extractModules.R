@@ -19,7 +19,7 @@
 #                   a "3" for the chapter's children's children, and so on.
 #               (4) a sequential numbering of the modules.
 # 
-# Package dependancies: jsonlite, readr, tcltk, beepr
+# Package dependancies: jsonlite, readr, tcltk, #beepr
 #
 # Changelog:
 #     2017.03.10.   Initial distributed version
@@ -44,15 +44,17 @@
 #                   Audio notification for user input and script completion
 #     2017.05.09.   Added filename check of user provided files (with override option)
 #     2017.05.11.   Extracted possible functions to external files
+#     2017.05.18.   Removed dependancies on beepr (for compatibility with RStudio server)
+#     2017.05.25.   Added timer to track script execution time
 ## ===================================================== ##
 
 
 ######### Clean the environment ########## 
-  rm(list=ls())   
+rm(list=ls())   
 
 
 ######### Internal functions ########## 
-#Function: Interactively select working directory (OS independant)
+#Function: Interactively select working directory (OS independant, but not available for RStudio Server)
 InteractiveSetWD <- function() {
   cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
   setwd('~')
@@ -70,11 +72,10 @@ InteractiveSetWD <- function() {
 
 #Function: Check to see if the current working directory contains an expected file.  
 # If not then prompt user to select the correct directory
-WorkingDirectoryCheck <- function() {
+WorkingDirectoryCheck <- function(expectedFile) {
   #set directory variables
   curDir <- getwd()
-  #set a filename expected to exist in the working directory
-  expectedFile <- "1_extractModules.R"
+  
   
   if(file.exists(file.path(curDir, expectedFile))){
     #if file does exists in the current WD, exit the funtion returning TRUE
@@ -86,16 +87,22 @@ WorkingDirectoryCheck <- function() {
 }
 
 
+# end of functions
+## *************************************** #####
+# begin script setup
+
 
 ######### Check for correct working directory ########## 
-#continue checking the current working direcotry and prompting user for the correct directory 
-# while the workingDirectoryCheck returns false
-while(!WorkingDirectoryCheck()){
-  cat("The current working directory is NOT CORRECT.  Please set it to the directory containing the R scripts.\n")
+#check the current working direcotry, inform user if incorrect and stop running script
+if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
+  cat("The current working directory is NOT CORRECT.  
+      Please set it to the directory containing the R scripts before reruning script.\n")
   
   #have user set the working directory
-  beepr::beep(sound = 10)   #notify user to provide input
-  InteractiveSetWD()
+  # beepr::beep(sound = 10)   #notify user to provide input
+  # InteractiveSetWD()
+  
+  break
 }
 
 
@@ -112,14 +119,15 @@ source("R/extractModules-functions.R")
 # beginning of script functionality
 
 
-
+#start a timer to track how long the script takes to execute
+start <-  proc.time() #save the time (to compute ellapsed time of loop)
 
 
 ######### Import course structure JSON file data #####
 #Locate the JSON course structure data file to process (with sanatized user input)
 repeat{
-  cat("*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
-  beepr::beep(sound = 10)   #notify user to provide input
+  cat("\n*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
+  #beepr::beep(sound = 10)   #notify user to provide input
   filenameJSON <- file.choose()
   
   filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameJSON, expectedFileEnding = "course_structure-prod-analytics.json")
@@ -141,8 +149,8 @@ data <- jsonlite::fromJSON(filenameJSON)
 
 #Locate the clickstream data file to process (with sanatized user input)
 repeat{
-  cat("*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
-  beepr::beep(sound = 10)   #notify user to provide input
+  cat("\n*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
+  #beepr::beep(sound = 10)   #notify user to provide input
   filenameClickstream <- file.choose()
   
   filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameClickstream, expectedFileEnding = "courseware_studentmodule-prod-analytics.sql")
@@ -181,17 +189,17 @@ for(i in 1:length(moduleNames)){
 }
 
 
-          
+
 
 ######### Initiate recursive search ###############
 
 #initalize variables and initate recursive searching for children
-  #set the current hierarchy level
-  hierarchicalLvl <- 0  #course level
-  #conduct the recursive child search for each of the chapter level modules. Concatenate the results onto courseHierarchy
-  courseHierarchy <- ChildSearch(data, courseHierarchy, courseModule, hierarchicalLvl+1) 
+#set the current hierarchy level
+hierarchicalLvl <- 0  #course level
+#conduct the recursive child search for each of the chapter level modules. Concatenate the results onto courseHierarchy
+courseHierarchy <- ChildSearch(data, courseHierarchy, courseModule, hierarchicalLvl+1) 
 
-  
+
 
 ######### Remove unaccessed modules ###############
 
@@ -232,8 +240,8 @@ courseHierarchy <- cbind(courseHierarchy,module_no)
 
 
 ######### Write data to files ###############
-  ## trying to get this working from an external function
-  # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
+## trying to get this working from an external function
+# if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
 subDirPath <- DirCheckCreate(subDir = "1_extractModulesOutput")
 
@@ -249,7 +257,8 @@ DeletedModules <- as.matrix(DeletedModules)
 
 
 #write a CSV file for the next step in processing.  (Also write a CSV file of those modules which were removed.)
-#   quotes are forced around the module title names in case one contains a comma
+#   quotes are forced around the module title names in case one contains a comma 
+cat("\nSaving CSV file.")
 write.csv(file = file.path(subDirPath, "module_order_file.csv", fsep = "/"), 
           x = courseHierarchy, quote = c(modTitleColIndex))
 write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
@@ -257,10 +266,16 @@ write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
 
 
 ######### Notify user and Clear the environment  #############
-beepr::beep(sound = 10)   #notify user script is complete
-Sys.sleep(time = 0.1)     #pause 1/10 sec
-beepr::beep(sound = 10)
-Sys.sleep(time = 0.1)
-beepr::beep(sound = 10)
+# beepr::beep(sound = 10)   #notify user script is complete
+# Sys.sleep(time = 0.1)     #pause 1/10 sec
+# beepr::beep(sound = 10)
+# Sys.sleep(time = 0.1)
+# beepr::beep(sound = 10)
+
+#print the amount of time the script required
+cat("\n\n\nScript processing time details (in sec):\n")
+print(proc.time() - start)
 
 rm(list=ls())   #Clear environment variables
+
+

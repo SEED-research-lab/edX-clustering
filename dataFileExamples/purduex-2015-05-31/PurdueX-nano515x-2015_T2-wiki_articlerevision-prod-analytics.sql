@@ -1,0 +1,1 @@
+id	revision_number	user_message	automatic_log	ip_address	user_id	modified	created	previous_revision_id	deleted	locked	article_id	content	title
