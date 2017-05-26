@@ -5,9 +5,13 @@
 # Author(s):    Doipayan Roy, Taylor Williams
 # Institution:  Purdue University
 # 
-# Project:      
+# Project:      EdX data pipeline for clustering analytics
 # 
-# Description:  []
+# Description:  Clickstream data is read as the dataFrame object named raw_data
+#               Fields of interest in clickstream data are: student_id, module_id and created
+#               Module data is read as the dataFrame object named module_markers
+#               module_markers contain an integer id for each module, 
+#                 which reflects the sequence in which modules occur in the course
 # 
 # Package dependancies: readr, tcltk, beepr
 #
@@ -21,6 +25,9 @@
 #                   Audio notification for user input and script completion
 #     2017.05.09.   Added filename check of user provided files (with override option)
 #     2017.05.11.   Extracted possible functions to external files
+#     2017.05.18.   Removed dependancies on beepr (for compatibility with RStudio server)
+#     2017.05.25.   Integrated Doipayan's madifications up through 2017.05.09 
+#                   Added timer to track script execution time
 ## ===================================================== ##
 
 
@@ -30,7 +37,7 @@ rm(list=ls())
 
 
 ######### Internal functions ########## 
-#Function: Interactively select working directory (OS independant)
+#Function: Interactively select working directory (OS independant, but not available for RStudio Server)
 InteractiveSetWD <- function() {
   cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
   setwd('~')
@@ -48,11 +55,10 @@ InteractiveSetWD <- function() {
 
 #Function: Check to see if the current working directory contains an expected file.  
 # If not then prompt user to select the correct directory
-WorkingDirectoryCheck <- function() {
+WorkingDirectoryCheck <- function(expectedFile) {
   #set directory variables
   curDir <- getwd()
-  #set a filename expected to exist in the working directory
-  expectedFile <- "1_extractModules.R"
+  
   
   if(file.exists(file.path(curDir, expectedFile))){
     #if file does exists in the current WD, exit the funtion returning TRUE
@@ -64,16 +70,22 @@ WorkingDirectoryCheck <- function() {
 }
 
 
+# end of functions
+## *************************************** #####
+# begin script setup
+
 
 ######### Check for correct working directory ########## 
-#continue checking the current working direcotry and prompting user for the correct directory 
-# while the workingDirectoryCheck returns false
-while(!WorkingDirectoryCheck()){
-  cat("The current working directory is NOT CORRECT.  Please set it to the directory containing the R scripts.\n")
+#check the current working direcotry, inform user if incorrect and stop running script
+if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
+  cat("The current working directory is NOT CORRECT.  
+      Please set it to the directory containing the R scripts before reruning script.\n")
   
   #have user set the working directory
-  beepr::beep(sound = 10)   #notify user to provide input
-  InteractiveSetWD()
+  # beepr::beep(sound = 10)   #notify user to provide input
+  # InteractiveSetWD()
+  
+  break
 }
 
 
@@ -89,14 +101,17 @@ source("R/file-structure-functions.R")
 # beginning of script functionality
 
 
+#start a timer to track how long the script takes to execute
+start <-  proc.time() #save the time (to compute ellapsed time of loop)
+
 
 
 ######### Reading files, converting to dataframe object, eliminating irrelevant columns#####
   
 #Locate the clickstream data file to process (with sanatized user input)
 repeat{
-  cat("*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
-  beepr::beep(sound = 10)   #notify user to provide input
+  cat("\n*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
+  #beepr::beep(sound = 10)   #notify user to provide input
   filenameClickstream <- file.choose()
   
   filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameClickstream, expectedFileEnding = "courseware_studentmodule-prod-analytics.sql")
@@ -137,8 +152,10 @@ dataClickstream <- subset(dataClickstream,dataClickstream$module_id %in% module_
 
 																		
 
-######### Mapping module_id in every row of dataClickstream to order_integer of the module#########
+######### Mapping module_id in every clickstream event, its integer reflects the module ordering
 
+#Clickstream and module marker dataframe have been ordered in increasing order of module_id
+#Change_list documents the row numbers in ordered clickstream file at which module_id changes
 change_list=c()
 change_list=c(change_list,0)
 for(i in unique(module_markers$module_id))
@@ -151,12 +168,15 @@ for(i in 2:length(change_list))
   change_list[i]=change_list[i]+change_list[i-1]
 }
 
+#marker_list is a column containing integer id of module in each clickstream event
 marker_list=c()
 for(i in 1:(length(change_list)-1))
 {
   se=rep(module_markers$module_no[i],as.integer(1+(change_list[i+1])-(change_list[i]+1)))
   marker_list=c(marker_list,se)
 }
+
+#Add marker_list column to clickstream file
 dataClickstream<-cbind(dataClickstream,marker_list)
 
 ## ===================================================== ##
@@ -165,15 +185,19 @@ dataClickstream<-cbind(dataClickstream,marker_list)
 
 time=as.POSIXct(dataClickstream$created,format="%m/%d/%Y %H:%M")
 dataClickstream<-cbind(dataClickstream,time)
+
 ##Keeping only releveant columns
 dataClickstream<-dataClickstream[names(dataClickstream) %in% c("student_id","time","marker_list")]
-##Sorting dataClickstream in order of student_id
-dataClickstream<-dataClickstream[order(dataClickstream$student_id,decreasing=F),]
 
 ## ===================================================== ##
 
 ######### Converting student_id to integers from 1 to total_number_registered###############
 
+##Sorting dataClickstream in order of student_id
+dataClickstream<-dataClickstream[order(dataClickstream$student_id,decreasing=F),]
+
+#u_id is a column containing student_id of each clickstream event mapped to an integer
+#Each student is assigned a unique integer
 u_id=c()
 counter=1
 for(i in sort(unique(dataClickstream$student_id),decreasing=F))
@@ -186,8 +210,9 @@ for(i in sort(unique(dataClickstream$student_id),decreasing=F))
 																				 
   counter=counter+1
 }
+
+#Adding u_id column to dataClickstream
 dataClickstream<-cbind(dataClickstream,u_id)
-#return(dataClickstream)    #TW (2017.05.02) I think this line should be deleted
 
 
 ## ===================================================== ##
@@ -198,25 +223,29 @@ dataClickstream<-cbind(dataClickstream,u_id)
 ######### Retaining relevant columns, renaming columns and writing to CSV file##############
 
 dataClickstream<-dataClickstream[names(dataClickstream) %in% c("student_id","marker_list","u_id","time")]
-names(dataClickstream)<-c("orig_student_id","module_number","time","temp_student_id")
+names(dataClickstream)<-c("student_id","module_number","time","temp_student_id")
 
 
 ######### Write data to files ###############
-  ## TW (2017.05.03): I'm trying to get this working from an external function. The following line is attempting this.
-    # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
 subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
 
 #write a CSV file for the next step in processing. 
+cat("\nSaving CSV file.")
 write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), x = dataClickstream)
 
+
 ######### Notify user and Clear the environment  #############
-beepr::beep(sound = 10)   #notify user script is complete
-Sys.sleep(time = 0.1)     #pause 1/10 sec
-beepr::beep(sound = 10)
-Sys.sleep(time = 0.1)
-beepr::beep(sound = 10)
+# beepr::beep(sound = 10)   #notify user script is complete
+# Sys.sleep(time = 0.1)     #pause 1/10 sec
+# beepr::beep(sound = 10)
+# Sys.sleep(time = 0.1)
+# beepr::beep(sound = 10)
+
+#print the amount of time the script required
+cat("\n\n\nScript processing time details (in sec):\n")
+print(proc.time() - start)
 
 rm(list=ls())   #Clear environment variables
 
-							
+

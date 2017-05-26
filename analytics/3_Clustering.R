@@ -32,7 +32,7 @@ rm(list=ls())
 
 
 ######### Internal functions ########## 
-#Function: Interactively select working directory (OS independant)
+#Function: Interactively select working directory (OS independant, but not available for RStudio Server)
 InteractiveSetWD <- function() {
   cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
   setwd('~')
@@ -50,11 +50,10 @@ InteractiveSetWD <- function() {
 
 #Function: Check to see if the current working directory contains an expected file.  
 # If not then prompt user to select the correct directory
-WorkingDirectoryCheck <- function() {
+WorkingDirectoryCheck <- function(expectedFile) {
   #set directory variables
   curDir <- getwd()
-  #set a filename expected to exist in the working directory
-  expectedFile <- "1_extractModules.R"
+  
   
   if(file.exists(file.path(curDir, expectedFile))){
     #if file does exists in the current WD, exit the funtion returning TRUE
@@ -66,16 +65,22 @@ WorkingDirectoryCheck <- function() {
 }
 
 
+# end of functions
+## *************************************** #####
+# begin script setup
+
 
 ######### Check for correct working directory ########## 
-#continue checking the current working direcotry and prompting user for the correct directory 
-# while the workingDirectoryCheck returns false
-while(!WorkingDirectoryCheck()){
-  cat("The current working directory is NOT CORRECT.  Please set it to the directory containing the R scripts.\n")
+#check the current working direcotry, inform user if incorrect and stop running script
+if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
+  cat("The current working directory is NOT CORRECT.  
+      Please set it to the directory containing the R scripts before reruning script.\n")
   
   #have user set the working directory
-  beepr::beep(sound = 10)   #notify user to provide input
-  InteractiveSetWD()
+  # beepr::beep(sound = 10)   #notify user to provide input
+  # InteractiveSetWD()
+  
+  break
 }
 
 
@@ -84,14 +89,20 @@ while(!WorkingDirectoryCheck()){
 source("R/file-structure-functions.R")
 
 
+
+
 # end of script setup
 ## *************************************** #####
 # beginning of script functionality
 
 
+#start a timer to track how long the script takes to execute
+start <-  proc.time() #save the time (to compute ellapsed time of loop)
+
+
 
 ######### User providing dataset details #####
-beepr::beep(sound = 10)   #notify user to provide input
+#beepr::beep(sound = 10)   #notify user to provide input
 cat("\nEnter a description of this datasest (to be included on graphs).
     (suggested format: [Data source, e.g., edX], [Course number, e.g., nano515x], [Data date, e.g., Data from 2016.11.18])")
 dataSetDescription <- readline(prompt="Description: ");
@@ -101,7 +112,7 @@ dataSetDescription <- readline(prompt="Description: ");
 ######### Choose clustering technique #######################################################
 #Choose clustering method (repeating to sanitize user input)
 repeat{
-  beepr::beep(sound = 10)   #notify user to provide input
+  #beepr::beep(sound = 10)   #notify user to provide input
   clusterTypeSelection <- readline(prompt="Enter 1 for K-means clustering, 2 for Fuzzy means clustering: ");
   
   if(clusterTypeSelection == 1 || clusterTypeSelection == 2){  #valid clustering method selected
@@ -116,7 +127,7 @@ repeat{
 ######### User selection of data set to process #####
 #Choose clickstream data(sub)set (repeating to sanitize user input)
 repeat{
-  beepr::beep(sound = 10)   #notify user to provide input
+  #beepr::beep(sound = 10)   #notify user to provide input
   userSetSelection <- readline(prompt="Enter 1 for all users, 2 for female users, 3 for male users: ");
 
   if(userSetSelection == 1){  #dataset: all users
@@ -176,14 +187,14 @@ data<-data[order(data$temp_student_id,decreasing=F),]
 
 ######### Calculating number of unique module accesses for each student and saving to file########
 
-print("Calculating number of access events for each learner...")
+cat("\nCalculating number of access events for each learner...")
 access_list=c()
 for(i in 1:length(unique(data$temp_student_id)))
 {
   temp=subset(data,data$temp_student_id==i)
   access_list=c(access_list,nrow(temp))
 }
-print("Done! Saving to file...")
+cat("\nDone! Saving to file...")
 data_final=data.frame(1:length(unique(data$temp_student_id)),access_list)
 names(data_final)<-c("temp_student_id","number_accesses")
 write.csv(data_final,"access_data.csv")
@@ -203,7 +214,7 @@ if(clusterTypeSelection==1)
   data <- data[names(data) %in% c("temp_student_id","number_accesses")]
   
   ## **Generate elbow plot from access data ####
-  print("Generating elbow plot...")
+  cat("\nGenerating elbow plot...")
   elbow_plot_values <- c()
   for(k in 1:20)
   {
@@ -227,7 +238,7 @@ if(clusterTypeSelection==1)
 
   
   ## **Generate gap plot from access data ####
-  print("Generating gap plot...")
+  cat("\nGenerating gap plot...")
   gap_statistic=cluster::clusGap(as.matrix(data$number_accesses),K.max=10,FUN=kmeans,verbose=FALSE)
   gap_values=(as.data.frame(gap_statistic$Tab))$gap
   #set the range of x values to include in plot
@@ -277,7 +288,7 @@ if(clusterTypeSelection==1)
   }
 
   ##User input for number of clusters
-  beepr::beep(sound = 10)   #notify user to provide input
+  #beepr::beep(sound = 10)   #notify user to provide input
   K <- readline("Enter the desired number of clusters (maximum 10): ");
   K <- as.integer(K);
   
@@ -436,7 +447,7 @@ if(clusterTypeSelection==1)
   data <- data[names(data) %in% c("temp_student_id","number_accesses")]
     
   ## **Generate gap plot from access data ####
-  print("Generating gap plot...")
+  cat("\nGenerating gap plot...")
   gap_statistic=cluster::clusGap(as.matrix(data$number_accesses),K.max=10,FUN=kmeans,verbose=FALSE)   #??for DR??? should kmeans be being used here?  We're in the fuzzy clustering section
   gap_values=(as.data.frame(gap_statistic$Tab))$gap
   #set the range of x values to include in the plot
@@ -471,7 +482,7 @@ if(clusterTypeSelection==1)
   }
 
   ##User input for number of clusters
-  beepr::beep(sound = 10)   #notify user to provide input
+  #beepr::beep(sound = 10)   #notify user to provide input
   K<-readline("Enter the desired number of clusters (maximum 10): ");
   K<-as.integer(K);
   
@@ -624,11 +635,17 @@ if(clusterTypeSelection==1)
 setwd(initialWD_save)
 
 
+
 ######### Notify user and Clear the environment  #############
-beepr::beep(sound = 10)   #notify user script is complete
-Sys.sleep(time = 0.1)     #pause 1/10 sec
-beepr::beep(sound = 10)
-Sys.sleep(time = 0.1)
-beepr::beep(sound = 10)
+# beepr::beep(sound = 10)   #notify user script is complete
+# Sys.sleep(time = 0.1)     #pause 1/10 sec
+# beepr::beep(sound = 10)
+# Sys.sleep(time = 0.1)
+# beepr::beep(sound = 10)
+
+#print the amount of time the script required
+cat("\n\n\nScript processing time details (in sec):\n")
+print(proc.time() - start)
 
 rm(list=ls())   #Clear environment variables
+
