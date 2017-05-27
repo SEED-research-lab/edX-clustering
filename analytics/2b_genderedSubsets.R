@@ -12,7 +12,7 @@
 #				Fields of interest in user_data are: user_id and gender
 #				Use the gender information in user_profile to create subsets of clickstream data for male and female students
 # 
-# Package dependancies: readr ,beepr
+# Package dependancies: readr, [beepr]
 #
 # Changelog:
 #     2017.04.13    initial creation
@@ -24,7 +24,8 @@
 #     2017.05.18.   Removed dependancies on beepr (for compatibility with RStudio server)
 #     2017.05.25.   Integrated Doipayan's madifications up through 2017.05.09 
 #                   Added timer to track script execution time
-#                   Commented dependancies on "progress" package
+#                   Commented dependancies on "progress" package. 
+#                   Added in more basic (package independant) progress indicator
 ## ===================================================== ##
 
 
@@ -203,7 +204,7 @@ start <-  proc.time() #save the time (to compute ellapsed time of loop)
 #   total = 100, clear = FALSE, width= 120)
 
 #build up a dataframe with all rows of each female user's clickstream data
-cat("\nExtracting clickstream for female learners (",length(femaleID_List)," learners )...\n")
+cat("\nExtracting clickstream for female learners (",length(femaleID_List)," learners )...\n\n")
 
 # pb$tick(0)
 for(ID in femaleID_List)
