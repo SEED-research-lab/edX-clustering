@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.8.1
-RVersion: 3.3.3
+RVersion: 3.4.0
 Repos: CRAN=https://cran.rstudio.com/,
     CRANextra=http://www.stats.ox.ac.uk/pub/RWin
 
@@ -87,6 +87,11 @@ Source: CRAN
 Version: 1.1.0
 Hash: 3506086f41d307f5a78ee64e010536fa
 Requires: BH, R6, Rcpp, hms, tibble
+
+Package: rlang
+Source: CRAN
+Version: 0.1.1
+Hash: 86c53487ce7f82f0a7cc11c816060910
 
 Package: stringi
 Source: CRAN

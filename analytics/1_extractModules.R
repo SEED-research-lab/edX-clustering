@@ -19,7 +19,7 @@
 #                   a "3" for the chapter's children's children, and so on.
 #               (4) a sequential numbering of the modules.
 # 
-# Package dependancies: jsonlite, readr, tcltk, #beepr
+# Package dependancies: jsonlite, readr, [tcltk, beepr]
 #
 # Changelog:
 #     2017.03.10.   Initial distributed version
