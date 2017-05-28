@@ -25,6 +25,12 @@
 #     2017.05.10.   Fuzzy code updated to match updates above (which had only been to the k-means code)
 #                   Added valid user input check for clustering technique selection
 #     2017.05.11.   Extracted possible functions to external files
+#     2017.05.27.   *Integrated Doipayan's madifications up through 2017.05.09 
+#                   *Added timer to track script execution time
+#                   *Commented dependancies on "progress" package. 
+#                   *Added in more basic (package independant) progress indicator
+#
+#     *: planned but not complete
 ## ===================================================== ##
 
 
@@ -91,6 +97,17 @@ if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
 source("R/file-structure-functions.R")
 
 
+######### Save the current working directory #########  
+## Set the output directory to the working directory (wd will be restored at the end of the script)
+
+#save current working directory
+initialWD_save <- getwd()
+
+#call function to check for the existance of the subdirectory; create it if it doesn't exist
+subDirPath <- DirCheckCreate(subDir = "3_ClusteringOutput")
+
+#set working directory for the remainder of the script
+setwd(subDirPath)
 
 
 # end of script setup
@@ -171,19 +188,7 @@ data<-data[names(data) %in% c("temp_student_id","module_number","time")]
 data<-data[order(data$temp_student_id,decreasing=F),]
 
 
-##Save the current working directory.  Set the output directory to the working directory. 
-##  (wd will be restored at the end of the script)
 
-#save current working directory
-initialWD_save <- getwd()
-
-## TW (2017.05.03): I'm trying to get this working from an external function
-# if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
-#call function to check for the existance of the subdirectory; create it if it doesn't exist
-subDirPath <- DirCheckCreate(subDir = "3_ClusteringOutput")
-
-#set working directory for the remainder of the script
-setwd(subDirPath)
 ## ===================================================== ##
 
 
