@@ -186,7 +186,7 @@ for(ID in maleID_List)
   iCount <- iCount + 1  
   if(iCount%%as.integer((length(maleID_List))/100) == 0){
     pct <- pct + 1
-    cat("\r", pct, "% complete", sep = "")
+    cat("\rMales ", pct, "% complete", sep = "")
     # pb$tick()
   }
 }
@@ -220,7 +220,7 @@ for(ID in femaleID_List)
   iCount <- iCount + 1  
   if(iCount%%as.integer((length(femaleID_List))/100) == 0){
     pct <- pct + 1
-    cat("\r", pct, "% complete", sep = "")
+    cat("\rFemales ", pct, "% complete", sep = "")
     # pb$tick()
   }
 }
