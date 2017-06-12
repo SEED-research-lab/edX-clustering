@@ -5,7 +5,7 @@
 # Author(s):    Taylor Williams
 # Institution:  Purdue University
 # 
-# Project:      
+# Project:      EdX data pipeline for clustering analytics
 # 
 # Description:  []
 # 
