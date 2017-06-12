@@ -9,7 +9,7 @@
 # 
 # Description:  []
 # 
-# Package dependancies: beepr
+# Package dependancies: [beepr]
 #
 # Changelog:
 #     2017.05.11.    initial function extraction from pipeline

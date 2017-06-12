@@ -13,7 +13,7 @@
 #               module_markers contain an integer id for each module, 
 #                 which reflects the sequence in which modules occur in the course
 # 
-# Package dependancies: readr, tcltk, beepr
+# Package dependancies: readr, [tcltk, beepr]
 #
 # Changelog:
 #     2017.04.13.   Added GUI user selection of Clickstream file
@@ -107,7 +107,7 @@ start <-  proc.time() #save the time (to compute ellapsed time of loop)
 
 
 ######### Reading files, converting to dataframe object, eliminating irrelevant columns#####
-  
+
 #Locate the clickstream data file to process (with sanatized user input)
 repeat{
   cat("\n*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
@@ -132,13 +132,13 @@ dataClickstream <- readr::read_tsv(filenameClickstream)
 dataClickstream <- dataClickstream[names(dataClickstream) %in% c("module_id","student_id","created")]
 
 #read in the ordered module information
-  moduleOrderFilePath <- FileExistCheck(subDir = "1_extractModulesOutput", filename = "module_order_file.csv")
-  #exit script if file not found, otherwise continue
-  ifelse(test = moduleOrderFilePath == FALSE, yes = return(), no = "")
-  
-  #read in CSV data and convert to data frame
-  module_markers <- readr::read_csv(moduleOrderFilePath)
-  module_markers <- as.data.frame(module_markers)
+moduleOrderFilePath <- FileExistCheck(subDir = "1_extractModulesOutput", filename = "module_order_file.csv")
+#exit script if file not found, otherwise continue
+ifelse(test = moduleOrderFilePath == FALSE, yes = return(), no = "")
+
+#read in CSV data and convert to data frame
+module_markers <- readr::read_csv(moduleOrderFilePath)
+module_markers <- as.data.frame(module_markers)
 
 ##Ordering both dataClickstream and module_marker object by module_id field
 dataClickstream <- dataClickstream[order(dataClickstream$module_id,decreasing=F),]
@@ -146,11 +146,11 @@ module_markers <- module_markers[order(module_markers$module_id,decreasing=F),]
 
 ##Eliminating module_id from dataClickstream if that id does not appear in module_marker
 dataClickstream <- subset(dataClickstream,dataClickstream$module_id %in% module_markers$module_id)
-																																								   
+
 
 ## ===================================================== ##
 
-																		
+
 
 ######### Mapping module_id in every clickstream event, its integer reflects the module ordering
 
@@ -203,11 +203,11 @@ counter=1
 for(i in sort(unique(dataClickstream$student_id),decreasing=F))
 {
   temp_df=subset(dataClickstream,dataClickstream$student_id==i)
-																   
+  
   se=rep(counter,nrow(temp_df))
-												   
+  
   u_id=c(u_id,se)
-																				 
+  
   counter=counter+1
 }
 
@@ -217,7 +217,7 @@ dataClickstream<-cbind(dataClickstream,u_id)
 
 ## ===================================================== ##
 
-															
+
 
 
 ######### Retaining relevant columns, renaming columns and writing to CSV file##############
