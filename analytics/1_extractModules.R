@@ -1,11 +1,26 @@
 ## ===================================================== ##
-# Title:        Extraction tool for edX MOOC module sequence (from JSON data file) ####
+# Title:  Extraction tool for edX MOOC module sequence (from JSON data file) ####
+#
+# Copyright 2017 Krishna Madhavan
+# 
+#     Licensed under the Apache License, Version 2.0 (the "License");
+#     you may not use this file except in compliance with the License.
+#     You may obtain a copy of the License at
+#     
+#     http://www.apache.org/licenses/LICENSE-2.0
+#     
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.
+#
 #
 #
 # Author(s):    Taylor Williams
 # Institution:  Purdue University
 # 
-# Project:      
+# Project:      EdX data pipeline for clustering analytics
 # 
 # Description:  For their course sequencing, edX provides a jumbled (yet structured) JSON file. 
 #               As provided it is not in a useful form for our analyzing user engagement with the course.  
@@ -95,7 +110,7 @@ WorkingDirectoryCheck <- function(expectedFile) {
 ######### Check for correct working directory ########## 
 #check the current working direcotry, inform user if incorrect and stop running script
 if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
-  cat("The current working directory is NOT CORRECT.  
+  message("The current working directory is NOT CORRECT.  
       Please set it to the directory containing the R scripts before reruning script.\n")
   
   #have user set the working directory
