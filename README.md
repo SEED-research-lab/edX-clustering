@@ -3,10 +3,10 @@ edX Course Usage clustering Pipeline
 _&lt;<https://tzwilliams.github.io/edX-clustering/>&gt;_
 _&lt;<https://github.com/tzwilliams/edX-clustering>&gt;_
 
-
+This project is still being actively developed.  As is, the code is highly experimental and will need to be cleaned before production use.
 
 ## Environment Setup
-1) At presant this pipeline is designed to work within the RStudio IDE (https://www.rstudio.com/).  You will need to either install R and RStudio or use an online version of RStudio.  An online version is available for free on nanoHUB.org (https://nanohub.org/resources/rstudio).
+1) At presant this pipeline is designed to work within the RStudio IDE (https://www.rstudio.com/).  You will need to either install R and RStudio or use an online version of RStudio.  Alternatively, an online version is available for free on nanoHUB.org (https://nanohub.org/resources/rstudio); however, the following instructions may need to be slightly modified if using the online version.
 
 ## Instructions for using the package
 1)	Create a working folder.  
@@ -27,7 +27,7 @@ _&lt;<https://github.com/tzwilliams/edX-clustering>&gt;_
 
 
 ## Copyright
- Copyright 2017 Krishna Madhavan
+ Copyright 2017 Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
  
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
