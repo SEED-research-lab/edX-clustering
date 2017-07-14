@@ -3,7 +3,7 @@
 # Project:      edX data pipeline for course user clustering analytics
 #               https://tzwilliams.github.io/edX-clustering/
 # 
-# Copyright 2017 Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
+# Copyright 2017 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
 #     you may not use this file except in compliance with the License.
@@ -19,9 +19,10 @@
 #
 #
 #
-# Author(s):    Taylor Williams
-# Institution:  Purdue University
-# 
+# Authors:      Krishna Madhavan (1), Kerrie Douglas (2), 
+#               Doipayan Roy (2), and Taylor Williams (2)
+# Affiliations: (1) Microsoft, (2) Purdue University
+#  
 # Description:  For their course sequencing, edX provides a jumbled (yet structured) JSON file. 
 #               As provided it is not in a useful form for our analyzing user engagement with the course.  
 #               This algorythm creates an ordered csv file with 

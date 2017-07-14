@@ -1,5 +1,7 @@
 edX Course Usage Clustering Pipeline
 ==============
+Authors: Krishna Madhavan (1), Kerrie Douglas (2), Doipayan Roy (2), and Taylor Williams (2)
+Affiliations: (1) Microsoft, (2) Purdue University
 _&lt;<https://tzwilliams.github.io/edX-clustering/>&gt;_
 _&lt;<https://github.com/tzwilliams/edX-clustering>&gt;_
 
@@ -10,12 +12,17 @@ This project is still being actively developed.  As is, the code is highly exper
 
 ## Instructions for using the package
 1)	Create a working folder.  
-1)  Download the source code from GitHub.  Extract it into the working directory created above. 
-1)	You will need access to 3 edX datafiles.  You may move these into your working directory if you wish (although this is not necessary).  The generic filename structures of the files you need are: (UniversityX)-(course_name)-xxxxxx-courseware_studentmodule-prod-analytics.sql, (UniversityX)-(course_name)-xxxxxx-auth_userprofile-prod-analytics.sql, and (UniversityX)-(course_name)-xxxxxx-course_structure-prod-analytics.json
+
+1)  Download the source code from GitHub as a zip file.  Extract the zip file into the working directory created above. 
+
+1)	You will additionally need access to 3 edX datafiles.  You may move these into your working directory if you wish (although this is not necessary).  The generic filename structures of the files you need are: (UniversityX)-(course_name)-xxxxxx-courseware_studentmodule-prod-analytics.sql, (UniversityX)-(course_name)-xxxxxx-auth_userprofile-prod-analytics.sql, and (UniversityX)-(course_name)-xxxxxx-course_structure-prod-analytics.json
+
 1)  Open the "edX-clustering.Rproj" file found within the root directory of the gitHUB download.  This should launch RStudio (if working in the desktop).  You will see RStudio informing you of packrat packages being installed--this install may take some time the first time you open the project.
 
 1)  Execute the "PipelineInitator.R" file either by using the RStudio Console command `source("PipelineInitiator.R")` or by opening the file in RStudio and clicking on ‘Source file...’ in the ‘Code’ menu.  This R script will sequentially call the individual R scripts which constitute the pipeline.  Follow the directions on the console (you will be asked for the location of the data files--more than once for some files).  Be aware some processing steps may require multiple minutes to complete.
+
 1)  When asked in the Console, enter a description of the course and data (e.g., edX, naono515x, Data from 2015.11.15), select the clustering technique, and select the user group to cluster.  The program will recommend one or more clusters based on the elbow plot and/or gap statistics; choose the number of clusters. The cluster plot will be generated using the clustering technique and number of clusters desired by the user.  The resulting cluster visualizations will be in the subdirectory '/analytics/3_ClusteringOutput' within your working directory.
+
 1)  If the pipeline completes successfully, `**** Clustering pipeline complete! ****` will display in the Console.
 
 
@@ -30,7 +37,7 @@ This project is still being actively developed.  As is, the code is highly exper
 
 
 ## Copyright
- Copyright 2017 Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
+ Copyright 2017 Krishna Madhavan
  
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
