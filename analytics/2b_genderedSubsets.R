@@ -3,7 +3,7 @@
 # Project:      edX data pipeline for course user clustering analytics
 #               https://tzwilliams.github.io/edX-clustering/
 # 
-# Copyright 2017 Krishna Madhavan
+# Copyright 2017 Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
 #     you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@
 #                   Added timer to track script execution time
 #                   Commented dependancies on "progress" package. 
 #                   Added in more basic (package independant) progress indicator
+#     2017.07.14.   Minor code updates; added copyright information
 ## ===================================================== ##
 
 
