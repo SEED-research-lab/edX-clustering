@@ -122,7 +122,7 @@ source("R/file-structure-functions.R")
 
 
 #start a timer to track how long the script takes to execute
-start <-  proc.time() #save the time (to compute ellapsed time of loop)
+start <-  proc.time() #save the time (to compute ellapsed time of script)
 
 
 
@@ -263,7 +263,7 @@ write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), x =
 # beepr::beep(sound = 10)
 
 #print the amount of time the script required
-cat("\n\n\nScript processing time details (in sec):\n")
+cat("\n\n\nScript (2_Preprocessing.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
 rm(list=ls())   #Clear environment variables

@@ -25,6 +25,10 @@ Please note that this project is still under active development.  As is, the cod
 
 1)  When asked in the Console, enter a description of the course and data (e.g., edX, naono515x, Data from 2015.11.15), select the clustering technique, and select the user group to cluster.  The program will recommend one or more clusters based on the elbow plot and/or gap statistics; choose the number of clusters. The cluster plot will be generated using the clustering technique and number of clusters desired by the user.  The resulting cluster visualizations will be in the subdirectory '/analytics/3_ClusteringOutput' within your working directory.
 
+1)  If the cluster chart was successfully created `**** Cluster graph created! ****` will display in the Console.
+
+1)  The program will ask if you would like to create additional cluster graphs from this data (e.g., using a different cluster method, a different user subset, or a different number of clusters).  The cluster code (`3_Clustering.R`) will execute again if told 'Y', otherwise the pipeline will complete and exit.
+
 1)  If the pipeline completes successfully, `**** Clustering pipeline complete! ****` will display in the Console.
 
 
