@@ -7,7 +7,7 @@ Affiliations: (1) Microsoft, (2) Purdue University
 _&lt;<https://tzwilliams.github.io/edX-clustering/>&gt;_
 _&lt;<https://github.com/tzwilliams/edX-clustering>&gt;_
 
-This project is still being actively developed.  As is, the code is highly experimental and will need to be cleaned before production use.
+Please note that this project is still under active development.  As is, the code is highly experimental and will need to be cleaned before production use.
 
 ## Environment Setup
 1) At present this pipeline is designed to work within the RStudio IDE (https://www.rstudio.com/).  You will need to either install R and RStudio or use an online version of RStudio.  Alternatively, an online version is available for free on nanoHUB.org (https://nanohub.org/resources/rstudio); however, the following instructions may need to be slightly modified if using the online version.
@@ -31,10 +31,15 @@ This project is still being actively developed.  As is, the code is highly exper
 
 ### Notes:
 1)  If you encounter an error before the script completes you will need to rerun the `PipelineInitiator.R' script after resetting your working directory to the directory containing the `PipelineInitiator.R' file using the `setwd("working_directory_path")` command (replace "working_directory_path" with the correct path within quotes).
+
 1)  If you see an error like `Error in loadNamespace(name) : there is no package called ‘e1071’`, a package did not properly install.  To correct this type `install.packages("e1071")` in the Console (replacing "e1071"--quotes included--with the package indicated in the error message).
+
 1)	Depending on the size of the clickstream file, number of modules and clustering algorithm chosen, generating the cluster plots from raw data can take anywhere from a few minutes to more than 20 minutes.
+
 1)	The code is designed such that if there are modules missing in the module_order_file.csv file, the clustering will ignore the missing modules. In other words, if, by error, the module_order_file.csv does not have every module in the course, the missing modules will not be included in the clustering graph.
+
 1) 	The code is designed such that a module will not be included in the clustering graph if it was never clicked on by any user.  Some courses have modules which cannot be interacted with by the users. 
+
 1)	There are some internal parameters in the clustering process that have been set to static values in the code. Normally, the user will not have the freedom to change these values.  Choosing these parameters require a good understanding of the data and clustering techniques. Should the user want to change these values, it can be done by modifying relevant parts of the code.
 
 
