@@ -3,7 +3,7 @@
 # Project:      edX data pipeline for course user clustering analytics
 #               https://tzwilliams.github.io/edX-clustering/
 # 
-# Copyright 2017 Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
+# Copyright 2017 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
 #     you may not use this file except in compliance with the License.
@@ -19,8 +19,9 @@
 #
 #
 #
-# Author(s):    Taylor Williams, Doipayan Roy
-# Institution:  Purdue University
+# Authors:      Krishna Madhavan (1), Kerrie Douglas (2), 
+#               Doipayan Roy (2), and Taylor Williams (2)
+# Affiliations: (1) Microsoft, (2) Purdue University
 # 
 # Description:  Fields of interest in clickstream data are: student_id, module_number and time
 #				User data is read as the dataFrame object user_data from user_profile.sql file
