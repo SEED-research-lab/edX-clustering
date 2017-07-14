@@ -1,6 +1,8 @@
 ## ===================================================== ##
 # Title:        Functions for file-structure needs in edX clustering pipeline ####
-#
+# Project:      edX data pipeline for course user clustering analytics
+#               https://tzwilliams.github.io/edX-clustering/
+# 
 # Copyright 2017 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,11 +18,8 @@
 #     limitations under the License.
 #
 #
-#
 # Author(s):    Taylor Williams
 # Institution:  Purdue University
-# 
-# Project:      EdX data pipeline for clustering analytics
 # 
 # Description:  []
 # 
