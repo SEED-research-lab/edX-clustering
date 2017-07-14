@@ -119,7 +119,7 @@ source("R/file-structure-functions.R")
 
 
 #start a timer to track how long the script takes to execute
-scriptStart <-  proc.time() #save the time (to compute ellapsed time of loop)
+scriptStart <-  proc.time() #save the time (to compute ellapsed time of script)
 
 
 
@@ -212,6 +212,7 @@ for(ID in maleID_List)
 }
 cat("\nDone!\n")
 #print the amount of time the previous loop required
+cat("\n\n\nMale learner subset processing time details (in sec):\n")
 print(proc.time() - start)
 
 
@@ -246,6 +247,7 @@ for(ID in femaleID_List)
 }
 cat("\nDone!\n")
 #print the amount of time the previous loop required
+cat("\n\n\nFemale learner subset processing time details (in sec):\n")
 print(proc.time() - start)
 
 
@@ -320,7 +322,7 @@ write.csv(x = noAccessMales,   file = file.path(subDirPath, "noAccess_males_UIDs
 # beepr::beep(sound = 10)
 
 #print the amount of time the script required
-cat("\n\n\nScript processing time details (in sec):\n")
+cat("\n\n\nScript (2b_genderedSubsets.R) processing time details (in sec):\n")
 print(proc.time() - scriptStart)
 
 rm(list=ls())   #Clear environment variables
