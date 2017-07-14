@@ -3,7 +3,7 @@
 # Project:      edX data pipeline for course user clustering analytics
 #               https://tzwilliams.github.io/edX-clustering/
 # 
-# Copyright 2017 Krishna Madhavan
+# Copyright 2017 Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
 #     you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@
 #
 # Feature wishlist:  (*: planned but not complete)
 #                   *pass selected data filepaths between sourced scripts
+#                   *remove unnecessisary packages from the PackRat library
 ## ===================================================== ##
 
 
