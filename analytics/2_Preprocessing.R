@@ -1,6 +1,8 @@
 ## ===================================================== ##
 # Title:        Main Preprocessing of Clickstream Data ####
-#
+# Project:      edX data pipeline for course user clustering analytics
+#               https://tzwilliams.github.io/edX-clustering/
+# 
 # Copyright 2017 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,8 +21,6 @@
 #
 # Author(s):    Doipayan Roy, Taylor Williams
 # Institution:  Purdue University
-# 
-# Project:      EdX data pipeline for clustering analytics
 # 
 # Description:  Clickstream data is read as the dataFrame object named raw_data
 #               Fields of interest in clickstream data are: student_id, module_id and created
@@ -91,15 +91,18 @@ WorkingDirectoryCheck <- function(expectedFile) {
 
 
 ######### Check for correct working directory ########## 
-#check the current working direcotry, inform user if incorrect and stop running script
-if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
-  cat("The current working directory is NOT CORRECT.  
-      Please set it to the directory containing the R scripts before reruning script.\n")
+#check for correct expected working directory, inform user if incorrect and stop running script
+current.dir <- getwd()
+thisFile = "2_Preprocessing.R"
+expectedFile = file.path(thisFile)
+
+if(!WorkingDirectoryCheck(expectedFile)){
+  message("\nThe current working directory is NOT CORRECT.
+          It is currently set to '", current.dir, "'
+          Please set it to the directory containing the '", thisFile, 
+          "' file and rerun this script.\n")
   
-  #have user set the working directory
-  # beepr::beep(sound = 10)   #notify user to provide input
-  # InteractiveSetWD()
-  
+  #stop running current script
   break
 }
 

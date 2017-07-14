@@ -1,6 +1,8 @@
 ## ===================================================== ##
 # Title:        Clustering users based on boolean course module interaction ####
-#
+# Project:      edX data pipeline for course user clustering analytics
+#               https://tzwilliams.github.io/edX-clustering/
+# 
 # Copyright 2017 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,12 +46,10 @@
 #                   Added timer to track script execution time
 #                   Code optimizations
 #                   
-# Feature wishlist:
+# Feature wishlist:  (*: planned but not complete)
 #                   *Comment out dependancies on "progress" package
 #                   *Add in more basic (package independant) progress indicator
 #                   *add option to generate all plots (All clustering techniques, all users subsets)
-#
-#     *: planned but not complete
 ## ===================================================== ##
 
 
@@ -98,15 +98,18 @@ WorkingDirectoryCheck <- function(expectedFile) {
 
 
 ######### Check for correct working directory ########## 
-#check the current working direcotry, inform user if incorrect and stop running script
-if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
-  cat("The current working directory is NOT CORRECT.  
-      Please set it to the directory containing the R scripts before reruning script.\n")
+#check for correct expected working directory, inform user if incorrect and stop running script
+current.dir <- getwd()
+thisFile = "3_Clustering.R"
+expectedFile = file.path(thisFile)
+
+if(!WorkingDirectoryCheck(expectedFile)){
+  message("\nThe current working directory is NOT CORRECT.
+          It is currently set to '", current.dir, "'
+          Please set it to the directory containing the '", thisFile, 
+          "' file and rerun this script.\n")
   
-  #have user set the working directory
-  #beepr::beep(sound = 10)   #notify user to provide input
-  # InteractiveSetWD()
-  
+  #stop running current script
   break
 }
 

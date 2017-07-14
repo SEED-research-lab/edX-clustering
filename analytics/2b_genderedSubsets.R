@@ -1,6 +1,8 @@
 ## ===================================================== ##
 # Title:        Gendered subset extraction, optional additional preprocessing #####
-#
+# Project:      edX data pipeline for course user clustering analytics
+#               https://tzwilliams.github.io/edX-clustering/
+# 
 # Copyright 2017 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,8 +21,6 @@
 #
 # Author(s):    Taylor Williams, Doipayan Roy
 # Institution:  Purdue University
-# 
-# Project:      EdX data pipeline for clustering analytics
 # 
 # Description:  Fields of interest in clickstream data are: student_id, module_number and time
 #				User data is read as the dataFrame object user_data from user_profile.sql file
@@ -89,15 +89,18 @@ WorkingDirectoryCheck <- function(expectedFile) {
 
 
 ######### Check for correct working directory ########## 
-#check the current working direcotry, inform user if incorrect and stop running script
-if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
-  cat("The current working directory is NOT CORRECT.  
-      Please set it to the directory containing the R scripts before reruning script.\n")
+#check for correct expected working directory, inform user if incorrect and stop running script
+current.dir <- getwd()
+thisFile = "2b_genderedSubsets.R"
+expectedFile = file.path(thisFile)
+
+if(!WorkingDirectoryCheck(expectedFile)){
+  message("\nThe current working directory is NOT CORRECT.
+          It is currently set to '", current.dir, "'
+          Please set it to the directory containing the '", thisFile, 
+          "' file and rerun this script.\n")
   
-  #have user set the working directory
-  # beepr::beep(sound = 10)   #notify user to provide input
-  # InteractiveSetWD()
-  
+  #stop running current script
   break
 }
 
