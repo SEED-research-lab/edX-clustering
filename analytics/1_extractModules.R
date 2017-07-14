@@ -1,6 +1,8 @@
 ## ===================================================== ##
-# Title:  Extraction tool for edX MOOC module sequence (from JSON data file) ####
-#
+# Title:        Extraction tool for edX MOOC module sequence ####
+# Project:      edX data pipeline for course user clustering analytics
+#               https://tzwilliams.github.io/edX-clustering/
+# 
 # Copyright 2017 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,8 +21,6 @@
 #
 # Author(s):    Taylor Williams
 # Institution:  Purdue University
-# 
-# Project:      EdX data pipeline for clustering analytics
 # 
 # Description:  For their course sequencing, edX provides a jumbled (yet structured) JSON file. 
 #               As provided it is not in a useful form for our analyzing user engagement with the course.  
@@ -69,6 +69,30 @@ rm(list=ls())
 
 
 ######### Internal functions ########## 
+#Function: Recursive child search to build the course heirarchy
+ChildSearch <- function(data, courseHierarchy, curModuleIndex, hierarchicalLvl) {
+  #store the number of children the current module has
+  numChildren <- length(data[[curModuleIndex]][["children"]])
+  
+  #go one level deeper if the current Module has children
+  if(numChildren > 0){
+    #locate the next child and see if it has any children itself
+    for(j in 1:numChildren){
+      curChildIndex <- match(data[[curModuleIndex]][["children"]][j], moduleNames)
+      
+      ###store the data (ID, display name, lvl)
+      #concatenate matching module names into the course hierarchy (using rbind)
+      courseHierarchy <- rbind(courseHierarchy,
+                               c(names(data[curChildIndex]),
+                                 data[[curChildIndex]][["metadata"]]["display_name"], hierarchicalLvl))
+      courseHierarchy <- ChildSearch(data, courseHierarchy, curChildIndex, hierarchicalLvl+1)
+    } 
+  }
+  
+  return(courseHierarchy)
+}
+
+
 #Function: Interactively select working directory (OS independant, but not available for RStudio Server)
 InteractiveSetWD <- function() {
   cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
@@ -91,7 +115,6 @@ WorkingDirectoryCheck <- function(expectedFile) {
   #set directory variables
   curDir <- getwd()
   
-  
   if(file.exists(file.path(curDir, expectedFile))){
     #if file does exists in the current WD, exit the funtion returning TRUE
     return(TRUE)
@@ -108,15 +131,18 @@ WorkingDirectoryCheck <- function(expectedFile) {
 
 
 ######### Check for correct working directory ########## 
-#check the current working direcotry, inform user if incorrect and stop running script
-if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
-  message("The current working directory is NOT CORRECT.  
-      Please set it to the directory containing the R scripts before reruning script.\n")
+#check for correct expected working directory, inform user if incorrect and stop running script
+current.dir <- getwd()
+thisFile = "1_extractModules.R"
+expectedFile = file.path(thisFile)
+
+if(!WorkingDirectoryCheck(expectedFile)){
+  message("\nThe current working directory is NOT CORRECT.
+          It is currently set to '", current.dir, "'
+          Please set it to the directory containing the '", thisFile, 
+          "' file and rerun this script.\n")
   
-  #have user set the working directory
-  # beepr::beep(sound = 10)   #notify user to provide input
-  # InteractiveSetWD()
-  
+  #stop running current script
   break
 }
 
@@ -124,7 +150,6 @@ if(!WorkingDirectoryCheck(expectedFile = "1_extractModules.R")){
 ######### External function sourcing ########## 
 #load external functions
 source("R/file-structure-functions.R")
-source("R/extractModules-functions.R")
 
 
 
