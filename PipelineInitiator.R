@@ -95,7 +95,8 @@ source("2_Preprocessing.R")
 source("2b_genderedSubsets.R")
 source("3_Clustering.R")
 
-#retun working directory to where it began when the script was called
+#return working directory to where it began when the script was called
 setwd(orig.dir)
 
-
+#Indicate pipeline completion
+message("\n**** Clustering pipeline complete! ****\n")
