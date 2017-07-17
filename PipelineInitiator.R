@@ -19,9 +19,8 @@
 #
 #
 #
-# Authors:      Krishna Madhavan (1), Kerrie Douglas (2), 
-#               Doipayan Roy (2), and Taylor Williams (2)
-# Affiliations: (1) Microsoft, (2) Purdue University
+# Authors:      Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
+# Affiliation:  Purdue University
 # 
 # Description:  Initiates the clustering pipeline, sequentally calling the pipeline scripts
 #               and providing continuity between them.
@@ -90,14 +89,50 @@ source("R/file-structure-functions.R")
 
 
 ######### Main ########## 
+
+#start a timer to track how long the pipeline takes to execute
+start <-  proc.time() #save the time (to compute ellapsed time of pipeline)
+
 #source the pipeline script files
 source("1_extractModules.R")
 source("2_Preprocessing.R")
 source("2b_genderedSubsets.R")
 source("3_Clustering.R")
+message("\n**** Cluster graph created! ****\n")
+
+
+#ask user if additional cluster charts are desired, if so run '3_Clustering.R' again
+repeat{
+  #beepr::beep(sound = 10)   #notify user to provide input
+  continueClustering <- readline(prompt="Would you like to create another cluster graph from this data? (Y/N): ");
+  
+  #if user selected to create an additional cluster graph
+  if(continueClustering == "y" || continueClustering == "Y"){  
+    source("3_Clustering.R")
+    message("\n**** Cluster graph created! ****\n")
+  }
+  else if(continueClustering == "n" || continueClustering == "N"){  
+    break
+  }
+  else{
+    message("Please enter either 'Y' or 'N'.\n")
+  }
+  
+  #repeat unless if user indicated to end
+}
+
 
 #return working directory to where it began when the script was called
 setwd(orig.dir)
 
+
+#print the amount of time the script required
+cat("\n\n\nPipeline processing time details (in sec):\n")
+print(proc.time() - start)
+
 #Indicate pipeline completion
 message("\n**** Clustering pipeline complete! ****\n")
+
+#Clear environment variables
+rm(list=ls())   
+

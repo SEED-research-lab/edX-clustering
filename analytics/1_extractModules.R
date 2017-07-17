@@ -19,9 +19,8 @@
 #
 #
 #
-# Authors:      Krishna Madhavan (1), Kerrie Douglas (2), 
-#               Doipayan Roy (2), and Taylor Williams (2)
-# Affiliations: (1) Microsoft, (2) Purdue University
+# Authors:      Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
+# Affiliation:  Purdue University
 #  
 # Description:  For their course sequencing, edX provides a jumbled (yet structured) JSON file. 
 #               As provided it is not in a useful form for our analyzing user engagement with the course.  
@@ -162,7 +161,7 @@ source("R/file-structure-functions.R")
 
 
 #start a timer to track how long the script takes to execute
-start <-  proc.time() #save the time (to compute ellapsed time of loop)
+start <-  proc.time() #save the time (to compute ellapsed time of script)
 
 
 ######### Import course structure JSON file data #####
@@ -315,7 +314,7 @@ write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
 # beepr::beep(sound = 10)
 
 #print the amount of time the script required
-cat("\n\n\nScript processing time details (in sec):\n")
+cat("\n\n\nScript (1_extractModules.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
 rm(list=ls())   #Clear environment variables

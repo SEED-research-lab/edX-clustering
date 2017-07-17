@@ -19,10 +19,9 @@
 #
 #
 #
-# Authors:      Krishna Madhavan (1), Kerrie Douglas (2), 
-#               Doipayan Roy (2), and Taylor Williams (2)
-# Affiliations: (1) Microsoft, (2) Purdue University
-# 
+# Authors:      Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
+# Affiliation:  Purdue University
+#  
 # Description:  Clickstream data is read as the dataFrame object named raw_data
 #               Fields of interest in clickstream data are: student_id, module_id and created
 #               Module data is read as the dataFrame object named module_markers
@@ -122,7 +121,7 @@ source("R/file-structure-functions.R")
 
 
 #start a timer to track how long the script takes to execute
-start <-  proc.time() #save the time (to compute ellapsed time of loop)
+start <-  proc.time() #save the time (to compute ellapsed time of script)
 
 
 
@@ -263,7 +262,7 @@ write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), x =
 # beepr::beep(sound = 10)
 
 #print the amount of time the script required
-cat("\n\n\nScript processing time details (in sec):\n")
+cat("\n\n\nScript (2_Preprocessing.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
 rm(list=ls())   #Clear environment variables
