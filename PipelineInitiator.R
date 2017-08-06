@@ -22,19 +22,27 @@
 # Authors:      Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams
 # Affiliation:  Purdue University
 # 
-# Description:  Initiates the clustering pipeline, sequentally calling the pipeline scripts
+# Description:  Initiates the clustering pipeline, sequentially calling the pipeline scripts
 #               and providing continuity between them.
-# 
-# Package dependancies: [none]
+#               
+# File input stack: 
+#       {org}-{course}-{date}-course_structure-prod-analytics.json        (source: edX)
+#       {org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql (source: edX)
+#       {org}-{course}-{date}-auth_userprofile-prod-analytics.sql         (source: edX)
+#       
+# Package dependencies: [none]
 #
 # Changelog:
 #     2017.07.14.   Initial version
+#     2017.08.06.   Update to comments; spell check
 #     
 #
-# Feature wishlist:  (*: planned but not complete)
-#                   *pass selected data filepaths between sourced scripts
-#                   *remove unnecessisary packages from the PackRat library
+# Feature wish list:  (*: planned but not complete)
+#                   * have user provide paths to the edX data files here (once)
+#                   * pass selected data file paths between sourced scripts
+#                   * remove unnecessary packages from the PackRat library
 ## ===================================================== ##
+
 
 
 
@@ -91,9 +99,9 @@ source("R/file-structure-functions.R")
 ######### Main ########## 
 
 #start a timer to track how long the pipeline takes to execute
-start <-  proc.time() #save the time (to compute ellapsed time of pipeline)
+start <-  proc.time() #save the time (to report the pipeline's running time at the end of the script)
 
-#source the pipeline script files
+#source (run) the pipeline script files in sequence
 source("1_extractModules.R")
 source("2_Preprocessing.R")
 source("2b_genderedSubsets.R")
@@ -127,7 +135,7 @@ setwd(orig.dir)
 
 
 #print the amount of time the script required
-cat("\n\n\nPipeline processing time details (in sec):\n")
+cat("\n\n\nPipeline processing runtime details (in sec):\n")
 print(proc.time() - start)
 
 #Indicate pipeline completion
