@@ -24,7 +24,7 @@
 #  
 # Description:  For their course sequencing, edX provides a jumbled (yet structured) JSON file. 
 #               As provided it is not in a useful form for our analyzing user engagement with the course.  
-#               This algorythm creates an ordered csv file with 
+#               This algorithm creates an ordered csv file with 
 #               (1) edX's cryptic UID: Module_ID. 
 #               (2) the provided human-readable text description of the module.  
 #               (3) an ordinal listing of the children of each module--that is 
@@ -34,7 +34,12 @@
 #                   a "3" for the chapter's children's children, and so on.
 #               (4) a sequential numbering of the modules.
 # 
-# Package dependancies: jsonlite, readr, [tcltk, beepr]
+# File input stack: 
+#       {org}-{course}-{date}-course_structure-prod-analytics.json        (source: edX)
+#       {org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql (source: edX)
+# 
+# 
+# Package dependencies: jsonlite, readr, [tcltk, beepr]
 #
 # Changelog:
 #     2017.03.10.   Initial distributed version
@@ -42,26 +47,27 @@
 #                     Distributed internally to MOOC research group through Dropbox
 #     2017.03.10.   Transitioned code identifying "course" as the highest level 
 #                     (rather than the previously used "chapter"). This was done to (1) clean up 
-#                     the code logic and (2) to take advanage of the chapters being properly 
+#                     the code logic and (2) to take advantage of the chapters being properly 
 #                     ordered in the "course" module.
-#                   Modified output csv filename to contain the origional JSON filename. 
+#                   Modified output csv filename to contain the original JSON filename. 
 #     2017.03.22.   Minor updates to improve clarity
 #     2017.03.30.   Removed all modules from courseHierarchy that were never clicked by ANY user
 #     2017.04.05.   Automated generation of module_order_file.csv to feed directly into Preprossing.r. 
-#                             Saving deleted modules into a seperate csv file for examinateion
+#                             Saving deleted modules into a separate csv file for examination
 #     2017.04.11.   Changed file selection to a GUI file browser. 
 #                             Direct read in from sql clickstream file eliminates the external conversion from SQL to CSV
 #     2017.04.20.   Fixed csv export bug if a module title contains a comma 
 #                             Added section headings
-#     2017.05.02.   Created output files placed into a seperate subdirectory
+#     2017.05.02.   Created output files placed into a separate subdirectory
 #     2017.05.03.   Put subdirectory and file checking code into functions
 #     2017.05.08.   Code cleaning, header update
 #                   Audio notification for user input and script completion
 #     2017.05.09.   Added filename check of user provided files (with override option)
 #     2017.05.11.   Extracted possible functions to external files
-#     2017.05.18.   Removed dependancies on beepr (for compatibility with RStudio server)
+#     2017.05.18.   Removed dependencies on beepr (for compatibility with RStudio server)
 #     2017.05.25.   Added timer to track script execution time
 #     2017.07.14.   Minor code updates; added copyright information
+#     2017.08.06.   Update to comments; spell check
 ## ===================================================== ##
 
 
@@ -70,7 +76,7 @@ rm(list=ls())
 
 
 ######### Internal functions ########## 
-#Function: Recursive child search to build the course heirarchy
+#Function: Recursive child search to build the course hierarchy
 ChildSearch <- function(data, courseHierarchy, curModuleIndex, hierarchicalLvl) {
   #store the number of children the current module has
   numChildren <- length(data[[curModuleIndex]][["children"]])
@@ -94,11 +100,11 @@ ChildSearch <- function(data, courseHierarchy, curModuleIndex, hierarchicalLvl) 
 }
 
 
-#Function: Interactively select working directory (OS independant, but not available for RStudio Server)
+#Function: Interactively select working directory (OS independent, but not available for RStudio Server)
 InteractiveSetWD <- function() {
   cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
   setwd('~')
-  #tcltk package provides an OS independant way to select a folder
+  #tcltk package provides an OS independent way to select a folder
   library(tcltk)
   #setting the arguments (see package documentation for details)
   .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
@@ -117,7 +123,7 @@ WorkingDirectoryCheck <- function(expectedFile) {
   curDir <- getwd()
   
   if(file.exists(file.path(curDir, expectedFile))){
-    #if file does exists in the current WD, exit the funtion returning TRUE
+    #if file does exists in the current WD, exit the function returning TRUE
     return(TRUE)
   } else{
     #if the file does not exist in the current WD, return FALSE
@@ -161,11 +167,11 @@ source("R/file-structure-functions.R")
 
 
 #start a timer to track how long the script takes to execute
-start <-  proc.time() #save the time (to compute ellapsed time of script)
+start <-  proc.time() #save the time (to compute elapsed time of script)
 
 
 ######### Import course structure JSON file data #####
-#Locate the JSON course structure data file to process (with sanatized user input)
+#Locate the JSON course structure data file to process (with sanitized user input)
 repeat{
   cat("\n*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
   #beepr::beep(sound = 10)   #notify user to provide input
@@ -188,7 +194,7 @@ repeat{
 data <- jsonlite::fromJSON(filenameJSON)
 
 
-#Locate the clickstream data file to process (with sanatized user input)
+#Locate the clickstream data file to process (with sanitized user input)
 repeat{
   cat("\n*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
   #beepr::beep(sound = 10)   #notify user to provide input
@@ -211,7 +217,7 @@ repeat{
 
 ######### Identify course level module #############
 
-#copy the module names into a seperate variable
+#copy the module names into a separate variable
 moduleNames <- names(data)
 
 #create variable to track which level the module should be sorted at (top, child, grandchild, etc)
@@ -234,7 +240,7 @@ for(i in 1:length(moduleNames)){
 
 ######### Initiate recursive search ###############
 
-#initalize variables and initate recursive searching for children
+#initialize variables and initiate recursive searching for children
 #set the current hierarchy level
 hierarchicalLvl <- 0  #course level
 #conduct the recursive child search for each of the chapter level modules. Concatenate the results onto courseHierarchy

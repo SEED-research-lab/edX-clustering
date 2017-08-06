@@ -28,22 +28,29 @@
 #               module_markers contain an integer id for each module, 
 #                 which reflects the sequence in which modules occur in the course
 # 
-# Package dependancies: readr, [tcltk, beepr]
+# 
+# File input stack: 
+#       {org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql (source: edX)
+#       module_order_file.csv (source: pipeline script 1_extractModules.R)
+# 
+# 
+# Package dependencies: readr, [tcltk, beepr]
 #
 # Changelog:
 #     2017.04.13.   Added GUI user selection of Clickstream file
 #                   Retained student_id for output file (it's needed for identifying gendered subsets)
 #     2017.05.02.   Input files read from subdirectory
-#                   Created output files placed into a seperate subdirectory
+#                   Created output files placed into a separate subdirectory
 #     2017.05.03.   Put subdirectory and file checking code into functions
 #     2017.05.08.   Code cleaning, header update
 #                   Audio notification for user input and script completion
 #     2017.05.09.   Added filename check of user provided files (with override option)
 #     2017.05.11.   Extracted possible functions to external files
-#     2017.05.18.   Removed dependancies on beepr (for compatibility with RStudio server)
-#     2017.05.25.   Integrated Doipayan's madifications up through 2017.05.09 
+#     2017.05.18.   Removed dependencies on beepr (for compatibility with RStudio server)
+#     2017.05.25.   Integrated Doipayan's modifications up through 2017.05.09 
 #                   Added timer to track script execution time
 #     2017.07.14.   Minor code updates; added copyright information
+#     2017.08.06.   Update to comments; spell check
 ## ===================================================== ##
 
 
@@ -53,11 +60,11 @@ rm(list=ls())
 
 
 ######### Internal functions ########## 
-#Function: Interactively select working directory (OS independant, but not available for RStudio Server)
+#Function: Interactively select working directory (OS independent, but not available for RStudio Server)
 InteractiveSetWD <- function() {
   cat("IMPORTANT: Select your working directory. If a folder choice window doesn't appear, look for it behind your current window.")
   setwd('~')
-  #tcltk package provides an OS independant way to select a folder
+  #tcltk package provides an OS independent way to select a folder
   library(tcltk)
   #setting the arguments (see package documentation for details)
   .tcl.objv  <- .Tcl.args.objv('-initialdir "~" -title "Choose a working directory"')
@@ -77,7 +84,7 @@ WorkingDirectoryCheck <- function(expectedFile) {
   
   
   if(file.exists(file.path(curDir, expectedFile))){
-    #if file does exists in the current WD, exit the funtion returning TRUE
+    #if file does exists in the current WD, exit the function returning TRUE
     return(TRUE)
   } else{
     #if the file does not exist in the current WD, return FALSE
@@ -121,19 +128,20 @@ source("R/file-structure-functions.R")
 
 
 #start a timer to track how long the script takes to execute
-start <-  proc.time() #save the time (to compute ellapsed time of script)
+start <-  proc.time() #save the time (to compute elapsed time of script)
 
 
 
 ######### Reading files, converting to dataframe object, eliminating irrelevant columns#####
 
-#Locate the clickstream data file to process (with sanatized user input)
+#Locate the clickstream data file to process (with sanitized user input)
 repeat{
   cat("\n*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
   #beepr::beep(sound = 10)   #notify user to provide input
   filenameClickstream <- file.choose()
   
-  filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameClickstream, expectedFileEnding = "courseware_studentmodule-prod-analytics.sql")
+  filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameClickstream, 
+                                           expectedFileEnding = "courseware_studentmodule-prod-analytics.sql")
   
   if(filenameCheckResult == "matched"){
     #filename matched expected string, continue with script
