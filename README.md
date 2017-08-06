@@ -18,13 +18,14 @@ This pipieline requires three edX-provided data files in the input stack.  These
     
 The following table shows where in the pipeline these files are used.  (Note that each of the pipeline steps also generates data files which are used in subserquent steps of the pipeline.  These internally generated files are not included in the table.)
 
-Pipeline step | edX file(s) required 
--------------- | ------------------ 
-0) Pipeline Initiator | none | 
-1) Extract Modules | `{org}-{course}-{date}-course_structure-prod-analytics.json` <br> `{org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql`
-2) Preprocessing | `{org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql` 
-2b) Gendered Subsets | `{org}-{course}-{date}-auth_userprofile-prod-analytics.sql`  
-3) Clustering | none | 
+| Pipeline step | edX file(s) required | Data used from file |
+| -------------- | ------------------ | ------------- |
+| 0) Pipeline Initiator | none |  |
+| 1) Extract Modules | `{org}-{course}-{date}-course_structure-prod-analytics.json` | Course module order |
+| . | `{org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql`  | Removing modules with no accesses events  |
+| 2) Preprocessing | `{org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql` | Did student X accessed module Y? |
+| 2b) Gendered Subsets | `{org}-{course}-{date}-auth_userprofile-prod-analytics.sql` | User reported gender |
+| 3) Clustering | none |  |
 
 
 
