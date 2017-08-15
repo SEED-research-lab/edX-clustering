@@ -131,7 +131,9 @@ repeat{
 
 
 #return working directory to where it began when the script was called
-setwd(orig.dir)
+# TW:bug: this variable appears to be deleted with the rm(list=ls()) commands within the 
+#         pipeline.  Find a more robust way to save this directory.
+# setwd(orig.dir)
 
 
 #print the amount of time the script required

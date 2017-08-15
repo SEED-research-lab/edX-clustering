@@ -140,10 +140,16 @@ dataClickstream <- readr::read_csv(preprocessedDataFilePath)
 
 #User selection of the USER PROFILE data file to process (with sanatized user input)
 repeat{
-  cat("\n*****Select the SQL USER PROFILE data file.*****\n  (It should end with 'auth_userprofile-prod-analytics.sql')")
+  prompt <- "*****Select the SQL USER PROFILE data file.*****  (It should end with 'auth_userprofile-prod-analytics.sql')"
+  cat("\n", prompt)
   #beepr::beep(sound = 10)   #notify user to provide input
-  filenameUserProfile <- file.choose()
   
+  # filenameUserProfile <- file.choose() #commented out, but may still be needed if working in RStudio server environment
+  filenameUserProfile <- tcltk::tk_choose.files(caption = prompt, 
+                                                default = "auth_userprofile-prod-analytics.sql",
+                                                filter = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
+                                                multi = FALSE)
+
   filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameUserProfile, 
                                            expectedFileEnding = "auth_userprofile-prod-analytics.sql")
   

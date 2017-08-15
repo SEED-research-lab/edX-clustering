@@ -56,6 +56,7 @@
 #                   Code optimizations
 #     2017.07.14.   Minor code updates; added copyright information
 #     2017.08.06.   Update to comments; spell check
+#     2017.08.10.   Update to figure titles
 #                   
 # Feature wish list:  (*: planned but not complete)
 #                   *Comment out dependencies on "progress" package
@@ -170,8 +171,8 @@ repeat{
 repeat{
   #beepr::beep(sound = 10)   #notify user to provide input
   userSubsetSelection <- readline(prompt="Enter '1' for all learners, 
-                                  '2' or 'f' for female learners, 
-                                  '3' or 'm' for male learners: ");
+      '2' or 'f' for female learners, 
+      '3' or 'm' for male learners: ");
   
   if(userSubsetSelection == 1){  #dataset: all learners
     dataSetName <- "all learners"
@@ -459,7 +460,7 @@ if(clusterTypeSelection==1)
        xlim = c(0,length(unique(data_preprocessed$module_number))),
        ylim = c(0,max(data_access$temp_student_id)),
        xlab = "Module number", ylab = "Users",
-       main = paste0("Users clustered by courseware access (", dataSetName,")\n", 
+       main = paste0("Users clustered by course module interaction (", dataSetName,")\n", 
                      clusterTypeName, " (", K, " clusters)\n",
                      dataSetDescription))
   par(new=T)
@@ -700,7 +701,7 @@ if(clusterTypeSelection==1)
   #set the plot options (including descriptive subtitle)
   plot(1,pch=".",col="white",xlim=c(0,length(unique(data_preprocessed$module_number))),
        ylim=c(0,max(data_access$temp_student_id)),xlab="Module number",ylab="Users",
-       main = paste0("Users clustered by courseware access (", dataSetName,")\n", 
+       main = paste0("Users clustered by course module interaction (", dataSetName,")\n", 
                      clusterTypeName, " (", K, " clusters)\n",
                      dataSetDescription))
   par(new=T)
