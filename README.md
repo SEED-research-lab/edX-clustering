@@ -29,8 +29,7 @@ The following table shows where in the pipeline these files are used.  (Note tha
 | 3) Clustering | none |  |
 
 ### Pipeline Output Files
-At the conclusion of the pipeline, the cluster charts will be in the folder `~/output/3_ClusteringOutput/` (where "~" is the working directory).  The Pipeline will create several other files within the "output" directory; most of these are used in the subsequent steps of the pipeline but be of little interest.  
-
+At the conclusion of the pipeline, the cluster charts will be pdf files in the  `~/analytics/3_ClusteringOutput/` folder (where "~" is the working directory).  The Pipeline will create several other files within the "output" directory; most of these are used in the subsequent steps of the pipeline but be of little interest.  
 
 ## Environment setup
 At present this pipeline is designed to work within the RStudio IDE (https://www.rstudio.com/).  You will need to either install R and RStudio or use an online version of RStudio.  Alternatively, an online version is available for free on nanoHUB.org (https://nanohub.org/resources/rstudio); however, the following instructions may need to be slightly modified if using the online version.
@@ -58,7 +57,7 @@ At present this pipeline is designed to work within the RStudio IDE (https://www
 
 1)  If the pipeline completes successfully, `**** Clustering pipeline complete! ****` will display in the Console.
 
-1)  The cluster charts can be found in the folder `~/output/3_ClusteringOutput/` (where "~" is the working directory).
+1)  The cluster charts will be pdf files in the  `~/analytics/3_ClusteringOutput/` folder (where "~" is the working directory).
 
 
 
