@@ -9,14 +9,15 @@ _&lt;<https://github.com/tzwilliams/edX-clustering>&gt;_
 Please note that this project is still under active development.  As is, the code is highly experimental and will need to be cleaned before production use.
 
 
-## Required data files
-This pipieline requires three edX-provided data files in the input stack.  These files will have the following generic filename structures:  
+## Files
+### Required Input Data Files
+This pipeline requires three edX-provided data files in the input stack.  These files will have the following generic filename structures:  
 
-* `{org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql` (Courseware; contatins records of which course modeules each student has interacted)
+* `{org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql` (Courseware; contains records of which course modeules each student has interacted)
 * `{org}-{course}-{date}-auth_userprofile-prod-analytics.sql` (User profile; contains user provided demographic information)
 * `{org}-{course}-{date}-course_structure-prod-analytics.json` (Course structure; contains which modules belong together and in what sequence)
     
-The following table shows where in the pipeline these files are used.  (Note that each of the pipeline steps also generates data files which are used in subserquent steps of the pipeline.  These internally generated files are not included in the table.)
+The following table shows where in the pipeline these files are used.  (Note that each of the pipeline steps also generates data files which are used in subsequent steps of the pipeline.  These internally generated files are not included in the table.)
 
 | Pipeline step | edX file(s) required | Data used from file |
 | -------------- | ------------------ | ------------- |
@@ -27,13 +28,14 @@ The following table shows where in the pipeline these files are used.  (Note tha
 | 2b) Gendered Subsets | `{org}-{course}-{date}-auth_userprofile-prod-analytics.sql` | User reported gender |
 | 3) Clustering | none |  |
 
-
+### Pipeline Output Files
+At the conclusion of the pipeline, the cluster charts will be pdf files in the  `~/analytics/3_ClusteringOutput/` folder (where "~" is the working directory).  The Pipeline will create several other files within the "output" directory; most of these are used in the subsequent steps of the pipeline but be of little interest.  These other files will also be overwritten if the pipeline is run again (the clustering charts will not be overwritten unless an identical description of the data being processed is given within the pipeline).  If you would like to preserve the additional files, copy all the output directories to a save location before rerunning the pipeline.
 
 ## Environment setup
 At present this pipeline is designed to work within the RStudio IDE (https://www.rstudio.com/).  You will need to either install R and RStudio or use an online version of RStudio.  Alternatively, an online version is available for free on nanoHUB.org (https://nanohub.org/resources/rstudio); however, the following instructions may need to be slightly modified if using the online version.
 
 ## Instructions for using the package
-1)	Create a working folder.  
+1)	Create a working directory.  
 
 1)  Download the source code from GitHub as a zip file.  Extract the zip file into the working directory created above. 
 
@@ -43,7 +45,7 @@ At present this pipeline is designed to work within the RStudio IDE (https://www
     * `{org}-{course}-{date}-course_structure-prod-analytics.json`
       
 
-1)  Open the `edX-clustering.Rproj` file found within the root directory of the gitHUB download.  This should launch RStudio (if working in the desktop).  You will see RStudio informing you of packrat packages being installed--this install may take some time the first time you open the project.
+1)  Open the `edX-clustering.Rproj` file found within the root directory of the gitHUB download.  This should launch RStudio (if working in the desktop).  You will see RStudio informing you of packrat packages being installed--this install may take some time the first time you open the project.  It is possible that packrat will require some additional installation steps (you will be informed if this is the case).
 
 1)  Execute the `PipelineInitator.R` file either by using the RStudio Console command `source("PipelineInitiator.R")` or by opening the file in RStudio and clicking on ‘Source file...’ in the ‘Code’ menu.  This R script will sequentially call the individual R scripts which constitute the pipeline.  Follow the directions on the console (you will be asked for the location of the data files--more than once for some files).  Be aware some processing steps may require multiple minutes to complete.
 
@@ -55,10 +57,12 @@ At present this pipeline is designed to work within the RStudio IDE (https://www
 
 1)  If the pipeline completes successfully, `**** Clustering pipeline complete! ****` will display in the Console.
 
+1)  The cluster charts will be pdf files in the  `~/analytics/3_ClusteringOutput/` folder (where "~" is the working directory).
+
 
 
 ### Notes:
-1)  If you encounter an error before the script completes you will need to rerun the `PipelineInitiator.R' script after resetting your working directory to the directory containing the `PipelineInitiator.R' file using the `setwd("working_directory_path")` command (replace "working_directory_path" with the correct path within quotes).
+1)  If you encounter an error before the script completes you will need to rerun the `PipelineInitiator.R` script after resetting your working directory to the directory containing the `PipelineInitiator.R` file using the `setwd("working_directory_path")` command (replace "working_directory_path" with the correct path within quotes).
 
 1)  If you see an error like `Error in loadNamespace(name) : there is no package called ‘e1071’`, a package did not properly install.  To correct this type `install.packages("e1071")` in the Console (replacing "e1071"--quotes included--with the package indicated in the error message).
 

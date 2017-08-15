@@ -39,7 +39,7 @@
 #       {org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql (source: edX)
 # 
 # 
-# Package dependencies: jsonlite, readr, [tcltk, beepr]
+# Package dependencies: jsonlite, readr, tcltk
 #
 # Changelog:
 #     2017.03.10.   Initial distributed version
@@ -173,10 +173,14 @@ start <-  proc.time() #save the time (to compute elapsed time of script)
 ######### Import course structure JSON file data #####
 #Locate the JSON course structure data file to process (with sanitized user input)
 repeat{
-  cat("\n*****Select the JSON COURSE STRUCTURE file.*****\n  (It should end with 'course_structure-prod-analytics.json')")
+  prompt <- "*****Select the JSON COURSE STRUCTURE file.*****  (It should end with 'course_structure-prod-analytics.json')"
+  cat("\n", prompt)
   #beepr::beep(sound = 10)   #notify user to provide input
-  filenameJSON <- file.choose()
-  
+  # filenameJSON <- file.choose() #commented out, but may still be needed if working in RStudio server environment
+  filenameJSON <- tcltk::tk_choose.files(caption = prompt, 
+                                         default = "course_structure-prod-analytics.json",
+                                         filter = matrix(c("JSON", ".json"), 1, 2, byrow = TRUE),
+                                         multi = FALSE)
   filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameJSON, expectedFileEnding = "course_structure-prod-analytics.json")
   
   if(filenameCheckResult == "matched"){
@@ -196,9 +200,15 @@ data <- jsonlite::fromJSON(filenameJSON)
 
 #Locate the clickstream data file to process (with sanitized user input)
 repeat{
-  cat("\n*****Select the SQL CLICKSTREAM data file.*****\n  (It should end with 'courseware_studentmodule-prod-analytics.sql')")
+  prompt <- "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')"
+  cat("\n", prompt)
   #beepr::beep(sound = 10)   #notify user to provide input
-  filenameClickstream <- file.choose()
+  
+  # filenameClickstream <- file.choose() #commented out, but may still be needed if working in RStudio server environment
+  filenameClickstream <- tcltk::tk_choose.files(caption = prompt, 
+                                         default = "courseware_studentmodule-prod-analytics.sql",
+                                         filter = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
+                                         multi = FALSE)
   
   filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameClickstream, expectedFileEnding = "courseware_studentmodule-prod-analytics.sql")
   

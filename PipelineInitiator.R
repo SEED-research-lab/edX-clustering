@@ -129,14 +129,14 @@ repeat{
   #repeat unless if user indicated to end
 }
 
-
-#return working directory to where it began when the script was called
-setwd(orig.dir)
-
-
-#print the amount of time the script required
-cat("\n\n\nPipeline processing runtime details (in sec):\n")
-print(proc.time() - start)
+# TW:bug: this variable appears to be deleted with the rm(list=ls()) commands within the 
+#         pipeline.  Find a more robust way to save this directory and the start time.
+  #return working directory to where it began when the script was called
+  # setwd(orig.dir)
+  
+  #print the amount of time the script required
+  # cat("\n\n\nPipeline processing runtime details (in sec):\n")
+  # print(proc.time() - start)
 
 #Indicate pipeline completion
 message("\n**** Clustering pipeline complete! ****\n")
