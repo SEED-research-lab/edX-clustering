@@ -1,4 +1,5 @@
-edX Course Usage Clustering Pipeline
+edX Course Usage Clustering Pipeline  
+[![DOI](https://zenodo.org/badge/89016040.svg)](https://zenodo.org/badge/latestdoi/89016040)
 ==============
 Authors:      Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams  
 Affiliation:  Purdue University
@@ -8,6 +9,8 @@ _&lt;<https://github.com/tzwilliams/edX-clustering>&gt;_
 
 Please note that this project is still under active development.  As is, the code is highly experimental and will need to be cleaned before production use.
 
+## Description
+A data pipeline for creating cluster graphs of user engagement with an edX MOOC (Massive Open Online Course). 
 
 ## Files
 ### Required Input Data Files
