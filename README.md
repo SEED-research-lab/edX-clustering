@@ -10,7 +10,7 @@ _&lt;<https://github.com/tzwilliams/edX-clustering>&gt;_
 Please note that this project is still under active development.  As is, the code is highly experimental and will need to be cleaned before production use.
 
 ## Description
-A data pipeline for creating cluster graphs of user engagement with an edX MOOC (Massive Open Online Course). 
+A data pipeline for creating cluster graphs of user engagement with an edX MOOC (Massive Open Online Course).
 
 ## Files
 ### Required Input Data Files
