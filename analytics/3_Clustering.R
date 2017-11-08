@@ -436,59 +436,11 @@ if(clusterTypeSelection==1)
   #Ordering data_access in increasing order of number of unique accesses of students
   data_access <- data_access[order(data_access$number_accesses,decreasing=F),]
   
-  ## **Ordering clusters ####
-  #Ordering clusters in decreasing order of accesses, heaviest user cluster comes first 
-  #  cluster_order contains the cluster_id's ordered in increasing order of access activity
-  source("../R/OrderClusters.R")
-  cluster_order <- OrderClusters(data_access = data_access, 
-                                 K = K)
-  
-  
-  ## **Plotting clusters ####
-  source("../R/PlotClusters.R")
-  PlotClusters(clusterTypeName = clusterTypeName, 
-               K = K, 
-               data_preprocessed = data_preprocessed, 
-               data_access = data_access, 
-               access_list =  access_list, 
-               cluster_order = cluster_order, 
-               dataSetName = dataSetName, 
-               dataSetDescription = dataSetDescription)
 
-  
-  ## Kruskal-Wallis test to show that clustering is statistically significant
-  cat("\n\nThe results of hypothesis testing on access events between clusters: ")
-  Krus_Wal <- kruskal.test(data_access$number_accesses~data_access$cluster_id,data=data_access)
-  print(paste("P-value for Kruskal-Wallis test for access events between clusters is ",Krus_Wal$p.value,"..."),quote=FALSE)
-  #Mann-Whitney-Wilcoxon test to test if clusters are pair-wise distinct 
-  counter <- 0
-  for(i in 1:(K-1))
-  {
-    for(j in (i+1):K)
-    {
-      data_subset <- subset(data_access,data_access$cluster_id==i | data_access$cluster_id==j)
-      Mann_Whit <- wilcox.test(data_subset$number_accesses~data_subset$cluster_id,data=data_subset)
-      if(Mann_Whit$p.value>0.01)
-      {
-        print(paste("Clusters ",i," and ",j," are not statistically significant (using p-value threshold of 0.01)..."),quote=F)
-      }
-      else
-      {
-        counter <- counter+1
-      }
-    }
-  }
-  
-  #(K choose 2) pairings, if counter = (K choose 2), all clusters are pairwise significant
-  if(counter==(K*(K-1)/2))
-  {
-    print("All clusters are pairwise distinct, i.e. has p-value less than 0.01...",quote=F)
-  }
-  
-  #Clearing all variables except those needed later
-  rm(list=setdiff(ls(), c('initialWD_save', 'userSubsetSelection', 'preprocessedDataFilePath', 
-                          'data_access', 'data_preprocessed', 'clusterTypeSelection', 'clusterTypeName',
-                          'dataSetDescription', 'dataSetName', 'start')))
+  # #Clearing all variables except those needed later
+  # rm(list=setdiff(ls(), c('initialWD_save', 'userSubsetSelection', 'preprocessedDataFilePath', 
+  #                         'data_access', 'data_preprocessed', 'clusterTypeSelection', 'clusterTypeName',
+  #                         'dataSetDescription', 'dataSetName', 'start')))
   
   ######### If c-means (fuzzy means) chosen #####################################################
 } else if(clusterTypeSelection==2)
@@ -560,32 +512,42 @@ if(clusterTypeSelection==1)
   #Ordering data_access in increasing order of number of unique accesses of students
   data_access <- data_access[order(data_access$number_accesses,decreasing=F),]
   
-  ## **Ordering clusters ####
-  #Ordering clusters in decreasing order of accesses, heaviest user cluster comes first 
-  #  cluster_order contains the cluster_id's ordered in increasing order of access activity
-  source("../R/OrderClusters.R")
-  cluster_order <- OrderClusters(data_access = data_access, 
-                                 K = K)
-  
-  
-  ## **Plotting clusters ####
-  source("../R/PlotClusters.R")
-  PlotClusters(clusterTypeName = clusterTypeName, 
-               K = K, 
-               data_preprocessed = data_preprocessed, 
-               data_access = data_access, 
-               access_list =  access_list, 
-               cluster_order = cluster_order, 
-               dataSetName = dataSetName, 
-               dataSetDescription = dataSetDescription)
-  
-  
-  #Kruskal-Wallis test to show that clustering is statistically significant		   
+
+} else
+{
+  print("Invalid choice! Please enter 1 or 2...")
+}
+
+## Ordering clusters ####
+#Ordering clusters in decreasing order of accesses, heaviest user cluster comes first 
+#  cluster_order contains the cluster_id's ordered in increasing order of access activity
+source("../R/OrderClusters.R")
+cluster_order <- OrderClusters(data_access = data_access, 
+                               K = K)
+
+
+## Plotting clusters ####
+source("../R/PlotClusters.R")
+PlotClusters(clusterTypeName = clusterTypeName, 
+             K = K, 
+             data_preprocessed = data_preprocessed, 
+             data_access = data_access, 
+             access_list =  access_list, 
+             cluster_order = cluster_order, 
+             dataSetName = dataSetName, 
+             dataSetDescription = dataSetDescription)
+
+
+
+
+# Significance tests ####
+  # Kruskal-Wallis test to show that clustering is statistically significant
   cat("\n\nThe results of hypothesis testing on access events between clusters: ")
   
   Krus_Wal <- kruskal.test(data_access$number_accesses~data_access$cluster_id,data=data_access)
   cat("\nP-value for Kruskal-Wallis test for access events between clusters is ",Krus_Wal$p.value,"...")
-  #Mann-Whitney-Wilcoxon test to test if clusters are pair-wise distinct 
+  
+  # Mann-Whitney-Wilcoxon test to test if clusters are pair-wise distinct
   counter=0
   for(i in 1:(K-1))
   {
@@ -608,12 +570,6 @@ if(clusterTypeSelection==1)
   {
     cat("\nAll clusters are pairwise distinct, i.e. has p-value less than 0.01...")
   }
-  
-} else
-{
-  print("Invalid choice! Please enter 1 or 2...")
-}
-
 
 
 ## Restore the working directory from when the script began
