@@ -30,7 +30,7 @@
 #     2017.11.08.    initial function extraction from pipeline with minor updates
 ## ===================================================== ##
 
-PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, access_list, cluster_order, dataSetName, dataSetDescription) {
+PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, cluster_order, dataSetName, dataSetDescription) {
   ## **Plotting clusters ####
   ## Arguments
   ##    clusterTypeName : name of clustering technique (e.g., k-means or c-means)
