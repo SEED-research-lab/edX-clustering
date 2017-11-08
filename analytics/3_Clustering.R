@@ -57,6 +57,7 @@
 #     2017.07.14.   Minor code updates; added copyright information
 #     2017.08.06.   Update to comments; spell check
 #     2017.08.10.   Update to figure titles
+#     2017.11.08.   Moved ordering clusters and plotting clusters in to external functions
 #                   
 # Feature wish list:  (*: planned but not complete)
 #                   *Comment out dependencies on "progress" package
@@ -129,11 +130,15 @@ if(!WorkingDirectoryCheck(expectedFile)){
 ######### External function sourcing ########## 
 #load external functions
 source("R/file-structure-functions.R")
+source("R/OrderClusters.R")
+source("R/PlotClusters.R")
 
 
 
 # end of script setup
 ## *************************************** #####
+
+## MAIN ####
 # beginning of script functionality
 
 
@@ -432,144 +437,25 @@ if(clusterTypeSelection==1)
   data_access <- data_access[order(data_access$number_accesses,decreasing=F),]
   
   ## **Ordering clusters ####
-  #Ordering clusters in decreasing order of accesses, heaviest user cluster comes first and so on
-  #  mean_accesses is a list of the average number of accesses per user in each cluster
+  #Ordering clusters in decreasing order of accesses, heaviest user cluster comes first 
   #  cluster_order contains the cluster_id's ordered in increasing order of access activity
-  counter <- 1
-  mean_accesses <- c()
-  cluster_order <- c()
-  for(i in 1:K)
-  {
-    temp <- subset(data_access,data_access$cluster_id==i)
-    mean_accesses <- c(mean_accesses,mean(temp$number_accesses))
-  }
-  mean_accesses_sorted <- sort(mean_accesses,decreasing=F)
-  for(i in 1:K)
-  {
-    cluster_order <- c(cluster_order,which(mean_accesses==mean_accesses_sorted[i]))
-  }
+  source("../R/OrderClusters.R")
+  cluster_order <- OrderClusters(data_access = data_access, 
+                                 K = K)
+  
   
   ## **Plotting clusters ####
-  print("Plotting clusters...")
-  x=1:length(unique(data_preprocessed$module_number))
-  pdf.options(reset = TRUE)
-  #set the pdf name (descriptive)
-  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "k-means_cluster_plot (", K, ").pdf"))
-  #set the plot options (including descriptive subtitle)
-  plot(x = 1,pch = ".",col="white",
-       xlim = c(0,length(unique(data_preprocessed$module_number))),
-       ylim = c(0,max(data_access$temp_student_id)),
-       xlab = "Module number", ylab = "Users",
-       main = paste0("Users clustered by course module interaction (", dataSetName,")\n", 
-                     clusterTypeName, " (", K, " clusters)\n",
-                     dataSetDescription))
-  par(new=T)
-  for(k in cluster_order)
-  {
-    cat("\nPlotting cluster:", k)
-    #Subset of students belonging to cluster_id=k
-    temp <- subset(data_access,data_access$cluster_id==k)
-    
-    #for loop iterating over every clickstream event in subset obtained above
-    for(j in 1:nrow(temp))
-    {
-      stud_id <- temp$temp_student_id[j]
-      temp2 <- subset(data_preprocessed,data_preprocessed$temp_student_id==stud_id)
-      access_list <- rep(NA,length(unique(data_preprocessed$module_number)))
-      for(i in 1:length(access_list))
-      {
-        if(i %in% temp2$module_number)
-        {
-          access_list[i] <- i
-        }
-      }
-      
-      #plot each cluster (from 1 to a maximum of 10) using a different color
-      ##TW:??: ask DR why the colors end up randomized.  I think it'd be better if they were consistent across graphs
-      if(k==1)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="red",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==2)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="blue",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==3)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="black",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==4)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="green",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==5)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="yellow",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==6)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="pink",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==7)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="orange",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==8)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="brown",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==9)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="darkgrey",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==10)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="cyan",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-    }
-  }
-  dev.off()
-  cat("\nDone!")
+  source("../R/PlotClusters.R")
+  PlotClusters(clusterTypeName = clusterTypeName, 
+               K = K, 
+               data_preprocessed = data_preprocessed, 
+               data_access = data_access, 
+               access_list =  access_list, 
+               cluster_order = cluster_order, 
+               dataSetName = dataSetName, 
+               dataSetDescription = dataSetDescription)
+
+  
   ## Kruskal-Wallis test to show that clustering is statistically significant
   cat("\n\nThe results of hypothesis testing on access events between clusters: ")
   Krus_Wal <- kruskal.test(data_access$number_accesses~data_access$cluster_id,data=data_access)
@@ -675,136 +561,24 @@ if(clusterTypeSelection==1)
   data_access <- data_access[order(data_access$number_accesses,decreasing=F),]
   
   ## **Ordering clusters ####
-  #Ordering clusters in decreasing order of accesses, heaviest user cluster comes first and so on
-  #  mean_accesses is a list of the average number of accesses per user in each cluster
+  #Ordering clusters in decreasing order of accesses, heaviest user cluster comes first 
   #  cluster_order contains the cluster_id's ordered in increasing order of access activity
-  counter <- 1
-  mean_accesses <- c()
-  cluster_order <- c()
-  for(i in 1:K)
-  {
-    temp <- subset(data_access,data_access$cluster_id==i)
-    mean_accesses <- c(mean_accesses,mean(temp$number_accesses))
-  }
-  mean_accesses_sorted <- sort(mean_accesses,decreasing=F)
-  for(i in 1:K)
-  {
-    cluster_order <- c(cluster_order,which(mean_accesses==mean_accesses_sorted[i]))
-  }
+  source("../R/OrderClusters.R")
+  cluster_order <- OrderClusters(data_access = data_access, 
+                                 K = K)
+  
   
   ## **Plotting clusters ####
-  print("Plotting clusters...")
-  x=1:length(unique(data_preprocessed$module_number))
-  pdf.options(reset = TRUE)
-  #set the pdf name (descriptive)
-  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "c-means_cluster_plot (", K, ").pdf"))
-  #set the plot options (including descriptive subtitle)
-  plot(1,pch=".",col="white",xlim=c(0,length(unique(data_preprocessed$module_number))),
-       ylim=c(0,max(data_access$temp_student_id)),xlab="Module number",ylab="Users",
-       main = paste0("Users clustered by course module interaction (", dataSetName,")\n", 
-                     clusterTypeName, " (", K, " clusters)\n",
-                     dataSetDescription))
-  par(new=T)
-  for(k in cluster_order)
-  {
-    cat("\nPlotting cluster:", k)
-    temp=subset(data_access,data_access$cluster_id==k)
-    for(j in 1:nrow(temp))
-    {
-      stud_id <- temp$temp_student_id[j]
-      temp2 <- subset(data_preprocessed,data_preprocessed$temp_student_id==stud_id)
-      access_list <- rep(NA,length(unique(data_preprocessed$module_number)))
-      for(i in 1:length(access_list))
-      {
-        if(i %in% temp2$module_number)
-        {
-          access_list[i] <- i
-        }
-      }
-      if(k==1)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="red",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==2)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="blue",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==3)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="black",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==4)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="green",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==5)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="yellow",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==6)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="pink",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==7)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="orange",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==8)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="brown",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==9)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="darkgrey",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-      else if(k==10)
-      {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="cyan",
-             xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
-        par(new=T)
-        counter <- counter+1
-      }
-    }
-  }
-  dev.off()
-  cat("\nDone!")
+  source("../R/PlotClusters.R")
+  PlotClusters(clusterTypeName = clusterTypeName, 
+               K = K, 
+               data_preprocessed = data_preprocessed, 
+               data_access = data_access, 
+               access_list =  access_list, 
+               cluster_order = cluster_order, 
+               dataSetName = dataSetName, 
+               dataSetDescription = dataSetDescription)
+  
   
   #Kruskal-Wallis test to show that clustering is statistically significant		   
   cat("\n\nThe results of hypothesis testing on access events between clusters: ")
