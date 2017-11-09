@@ -38,6 +38,28 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
   ##    data_access : 
   ## Return
   ##    none
+      
+  # SETTINGS
+  # check number of users being plotted and adjust settings appropriately  
+  #   "-": dash
+  #   ".": point, but can't scale
+  #   15 : filled square
+  #   16 : filled circle
+  #   18 : filled diamond
+  # (prior versions of the plotting function used `pointType <- "."`` and `pointScalingFactor <- 1``)
+  if(nrow(data_access) < 600) {
+    pointType <- 18   # diamond helps fill the vertical space when the number of users is lower
+    pointScalingFactor <- .3
+  }else{
+    #diamonds are very faint at this scale
+    pointType <- 18
+    pointScalingFactor <- .1
+    
+    # #dash are very faint at this scale,  also, dashs mislead the horizontal fill of the data (indicate more modules were interacted with than were)
+    # pointType <- "-"  # dash works better for larger number of users since it is less likely to overlap vertically
+    # pointScalingFactor <- .3  #.1 gives no overlap with 1600 users but is very faint
+  }
+  
 
   counter <- 1
   
@@ -79,7 +101,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       ##TW:??: ask DR why the colors end up randomized.  I think it'd be better if they were consistent across graphs
       if(k==1)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="red",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="red", 
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
@@ -87,7 +110,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==2)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="blue",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="blue",
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
@@ -95,7 +119,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==3)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="black",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="black",
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
@@ -103,7 +128,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==4)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="green",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="green",
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
@@ -111,7 +137,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==5)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="yellow",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="darkgrey",
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
@@ -119,7 +146,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==6)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="pink",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="pink",
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
@@ -127,7 +155,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==7)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="orange",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="orange",
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
@@ -135,7 +164,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==8)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="brown",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="brown",
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
@@ -143,7 +173,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==9)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="darkgrey",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="yellow",
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
@@ -151,7 +182,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==10)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),pch=".",col="cyan",
+        plot(x=access_list,y=rep(counter,length(access_list)),col="cyan",
+             pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)

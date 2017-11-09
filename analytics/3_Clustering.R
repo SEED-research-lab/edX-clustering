@@ -168,7 +168,7 @@ dataSetDescription <- readline(prompt="Description: ");
 #Choose clustering method (repeating to sanitize user input)
 repeat{
   #beepr::beep(sound = 10)   #notify user to provide input
-  clusterTypeSelection <- readline(prompt="Enter '1' for K-means clustering, '2' for C-means (fuzzy) clustering: ");
+  clusterTypeSelection <- readline(prompt="Enter '1' for K-means clustering, '2' for c-means (fuzzy) clustering: ");
   
   if(clusterTypeSelection == 1 || clusterTypeSelection == 2){  #valid clustering method selected
     #exit loop and continue script
@@ -459,7 +459,7 @@ if(clusterTypeSelection==1)
 {
   
   ##Set label
-  clusterTypeName <- "C-means (fuzzy) clustering"
+  clusterTypeName <- "c-means (fuzzy) clustering"
   
   ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters) ####
   cat("\nGenerating gap plot...")
@@ -549,7 +549,7 @@ PlotClusters(clusterTypeName = clusterTypeName,
              dataSetDescription = dataSetDescription)
 
 ## Saving UserIDs for each cluster ####
-counter <- 1  #a counter for indicating most to least engaged clusters
+counter <- length(cluster_order)  #a counter for indicating most to least engaged clusters
 
 for(k in cluster_order)
 {
@@ -566,7 +566,7 @@ for(k in cluster_order)
               row.names = FALSE)
   }
   
-  counter <- counter + 1
+  counter <- counter - 1
 }
 
 
