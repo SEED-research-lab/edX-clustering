@@ -27,7 +27,8 @@
 # Package dependancies: []
 #
 # Changelog:
-#     2017.11.08.    initial function extraction from pipeline with minor updates
+#     2017.11.08.   initial function extraction from pipeline with minor updates
+#     2017.11.20.   setting plot colors constant
 ## ===================================================== ##
 
 PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, cluster_order, dataSetName, dataSetDescription) {
@@ -53,10 +54,12 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
   }else{
     #diamonds are very faint at this scale
     pointType <- 18
-    pointScalingFactor <- .1
+    pointScalingFactor <- .2
     
-    # #dash are very faint at this scale,  also, dashs mislead the horizontal fill of the data (indicate more modules were interacted with than were)
-    # pointType <- "-"  # dash works better for larger number of users since it is less likely to overlap vertically
+    # #dash are very faint at this scale,  also, dashes mislead the horizontal
+    #     fill of the data (indicate more modules were interacted with than were)
+    # pointType <- "-"  # dash works better for larger number of users since it
+    #                     is less likely to overlap vertically
     # pointScalingFactor <- .3  #.1 gives no overlap with 1600 users but is very faint
   }
   
@@ -77,6 +80,16 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
                      clusterTypeName, " (", K, " clusters)\n",
                      dataSetDescription))
   par(new=T)
+  
+  #cet a counter to select which color the current cluster will plot as
+  colorCounter <- length(cluster_order)
+  #define the color palate (See https://www.r-bloggers.com/choosing-colour-palettes-part-ii-educated-choices/)
+  colorWheel <- RColorBrewer::brewer.pal(n=10, name = "Dark2")  #some good options: Dark2, Set1, PiYG
+  #set the color order to darkest -> lightest
+  # colorWheel <- sort(colorWheel, decreasing = FALSE)    #useful when working with a monochromatic palate like blues
+    # c("blue", "red", "black", "green", "brown", "cyan", "darkgray", "pink", "orange", "yellow")
+  
+  #plot the k clusters in order of least to most engaged user
   for(k in cluster_order)
   {
     cat("\nPlotting cluster:", k)
@@ -98,10 +111,9 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       
       #plot each cluster (from 1 to a maximum of 10) using a different color
-      ##TW:??: ask DR why the colors end up randomized.  I think it'd be better if they were consistent across graphs
       if(k==1)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="red", 
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -110,7 +122,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==2)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="blue",
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -119,7 +131,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==3)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="black",
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -128,7 +140,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==4)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="green",
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -137,7 +149,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==5)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="darkgrey",
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -146,7 +158,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==6)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="pink",
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -155,7 +167,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==7)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="orange",
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -164,7 +176,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==8)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="brown",
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -173,7 +185,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==9)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="yellow",
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -182,7 +194,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
       }
       else if(k==10)
       {
-        plot(x=access_list,y=rep(counter,length(access_list)),col="cyan",
+        plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
@@ -190,6 +202,9 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
         counter <- counter+1
       }
     }
+    
+    #decrement color counter
+    colorCounter <- colorCounter - 1
   }
   dev.off()
   cat("\nDone plotting!")
