@@ -95,16 +95,22 @@ InteractiveSetWD <- function() {
 #Function: Check to see if the current working directory contains an expected file.  
 # If not then prompt user to select the correct directory
 WorkingDirectoryCheck <- function(expectedFile) {
-  #set directory variables
-  curDir <- getwd()
   
-  
-  if(file.exists(file.path(curDir, expectedFile))){
+  if(file.exists(file.path(getwd(), expectedFile))){
     #if file does exists in the current WD, exit the function returning TRUE
     return(TRUE)
   } else{
-    #if the file does not exist in the current WD, return FALSE
-    return(FALSE)
+    #check for likely locations, set wd automatically if found and return TRUE
+    if(file.exists(file.path(getwd(), "analytics", expectedFile))){
+      setwd(file.path(getwd(), "analytics"))
+      return(TRUE)
+    } else if(file.exists(file.path(dirname(getwd()), expectedFile))){
+      setwd(dirname(getwd()))   #set wd to parent directory of current wd
+      return(TRUE)
+    } else{
+      #return FALSE if the file does not exist in the current WD (or other obvious locations)
+      return(FALSE)
+    }
   }
 }
 
@@ -168,7 +174,7 @@ dataSetDescription <- readline(prompt="Description: ");
 #Choose clustering method (repeating to sanitize user input)
 repeat{
   #beepr::beep(sound = 10)   #notify user to provide input
-  clusterTypeSelection <- readline(prompt="Enter '1' for K-means clustering, '2' for C-means (fuzzy) clustering: ");
+  clusterTypeSelection <- readline(prompt="Enter '1' for K-means clustering, '2' for c-means (fuzzy) clustering: ");
   
   if(clusterTypeSelection == 1 || clusterTypeSelection == 2){  #valid clustering method selected
     #exit loop and continue script
@@ -226,7 +232,9 @@ repeat{
     
     break
   }
-  else if(userSubsetSelection == "m" || userSubsetSelection == "M" || userSubsetSelection == 3){  #dataset: male learners
+  else if(userSubsetSelection == "m" || 
+          userSubsetSelection == "M" || 
+          userSubsetSelection == 3){  #dataset: male learners
     dataSetName <- "male"
     #set subset selection variable to a known value for future use
     userSubsetSelection <- "m"
@@ -459,7 +467,7 @@ if(clusterTypeSelection==1)
 {
   
   ##Set label
-  clusterTypeName <- "C-means (fuzzy) clustering"
+  clusterTypeName <- "c-means (fuzzy) clustering"
   
   ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters) ####
   cat("\nGenerating gap plot...")
@@ -549,7 +557,7 @@ PlotClusters(clusterTypeName = clusterTypeName,
              dataSetDescription = dataSetDescription)
 
 ## Saving UserIDs for each cluster ####
-counter <- 1  #a counter for indicating most to least engaged clusters
+counter <- length(cluster_order)  #a counter for indicating most to least engaged clusters
 
 for(k in cluster_order)
 {
@@ -566,7 +574,7 @@ for(k in cluster_order)
               row.names = FALSE)
   }
   
-  counter <- counter + 1
+  counter <- counter - 1
 }
 
 
@@ -602,7 +610,10 @@ for(k in cluster_order)
     cat("\nAll clusters are pairwise distinct, i.e. has p-value less than 0.01...")
   }
 
-
+## Save the work environment
+save.image(file = paste0("environmentVariables. ", dataSetName, ".RData"), 
+           compress = T)
+  
 ## Restore the working directory from when the script began
 setwd(initialWD_save)
 
