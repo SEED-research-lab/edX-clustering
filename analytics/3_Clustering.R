@@ -232,7 +232,9 @@ repeat{
     
     break
   }
-  else if(userSubsetSelection == "m" || userSubsetSelection == "M" || userSubsetSelection == 3){  #dataset: male learners
+  else if(userSubsetSelection == "m" || 
+          userSubsetSelection == "M" || 
+          userSubsetSelection == 3){  #dataset: male learners
     dataSetName <- "male"
     #set subset selection variable to a known value for future use
     userSubsetSelection <- "m"
@@ -608,7 +610,10 @@ for(k in cluster_order)
     cat("\nAll clusters are pairwise distinct, i.e. has p-value less than 0.01...")
   }
 
-
+## Save the work environment
+save.image(file = paste0("environmentVariables. ", dataSetName, ".RData"), 
+           compress = T)
+  
 ## Restore the working directory from when the script began
 setwd(initialWD_save)
 
