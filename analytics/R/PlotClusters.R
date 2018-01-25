@@ -31,7 +31,9 @@
 #     2017.11.20.   setting plot colors constant
 ## ===================================================== ##
 
-PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, cluster_order, dataSetName, dataSetDescription) {
+PlotClusters <- function(clusterTypeName, K, data_preprocessed, 
+                         data_access, cluster_order, 
+                         dataSetName, dataSetDescription) {
   ## **Plotting clusters ####
   ## Arguments
   ##    clusterTypeName : name of clustering technique (e.g., k-means or c-means)
@@ -81,13 +83,16 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
                      dataSetDescription))
   par(new=T)
   
-  #cet a counter to select which color the current cluster will plot as
+  #set a counter to select which color the current cluster will plot as
   colorCounter <- length(cluster_order)
   #define the color palate (See https://www.r-bloggers.com/choosing-colour-palettes-part-ii-educated-choices/)
   colorWheel <- RColorBrewer::brewer.pal(n=10, name = "Dark2")  #some good options: Dark2, Set1, PiYG
-  #set the color order to darkest -> lightest
-  # colorWheel <- sort(colorWheel, decreasing = FALSE)    #useful when working with a monochromatic palate like blues
-    # c("blue", "red", "black", "green", "brown", "cyan", "darkgray", "pink", "orange", "yellow")
+    ## some other palate options:
+    #set the color order to darkest -> lightest 
+    #  (useful when working with a monochromatic palate like blues)
+    # colorWheel <- sort(colorWheel, decreasing = FALSE)  
+    # colorWheel <- c("blue", "red", "black", "green", "brown", "cyan", 
+    #                 "darkgray", "pink", "orange", "yellow")
   
   #plot the k clusters in order of least to most engaged user
   for(k in cluster_order)
@@ -97,103 +102,91 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed, data_access, clu
     temp <- subset(data_access,data_access$cluster_id==k)
     
     #for loop iterating over every clickstream event in subset obtained above
-    for(j in 1:nrow(temp))
-    {
+    for(j in 1:nrow(temp)){
       stud_id <- temp$temp_student_id[j]
       temp2 <- subset(data_preprocessed,data_preprocessed$temp_student_id==stud_id)
       access_list <- rep(NA,length(unique(data_preprocessed$module_number)))
-      for(i in 1:length(access_list))
-      {
-        if(i %in% temp2$module_number)
-        {
+    
+      for(i in 1:length(access_list)){
+        if(i %in% temp2$module_number){
           access_list[i] <- i
         }
       }
       
       #plot each cluster (from 1 to a maximum of 10) using a different color
-      if(k==1)
-      {
+      if(k==1){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
-      }
-      else if(k==2)
-      {
+        
+      }else if(k==2){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
-      }
-      else if(k==3)
-      {
+        
+      }else if(k==3){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
-      }
-      else if(k==4)
-      {
+        
+      }else if(k==4){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
-      }
-      else if(k==5)
-      {
+        
+      }else if(k==5){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
-      }
-      else if(k==6)
-      {
+        
+      }else if(k==6){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
-      }
-      else if(k==7)
-      {
+        
+      }else if(k==7){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
-      }
-      else if(k==8)
-      {
+        
+      }else if(k==8){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
-      }
-      else if(k==9)
-      {
+        
+      }else if(k==9){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
              ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
-      }
-      else if(k==10)
-      {
+        
+      }else if(k==10){
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
