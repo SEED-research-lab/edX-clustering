@@ -76,16 +76,22 @@ InteractiveSetWD <- function() {
 #Function: Check to see if the current working directory contains an expected file.  
 # If not then prompt user to select the correct directory
 WorkingDirectoryCheck <- function(expectedFile) {
-  #set directory variables
-  curDir <- getwd()
   
-  
-  if(file.exists(file.path(curDir, expectedFile))){
+  if(file.exists(file.path(getwd(), expectedFile))){
     #if file does exists in the current WD, exit the function returning TRUE
     return(TRUE)
   } else{
-    #if the file does not exist in the current WD, return FALSE
-    return(FALSE)
+    #check for likely locations, set wd automatically if found and return TRUE
+    if(file.exists(file.path(getwd(), "analytics", expectedFile))){
+      setwd(file.path(getwd(), "analytics"))
+      return(TRUE)
+    } else if(file.exists(file.path(dirname(getwd()), expectedFile))){
+      setwd(dirname(getwd()))   #set wd to parent directory of current wd
+      return(TRUE)
+    } else{
+      #return FALSE if the file does not exist in the current WD (or other obvious locations)
+      return(FALSE)
+    }
   }
 }
 
