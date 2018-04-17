@@ -36,6 +36,7 @@
 #     R:  preprocessed_data.csv         (source: pipeline script 2_Preprocessing.R)
 #     O:  preprocessed_data_females.csv (source: pipeline script 2b_genderedSubsets.R)
 #     O:  preprocessed_data_males.csv   (source: pipeline script 2b_genderedSubsets.R)
+#     O:  UIDs_to_use.csv               (source: user provided)
 #
 # File outputs:
 #       PDF figures: clustering plot, elbow plot, gap plot
@@ -66,6 +67,7 @@
 #     2017.11.08.   Moved ordering clusters and plotting clusters in to external functions
 #                   Saving CSV files for each cluster with userID values
 #     2018.03.26.   Update to how validation p-values are printed and saved
+#     2018.04.17.   Add option for user to provide a list of UIDs by which to filter the plot
 #
 # Feature wish list:  (*: planned but not complete)
 #                   *Comment out dependencies on "progress" package
@@ -152,10 +154,10 @@ source("R/file-structure-functions.R")
 source("R/OrderClusters.R")
 source("R/PlotClusters.R")
 
-
-
 # end of script setup
 ## *************************************** #####
+
+
 
 ## MAIN ####
 # beginning of script functionality
@@ -174,7 +176,7 @@ dataSetDescription <- readline(prompt="Description: ");
 
 
 
-######### Choose clustering technique #######################################################
+######### Choose clustering technique ##########################################
 #Choose clustering method (repeating to sanitize user input)
 repeat{
   beepr::beep(sound = 10)   #notify user to provide input
@@ -196,7 +198,8 @@ repeat{
   beepr::beep(sound = 10)   #notify user to provide input
   userSubsetSelection <- readline(prompt="Enter '1' for all learners,
       '2' or 'f' for female learners,
-      '3' or 'm' for male learners: ");
+      '3' or 'm' for male learners,
+      '4' or 'c' to provide a custom ID list: ");
 
   if(userSubsetSelection == 1){  #dataset: all learners
     dataSetName <- "all"
@@ -255,6 +258,34 @@ repeat{
 
     break
   }
+  else if(userSubsetSelection == "c" || #dataset: custom learner set
+          userSubsetSelection == "C" ||
+          userSubsetSelection == 4){
+    dataSetName <- "custom learner set"
+    #set subset selection variable to a known value for future use
+    userSubsetSelection <- "c"
+
+    #get UID list from user
+#### v #### HERE #### v #### v #### v #### v ####
+
+#### ^ #### ^^^^ #### ^ #### ^ #### ^ #### ^ #### 
+    
+    #check for preprocessed datafile existance
+    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput",
+                                               filename = "preprocessed_data.csv")
+    #exit script if file not found, otherwise continue
+    ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
+
+    #check for user access datafile existence
+    #TW:bug:the file has not yet been created.  It happens some dozen lines down
+    # 	accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", filename = "access_data_females.csv")
+    # 	#exit script if file not found, otherwise continue
+    #   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    
+    
+    break
+  }
+  
 
   #repeat if none of the conditions were met (i.e., user input was invalid)
 }
