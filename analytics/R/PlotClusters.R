@@ -72,11 +72,13 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
   x=1:length(unique(data_preprocessed$module_number))
   pdf.options(reset = TRUE)
   #set the pdf name (descriptive)
-  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", clusterTypeName, " plot (", K, ").pdf"))
+  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", 
+             clusterTypeName, " plot (", K, ").pdf"))
   #set the plot options (including descriptive subtitle)
-  plot(x = 1,pch = ".",col = "white",
+  plot(x = 1,pch = ".",
+       col = "white",
        xlim = c(0,length(unique(data_preprocessed$module_number))),
-       ylim = c(0,max(data_access$temp_student_id)),
+       ylim = c(0,length(unique(data_access$temp_student_id))),
        xlab = "Module number", ylab = "Users",
        main = paste0("Users clustered by course module interaction (", dataSetName,")\n", 
                      clusterTypeName, " (", K, " clusters)\n",
@@ -118,7 +120,9 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+#ORIG line. del after confirming new version             ylim=c(0,max(data_access$temp_student_id)),
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
         
@@ -126,7 +130,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
         
@@ -134,7 +139,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
         
@@ -142,7 +148,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
         
@@ -150,7 +157,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
         
@@ -158,7 +166,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
         
@@ -166,7 +175,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
         
@@ -174,7 +184,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
         
@@ -182,7 +193,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
         
@@ -190,7 +202,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
         plot(x=access_list,y=rep(counter,length(access_list)),col=colorWheel[colorCounter], 
              pch=pointType, cex = pointScalingFactor, 
              xlim=c(0,length(unique(data_preprocessed$module_number))),
-             ylim=c(0,max(data_access$temp_student_id)),xlab=" ",ylab=" ",axes=F)
+             ylim=c(0,length(unique(data_access$temp_student_id))),
+             xlab=" ",ylab=" ",axes=F)
         par(new=T)
         counter <- counter+1
       }

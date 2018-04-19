@@ -36,7 +36,7 @@
 #     R:  preprocessed_data.csv         (source: pipeline script 2_Preprocessing.R)
 #     O:  preprocessed_data_females.csv (source: pipeline script 2b_genderedSubsets.R)
 #     O:  preprocessed_data_males.csv   (source: pipeline script 2b_genderedSubsets.R)
-#     O:  UIDs_to_use.csv               (source: user provided)
+#     O:  UIDs_to_use.csv               (source: user provided; must have 'student_id' column)
 #
 # File outputs:
 #       PDF figures: clustering plot, elbow plot, gap plot
@@ -195,6 +195,8 @@ repeat{
 #Choose clickstream data(sub)set (repeating to sanitize user input).  With valid input
 #  save the file paths needed later for clustering
 repeat{
+  userIDsToInclude <- as.numeric(NULL)  #create empty list of userIDs
+  
   beepr::beep(sound = 10)   #notify user to provide input
   userSubsetSelection <- readline(prompt="Enter '1' for all learners,
       '2' or 'f' for female learners,
@@ -210,7 +212,7 @@ repeat{
     ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
 
     #check for user access datafile existence
-    #TW:bug:the file has not yet been created.  It happens some dozen lines down
+    #TODO(TW:bug):the file has not yet been created.  It happens some dozen lines down
     #   accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", filename = "access_data.csv")
     # 	#exit script if file not found, otherwise continue
     #   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
@@ -231,7 +233,7 @@ repeat{
     ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
 
     #check for user access datafile existence
-    #TW:bug:the file has not yet been created.  It happens some dozen lines down
+    #TODO(TW:bug):the file has not yet been created.  It happens some dozen lines down
     # 	accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", filename = "access_data_females.csv")
     # 	#exit script if file not found, otherwise continue
     #   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
@@ -246,29 +248,58 @@ repeat{
     #set subset selection variable to a known value for future use
     userSubsetSelection <- "m"
     #check for preprocessed datafile existence
-    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", filename = "preprocessed_data_males.csv")
+    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput",
+                                               filename = "preprocessed_data_males.csv")
     #exit script if file not found, otherwise continue
     ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
 
     #check for user access datafile existence
-    #TW:bug:the file has not yet been created.  It happens some dozen lines down
-    # 	accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", filename = "access_data_males.csv")
+    #TODO(TW:bug):the file has not yet been created.  It happens some dozen lines down
+    # accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", 
+    #                                      filename = "access_data_males.csv")
     # 	#exit script if file not found, otherwise continue
     #   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
 
     break
   }
-  else if(userSubsetSelection == "c" || #dataset: custom learner set
+  else if(userSubsetSelection == "c" || #dataset: custom learner set (user provided)
           userSubsetSelection == "C" ||
           userSubsetSelection == 4){
     dataSetName <- "custom learner set"
     #set subset selection variable to a known value for future use
     userSubsetSelection <- "c"
 
-    #get UID list from user
-#### v #### HERE #### v #### v #### v #### v ####
 
-#### ^ #### ^^^^ #### ^ #### ^ #### ^ #### ^ #### 
+    #get UID list from user
+      #Locate the user list csv data file (with sanitized user input)
+      repeat{
+        prompt <- "*****Select a CSV file with the student_id values to cluster.*****  \n     (The IDs need to be in a column named 'student_id'.)"
+        message("\n", prompt)
+        #beepr::beep(sound = 10)   #notify user to provide input
+        # filenameJSON <- file.choose() #commented out, but may still be needed if working in RStudio server environment
+        filenameUserFilter <- tcltk::tk_choose.files(caption = prompt,
+                                               default = ".csv",
+                                               filter = matrix(c("CSV", ".csv"), 1, 2, byrow = TRUE),
+                                               multi = FALSE)
+        
+        #read in the file, return the column names, 
+        #   check to see if each column matches "student_id", 
+        #   add the boolean results (if a maching column exists the result 
+        #   will be 1, if not the result will be 0)
+        fileContentsCheck <- sum(names(read.csv(filenameUserFilter))=="student_id")
+
+        # continue if the user provided file contains the expected column
+        if(fileContentsCheck == 1){
+          # read list, 
+          userIDsToInclude <- read.csv(filenameUserFilter)$student_id
+          
+          # break repeat loop, and continue with script
+          break
+        }else{
+          #repeat file selection loop
+        }
+      }
+
     
     #check for preprocessed datafile existance
     preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput",
@@ -277,7 +308,7 @@ repeat{
     ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
 
     #check for user access datafile existence
-    #TW:bug:the file has not yet been created.  It happens some dozen lines down
+    #TODO(TW:bug):the file has not yet been created.  It happens some dozen lines down
     # 	accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", filename = "access_data_females.csv")
     # 	#exit script if file not found, otherwise continue
     #   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
@@ -294,10 +325,24 @@ repeat{
 #read in data from the appropriate learner (sub)set
 data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
 
+
+##filter "preprocessed_data.csv" to only users on the UID list
+  if(length(userIDsToInclude)>0){  #retain relevant users 
+                                   #  #retain relevant users (if a custom filter list was provided)(if a custom filter list was provided)
+    data_preprocessed <- data_preprocessed[data_preprocessed$student_id %in% 
+                                             userIDsToInclude,]
+  }
+
+
 ##retain relevant columns
-data_preprocessed <- data_preprocessed[names(data_preprocessed) %in% c("student_id", "temp_student_id","module_number","time")]
+data_preprocessed <- data_preprocessed[names(data_preprocessed) %in% 
+                                         c("student_id", 
+                                           "temp_student_id",
+                                           "module_number",
+                                           "time")]
 ##Ordering dataframe by temp_student_id column
-data_preprocessed <- data_preprocessed[order(data_preprocessed$temp_student_id,decreasing=F),]
+data_preprocessed <- data_preprocessed[order(data_preprocessed$temp_student_id,
+                                             decreasing=F),]
 
 
 
@@ -326,10 +371,9 @@ data_access <- tibble(temp_student_id = as.numeric(),
                       number_accesses = as.numeric(),
                       student_id = as.numeric())
 
-for(i in 1:length(unique(data_preprocessed$temp_student_id))){
-  temp <- subset(data_preprocessed,data_preprocessed$temp_student_id == i)
-  # access_list <- c(access_list,nrow(temp), temp$student_id[1])
-  data_access <- add_row(data_access,
+for(i in unique(data_preprocessed$temp_student_id)){
+    temp <- subset(data_preprocessed,data_preprocessed$temp_student_id == i)
+    data_access <- add_row(data_access,
                          temp_student_id = temp$temp_student_id[1],
                          number_accesses = nrow(temp),
                          student_id = temp$student_id[1])
@@ -338,19 +382,10 @@ cat("\nDone! Saving to file...")
 
 
 #save the appropriate access data to a CSV file
-# if(userSubsetSelection=='m')
-# {
   write.csv(x = data_access,
             file = paste0("access_data. ", dataSetName, ".csv"),
             row.names = FALSE)
-# } else if(userSubsetSelection=='f')
-# {
-#   write.csv(data_access,"access_data_females.csv", row.names = FALSE)
-# } else
-# {
-#   write.csv(data_access,"access_data_all.csv", row.names = FALSE)
-#
-# }
+
 
 ## ===================================================== ##
 #Clearing all variables except those needed later
@@ -388,7 +423,10 @@ if(clusterTypeSelection==1)
   elbow_plot_values <- c()
   for(k in 1:10)
   {
-    K_m <- kmeans(data_access$number_accesses,centers=k,iter.max=50,algorithm="Lloyd")
+    K_m <- kmeans(data_access$number_accesses,
+                  centers=k,
+                  iter.max=50,
+                  algorithm="Lloyd")
     elbow_plot_values <- c(elbow_plot_values,K_m$betweenss/K_m$totss)
   }
   ##Plot elbow plot
@@ -412,7 +450,10 @@ if(clusterTypeSelection==1)
 
   ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters)####
   cat("\nGenerating gap plot...")
-  gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),K.max=10,FUN=kmeans,verbose=FALSE)
+  gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),
+                                    K.max=10,
+                                    FUN=kmeans,
+                                    verbose=FALSE)
   gap_values <- (as.data.frame(gap_statistic$Tab))$gap
   #set the range of x values to include in plot
   x=1:10
@@ -428,7 +469,7 @@ if(clusterTypeSelection==1)
                      dataSetDescription))
   #close the PDF creation connection
   dev.off()
-  cat("\nDone!")
+  cat("\nDone!\n\n")
 
   ## **Make recommendations for cluster number ####
   ##Make recommendation for number of clusters based on elbow plot (once delta is less than 2%)
@@ -449,7 +490,7 @@ if(clusterTypeSelection==1)
   for(i in 2:9)
   {
     if(gap_values[i-1]<gap_values[i] & gap_values[i+1]<gap_values[i])
-      # {			##TW: ??: ask DR why this was removed and only one recommendation is now being provided.  If this is removed then why even solicit user input on number of clusters?  If it is removed then delete the extra variables above the "for".
+      # {			##TODO(TW: ??): ask DR why this was removed and only one recommendation is now being provided.  If this is removed then why even solicit user input on number of clusters?  If it is removed then delete the extra variables above the "for".
       # optimal_clusters=c(optimal_clusters,i)
       # counter <- counter+1
       # }
@@ -506,7 +547,8 @@ if(clusterTypeSelection==1)
 
   ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters) ####
   cat("\nGenerating gap plot...")
-  gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),K.max=10,FUN=kmeans,verbose=FALSE)   #TW:??:for DR??? should kmeans be the FUN used here?  We're in the c-means clustering section
+  gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),
+                                    K.max=10, FUN=kmeans, verbose=FALSE)   #TODO(TW:??):for DR??? should kmeans be the FUN used here?  We're in the c-means clustering section
   gap_values <- (as.data.frame(gap_statistic$Tab))$gap
 
   #Plot gap plot
@@ -530,7 +572,7 @@ if(clusterTypeSelection==1)
   for(i in 2:9)
   {
     if(gap_values[i-1]<gap_values[i] & gap_values[i+1]<gap_values[i])
-      # {    #TW:??: same question for DR as above in k-means section.  Why eliminate the two calculated.  Why give user the choice?
+      # {    #TODO(TW:??): same question for DR as above in k-means section.  Why eliminate the two calculated.  Why give user the choice?
       # optimal_clusters=c(optimal_clusters,i)
       # counter <- counter+1
       # }
@@ -596,16 +638,20 @@ counter <- length(cluster_order)  #a counter for indicating most to least engage
 
 for(k in cluster_order)
 {
-  curClusterUsers <- subset(data_access,data_access$cluster_id==k)  #extract the users who are in this cluster
-  curClusterUsers <- select(curClusterUsers, "temp_student_id", "number_accesses", "student_id")  #only retain necessisary columns
+  #extract the users who are in this cluster
+  curClusterUsers <- subset(data_access,data_access$cluster_id==k)  
+  #only retain necessisary columns
+  curClusterUsers <- select(curClusterUsers, "temp_student_id", "number_accesses", "student_id")  
 
   if(counter == 1) {
     write.csv(x = curClusterUsers,
-              paste0("access_data. ", dataSetName, ". cluster_", counter, " (of ", length(cluster_order), ") (most engaged).csv"),
+              paste0("access_data. ", dataSetName, ". cluster_", 
+                     counter, " (of ", length(cluster_order), ") (most engaged).csv"),
               row.names = FALSE)
   }else {
     write.csv(x = curClusterUsers,
-              paste0("access_data. ", dataSetName, ". cluster_", counter, " (of ", length(cluster_order), ").csv"),
+              paste0("access_data. ", dataSetName, ". cluster_", 
+                     counter, " (of ", length(cluster_order), ").csv"),
               row.names = FALSE)
   }
 
