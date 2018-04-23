@@ -1,4 +1,46 @@
-# 2017.09.20. extracted from 45_
+## ===================================================== ##
+# Title:        Function: display percent complete to console ####
+# Project:      edX data pipeline for course user clustering analytics
+#               https://tzwilliams.github.io/edX-clustering/
+#
+# Copyright 2018 Taylor Williams
+#
+#     Licensed under the Apache License, Version 2.0 (the "License");
+#     you may not use this file except in compliance with the License.
+#     You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.
+#
+#
+#
+# Authors:      Taylor Williams
+# Affiliation:  Purdue University
+#
+# Description: Look at the dataframe being processed and display percent 
+#               complete message for user. To be called from within a lengthy 
+#               processing loop.  The code to copy into the loop is included as
+#               a comment at the beginning of the function below.
+#
+#
+# File input stack (R: required; O: optional): none
+#
+# File outputs: none
+#
+# Package dependencies: none
+#
+# Changelog:
+#     2018.04.22. Initial code
+#
+# Feature wish list:  (*: planned but not complete)
+#                   *
+## ===================================================== ##
+
 
 DisplayPercentComplete <- function(dataFrame, iCount, pct, displayText = ""){ 
  
