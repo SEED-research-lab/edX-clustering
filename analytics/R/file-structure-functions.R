@@ -22,13 +22,13 @@
 #               Doipayan Roy (2), and Taylor Williams (2)
 # Affiliations: (1) Microsoft, (2) Purdue University
 # 
-# Description:  []
+# Description:  Functions to check for existence of directories and files
 # 
 # Package dependancies: [beepr]
 #
 # Changelog:
-#     2017.05.11.    initial function extraction from pipeline
-#     2017.05.11.    minor updates to console output
+#     2017.05.11.   Initial function extraction from pipeline
+#     2017.05.11.   Minor updates to console output
 #     2017.07.14.   Minor code updates; added copyright information
 ## ===================================================== ##
 
