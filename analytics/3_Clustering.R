@@ -38,6 +38,7 @@
 #     O:  preprocessed_data_females.csv (source: pipeline script 2b_genderedSubsets.R)
 #     O:  preprocessed_data_males.csv   (source: pipeline script 2b_genderedSubsets.R)
 #     O:  *.csv (a list of users to cluster, student_id' column req'd; source: user provided)
+
 #
 # File outputs:
 #       PDF figures: clustering plot, elbow plot, gap plot
@@ -73,6 +74,7 @@
 #     2018.03.26.   Update to how validation p-values are printed and saved
 #     2018.04.17.   Add option for user to provide a list of UIDs by which to 
 #                     filter the users included in plot
+
 #
 # Feature wish list:  (*: planned but not complete)
 #                   *Comment out dependencies on "progress" package
@@ -208,6 +210,7 @@ repeat{
       '2' or 'f' for female learners,
       '3' or 'm' for male learners,
       '4' or 'c' to provide a custom ID list: ");
+`
 
   if(userSubsetSelection == 1){  #dataset: all learners
     dataSetName <- "all"
@@ -658,6 +661,7 @@ for(k in cluster_order)
     write.csv(x = curClusterUsers,
               paste0("access_data. ", dataSetName, ". cluster_", 
                      counter, " (of ", length(cluster_order), ").csv"),
+
               row.names = FALSE)
   }
 
