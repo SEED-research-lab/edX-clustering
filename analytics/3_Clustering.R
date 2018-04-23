@@ -46,16 +46,19 @@
 #
 # Changelog:
 #     2017.04.13    Added gendered clickstream user choices
-#                   Changed gap plots to only go up to 10 clusters (previously was set to 20 clusters)
+#                   Changed gap plots to only go up to 10 clusters (previously 
+#                     was set to 20 clusters)
 #     2017.05.03.   Input files read from subdirectory
 #                   Created output files placed into a separate subdirectory
 #     2017.05.03.   Put subdirectory and file checking code into functions
 #     2017.05.08.   Code cleaning, header update
-#                   Audio notification for user input and script completion (using '#beepr' package)
+#                   Audio notification for user input and script completion 
+#                     (using '#beepr' package)
 #                   Plot output files set to PDF (had been EPS)
 #                   Output filenames and plot subtitles are now descriptive
 #                    (using the user provided description)
-#     2017.05.10.   Fuzzy code updated to match updates above (which had only been to the k-means code)
+#     2017.05.10.   Fuzzy code updated to match updates above (which had only 
+#                     been to the k-means code)
 #                   Added valid user input check for clustering technique selection
 #     2017.05.11.   Extracted possible functions to external files
 #     2017.06.10.   Integrated Doipayan's modifications up through 2017.05.09
@@ -67,12 +70,14 @@
 #     2017.11.08.   Moved ordering clusters and plotting clusters in to external functions
 #                   Saving CSV files for each cluster with userID values
 #     2018.03.26.   Update to how validation p-values are printed and saved
-#     2018.04.17.   Add option for user to provide a list of UIDs by which to filter the plot
+#     2018.04.17.   Add option for user to provide a list of UIDs by which to 
+#                     filter the users included in plot
 #
 # Feature wish list:  (*: planned but not complete)
 #                   *Comment out dependencies on "progress" package
 #                   *Add in more basic (package independent) progress indicator
 #                   *add option to generate all plots (All clustering techniques, all users subsets)
+#                   *save the suggested cluster # (gap and elbow) to file for ref.
 ## ===================================================== ##
 
 
@@ -290,7 +295,7 @@ repeat{
 
         # continue if the user provided file contains the expected column
         if(fileContentsCheck == 1){
-          # read list, 
+          # read list
           userIDsToInclude <- read.csv(filenameUserFilter)$student_id
           
           # break repeat loop, and continue with script
@@ -328,7 +333,7 @@ data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
 
 ##filter "preprocessed_data.csv" to only users on the UID list
   if(length(userIDsToInclude)>0){  #retain relevant users 
-                                   #  #retain relevant users (if a custom filter list was provided)(if a custom filter list was provided)
+    #retain relevant users (if a custom filter list was provided)(if a custom filter list was provided)
     data_preprocessed <- data_preprocessed[data_preprocessed$student_id %in% 
                                              userIDsToInclude,]
   }
