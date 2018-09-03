@@ -88,7 +88,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
   #set a counter to select which color the current cluster will plot as
   colorCounter <- length(cluster_order)
   #define the color palate (See https://www.r-bloggers.com/choosing-colour-palettes-part-ii-educated-choices/)
-  colorWheel <- RColorBrewer::brewer.pal(n=10, name = "Dark2")  #some good options: Dark2, Set1, PiYG
+  colorWheel <- RColorBrewer::brewer.pal(n=8, name = "Dark2")  #some good options: Dark2, Set1, PiYG
     ## some other palate options:
     #set the color order to darkest -> lightest 
     #  (useful when working with a monochromatic palate like blues)
