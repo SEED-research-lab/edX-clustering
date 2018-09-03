@@ -210,7 +210,7 @@ repeat{
       '2' or 'f' for female learners,
       '3' or 'm' for male learners,
       '4' or 'c' to provide a custom ID list: ");
-`
+
 
   if(userSubsetSelection == 1){  #dataset: all learners
     dataSetName <- "all"
@@ -426,6 +426,7 @@ if(clusterTypeSelection==1)
   # data_access <- data_access[names(data_access) %in% c("temp_student_id","number_accesses")]
 
   ## **Generate elbow plot from access data using K=1 to K=10 (K = number of clusters) ####
+  ## Thorndike, R. L. (1953). Who belongs in the family? Psychometrika, 18(4), 267–276. https://doi.org/10.1007/BF02289263
   cat("\nGenerating elbow plot...")
 
   #elbow_plot_values is a list of betweenClusterSumofSquares/totalSumofSquares for K = 1 to 10
@@ -458,6 +459,7 @@ if(clusterTypeSelection==1)
 
 
   ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters)####
+  ## Tibshirani, R., Walther, G., & Hastie, T. (2001). Estimating the number of clusters in a data set via the gap statistic. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 63(2), 411–423. https://doi.org/10.1111/1467-9868.00293
   cat("\nGenerating gap plot...")
   gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),
                                     K.max=10,
@@ -735,5 +737,5 @@ beepr::beep(sound = 10)
 cat("\n\n\nScript (3_Clustering.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
-rm(list=setdiff(ls(), c('Mann_Whit_pValues', 'Krus_Wal')))   #Clear environment variables except for evaluation test values
-
+#Clear environment variables except for evaluation test values
+rm(list=setdiff(ls(), c('Mann_Whit_pValues', 'Krus_Wal')))   
