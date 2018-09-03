@@ -278,6 +278,8 @@ raw_data <- readr::read_tsv(file = filenameClickstream)
 
 #create an empty data frame to store the modules not clicked on by anyone
 DeletedModules <- data.frame()
+#create an empty data frame to store the modules only clicked on by a few people
+typicallyUnusedModules <- data.frame()
 
 
 moduleList <- unique(courseHierarchy$module_id)
@@ -289,6 +291,15 @@ for(module in moduleList)
     DeletedModules <- rbind(DeletedModules, subset(courseHierarchy,courseHierarchy$module_id == module))
     courseHierarchy <- courseHierarchy[courseHierarchy$module_id != module,]
   }
+  
+  #create a log of modules that were accessed by  fewer than 'accessMin' learners
+  accessMin <- 10
+  if(nrow(subset(raw_data, raw_data$module_id == module)) < accessMin)
+  {
+    typicallyUnusedModules <- rbind(typicallyUnusedModules, 
+                                    subset(courseHierarchy,courseHierarchy$module_id == module))
+  }
+  
 }
 
 
@@ -315,18 +326,22 @@ subDirPath <- DirCheckCreate(subDir = "1_extractModulesOutput")
 #   (To be used later in forcing quotes around the title strings.  Needed in case a module title contains a comma.)
 modTitleColIndex <- grep("module_title", colnames(courseHierarchy))
 
-#converting courseHierarchy to a matrix to be able to write to CSV (write.csv() will not accept a data frame)
+#converting data frames to matricies to be able to write to CSV (write.csv() will not accept a data frame)
 courseHierarchy <- as.matrix(courseHierarchy)
 DeletedModules <- as.matrix(DeletedModules)
+typicallyUnusedModules <- as.matrix(typicallyUnusedModules)
 
 
-#write a CSV file for the next step in processing.  (Also write a CSV file of those modules which were removed.)
+#write a CSV file for the next step in processing.  (Also write a CSV file of those modules which were removed and those that were not much used.)
 #   quotes are forced around the module title names in case one contains a comma 
 cat("\nSaving CSV file.")
 write.csv(file = file.path(subDirPath, "module_order_file.csv", fsep = "/"), 
           x = courseHierarchy, quote = c(modTitleColIndex))
 write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
           x = DeletedModules, quote = c(modTitleColIndex))
+write.csv(file = file.path(subDirPath, 
+                           paste0("modules_with_fewer_than_", accessMin, "_accesses.csv"), fsep = "/"),
+          x = typicallyUnusedModules, quote = c(modTitleColIndex))
 
 
 ######### Notify user and Clear the environment  #############
