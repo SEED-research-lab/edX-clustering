@@ -46,7 +46,7 @@
 
 
 ## _Clean the environment ####
-rm(list=ls()) 
+
 
 ######### Load required libraries ##########
 require(lubridate)  #working with dates
