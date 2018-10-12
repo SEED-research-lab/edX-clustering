@@ -74,6 +74,9 @@
 #     2018.03.26.   Update to how validation p-values are printed and saved
 #     2018.04.17.   Add option for user to provide a list of UIDs by which to 
 #                     filter the users included in plot
+#     2018.10.12.   Update to file selection (semi-automated)
+#                   Add live, late, archive filtering
+#                   Bug fixes
 
 #
 # Feature wish list:  (*: planned but not complete)
@@ -86,7 +89,7 @@
 
 
 ######### Clean the environment ##########
-rm(list=ls())
+rm(list=setdiff(ls(), c("data_moduleAccess", "data_preprocessed")))
 
 
 ######### Internal functions ##########
@@ -161,6 +164,7 @@ require("dplyr")
 source("R/file-structure-functions.R")
 source("R/OrderClusters.R")
 source("R/PlotClusters.R")
+source("R/DisplayPercentComplete.R")
 
 # end of script setup
 ## *************************************** #####
@@ -188,13 +192,38 @@ dataSetDescription <- readline(prompt="Description: ");
 #Choose clustering method (repeating to sanitize user input)
 repeat{
   beepr::beep(sound = 10)   #notify user to provide input
-  clusterTypeSelection <- readline(prompt="Enter '1' for K-means clustering, '2' for c-means (fuzzy) clustering: ");
-
-  if(clusterTypeSelection == 1 || clusterTypeSelection == 2){  #valid clustering method selected
+  clusterTypeSelection <- readline(prompt="Enter '1' or {nothing} for K-means clustering, 
+      '2' for c-means (fuzzy) clustering: ");
+  
+  if(clusterTypeSelection == 1 ||   #valid clustering method selected
+     clusterTypeSelection == 2){
+    #exit loop and continue script
+    break
+  }else if(clusterTypeSelection == ""){  #defalt to k-means
+    clusterTypeSelection = 1
     #exit loop and continue script
     break
   }
+  #repeat if none of the conditions were met (i.e., user input was invalid)
+}
 
+
+######### Calculate Live, late, archive groups #################################
+#  (repeating to sanitize user input)
+repeat{
+  beepr::beep(sound = 10)   #notify user to provide input
+  inputLLA <- readline(prompt="Enter '1' to find live, late, and archive groups,  
+      '2' or {nothing} to skip  ");
+  
+  if(inputLLA == 1){  #find user groups
+    source("R/subsetUsers_LiveLateArchive.R")
+    #exit loop and continue script
+    break
+  }else if(inputLLA == 2 ||   #don't find user groups
+           inputLLA == ""){
+    #exit loop and continue script
+    break
+  }
   #repeat if none of the conditions were met (i.e., user input was invalid)
 }
 
@@ -206,26 +235,22 @@ repeat{
   userIDsToInclude <- as.numeric(NULL)  #create empty list of userIDs
   
   beepr::beep(sound = 10)   #notify user to provide input
-  userSubsetSelection <- readline(prompt="Enter '1' for all learners,
+  userSubsetSelection <- readline(prompt="
+Enter '1' or {nothing} for all learners,  :
       '2' or 'f' for female learners,
       '3' or 'm' for male learners,
-      '4' or 'c' to provide a custom ID list: ");
+      '4' live learners,
+      '5' late learners,
+      '6' archive learners,
+      '7' or 'c' to provide a custom ID list");
 
+  
 
-  if(userSubsetSelection == 1){  #dataset: all learners
+  
+  if(userSubsetSelection == 1 ||  #dataset: all learners 
+     userSubsetSelection == ""){
     dataSetName <- "all"
-    #check for preprocessed datafile existence
-    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput",
-                                               filename = "preprocessed_data.csv")
-    #exit script if file not found, otherwise continue
-    ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
-
-    #check for user access datafile existence
-    #TODO(TW:bug):the file has not yet been created.  It happens some dozen lines down
-    #   accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", filename = "access_data.csv")
-    # 	#exit script if file not found, otherwise continue
-    #   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
-
+    userIDsToInclude <- NULL
 
     break
   }
@@ -235,19 +260,20 @@ repeat{
     dataSetName <- "females"
     #set subset selection variable to a known value for future use
     userSubsetSelection <- "f"
-    #check for preprocessed datafile existance
-    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput",
-                                               filename = "preprocessed_data_females.csv")
+    
+    filenameUserFilter <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
+                                                    filename = "preprocessed_data_females.csv")
+    
+    #check to see if selected file has required column
+    fileContentsCheck <- CSV_ContentCheck(CSV_path = filenameUserFilter,
+                                          reqdColName = "student_id")
+    
+    # continue if the user provided file contains the expected column
     #exit script if file not found, otherwise continue
-    ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
-
-    #check for user access datafile existence
-    #TODO(TW:bug):the file has not yet been created.  It happens some dozen lines down
-    # 	accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", filename = "access_data_females.csv")
-    # 	#exit script if file not found, otherwise continue
-    #   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
-
-
+    ifelse(fileContentsCheck == 1, 
+           yes = (userIDsToInclude <- read.csv(filenameUserFilter)$student_id),       # read list
+           no = "File not found.")     #exit script if file not found, otherwise continue
+    
     break
   }
   else if(userSubsetSelection == "m" ||
@@ -256,81 +282,119 @@ repeat{
     dataSetName <- "male"
     #set subset selection variable to a known value for future use
     userSubsetSelection <- "m"
-    #check for preprocessed datafile existence
-    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput",
-                                               filename = "preprocessed_data_males.csv")
+    
+    filenameUserFilter <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
+                                                    filename = "preprocessed_data_males.csv")
+    
+    #check to see if selected file has required column
+    fileContentsCheck <- CSV_ContentCheck(CSV_path = filenameUserFilter,
+                                          reqdColName = "student_id")
+    
+    # continue if the user provided file contains the expected column
     #exit script if file not found, otherwise continue
-    ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    ifelse(fileContentsCheck == 1, 
+           yes = (userIDsToInclude <- read.csv(filenameUserFilter)$student_id),       # read list
+           no = "File not found.")     #exit script if file not found, otherwise continue
+    
+    
+    break
+  }
+  else if(userSubsetSelection == 4){  #dataset: live learners
+    dataSetName <- "live"
+    filenameUserFilter <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
+                                         filename = "userList1_live.csv")
+    
+    #check to see if selected file has required column
+    fileContentsCheck <- CSV_ContentCheck(CSV_path = filenameUserFilter,
+                                          reqdColName = "student_id")
 
-    #check for user access datafile existence
-    #TODO(TW:bug):the file has not yet been created.  It happens some dozen lines down
-    # accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", 
-    #                                      filename = "access_data_males.csv")
-    # 	#exit script if file not found, otherwise continue
-    #   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
+    # continue if the user provided file contains the expected column
+    #exit script if file not found, otherwise continue
+    ifelse(fileContentsCheck == TRUE, 
+           yes = (userIDsToInclude <- read.csv(filenameUserFilter)$student_id),       # read list
+           no = NULL)     #exit script if file not found, otherwise continue
 
     break
   }
-  else if(userSubsetSelection == "c" || #dataset: custom learner set (user provided)
-          userSubsetSelection == "C" ||
-          userSubsetSelection == 4){
+  else if(userSubsetSelection == 5){  #dataset: late learners
+    dataSetName <- "late"
+    
+    filenameUserFilter <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
+                                                    filename = "userList2_late.csv")
+    
+    #check to see if selected file has required column
+    fileContentsCheck <- CSV_ContentCheck(CSV_path = filenameUserFilter,
+                                          reqdColName = "student_id")
+    
+    # continue if the user provided file contains the expected column
+    #exit script if file not found, otherwise continue
+    ifelse(fileContentsCheck == TRUE, 
+           yes = (userIDsToInclude <- read.csv(filenameUserFilter)$student_id),       # read list
+           no = NULL)     #exit script if file not found, otherwise continue
+    
+    break
+  }
+  else if(userSubsetSelection == 6){  #dataset: archive learners
+    dataSetName <- "archive"
+
+    filenameUserFilter <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
+                                                    filename = "userList3_archive.csv")
+    
+    #check to see if selected file has required column
+    fileContentsCheck <- CSV_ContentCheck(CSV_path = filenameUserFilter,
+                                          reqdColName = "student_id")
+    
+    # continue if the user provided file contains the expected column
+    #exit script if file not found, otherwise continue
+    ifelse(fileContentsCheck == TRUE, 
+           yes = (userIDsToInclude <- read.csv(filenameUserFilter)$student_id),       # read list
+           no = NULL)     #exit script if file not found, otherwise continue
+    
+    break
+  }else if(userSubsetSelection == "c" || #dataset: custom learner set (user provided)
+           userSubsetSelection == "C" ||
+           userSubsetSelection == 7){
     dataSetName <- "custom learner set"
     #set subset selection variable to a known value for future use
     userSubsetSelection <- "c"
 
+    #Locate the user list csv data file (with sanitized user input)
+    filenameUserFilter <- 
+      SelectFile(prompt = "*****Select a CSV file with the student_id values to cluster.*****  \n     (The IDs need to be in a column named 'student_id'.)", 
+                 defaultFilename = ".csv",
+                 filenamePrefix = filenamePrefix, 
+                 fileTypeMatrix = matrix(c("CSV", ".csv"), 1, 2, byrow = TRUE),
+                 dataFolderPath = DirCheckCreate("2_PreprocessingOutput"))
 
-    #get UID list from user
-      #Locate the user list csv data file (with sanitized user input)
-      repeat{
-        prompt <- "*****Select a CSV file with the student_id values to cluster.*****  \n     (The IDs need to be in a column named 'student_id'.)"
-        message("\n", prompt)
-        #beepr::beep(sound = 10)   #notify user to provide input
-        # filenameJSON <- file.choose() #commented out, but may still be needed if working in RStudio server environment
-        filenameUserFilter <- tcltk::tk_choose.files(caption = prompt,
-                                               default = ".csv",
-                                               filter = matrix(c("CSV", ".csv"), 1, 2, byrow = TRUE),
-                                               multi = FALSE)
-        
-        #read in the file, return the column names, 
-        #   check to see if each column matches "student_id", 
-        #   add the boolean results (if a maching column exists the result 
-        #   will be 1, if not the result will be 0)
-        fileContentsCheck <- sum(names(read.csv(filenameUserFilter))=="student_id")
-
-        # continue if the user provided file contains the expected column
-        if(fileContentsCheck == 1){
-          # read list
-          userIDsToInclude <- read.csv(filenameUserFilter)$student_id
-          
-          # break repeat loop, and continue with script
-          break
-        }else{
-          #repeat file selection loop
-        }
-      }
-
+    #check to see if selected file has required column
+    fileContentsCheck <- CSV_ContentCheck(CSV_path = filenameUserFilter,
+                                          reqdColName = "student_id")
     
-    #check for preprocessed datafile existance
-    preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput",
-                                               filename = "preprocessed_data.csv")
+    # continue if the user provided file contains the expected column
     #exit script if file not found, otherwise continue
-    ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
-
-    #check for user access datafile existence
-    #TODO(TW:bug):the file has not yet been created.  It happens some dozen lines down
-    # 	accessDataFilePath <- FileExistCheck(subDir = "3_ClusteringOutput", filename = "access_data_females.csv")
-    # 	#exit script if file not found, otherwise continue
-    #   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
-    
+    ifelse(fileContentsCheck == TRUE, 
+           yes = (userIDsToInclude <- read.csv(filenameUserFilter)$student_id),       # read list
+           no = NULL)     #exit script if file not found, otherwise continue
     
     break
-  }
+    }
+    
+    #read in the clickstream data 
+    data_moduleAccess <- readr::read_tsv(file = filenameClickstream)
+    
+    
+    
+  }#repeat if none of the conditions were met (i.e., user input was invalid)
   
 
-  #repeat if none of the conditions were met (i.e., user input was invalid)
-}
 
 ## Read data and retain needed columns
+#check for preprocessed datafile existence
+preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
+                                                      filename = "preprocessed_data.csv")
+#exit script if file not found, otherwise continue
+ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
+
 #read in data from the appropriate learner (sub)set
 data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
 
@@ -373,19 +437,40 @@ setwd(subDirPath)
 
 
 ######### Calculating number of unique module accesses for each student and saving to file########
+uniqueIDs <- unique(data_preprocessed$temp_student_id)
 
-cat("\nCalculating number of access events for each learner...")
+cat(paste0("\nCalculating number of access events for ", length(uniqueIDs), " learners...\n"))
 #data_access contains the number of unique module accesses for each learner
 data_access <- tibble(temp_student_id = as.numeric(),
                       number_accesses = as.numeric(),
                       student_id = as.numeric())
 
-for(i in unique(data_preprocessed$temp_student_id)){
+for(i in uniqueIDs){
     temp <- subset(data_preprocessed,data_preprocessed$temp_student_id == i)
     data_access <- add_row(data_access,
                          temp_student_id = temp$temp_student_id[1],
                          number_accesses = nrow(temp),
                          student_id = temp$student_id[1])
+    
+    
+    #| print completion progress to console   ####
+    #durring first iteration, create progress status variables for main processing loop
+    if(i==uniqueIDs[1])
+    {
+      iCount <- 0 #loop counter for completion updates
+      pct <- 0  #percentage complete tracker
+    }
+
+    #print function
+    updateVars <- DisplayPercentComplete(dataFrame = unique(data_preprocessed$temp_student_id), 
+                                         iCount, pct)
+
+    #update status variables (for next iteration)
+    iCount <- updateVars$iCount
+    pct <- updateVars$pct
+
+    #print update
+    cat(updateVars$toPrint)
 }
 cat("\nDone! Saving to file...")
 
@@ -410,24 +495,10 @@ if(clusterTypeSelection==1)
   ##Set label
   clusterTypeName <- "k-means clustering"
 
-  ##TW:ver:the following should be unnecessary
-  # ##Read access data file and delete irrelevant columns
-  # if(userSubsetSelection=='m')
-  # {
-  #   data_access <- read.csv("access_data_males.csv",header=T)
-  # } else if(userSubsetSelection=='f')
-  # {
-  #   data_access <- read.csv("access_data_females.csv",header=T)
-  # } else
-  # {
-  #   data_access <- read.csv("access_data.csv",header=T)
-  # }
-  # data_access <- as.data.frame(data_access)
-  # data_access <- data_access[names(data_access) %in% c("temp_student_id","number_accesses")]
 
   ## **Generate elbow plot from access data using K=1 to K=10 (K = number of clusters) ####
   ## Thorndike, R. L. (1953). Who belongs in the family? Psychometrika, 18(4), 267–276. https://doi.org/10.1007/BF02289263
-  cat("\nGenerating elbow plot...")
+  cat("\n\nGenerating elbow plot...\n")
 
   #elbow_plot_values is a list of betweenClusterSumofSquares/totalSumofSquares for K = 1 to 10
   elbow_plot_values <- c()
@@ -438,6 +509,8 @@ if(clusterTypeSelection==1)
                   iter.max=50,
                   algorithm="Lloyd")
     elbow_plot_values <- c(elbow_plot_values,K_m$betweenss/K_m$totss)
+    
+    cat(paste0("\r Calculations ", k*10, "% commplete."))
   }
   ##Plot elbow plot
 
@@ -460,7 +533,7 @@ if(clusterTypeSelection==1)
 
   ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters)####
   ## Tibshirani, R., Walther, G., & Hastie, T. (2001). Estimating the number of clusters in a data set via the gap statistic. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 63(2), 411–423. https://doi.org/10.1111/1467-9868.00293
-  cat("\nGenerating gap plot...")
+  cat("\n\nGenerating gap plot...")
   gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),
                                     K.max=10,
                                     FUN=kmeans,
@@ -490,7 +563,8 @@ if(clusterTypeSelection==1)
     percent_inc=(elbow_plot_values[i]-elbow_plot_values[i-1])/elbow_plot_values[i-1]
     if(percent_inc<0.02)
     {
-      print(paste("Recommendation for number of clusters using elbow plot:",i-1))
+      print(paste("Recommendation for number of clusters using elbow plot:     ", i-1),
+            quote=FALSE)
       break
     }
   }
@@ -512,7 +586,8 @@ if(clusterTypeSelection==1)
       # break
       # }
     {
-      print(paste("Recommendation for number of clusters using gap statistics:",i),quote=FALSE)
+      print(paste("Recommendation for number of clusters using gap statistics: ", i),
+            quote=FALSE)
 
       break
     }
@@ -525,9 +600,15 @@ if(clusterTypeSelection==1)
 
 
   ##Get user input for number of clusters
-  beepr::beep(sound = 10)   #notify user to provide input
-  K <- readline("Enter the desired number of clusters (maximum 10): ");
-  K <- as.integer(K);
+  repeat{
+    beepr::beep(sound = 10)   #notify user to provide input
+    K <- readline("Enter the desired number of clusters (maximum 10): ");
+    K <- as.integer(K);
+    
+    ifelse(!is.na(K) & (K > 0) & (K <= 10), 
+           yes = break, 
+           no = print("Please enter a valid number.", quote=FALSE))
+  }
 
   #Ordering data_access in increasing order of temporary student it (integer id created for each student in preprocessing)
   data_access <- data_access[order(data_access$temp_student_id,decreasing=F),]
@@ -623,7 +704,7 @@ if(clusterTypeSelection==1)
 
 } else
 {
-  print("Invalid choice! Please enter 1 or 2...")
+  print("Invalid cluster type selected.  Please rerun script.")
 }
 
 ## Ordering clusters ####
@@ -652,7 +733,8 @@ for(k in cluster_order)
   #extract the users who are in this cluster
   curClusterUsers <- subset(data_access,data_access$cluster_id==k)  
   #only retain necessisary columns
-  curClusterUsers <- select(curClusterUsers, "temp_student_id", "number_accesses", "student_id")  
+  curClusterUsers <- select(curClusterUsers, "temp_student_id", 
+                            "number_accesses", "student_id")  
 
   if(counter == 1) {
     write.csv(x = curClusterUsers,
@@ -689,7 +771,8 @@ for(k in cluster_order)
   {
     for(j in (i+1):K)
     {
-      data_subset <- subset(data_access,data_access$cluster_id==i | data_access$cluster_id==j)
+      data_subset <- subset(data_access,
+                            data_access$cluster_id==i | data_access$cluster_id==j)
       Mann_Whit <- wilcox.test(data_subset$number_accesses~data_subset$cluster_id,data=data_subset)
       message("Mann_Whit p-value between clusters ",i," and ",j,": " , Mann_Whit$p.value)
       Mann_Whit_pValues[i,j] <- Mann_Whit$p.value   #store p-values
@@ -714,7 +797,7 @@ for(k in cluster_order)
   
   #print p-values
   message("As a table, p-values between cluster pairs are:\n")
-  Mann_Whit_pValues
+  print(Mann_Whit_pValues)
 
 ## Save the work environment
 save.image(file = paste0("environmentVariables. ", dataSetName, ".RData"), 
@@ -738,4 +821,6 @@ cat("\n\n\nScript (3_Clustering.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
 #Clear environment variables except for evaluation test values
-rm(list=setdiff(ls(), c('Mann_Whit_pValues', 'Krus_Wal')))   
+rm(list=setdiff(ls(), c('Mann_Whit_pValues', 'Krus_Wal', 
+                        "data_moduleAccess", "data_courseStructure", 
+                        "dataUserProfile")))   

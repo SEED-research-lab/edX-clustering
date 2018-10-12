@@ -67,27 +67,30 @@ DisplayPercentComplete <- function(dataFrame, iCount, pct, displayText = ""){
   
   
   #| print completion progress to console   ####
-  if(length(dataFrame) > 10)
+  if(length(dataFrame) > 1)
   {
 
       iCount <- iCount + 1  
-      if(length(dataFrame) < 10 &&
-         iCount%%as.integer((length(dataFrame))/1) == 0 && 
+      if(length(dataFrame) < 10 &
+         iCount%%as.integer((length(dataFrame))/1) == 0 & 
          pct <= 100)
       {
         pct <- pct + 1
+        ifelse(pct>100, yes = (pct <- 100), no = "")  #cap pct to 100
         toPrint <- paste0("\r", displayText, pct, "% complete")
-      }else if(length(dataFrame) < 100 && 
-         iCount%%as.integer((length(dataFrame))/10) == 0 && 
+      }else if(length(dataFrame) < 100 & 
+         iCount%%as.integer((length(dataFrame))/10) == 0 & 
          pct <= 100)
       {
         pct <- pct + 10
+        ifelse(pct>100, yes = (pct <- 100), no = "")  #cap pct to 100
         toPrint <- paste0("\r", displayText, pct, "% complete")
-      }else if(length(dataFrame) >= 100 &&
-               iCount%%as.integer((length(dataFrame))/100) == 0 && 
+      }else if(length(dataFrame) >= 100 &
+               iCount%%as.integer((length(dataFrame))/100) == 0 & 
                pct <= 100)
       {
         pct <- pct + 1
+        ifelse(pct>100, yes = (pct <- 100), no = "")  #cap pct to 100
         toPrint <- paste0("\r", displayText, pct, "% complete")
       }else
       {
@@ -95,6 +98,8 @@ DisplayPercentComplete <- function(dataFrame, iCount, pct, displayText = ""){
       }
       
     # }
+  }else{
+    toPrint <- paste0("\r", "")
   }
   
   #return both variables in a list (to be extracted after the function call)

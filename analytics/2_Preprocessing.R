@@ -51,13 +51,13 @@
 #                   Added timer to track script execution time
 #     2017.07.14.   Minor code updates; added copyright information
 #     2017.08.06.   Update to comments; spell check
+#     2018.10.12.   Update to file selection (semi-automated)
 ## ===================================================== ##
 
 
 
 ######### Clean the environment ########## 
-rm(list=ls())   
-
+rm(list=setdiff(ls(), c("data_moduleAccess", "dataUserProfile")))
 
 ######### Internal functions ########## 
 #Function: Interactively select working directory (OS independent, but not available for RStudio Server)
@@ -139,39 +139,26 @@ start <-  proc.time() #save the time (to compute elapsed time of script)
 
 
 ######### Reading files, converting to dataframe object, eliminating irrelevant columns#####
-
 #Locate the clickstream data file to process (with sanitized user input)
-repeat{
-  prompt <- "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')"
-  cat("\n", prompt)
-  #beepr::beep(sound = 10)   #notify user to provide input
+if(!exists("data_moduleAccess")){
+  filenameClickstream <- 
+    SelectFile(prompt = "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')", 
+               defaultFilename = "courseware_studentmodule-prod-analytics.sql",
+               filenamePrefix = filenamePrefix, 
+               fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
+               dataFolderPath = dataFolderPath)
   
-  # filenameClickstream <- file.choose() #commented out, but may still be needed if working in RStudio server environment
-  filenameClickstream <- tcltk::tk_choose.files(caption = prompt, 
-                                                default = "courseware_studentmodule-prod-analytics.sql",
-                                                filter = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-                                                multi = FALSE)
-
-  filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameClickstream, 
-                                           expectedFileEnding = "courseware_studentmodule-prod-analytics.sql")
   
-  if(filenameCheckResult == "matched"){
-    #filename matched expected string, continue with script
-    break
-  }else if(filenameCheckResult == "overridden"){
-    #continue script with the previously selected file
-    break
-  }else if(filenameCheckResult == "reselect"){
-    #repeat file selection loop
-  }
+  #read in the clickstream data 
+  data_moduleAccess <- readr::read_tsv(file = filenameClickstream)
 }
 
-#read in the clickstream data and extract needed columns
-dataClickstream <- readr::read_tsv(filenameClickstream)
-dataClickstream <- dataClickstream[names(dataClickstream) %in% c("module_id","student_id","created")]
+# extract needed columns
+data_moduleAccess <- data_moduleAccess[names(data_moduleAccess) %in% c("module_id","student_id","created")]
 
 #read in the ordered module information
-moduleOrderFilePath <- FileExistCheck(subDir = "1_extractModulesOutput", filename = "module_order_file.csv")
+moduleOrderFilePath <- FileExistCheck_workingDir(subDir = "1_extractModulesOutput", 
+                                                 filename = "module_order_file.csv")
 #exit script if file not found, otherwise continue
 ifelse(test = moduleOrderFilePath == FALSE, yes = return(), no = "")
 
@@ -179,12 +166,12 @@ ifelse(test = moduleOrderFilePath == FALSE, yes = return(), no = "")
 module_markers <- readr::read_csv(moduleOrderFilePath)
 module_markers <- as.data.frame(module_markers)
 
-##Ordering both dataClickstream and module_marker object by module_id field
-dataClickstream <- dataClickstream[order(dataClickstream$module_id,decreasing=F),]
+##Ordering both data_moduleAccess and module_marker object by module_id field
+data_moduleAccess <- data_moduleAccess[order(data_moduleAccess$module_id,decreasing=F),]
 module_markers <- module_markers[order(module_markers$module_id,decreasing=F),]
 
-##Eliminating module_id from dataClickstream if that id does not appear in module_marker
-dataClickstream <- subset(dataClickstream,dataClickstream$module_id %in% module_markers$module_id)
+##Eliminating module_id from data_moduleAccess if that id does not appear in module_marker
+data_moduleAccess <- subset(data_moduleAccess,data_moduleAccess$module_id %in% module_markers$module_id)
 
 
 ## ===================================================== ##
@@ -199,7 +186,7 @@ change_list=c()
 change_list=c(change_list,0)
 for(i in unique(module_markers$module_id))
 {
-  temp_df=subset(dataClickstream,dataClickstream$module_id==i)
+  temp_df=subset(data_moduleAccess,data_moduleAccess$module_id==i)
   change_list=c(change_list,nrow(temp_df))
 }
 for(i in 2:length(change_list))
@@ -216,32 +203,32 @@ for(i in 1:(length(change_list)-1))
 }
 
 #Add marker_list column to clickstream file
-dataClickstream<-cbind(dataClickstream,marker_list)
+data_moduleAccess<-cbind(data_moduleAccess,marker_list)
 
 ## ===================================================== ##
 
-######### Converting time to POSIXct format and adding time column to dataClickstream##############
+######### Converting time to POSIXct format and adding time column to data_moduleAccess##############
 
-time=as.POSIXct(dataClickstream$created,format="%m/%d/%Y %H:%M")
-dataClickstream<-cbind(dataClickstream,time)
+time=as.POSIXct(data_moduleAccess$created,format="%m/%d/%Y %H:%M")
+data_moduleAccess<-cbind(data_moduleAccess,time)
 
 ##Keeping only releveant columns
-dataClickstream<-dataClickstream[names(dataClickstream) %in% c("student_id","time","marker_list")]
+data_moduleAccess<-data_moduleAccess[names(data_moduleAccess) %in% c("student_id","time","marker_list")]
 
 ## ===================================================== ##
 
 ######### Converting student_id to integers from 1 to total_number_registered###############
 
-##Sorting dataClickstream in order of student_id
-dataClickstream<-dataClickstream[order(dataClickstream$student_id,decreasing=F),]
+##Sorting data_moduleAccess in order of student_id
+data_moduleAccess<-data_moduleAccess[order(data_moduleAccess$student_id,decreasing=F),]
 
 #u_id is a column containing student_id of each clickstream event mapped to an integer
 #Each student is assigned a unique integer
 u_id=c()
 counter=1
-for(i in sort(unique(dataClickstream$student_id),decreasing=F))
+for(i in sort(unique(data_moduleAccess$student_id),decreasing=F))
 {
-  temp_df=subset(dataClickstream,dataClickstream$student_id==i)
+  temp_df=subset(data_moduleAccess,data_moduleAccess$student_id==i)
   
   se=rep(counter,nrow(temp_df))
   
@@ -250,8 +237,8 @@ for(i in sort(unique(dataClickstream$student_id),decreasing=F))
   counter=counter+1
 }
 
-#Adding u_id column to dataClickstream
-dataClickstream<-cbind(dataClickstream,u_id)
+#Adding u_id column to data_moduleAccess
+data_moduleAccess<-cbind(data_moduleAccess,u_id)
 
 
 ## ===================================================== ##
@@ -261,8 +248,8 @@ dataClickstream<-cbind(dataClickstream,u_id)
 
 ######### Retaining relevant columns, renaming columns and writing to CSV file##############
 
-dataClickstream<-dataClickstream[names(dataClickstream) %in% c("student_id","marker_list","u_id","time")]
-names(dataClickstream)<-c("student_id","module_number","time","temp_student_id")
+data_moduleAccess<-data_moduleAccess[names(data_moduleAccess) %in% c("student_id","marker_list","u_id","time")]
+names(data_moduleAccess)<-c("student_id","module_number","time","temp_student_id")
 
 
 ######### Write data to files ###############
@@ -271,20 +258,15 @@ subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
 
 #write a CSV file for the next step in processing. 
 cat("\nSaving CSV file.")
-write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), x = dataClickstream)
+write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), x = data_moduleAccess)
 
 
 ######### Notify user and Clear the environment  #############
-# beepr::beep(sound = 10)   #notify user script is complete
-# Sys.sleep(time = 0.1)     #pause 1/10 sec
-# beepr::beep(sound = 10)
-# Sys.sleep(time = 0.1)
-# beepr::beep(sound = 10)
-
 #print the amount of time the script required
 cat("\n\n\nScript (2_Preprocessing.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
-rm(list=ls())   #Clear environment variables
+#Clear environment variables
+rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
 
 
