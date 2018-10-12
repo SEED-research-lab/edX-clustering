@@ -68,12 +68,12 @@
 #     2017.05.25.   Added timer to track script execution time
 #     2017.07.14.   Minor code updates; added copyright information
 #     2017.08.06.   Update to comments; spell check
+#     2018.10.12.   Update to file selection (semi-automated)
 ## ===================================================== ##
 
 
 ######### Clean the environment ########## 
-rm(list=ls())   
-
+rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
 
 ######### Internal functions ########## 
 #Function: Recursive child search to build the course hierarchy
@@ -179,55 +179,30 @@ start <-  proc.time() #save the time (to compute elapsed time of script)
 
 ######### Import course structure JSON file data #####
 #Locate the JSON course structure data file to process (with sanitized user input)
-repeat{
-  prompt <- "*****Select the JSON COURSE STRUCTURE file.*****  (It should end with 'course_structure-prod-analytics.json')"
-  cat("\n", prompt)
-  #beepr::beep(sound = 10)   #notify user to provide input
-  # filenameJSON <- file.choose() #commented out, but may still be needed if working in RStudio server environment
-  filenameJSON <- tcltk::tk_choose.files(caption = prompt, 
-                                         default = "course_structure-prod-analytics.json",
-                                         filter = matrix(c("JSON", ".json"), 1, 2, byrow = TRUE),
-                                         multi = FALSE)
-  filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameJSON, expectedFileEnding = "course_structure-prod-analytics.json")
+if(!exists("data_courseStructure")){
+  filenameJSON <- 
+    SelectFile(prompt = "*****Select the JSON COURSE STRUCTURE file.*****  (It should end with 'course_structure-prod-analytics.json')", 
+               defaultFilename = "course_structure-prod-analytics.json", 
+               filenamePrefix = filenamePrefix, 
+               fileTypeMatrix = matrix(c("JSON", ".json"), 1, 2, byrow = TRUE),
+               dataFolderPath = dataFolderPath)
   
-  if(filenameCheckResult == "matched"){
-    #filename matched expected string, continue with script
-    break
-  }else if(filenameCheckResult == "overridden"){
-    #continue script with the previously selected file
-    break
-  }else if(filenameCheckResult == "reselect"){
-    #repeat file selection loop
-  }
+  #import the JSON data file
+  data_courseStructure <- jsonlite::fromJSON(filenameJSON)
 }
 
-#import the JSON data file
-data <- jsonlite::fromJSON(filenameJSON)
-
-
 #Locate the clickstream data file to process (with sanitized user input)
-repeat{
-  prompt <- "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')"
-  cat("\n", prompt)
-  #beepr::beep(sound = 10)   #notify user to provide input
+if(!exists("data_moduleAccess")){
+  filenameClickstream <- 
+    SelectFile(prompt = "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')", 
+               defaultFilename = "courseware_studentmodule-prod-analytics.sql",
+               filenamePrefix = filenamePrefix, 
+               fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
+               dataFolderPath = dataFolderPath)
   
-  # filenameClickstream <- file.choose() #commented out, but may still be needed if working in RStudio server environment
-  filenameClickstream <- tcltk::tk_choose.files(caption = prompt, 
-                                         default = "courseware_studentmodule-prod-analytics.sql",
-                                         filter = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-                                         multi = FALSE)
   
-  filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameClickstream, expectedFileEnding = "courseware_studentmodule-prod-analytics.sql")
-  
-  if(filenameCheckResult == "matched"){
-    #filename matched expected string, continue with script
-    break
-  }else if(filenameCheckResult == "overridden"){
-    #continue script with the previously selected file
-    break
-  }else if(filenameCheckResult == "reselect"){
-    #repeat file selection loop
-  }
+  #read in the clickstream data 
+  data_moduleAccess <- readr::read_tsv(file = filenameClickstream)
 }
 
 
@@ -235,7 +210,7 @@ repeat{
 ######### Identify course level module #############
 
 #copy the module names into a separate variable
-moduleNames <- names(data)
+moduleNames <- names(data_courseStructure)
 
 #create variable to track which level the module should be sorted at (top, child, grandchild, etc)
 hierarchicalLvl <- 0
@@ -246,9 +221,11 @@ courseHierarchy <- matrix(nrow = 0, ncol = 3, byrow = FALSE)
 #Check for category type "course" for each module in the file; 
 #   save matching module into the courseHierarchy data structure
 for(i in 1:length(moduleNames)){
-  if(data[[moduleNames[i]]]["category"] == "course"){
+  if(data_courseStructure[[moduleNames[i]]]["category"] == "course"){
     courseModule <- moduleNames[i]
-    courseHierarchy <- c(moduleNames[i], data[[moduleNames[i]]][["metadata"]]["display_name"], hierarchicalLvl)
+    courseHierarchy <- c(moduleNames[i], 
+                         data_courseStructure[[moduleNames[i]]][["metadata"]]["display_name"], 
+                         hierarchicalLvl)
   }
 }
 
@@ -261,7 +238,10 @@ for(i in 1:length(moduleNames)){
 #set the current hierarchy level
 hierarchicalLvl <- 0  #course level
 #conduct the recursive child search for each of the chapter level modules. Concatenate the results onto courseHierarchy
-courseHierarchy <- ChildSearch(data, courseHierarchy, courseModule, hierarchicalLvl+1) 
+courseHierarchy <- ChildSearch(data_courseStructure, 
+                               courseHierarchy, 
+                               courseModule, 
+                               hierarchicalLvl+1) 
 
 
 
@@ -273,8 +253,6 @@ names(courseHierarchy) <- c("module_id","module_title","module_hierarchy_level")
 
 
 
-#read in the clickstream data 
-raw_data <- readr::read_tsv(file = filenameClickstream)
 
 #create an empty data frame to store the modules not clicked on by anyone
 DeletedModules <- data.frame()
@@ -286,18 +264,21 @@ moduleList <- unique(courseHierarchy$module_id)
 for(module in moduleList)
 {
   #if no rows are found in the clickstream data that match the current module, then delete module row
-  if(nrow(subset(raw_data, raw_data$module_id == module))==0)
+  if(nrow(subset(data_moduleAccess, data_moduleAccess$module_id == module))==0)
   {
-    DeletedModules <- rbind(DeletedModules, subset(courseHierarchy,courseHierarchy$module_id == module))
+    DeletedModules <- rbind(DeletedModules, 
+                            subset(courseHierarchy,courseHierarchy$module_id == module))
     courseHierarchy <- courseHierarchy[courseHierarchy$module_id != module,]
   }
   
   #create a log of modules that were accessed by  fewer than 'accessMin' learners
   accessMin <- 10
-  if(nrow(subset(raw_data, raw_data$module_id == module)) < accessMin)
+  if(nrow(subset(data_moduleAccess, 
+                 data_moduleAccess$module_id == module)) < accessMin)
   {
-    typicallyUnusedModules <- rbind(typicallyUnusedModules, 
-                                    subset(courseHierarchy,courseHierarchy$module_id == module))
+    typicallyUnusedModules <- 
+      rbind(typicallyUnusedModules, 
+            subset(courseHierarchy,courseHierarchy$module_id == module))
   }
   
 }
@@ -355,6 +336,7 @@ write.csv(file = file.path(subDirPath,
 cat("\n\n\nScript (1_extractModules.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
-rm(list=ls())   #Clear environment variables
+#Clear environment variables
+rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
 
 

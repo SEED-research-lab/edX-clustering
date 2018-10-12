@@ -48,12 +48,15 @@
 #                   Added in more basic (package independent) progress indicator
 #     2017.07.14.   Minor code updates; added copyright information
 #     2017.08.06.   Update to comments; spell check
+#     2018.10.12.   Fixed bug that failed on inporting the user profile data 
+#                     if bad characters were included in file
+#                   Update to file selection (semi-automated)
 ## ===================================================== ##
 
 
 
 ######### Clean the environment ########## 
-rm(list=ls())   
+rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
 
 
 ######### Internal functions ########## 
@@ -100,6 +103,7 @@ WorkingDirectoryCheck <- function(expectedFile) {
 ## *************************************** #####
 # begin script setup
 
+require(readr)
 
 ######### Check for correct working directory ########## 
 #check for correct expected working directory, inform user if incorrect and stop running script
@@ -138,44 +142,50 @@ scriptStart <-  proc.time() #save the time (to compute elapsed time of script)
 ######### Reading files, converting to dataframe object, identify users with gender data #####
 
 #read in the preprocessed clickstream data
-preprocessedDataFilePath <- FileExistCheck(subDir = "2_PreprocessingOutput", 
-                                           filename = "preprocessed_data.csv")
-#exit script if file not found, otherwise continue
-ifelse(test = (preprocessedDataFilePath == FALSE), yes = return(), no = "")
-dataClickstream <- readr::read_csv(preprocessedDataFilePath)
-
-#User selection of the USER PROFILE data file to process (with sanatized user input)
-repeat{
-  prompt <- "*****Select the SQL USER PROFILE data file.*****  (It should end with 'auth_userprofile-prod-analytics.sql')"
-  cat("\n", prompt)
-  #beepr::beep(sound = 10)   #notify user to provide input
-  
-  # filenameUserProfile <- file.choose() #commented out, but may still be needed if working in RStudio server environment
-  filenameUserProfile <- tcltk::tk_choose.files(caption = prompt, 
-                                                default = "auth_userprofile-prod-analytics.sql",
-                                                filter = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-                                                multi = FALSE)
-
-  filenameCheckResult <- ExpectedFileCheck(selectedFilename = filenameUserProfile, 
-                                           expectedFileEnding = "auth_userprofile-prod-analytics.sql")
-  
-  if(filenameCheckResult == "matched"){
-    #filename matched expected string, continue with script
-    break
-  }else if(filenameCheckResult == "overridden"){
-    #continue script with the previously selected file
-    break
-  }else if(filenameCheckResult == "reselect"){
-    #repeat file selection loop
-  }
+if(exists("data_moduleAccess")){
+  data_preprocessed <- data_moduleAccess
+  rm(data_moduleAccess)
+}else{
+  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput", 
+                                             filename = "preprocessed_data.csv")
+  #exit script if file not found, otherwise continue
+  ifelse(test = (preprocessedDataFilePath == FALSE), yes = return(), no = "")
+  data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
 }
 
+#Locate the USER PROFILE data file to process (with sanatized user input)
+if(!exists("dataUserProfile")){
+  filenameUserProfile <- 
+    SelectFile(prompt = "*****Select the SQL USER PROFILE data file.*****  (It should end with 'auth_userprofile-prod-analytics.sql')", 
+               defaultFilename = "auth_userprofile-prod-analytics.sql",
+               filenamePrefix = ifelse(exists("filenamePrefix"), 
+                                       yes = filenamePrefix, no = ""), 
+               fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
+               dataFolderPath = ifelse(exists("dataFolderPath"), 
+                                       yes = dataFolderPath, no = ""))
+  
+  #import data files
+  # dataUserProfile <- 
+  #   readr::read_tsv(filenameUserProfile, 
+  #                    # col_types = list(mailing_address = col_skip()))
+  #                   col_types = cols_only(id = "i", user_id = "i", gender = "c",
+  #                                         year_of_birth = "c", level_of_education = "c",
+  #                                         country = "c"))
+  
+  library(data.table)
+  dataUserProfile <- fread(filenameUserProfile, 
+                           select = c("id", "user_id", "gender",
+                                      "year_of_birth", "level_of_education", "country"),
+                           quote = "")
+  
+}
+
+
 #Retaining only relevant clickstream columns
-dataClickstream <- dataClickstream[names(dataClickstream) %in% c("student_id","module_number","time")]
+data_preprocessed <- data_preprocessed[names(data_preprocessed) %in% c("student_id","module_number","time")]
 
 #read in the user profile data 
-dataUserProfile <- readr::read_tsv(filenameUserProfile)
-dataUserProfile <- dataUserProfile[names(dataUserProfile) %in% c("id", "user_id", "gender", "mailing_address", "year_of_birth", "level_of_education", "country")]
+# dataUserProfile <- dataUserProfile[names(dataUserProfile) %in% c("id", "user_id", "gender", "mailing_address", "year_of_birth", "level_of_education", "country")]
 
 #find the gendered subsets
 maleSubset <- subset(dataUserProfile, dataUserProfile$gender == "m")
@@ -186,8 +196,8 @@ femaleSubset <- subset(dataUserProfile, dataUserProfile$gender == "f")
 ######### Separate the Clickstream data into gendered subsets ###############
 
 #create empty dataframes where we will save the gendered clickstream data
-dataClickstreamMale <- data.frame()
-dataClickstreamFemale <- data.frame()
+data_preprocessedMale <- data.frame()
+data_preprocessedFemale <- data.frame()
 
 #create 2 lists for each gender 
 #(1) all known unique student IDs for each gender and 
@@ -208,13 +218,13 @@ start <-  proc.time() #save the time (to compute elapsed time of loop)
 #   total = 100, clear = FALSE, width= 120)
 
 #build up a dataframe with all rows of each male user's clickstream data
-cat("\nExtracting clickstream for male learners (",length(maleID_List)," learners )...\n")
+cat("\nExtracting clickstream for male learners (",length(maleID_List),"learners )...\n")
 
 # pb$tick(0)  #start the progress bar
 for(ID in maleID_List)
 {
-  if(nrow(subset(dataClickstream, dataClickstream$student_id == ID)) > 0){ #ensure that the ID exists in the clickstream data
-    dataClickstreamMale <- rbind(dataClickstreamMale, subset(dataClickstream, dataClickstream$student_id == ID))
+  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ #ensure that the ID exists in the clickstream data
+    data_preprocessedMale <- rbind(data_preprocessedMale, subset(data_preprocessed, data_preprocessed$student_id == ID))
   }
   else{ #save to a list of males with no clickstream data (never accessed the course)
     noAccessMales <- c(noAccessMales, ID)
@@ -243,13 +253,13 @@ start <-  proc.time() #save the time (to compute elapsed time of loop)
 #   total = 100, clear = FALSE, width= 120)
 
 #build up a dataframe with all rows of each female user's clickstream data
-cat("\nExtracting clickstream for female learners (",length(femaleID_List)," learners )...\n\n")
+cat("\nExtracting clickstream for female learners (",length(femaleID_List),"learners )...\n\n")
 
 # pb$tick(0)
 for(ID in femaleID_List)
 {
-  if(nrow(subset(dataClickstream, dataClickstream$student_id == ID)) > 0){ #ensure that the ID exists in the clickstream data
-    dataClickstreamFemale <- rbind(dataClickstreamFemale, subset(dataClickstream, dataClickstream$student_id == ID))
+  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ #ensure that the ID exists in the clickstream data
+    data_preprocessedFemale <- rbind(data_preprocessedFemale, subset(data_preprocessed, data_preprocessed$student_id == ID))
   }
   else{ #save to a list of females with no clickstream data (never accessed the course)
     noAccessFemales <- c(noAccessFemales, ID)
@@ -271,23 +281,23 @@ print(proc.time() - start)
 
 ######### Converting student_id to sequential integers from 1 to total_number_registered ###############
 
-ConvertStudentID <- function(dataClickstreamTemp)
+ConvertStudentID <- function(data_preprocessedTemp)
 {
   #Order clickstream records for males in increasing order of student_id and 
   # generate temporary student ids starting from 1
-  dataClickstreamTemp <- dataClickstreamTemp[order(dataClickstreamTemp$student_id, 
+  data_preprocessedTemp <- data_preprocessedTemp[order(data_preprocessedTemp$student_id, 
                                                    decreasing=F),]
   
   #remove prior temp_student_id column
-  dataClickstreamTemp <- dataClickstreamTemp[names(dataClickstreamTemp) %in% 
+  data_preprocessedTemp <- data_preprocessedTemp[names(data_preprocessedTemp) %in% 
                                                c("student_id","module_number","time")]
   
   temp_student_id <- c()
   counter <- 1
-  for(id in sort(unique(dataClickstreamTemp$student_id),decreasing=F))
+  for(id in sort(unique(data_preprocessedTemp$student_id),decreasing=F))
   {
     #find each instance of user id in the clickstream, save to temp data frame
-    temp_df <- subset(dataClickstreamTemp,dataClickstreamTemp$student_id==id)  
+    temp_df <- subset(data_preprocessedTemp,data_preprocessedTemp$student_id==id)  
     #create list with length to match the number of rows in temp_df
     seqen <- rep(counter,nrow(temp_df))
     #append each list for each loop through the IDs
@@ -296,18 +306,18 @@ ConvertStudentID <- function(dataClickstreamTemp)
     counter <- counter+1
   }
   #add a new column to Clickstream data frame with the temp_student_id
-  dataClickstreamTemp<-cbind(dataClickstreamTemp,temp_student_id)
+  data_preprocessedTemp<-cbind(data_preprocessedTemp,temp_student_id)
   
-  return(dataClickstreamTemp)
+  return(data_preprocessedTemp)
 }
 
 #call temp_student_id funcion for each gender.  This sequential id column is needed 
 # for 3_Clustering.R
 cat("\nCreating temporary user id for male learners...")
-dataClickstreamFemale <- ConvertStudentID(dataClickstreamFemale)
+data_preprocessedFemale <- ConvertStudentID(data_preprocessedFemale)
 
 cat("\nCreating temporary user id for female learners...")
-dataClickstreamMale   <- ConvertStudentID(dataClickstreamMale)
+data_preprocessedMale   <- ConvertStudentID(data_preprocessedMale)
 
 
 
@@ -320,10 +330,10 @@ subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
 
 #save gendered clickstream data 
 cat("\nSaving CSV files.\n\n")
-write.csv(x = dataClickstreamFemale, file = file.path(subDirPath, 
+write.csv(x = data_preprocessedFemale, file = file.path(subDirPath, 
                                                       "preprocessed_data_females.csv", 
                                                       fsep = "/"))
-write.csv(x = dataClickstreamMale,   file = file.path(subDirPath, 
+write.csv(x = data_preprocessedMale,   file = file.path(subDirPath, 
                                                       "preprocessed_data_males.csv",   
                                                       fsep = "/"))
 
@@ -347,12 +357,6 @@ write.csv(x = noAccessMales,   file = file.path(subDirPath, "noAccess_males_UIDs
 
 
 ######### Notify user and Clear the environment  #############
-# beepr::beep(sound = 10)   #notify user script is complete
-# Sys.sleep(time = 0.1)     #pause 1/10 sec
-# beepr::beep(sound = 10)
-# Sys.sleep(time = 0.1)
-# beepr::beep(sound = 10)
-
 #print the amount of time the script required
 cat("\n\n\nScript (2b_genderedSubsets.R) processing time details (in sec):\n")
 print(proc.time() - scriptStart)

@@ -51,7 +51,7 @@ rm(list=ls())
 ######### Load required libraries ##########
 require(lubridate)  #working with dates
 require(plyr)       #data wrangling
-require(beeper)     #user notifications
+require(beepr)     #user notifications
 
 
 
@@ -125,23 +125,42 @@ setwd(analyticsPath)
 ## 
 
 #set date thresholds for course start, late enrollers, and archive learners
-date1_liveStart <- ymd_hms("2015-03-26 00:00:00 UTC") #course start date
-date2_lateStart <- ymd_hms("2015-04-16 00:00:00 UTC")
-date3_archiveStart <- ymd_hms("2015-05-27 00:00:00 UTC")  #day after course end date
+  #get dates from user 
+  #TODO(sanitize/verify input)
+  inputDate1_courseStart <- readline(prompt="Enter course START date (YYYY-MM-DD): ")
+  # inputdate2_lateStart <- readline(prompt="Enter course START date (YYYY-MM-DD): ")
+  inputdate3_courseEnd <- readline(prompt="Enter course END date (YYYY-MM-DD): ")
 
-#read in the clickstream data and extract needed columns
-beepr::beep(sound = 10)   #notify user to provide input
-message("Please select the appropriate 'preprocessed_data.csv' file 
-        (found in the '2_PreprocessingOutput' folder).")
-filename <- file.choose()
-data0_complete <- readr::read_csv(filename)
+  #build dates
+  date1_liveStart <- ymd_hms(paste0(inputDate1_courseStart, " 00:00:00 UTC")) #course start date
+  date2_lateStart <- date1_liveStart+ddays(15) #late date is 15 days after the course start (as found in Douglas, K., Aggarwal, H., Williams, T. V., Fan, Y., & Bermel, P. (2018). Comparison of live, late and archived mode learner behavior in an advanced engineering MOOC. In Frontiers in Education Conference. San Jose, CA, USA.)
+  date3_archiveStart <- ymd_hms(paste0(inputdate3_courseEnd, " 00:00:00 UTC"))+ddays(1) #day after course end date
+
+  
+  
+#read in the clickstream data
+  #check for preprocessed datafile existence
+  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
+                                             filename = "preprocessed_data.csv")
+  #exit script if file not found, otherwise continue
+  ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
+  #read in data from the appropriate learner (sub)set
+  data0_complete <- readr::read_csv(preprocessedDataFilePath)
+  
+  
+  # beepr::beep(sound = 10)   #notify user to provide input
+  # message("Please select the appropriate 'preprocessed_data.csv' file 
+  #         (found in the '2_PreprocessingOutput' folder).")
+  # filename <- file.choose()
+  # data0_complete <- readr::read_csv(filename)
 
 
 #save list of unique UIDs in data
 UIDs_all <- unique(data0_complete$student_id)
 
 
-#subset data into the three enrollment groups (based on first interaction event)
+#subset data into the enrollment groups (based on first interaction event)
+data0_preCourseUsers <- data.frame()
 data1_liveUsers <- data.frame()
 data2_lateUsers <- data.frame()
 data3_archiveUsers <- data.frame()
@@ -155,16 +174,18 @@ for (i in UIDs_all) {
   
   #save user to proper enrollment group based on the threshold dates
   if(curUserData$time[1] >= date3_archiveStart){
-    #save user in the archive group
+    #save user in the archive group if first interaction is after course closes
     data1_liveUsers <- rbind(data1_liveUsers, curUserData)
   }else if(curUserData$time[1] >= date2_lateStart){
-    #save user in the late group
+    #save user in the late group if first interaction is after the late date
     data2_lateUsers <- rbind(data2_lateUsers, curUserData)
   }else if(curUserData$time[1] >= date1_liveStart){
-    #save user in the live group
+    #save user in the live group if first interaction is after the course start
     data3_archiveUsers <- rbind(data3_archiveUsers, curUserData)
   }else{
-    #do nothing if first recorded event predated the course start date
+    #save user in the list of users who aren't students if first 
+    #   recorded event predated the course start date
+    data0_preCourseUsers <- rbind(data0_preCourseUsers, curUserData)
   }
   
   #| print completion progress to console   ####
@@ -193,6 +214,8 @@ subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
 
 #write a CSV file for the next step in processing. 
 cat("\nSaving CSV file.")
+write.csv(file = file.path(subDirPath, "userList0_pre-courseUsers.csv", fsep = "/"), 
+          x = data0_preCourseUsers)
 write.csv(file = file.path(subDirPath, "userList1_live.csv", fsep = "/"), 
           x = data1_liveUsers)
 write.csv(file = file.path(subDirPath, "userList2_late.csv", fsep = "/"), 

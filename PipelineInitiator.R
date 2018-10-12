@@ -41,6 +41,7 @@
 #                   * have user provide paths to the edX data files here (once)
 #                   * pass selected data file paths between sourced scripts
 #                   * remove unnecessary packages from the PackRat library
+#                   * allow user to give a timeframe of events to include
 ## ===================================================== ##
 
 
@@ -107,6 +108,56 @@ source("R/file-structure-functions.R")
 
 #start a timer to track how long the pipeline takes to execute
 start <-  proc.time() #save the time (to report the pipeline's running time at the end of the script)
+
+#get data file locations from user
+  #get JSON
+  #Locate the JSON course structure data file to process (with sanitized user input)
+  filenameJSON <- 
+    SelectFile(prompt = "*****Select the JSON COURSE STRUCTURE file.*****  (It should end with 'course_structure-prod-analytics.json')", 
+               defaultFilename = "course_structure-prod-analytics.json", 
+               fileTypeMatrix = matrix(c("JSON", ".json"), 1, 2, byrow = TRUE))
+
+  
+  #extract course prefix; extract the folder path
+  filenamePrefix <- gsub("course_structure-prod-analytics.json$",
+                         "",basename(filenameJSON))
+  dataFolderPath <- dirname(filenameJSON)
+  
+  
+  #try to automatically get the other files (ask for them if fails)
+  #Locate the clickstream data file to process (with sanitized user input)
+  filename_moduleAccess <- 
+    SelectFile(prompt = "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')", 
+               defaultFilename = "courseware_studentmodule-prod-analytics.sql",
+               filenamePrefix = filenamePrefix, 
+               fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
+               dataFolderPath = dataFolderPath)
+  
+  
+  #Locate the USER PROFILE data file to process (with sanatized user input)
+  filenameUserProfile <- 
+    SelectFile(prompt = "*****Select the SQL USER PROFILE data file.*****  (It should end with 'auth_userprofile-prod-analytics.sql')", 
+               defaultFilename = "auth_userprofile-prod-analytics.sql",
+               filenamePrefix = filenamePrefix, 
+               fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
+               dataFolderPath = dataFolderPath)
+  
+  
+  
+  #import data files
+  data_courseStructure <- jsonlite::fromJSON(filenameJSON)
+  data_moduleAccess <- readr::read_tsv(filename_moduleAccess)
+  dataUserProfile <- 
+    data.table::fread(filenameUserProfile, 
+                      select = c("id", "user_id", "gender",
+                                 "year_of_birth", "level_of_education", "country"),
+                      quote = "")
+  
+
+#TODO()
+#load data
+  #in scripts, check if the data is in the environment, if so then continue automatically, if not then request it
+
 
 #source (run) the pipeline script files in sequence
 source("1_extractModules.R")

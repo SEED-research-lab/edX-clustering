@@ -3,7 +3,7 @@
 # Project:      edX data pipeline for course user clustering analytics
 #               https://tzwilliams.github.io/edX-clustering/
 # 
-# Copyright 2017 Krishna Madhavan
+# Copyright 2017, 2018 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
 #     you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@
 #     2017.05.11.   Initial function extraction from pipeline
 #     2017.05.11.   Minor updates to console output
 #     2017.07.14.   Minor code updates; added copyright information
+#     2018.10.12.   added new functions
 ## ===================================================== ##
 
 
@@ -40,11 +41,11 @@ DirCheckCreate <- function(subDir) {
   
   #check for/create subdirectory
   if(!dir.exists(file.path(mainDir, subDir))){
-    cat(paste0("The directory '", subDir, "' does not exist in '", mainDir, "' -- creating directory"))
+    cat(paste0("The directory '", subDir, "' does NOT exist in '", mainDir, "' -- creating directory\n"))
     dir.create(file.path(mainDir, subDir))
     subDirPath <- file.path(mainDir, subDir)
   }else{
-    cat(paste0("The directory '", subDir, "' exists in '", mainDir, "' -- continuing script"))
+    cat(paste0("The directory '", subDir, "' exists in '", mainDir, "' -- continuing script\n"))
     subDirPath <- file.path(mainDir, subDir)
   }
   return(subDirPath)
@@ -63,14 +64,14 @@ ExpectedFileCheck <- function(selectedFilename, expectedFileEnding) {
   matchResult <- grepl(pattern = expectedFileEnding, x = selectedFilename)
   if(grepl(pattern = expectedFileEnding, x = selectedFilename)){
     #the pattern is found, inform user and exit the function
-    cat("\n\nThe filename you provided MATCHES the expected text.")
+    cat("\n\nThe filename you provided MATCHES the expected text.\n")
     return("matched")
     # break
   }else {
     #otherwise, inform the user that the strings don't match and provide option to override (continue with provided file)
     cat("\n\nERROR: The filename you provided DOESN'T MATCH the expected text.",
         "\n       filename provided: ", selectedFilename,
-        "\n       expected in filename: ", expectedFileEnding)
+        "\n       expected in filename: ", expectedFileEnding, "\n")
     
     repeat{
       #give the user the option to continue with the selected file
@@ -90,8 +91,8 @@ ExpectedFileCheck <- function(selectedFilename, expectedFileEnding) {
 
 
 
-#Function: Check for existance of file passed in
-FileExistCheck <- function(subDir, filename) {
+#Function: Check for existance of file in working directory
+FileExistCheck_workingDir <- function(subDir, filename) {
   
   #set parameters for file location
   mainDir <- getwd()
@@ -99,16 +100,33 @@ FileExistCheck <- function(subDir, filename) {
   #store the file path
   filePath <- file.path(mainDir, subDir, filename, fsep = "/")
   
-  #check for existance of CSV module order file
+  #check for existance of file
   if(file.exists(filePath)){
-    cat(paste(filename, "found -- continuing"))
+    cat(paste(filename, "found -- continuing\n"))
     return(filePath)
   }else{
-    cat(paste("ERROR: ", filename, "not found -- exiting script"))
+    cat(paste("ERROR: ", filename, "not found in ", dirname(filePath), " -- exiting script\n"))
     rm(list=ls()) ## Clear the environment
     return(FALSE)  #retun signal to exit script if file not found
   }
 }
+
+
+# #Function: Check for existance of file in a directory
+# FileExistCheck <- function(dir, filename) {
+#   #store the file path
+#   filePath <- file.path(dir, filename)
+#   
+#   #check for existance of file
+#   if(file.exists(filePath)){
+#     cat(paste(filename, "found -- continuing"))
+#     return(filePath)
+#   }else{
+#     cat(paste("ERROR: ", filename, "not found in ", dir, " -- exiting script"))
+#     rm(list=ls()) ## Clear the environment
+#     return(FALSE)  #retun signal to exit script if file not found
+#   }
+# }
 
 
 
@@ -132,4 +150,72 @@ WorkingDirectoryCheck <- function(expectedFile) {
       return(FALSE)
     }
   }
+}
+
+
+
+#Function: Look for a file at the specified location.  Return path if found. 
+#   Get path from user if not found.
+SelectFile <- function(prompt = NULL, defaultFilename = NULL, 
+                       filenamePrefix = NULL, fileTypeMatrix = NULL,
+                       dataFolderPath = NULL) {
+  
+  #look for file by name (countinue without bothering user if found)
+  if(!is.null(filenamePrefix) & 
+     !is.null(defaultFilename) &
+     !is.null(dataFolderPath)) {
+    filename <- paste0(filenamePrefix, defaultFilename)
+    filenamePath <- file.path(dataFolderPath, filename)
+  
+  
+    #filename matched expected string, return the file'path's path
+    #  otherwise continue with user selection of file
+    # if(!is.null(filenamePath)) {
+    #   if(filenamePath > 0){
+        if(file.exists(filenamePath)){
+          return(filenamePath)
+        }
+    #   }
+    # }
+  }
+  
+  #User file selection
+    repeat{
+    cat("\n", prompt)
+    #beepr::beep(sound = 10)   #notify user to provide input
+    # filenameJSON <- file.choose() #commented out, but may still be needed if working in RStudio server environment
+    filename <- tcltk::tk_choose.files(caption = prompt, 
+                                           default = paste0(filenamePrefix, 
+                                                            defaultFilename),
+                                           filter = fileTypeMatrix,
+                                           multi = FALSE)
+    filenameCheckResult <- ExpectedFileCheck(selectedFilename = filename, 
+                                             expectedFileEnding = defaultFilename)
+    
+    if(filenameCheckResult == "matched"){
+      #filename matched expected string, continue with script
+      break
+    }else if(filenameCheckResult == "overridden"){
+      #continue script with the previously selected file
+      break
+    }else if(filenameCheckResult == "reselect"){
+      #repeat file selection loop
+    }
+  }
+  
+  return(filename)
+}
+
+
+#Function: check to see if a column exists in a CSV file
+CSV_ContentCheck <- function(CSV_path, reqdColName) {
+  #read in the file, return the column names, 
+  #   check to see if each column matches reqdColName, 
+  #   add the boolean results (if a maching column exists the result 
+  #   will be TRUE, if not the result will be FALSE)
+  fileContentsCheck <- as.logical(sum(names(read.csv(CSV_path))==reqdColName))
+  
+  ifelse(!fileContentsCheck, yes = "File found.", no = "File NOT found.")
+  
+  return(as.logical(fileContentsCheck))
 }
