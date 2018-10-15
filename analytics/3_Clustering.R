@@ -89,7 +89,7 @@
 
 
 ######### Clean the environment ##########
-rm(list=setdiff(ls(), c("data_moduleAccess", "data_preprocessed")))
+rm(list=setdiff(ls(), c("data_moduleAccess", "data_preprocessed", "gap_values", "data_access", "uniqueIDs", "elbow_plot_values")))
 
 
 ######### Internal functions ##########
@@ -178,6 +178,11 @@ source("R/DisplayPercentComplete.R")
 #start a timer to track how long the script takes to execute
 start <-  proc.time() #save the time (to compute elapsed time of script)
 
+
+#### save the preprocessed data from a prior run if it is in memory (to compare with current data later)
+if(exists("data_preprocessed")){
+  data_preprocessed_prior <- data_preprocessed
+}
 
 
 ######### User providing dataset details #####
@@ -388,7 +393,7 @@ Enter '1' or {nothing} for all learners,  :
   
 
 
-## Read data and retain needed columns
+## Read data and retain needed columns ####
 #check for preprocessed datafile existence
 preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
                                                       filename = "preprocessed_data.csv")
@@ -418,6 +423,12 @@ data_preprocessed <- data_preprocessed[order(data_preprocessed$temp_student_id,
                                              decreasing=F),]
 
 
+## Check if current data_preprocessed matches the one from a prior run (if one was in memory)
+if(exists("data_preprocessed_prior")){
+  priorRunMatch <- identical(data_preprocessed, data_preprocessed_prior)
+}else{
+  priorRunMatch <- FALSE
+}
 
 ######### Save the current working directory ##########
 # Set the output directory to the working directory. (wd will be restored at the end of the script)
@@ -437,55 +448,87 @@ setwd(subDirPath)
 
 
 ######### Calculating number of unique module accesses for each student and saving to file########
-uniqueIDs <- unique(data_preprocessed$temp_student_id)
-
-cat(paste0("\nCalculating number of access events for ", length(uniqueIDs), " learners...\n"))
-#data_access contains the number of unique module accesses for each learner
-data_access <- tibble(temp_student_id = as.numeric(),
-                      number_accesses = as.numeric(),
-                      student_id = as.numeric())
-
-for(i in uniqueIDs){
-    temp <- subset(data_preprocessed,data_preprocessed$temp_student_id == i)
-    data_access <- add_row(data_access,
-                         temp_student_id = temp$temp_student_id[1],
-                         number_accesses = nrow(temp),
-                         student_id = temp$student_id[1])
-    
-    
-    #| print completion progress to console   ####
-    #durring first iteration, create progress status variables for main processing loop
-    if(i==uniqueIDs[1])
-    {
-      iCount <- 0 #loop counter for completion updates
-      pct <- 0  #percentage complete tracker
-    }
-
-    #print function
-    updateVars <- DisplayPercentComplete(dataFrame = unique(data_preprocessed$temp_student_id), 
-                                         iCount, pct)
-
-    #update status variables (for next iteration)
-    iCount <- updateVars$iCount
-    pct <- updateVars$pct
-
-    #print update
-    cat(updateVars$toPrint)
-}
-cat("\nDone! Saving to file...")
-
-
-#save the appropriate access data to a CSV file
-  write.csv(x = data_access,
-            file = paste0("access_data. ", dataSetName, ".csv"),
-            row.names = FALSE)
-
+if(priorRunMatch & exists("data_access") & exists("uniqueIDs")){
+  cat(paste0("\nAccess events for ", length(uniqueIDs), " learner available from prior run.... Continuing\n"))
+}else{
+  uniqueIDs <- unique(data_preprocessed$temp_student_id)
+  
+  cat(paste0("\nCalculating number of access events for ", length(uniqueIDs), " learners...\n"))
+  #data_access contains the number of unique module accesses for each learner
+  data_access <- tibble(temp_student_id = as.numeric(),
+                        number_accesses = as.numeric(),
+                        student_id = as.numeric())
+  
+  for(i in uniqueIDs){
+      temp <- subset(data_preprocessed,data_preprocessed$temp_student_id == i)
+      data_access <- add_row(data_access,
+                           temp_student_id = temp$temp_student_id[1],
+                           number_accesses = nrow(temp),
+                           student_id = temp$student_id[1])
+      
+      
+      #| print completion progress to console   ####
+      #durring first iteration, create progress status variables for main processing loop
+      if(i==uniqueIDs[1])
+      {
+        iCount <- 0 #loop counter for completion updates
+        pct <- 0  #percentage complete tracker
+      }
+  
+      #print function
+      updateVars <- DisplayPercentComplete(dataFrame = unique(data_preprocessed$temp_student_id), 
+                                           iCount, pct)
+  
+      #update status variables (for next iteration)
+      iCount <- updateVars$iCount
+      pct <- updateVars$pct
+  
+      #print update
+      cat(updateVars$toPrint)
+  }
+  cat("\nDone! Saving to file...")
+  
+  
+  #save the appropriate access data to a CSV file
+    write.csv(x = data_access,
+              file = paste0("access_data. ", dataSetName, ".csv"),
+              row.names = FALSE)
+}#end data_access conditional
 
 ## ===================================================== ##
 #Clearing all variables except those needed later
 # rm(list=setdiff(ls(), c('initialWD_save', 'userSubsetSelection', 'preprocessedDataFilePath',
 #                         'data_access', 'data_preprocessed', 'clusterTypeSelection', 'clusterTypeName',
 #                         'dataSetDescription', 'dataSetName', 'start')))
+
+
+## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters)####
+## Tibshirani, R., Walther, G., & Hastie, T. (2001). Estimating the number of clusters in a data set via the gap statistic. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 63(2), 411–423. https://doi.org/10.1111/1467-9868.00293
+if(priorRunMatch & exists("gap_values")){
+  cat("\n\nGap plot already exists from prior run.... Continuing\n")
+  
+}else{
+  cat("\n\nGenerating gap plot...\n")
+  gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),
+                                    K.max=10,
+                                    FUN=kmeans,
+                                    verbose=FALSE)
+  gap_values <- (as.data.frame(gap_statistic$Tab))$gap
+  #set the range of x values to include in plot
+  x=1:10
+  pdf.options(reset = TRUE)
+  #set the PDF name
+  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "k-means_gap_plot.pdf"))
+  #set plot options (including descriptive subtitle)
+  plot(x = x, y = gap_values, col="black", 
+       xlim = c(0,10), ylim = c(0,1),
+       xlab ="Number of clusters", ylab="Gap", type="l",
+       main = paste0("Gap plot for ", dataSetName,"\n",
+                     dataSetDescription))
+  #close the PDF creation connection
+  dev.off()
+  cat("\nDone!\n\n")
+}# end gap plot
 
 
 ######### If k-means clustering chosen ######################################################
@@ -498,69 +541,51 @@ if(clusterTypeSelection==1)
 
   ## **Generate elbow plot from access data using K=1 to K=10 (K = number of clusters) ####
   ## Thorndike, R. L. (1953). Who belongs in the family? Psychometrika, 18(4), 267–276. https://doi.org/10.1007/BF02289263
-  cat("\n\nGenerating elbow plot...\n")
-
-  #elbow_plot_values is a list of betweenClusterSumofSquares/totalSumofSquares for K = 1 to 10
-  elbow_plot_values <- c()
-  for(k in 1:10)
-  {
-    K_m <- kmeans(data_access$number_accesses,
-                  centers=k,
-                  iter.max=50,
-                  algorithm="Lloyd")
-    elbow_plot_values <- c(elbow_plot_values,K_m$betweenss/K_m$totss)
+  if(exists("elbow_plot_values")){
+    cat("\n\nElbow plot already exists from prior run.... Continuing\n")
     
-    cat(paste0("\r Calculations ", k*10, "% commplete."))
-  }
-  ##Plot elbow plot
+  }else{
+    cat("\n\nGenerating elbow plot...\n")
 
-  #set the range of x values to include in the plot
-  x=1:10
-  pdf.options(reset = TRUE)
-  #set the PDF name
-  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "k-means_elbow_plot.pdf"))
-  #create plot option (including descriptive subtitle)
-  plot(x = x, y = elbow_plot_values, col="blue", type="l",
-       xlim=c(0,10), ylim=c(0,1.2), xlab="Number of clusters",
-       ylab="Between cluster sum of squares / Total sum of squares",
-       main=paste0("Elbow plot for ", dataSetName,"\n",
-                   clusterTypeName, "\n",
-                   dataSetDescription))
-
-  dev.off()
-  cat("\nDone!")
-
-
-  ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters)####
-  ## Tibshirani, R., Walther, G., & Hastie, T. (2001). Estimating the number of clusters in a data set via the gap statistic. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 63(2), 411–423. https://doi.org/10.1111/1467-9868.00293
-  cat("\n\nGenerating gap plot...")
-  gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),
-                                    K.max=10,
-                                    FUN=kmeans,
-                                    verbose=FALSE)
-  gap_values <- (as.data.frame(gap_statistic$Tab))$gap
-  #set the range of x values to include in plot
-  x=1:10
-  pdf.options(reset = TRUE)
-  #set the PDF name
-  #Simple name (to delete): pdf("gap_plot.pdf")
-  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "k-means_gap_plot.pdf"))
-  #set plot options (including descriptive subtitle)
-  plot(x = x, y = gap_values, col="black", xlim = c(0,10), ylim = c(0,1),
-       xlab="Number of clusters", ylab="Gap", type="l",
-       main = paste0("Gap plot for ", dataSetName,"\n",
+    #elbow_plot_values is a list of betweenClusterSumofSquares/totalSumofSquares for K = 1 to 10
+    elbow_plot_values <- c()
+    for(k in 1:10)
+    {
+      K_m <- kmeans(data_access$number_accesses,
+                    centers=k,
+                    iter.max=50,
+                    algorithm="Lloyd")
+      elbow_plot_values <- c(elbow_plot_values,K_m$betweenss/K_m$totss)
+      
+      cat(paste0("\r Calculations ", k*10, "% commplete."))
+    }
+    ##Plot elbow plot
+  
+    #set the range of x values to include in the plot
+    x=1:10
+    pdf.options(reset = TRUE)
+    #set the PDF name
+    pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "k-means_elbow_plot.pdf"))
+    #create plot option (including descriptive subtitle)
+    plot(x = x, y = elbow_plot_values, col="blue", type="l",
+         xlim=c(0,10), ylim=c(0,1.2), xlab="Number of clusters",
+         ylab="Between cluster sum of squares / Total sum of squares",
+         main=paste0("Elbow plot for ", dataSetName,"\n",
                      clusterTypeName, "\n",
                      dataSetDescription))
-  #close the PDF creation connection
-  dev.off()
-  cat("\nDone!\n\n")
+  
+    dev.off()
+    cat("\nDone!")
+  }#end elbow plot
+  
+
 
   ## **Make recommendations for cluster number ####
   ##Make recommendation for number of clusters based on elbow plot (once delta is less than 2%)
   for(i in 3:10)
   {
     #Calculate percentage increase in explained variance from k to k+1 clusters
-    percent_inc=(elbow_plot_values[i]-elbow_plot_values[i-1])/elbow_plot_values[i-1]
+    percent_inc <- (elbow_plot_values[i]-elbow_plot_values[i-1])/elbow_plot_values[i-1]
     if(percent_inc<0.02)
     {
       print(paste("Recommendation for number of clusters using elbow plot:     ", i-1),
@@ -610,19 +635,23 @@ if(clusterTypeSelection==1)
            no = print("Please enter a valid number.", quote=FALSE))
   }
 
-  #Ordering data_access in increasing order of temporary student it (integer id created for each student in preprocessing)
-  data_access <- data_access[order(data_access$temp_student_id,decreasing=F),]
+  #Ordering data_access in increasing order of temporary student id (integer id created for each student in preprocessing)
+  data_access <- data_access[order(data_access$temp_student_id,
+                                   decreasing=F),]
 
 
   #Performing K-means clustering on access data using user's choice of K
-  K_m <- kmeans(data_access$number_accesses,centers=K,iter.max=100,algorithm="Lloyd")
+  K_m <- kmeans(data_access$number_accesses,
+                centers=K,iter.max=100,algorithm="Lloyd")
   cluster_id <- K_m$cluster
 
   #Binding cluster_id of each student to data_access
-  data_access <- cbind(data_access,cluster_id)
+  data_access$cluster_id <- NULL
+  data_access <- cbind(data_access, cluster_id)
 
   #Ordering data_access in increasing order of number of unique accesses of students
-  data_access <- data_access[order(data_access$number_accesses,decreasing=F),]
+  data_access <- data_access[order(data_access$number_accesses,
+                                   decreasing=F),]
 
 
   # #Clearing all variables except those needed later
@@ -637,26 +666,26 @@ if(clusterTypeSelection==1)
   ##Set label
   clusterTypeName <- "c-means (fuzzy) clustering"
 
-  ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters) ####
-  cat("\nGenerating gap plot...")
-  gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),
-                                    K.max=10, FUN=kmeans, verbose=FALSE)   #TODO(TW:??):for DR??? should kmeans be the FUN used here?  We're in the c-means clustering section
-  gap_values <- (as.data.frame(gap_statistic$Tab))$gap
-
-  #Plot gap plot
-  #set the range of x values to include in the plot
-  x <- 1:10
-  #set the PDF name
-  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "c-means_gap_plot.pdf"))
-  #set plot options (including descriptive subtitle)
-  plot(x = x,y = gap_values,col="black",xlim=c(0,10),ylim=c(0,1),
-       xlab="Number of clusters",ylab="Gap",type="l",
-       main = paste0("Gap plot for ", dataSetName,"\n",
-                     clusterTypeName, "\n",
-                     dataSetDescription))
-  #close the PDF creation connection
-  dev.off()
-  cat("\nDone!")
+  # ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters) ####
+  # cat("\nGenerating gap plot...")
+  # gap_statistic <- cluster::clusGap(as.matrix(data_access$number_accesses),
+  #                                   K.max=10, FUN=kmeans, verbose=FALSE)   #TODO(TW:??):for DR??? should kmeans be the FUN used here?  We're in the c-means clustering section
+  # gap_values <- (as.data.frame(gap_statistic$Tab))$gap
+  # 
+  # #Plot gap plot
+  # #set the range of x values to include in the plot
+  # x <- 1:10
+  # #set the PDF name
+  # pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "c-means_gap_plot.pdf"))
+  # #set plot options (including descriptive subtitle)
+  # plot(x = x,y = gap_values,col="black",xlim=c(0,10),ylim=c(0,1),
+  #      xlab="Number of clusters",ylab="Gap",type="l",
+  #      main = paste0("Gap plot for ", dataSetName,"\n",
+  #                    clusterTypeName, "\n",
+  #                    dataSetDescription))
+  # #close the PDF creation connection
+  # dev.off()
+  # cat("\nDone!")
 
   ## **Make recommendation for number of clusters based on gap statistics (first peak in plot) ####
   optimal_clusters <- c()
@@ -674,7 +703,7 @@ if(clusterTypeSelection==1)
       # break
       # }
     {
-      print(paste("Recommendation for number of clusters using gap statistics:",i),quote=FALSE)
+      print(paste("Recommendation for number of clusters using gap statistics:",i), quote=FALSE)
       break
     }
   }
@@ -692,14 +721,18 @@ if(clusterTypeSelection==1)
 
 
   #Ordering data_access in increasing order of temporary student it (integer id created for each student in preprocessing)
-  data_access <- data_access[order(data_access$temp_student_id,decreasing=F),]
+  data_access <- data_access[order(data_access$temp_student_id,
+                                   decreasing=F),]
   #Performing C-means clustering on access data using user's choice of K clusters
-  C_m <- e1071::cmeans(as.matrix(data_access$number_accesses),centers=K)
+  C_m <- e1071::cmeans(as.matrix(data_access$number_accesses),
+                       centers=K)
   cluster_id <- C_m$cluster
   #Binding cluster_id of each student to data_access
-  data_access <- cbind(data_access,cluster_id)
+  data_access$cluster_id <- NULL
+  data_access <- cbind(data_access, cluster_id)
   #Ordering data_access in increasing order of number of unique accesses of students
-  data_access <- data_access[order(data_access$number_accesses,decreasing=F),]
+  data_access <- data_access[order(data_access$number_accesses,
+                                   decreasing=F),]
 
 
 } else
@@ -800,7 +833,7 @@ for(k in cluster_order)
   print(Mann_Whit_pValues)
 
 ## Save the work environment
-save.image(file = paste0("environmentVariables. ", dataSetName, ".RData"), 
+save.image(file = paste0("environmentVariables. ", dataSetName, " (", length(cluster_order), ").RData"), 
            compress = T)
   
 ## Restore the working directory from when the script began
@@ -820,7 +853,7 @@ beepr::beep(sound = 10)
 cat("\n\n\nScript (3_Clustering.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
-#Clear environment variables except for evaluation test values
-rm(list=setdiff(ls(), c('Mann_Whit_pValues', 'Krus_Wal', 
-                        "data_moduleAccess", "data_courseStructure", 
-                        "dataUserProfile")))   
+# #Clear environment variables except for evaluation test values
+# rm(list=setdiff(ls(), c('Mann_Whit_pValues', 'Krus_Wal', 
+#                         "data_moduleAccess", "data_courseStructure", 
+#                         "dataUserProfile")))   

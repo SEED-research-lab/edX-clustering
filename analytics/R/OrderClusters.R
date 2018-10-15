@@ -38,7 +38,7 @@ OrderClusters <- function(data_access, K) {
   #   data_access : 
   #   K : number of clusters
   # return:
-  #   cluster_order : a 
+  #   cluster_order : the cluster ordering from most engaged to least
 
   counter <- 1
   mean_accesses <- c()  # list of the average number of accesses per user in each cluster
