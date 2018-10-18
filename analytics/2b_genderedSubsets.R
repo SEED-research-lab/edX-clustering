@@ -164,10 +164,10 @@ if(!exists("dataUserProfile")){
   filenameUserProfile <- 
     SelectFile(prompt = "*****Select the SQL USER PROFILE data file.*****  (It should end with 'auth_userprofile-prod-analytics.sql')", 
                defaultFilename = "auth_userprofile-prod-analytics.sql",
-               filenamePrefix = ifelse(exists("filenamePrefix"), 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
                                        yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-               dataFolderPath = ifelse(exists("dataFolderPath"), 
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
                                        yes = dataFolderPath, no = ""))
   
   #import data files
@@ -254,7 +254,7 @@ start <-  proc.time() #save the time (to compute elapsed time of loop)
 #   total = 100, clear = FALSE, width= 120)
 
 #build up a dataframe with all rows of each female user's clickstream data
-cat("\nExtracting clickstream for female learners (",length(femaleID_List),"learners )...\n\n")
+cat("\nExtracting clickstream for female learners (",length(femaleID_List),"learners )...\n")
 
 # pb$tick(0)
 for(ID in femaleID_List)
@@ -347,21 +347,21 @@ noAccessFemalesPct <- sprintf("%.1f", noAccessFemalesPct, "%", collapse = "")
 noAccessMalesPct <- length(noAccessMales)/nrow(maleSubset) * 100
 noAccessMalesPct <- sprintf("%.1f", noAccessMalesPct, "%", collapse = "")
 
-cat(paste0("Percentage of registered female learners who never accessed the course: ", 
-             noAccessFemalesPct, "%"), quote = F)
-cat(paste0("Percentage of registered male learners who never accessed the course: ", 
-             noAccessMalesPct, "%"), quote = F)
+cat(paste0("\nPercentage of registered female learners who never accessed the course: ", 
+             noAccessFemalesPct, "%"))
+cat(paste0("\nPercentage of registered male learners who never accessed the course: ", 
+             noAccessMalesPct, "%"))
 
 names(noAccessFemales) <- c("Count","student_id")
 names(noAccessMales) <- c("Count","student_id")
 
 write.csv(x = noAccessFemales, file = file.path(subDirPath, 
                                                 paste0("noAccess_females_UIDs_", 
-                                                       noAccessFemalesPct, " pct of regs.csv"),
+                                                       noAccessFemalesPct, " pct of female regs.csv"),
                                                 fsep = "/"))
 write.csv(x = noAccessMales,   file = file.path(subDirPath, 
                                                 paste0("noAccess_males_UIDs_", 
-                                                       noAccessMalesPct, " pct of regs.csv"),
+                                                       noAccessMalesPct, " pct of male regs.csv"),
                                                 fsep = "/"))
 
 

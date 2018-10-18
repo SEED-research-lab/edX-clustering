@@ -154,9 +154,7 @@ start <-  proc.time() #save the time (to report the pipeline's running time at t
                       quote = "")
   
 
-#TODO()
-#load data
-  #in scripts, check if the data is in the environment, if so then continue automatically, if not then request it
+
 
 
 #source (run) the pipeline script files in sequence   ####

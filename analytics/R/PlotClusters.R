@@ -32,13 +32,19 @@
 ## ===================================================== ##
 
 PlotClusters <- function(clusterTypeName, K, data_preprocessed, 
-                         data_access, cluster_order, 
+                         data_access, cluster_order, moduleList,
                          dataSetName, dataSetDescription) {
   ## **Plotting clusters ####
   ## Arguments
   ##    clusterTypeName : name of clustering technique (e.g., k-means or c-means)
+  ##    K : number of clusters to plot
   ##    data_preprocessed : 
   ##    data_access : 
+  ##    moduleList : list of the module numbers to include in plot
+  ##    cluster_order : sequence to plot the clusters
+  ##    dataSetDescription : string name to include in title
+  ##    dataSetName : string description of the user group plotted
+  ##    
   ## Return
   ##    none
       
@@ -69,7 +75,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
   counter <- 1
   
   print("Plotting clusters...")
-  x=1:length(unique(data_preprocessed$module_number))
+  x=1:length(moduleList)
   pdf.options(reset = TRUE)
   #set the pdf name (descriptive)
   pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", 
@@ -77,7 +83,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
   #set the plot options (including descriptive subtitle)
   plot(x = 1,pch = ".",
        col = "white",
-       xlim = c(0,length(unique(data_preprocessed$module_number))),
+       xlim = c(0,length(moduleList)),
        ylim = c(0,length(unique(data_access$temp_student_id))),
        xlab = "Module number", ylab = "Users",
        main = paste0("Users clustered by course module interaction (", dataSetName,")\n", 
@@ -107,7 +113,7 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
     for(j in 1:nrow(temp)){
       stud_id <- temp$temp_student_id[j]
       temp2 <- subset(data_preprocessed,data_preprocessed$temp_student_id==stud_id)
-      access_list <- rep(NA,length(unique(data_preprocessed$module_number)))
+      access_list <- rep(NA,length(moduleList))
     
       for(i in 1:length(access_list)){
         if(i %in% temp2$module_number){

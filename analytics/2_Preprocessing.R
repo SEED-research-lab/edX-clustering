@@ -150,10 +150,10 @@ if(!exists("dataUserProfile")){
   filenameUserProfile <- 
     SelectFile(prompt = "*****Select the SQL USER PROFILE data file.*****  (It should end with 'auth_userprofile-prod-analytics.sql')", 
                defaultFilename = "auth_userprofile-prod-analytics.sql",
-               filenamePrefix = ifelse(exists("filenamePrefix"), 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
                                        yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-               dataFolderPath = ifelse(exists("dataFolderPath"), 
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
                                        yes = dataFolderPath, no = ""))
   
   #import data files
@@ -169,10 +169,10 @@ if(!exists("data_moduleAccess")){
   filenameClickstream <- 
     SelectFile(prompt = "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')", 
                defaultFilename = "courseware_studentmodule-prod-analytics.sql",
-               filenamePrefix = ifelse(exists("filenamePrefix"), 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
                                        yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-               dataFolderPath = ifelse(exists("dataFolderPath"), 
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
                                        yes = dataFolderPath, no = ""))
   
   
@@ -316,7 +316,7 @@ for(ID in ID_List){
   iCount <- iCount + 1  
   if(iCount%%as.integer((length(ID_List))/100) == 0){
     pct <- pct + 1
-    cat("\rLooking for no access users: ", pct, "% complete", sep = "")
+    cat("\rLooking for registered users who have no access events: ", pct, "% complete", sep = "")
   }
 }
 

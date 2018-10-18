@@ -387,8 +387,8 @@ Enter '1' or {nothing} for all learners,  :
     # continue if the user provided file contains the expected column
     #exit script if file not found, otherwise continue
     ifelse(fileContentsCheck == TRUE, 
-           yes = (userIDsToInclude <- read.csv(filenameUserFilter)$student_id),       # read list
-           no = NULL)     #exit script if file not found, otherwise continue
+           yes = (userIDsToInclude <- read.csv(filenameUserFilter)$student_id),       
+           no = NULL)  
     
     break
     }
@@ -406,6 +406,8 @@ ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
 #read in data from the appropriate learner (sub)set
 data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
 
+#store list of modules used considering everyone
+moduleListAll <- sort(unique(data_preprocessed$module_number))
 
 ##filter "preprocessed_data.csv" to only users on the UID list
   if(length(userIDsToInclude)>0){ 
@@ -428,8 +430,8 @@ data_preprocessed <- data_preprocessed[order(data_preprocessed$temp_student_id,
 
 ## Check if current data_preprocessed matches the one from a prior run (if one was in memory)
 if(exists("data_preprocessed_prior")){
-  priorRunMatch <- identical(data_preprocessed, data_preprocessed_prior)
-}else{
+  priorRunMatch <- identical(data_preprocessed, data_preprocessed_prior)  #TRUE if identical
+}	else {
   priorRunMatch <- FALSE
 }
 
@@ -760,6 +762,7 @@ PlotClusters(clusterTypeName = clusterTypeName,
              data_preprocessed = data_preprocessed,
              data_access = data_access,
              cluster_order = cluster_order,
+             moduleList = moduleListAll,
              dataSetName = dataSetName,
              dataSetDescription = dataSetDescription)
 

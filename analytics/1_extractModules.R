@@ -192,10 +192,10 @@ if(!exists("data_courseStructure")){
   filenameJSON <- 
     SelectFile(prompt = "*****Select the JSON COURSE STRUCTURE file.*****  (It should end with 'course_structure-prod-analytics.json')", 
                defaultFilename = "course_structure-prod-analytics.json", 
-               filenamePrefix = ifelse(exists("filenamePrefix"), 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
                                        yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("JSON", ".json"), 1, 2, byrow = TRUE),
-               dataFolderPath = ifelse(exists("dataFolderPath"), 
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
                                        yes = dataFolderPath, no = ""))
   
   #import the JSON data file
@@ -207,10 +207,10 @@ if(!exists("data_moduleAccess")){
   filenameClickstream <- 
     SelectFile(prompt = "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')", 
                defaultFilename = "courseware_studentmodule-prod-analytics.sql",
-               filenamePrefix = ifelse(exists("filenamePrefix"), 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
                                        yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-               dataFolderPath = ifelse(exists("dataFolderPath"), 
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
                                        yes = dataFolderPath, no = ""))
   
   
@@ -316,6 +316,7 @@ courseHierarchy <- cbind(courseHierarchy,module_no)
 ## trying to get this working from an external function
 # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
+source("R/file-structure-functions.R")
 subDirPath <- DirCheckCreate(subDir = "1_extractModulesOutput")
 
 
@@ -338,8 +339,13 @@ write.csv(file = file.path(subDirPath, "module_order_file.csv", fsep = "/"),
 write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
           x = DeletedModules, quote = c(modTitleColIndex))
 write.csv(file = file.path(subDirPath, 
-                           paste0("modules_with_fewer_than_", accessMin, "_accesses.csv"), fsep = "/"),
+                           paste0("modules_with_fewer_than_", accessMin, "_accesses.csv"), 
+                           fsep = "/"),
           x = typicallyUnusedModules, quote = c(modTitleColIndex))
+
+#save the course prefix
+write.csv(file = file.path(subDirPath, paste0(filenamePrefix, ".csv"), fsep = "/"),
+          x = filenamePrefix)
 
 
 ######### Notify user and Clear the environment  #############
@@ -354,6 +360,7 @@ cat("\n\n\nScript (1_extractModules.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
 #Clear environment variables
-rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
+rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile",
+                        "filenamePrefix", "dataFolderPath")))
 
 
