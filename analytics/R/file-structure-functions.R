@@ -41,11 +41,11 @@ DirCheckCreate <- function(subDir) {
   
   #check for/create subdirectory
   if(!dir.exists(file.path(mainDir, subDir))){
-    cat(paste0("The directory '", subDir, "' does NOT exist in '", mainDir, "' -- creating directory\n"))
+    cat(paste0("\nThe directory '", subDir, "' does NOT exist in '", mainDir, "' -- creating directory\n"))
     dir.create(file.path(mainDir, subDir))
     subDirPath <- file.path(mainDir, subDir)
   }else{
-    cat(paste0("The directory '", subDir, "' exists in '", mainDir, "' -- continuing script\n"))
+    cat(paste0("\nThe directory '", subDir, "' exists in '", mainDir, "' -- continuing script\n"))
     subDirPath <- file.path(mainDir, subDir)
   }
   return(subDirPath)
@@ -191,6 +191,11 @@ SelectFile <- function(prompt = NULL, defaultFilename = NULL,
                                            multi = FALSE)
     filenameCheckResult <- ExpectedFileCheck(selectedFilename = filename, 
                                              expectedFileEnding = defaultFilename)
+    
+    
+    filenamePrefix <<- gsub(defaultFilename,
+                           "",basename(filename))
+    dataFolderPath <<- dirname(filename)
     
     if(filenameCheckResult == "matched"){
       #filename matched expected string, continue with script

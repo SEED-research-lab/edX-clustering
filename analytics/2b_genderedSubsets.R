@@ -122,6 +122,12 @@ if(!WorkingDirectoryCheck(expectedFile)){
 }
 
 
+
+
+######### Load required libraries ##########
+require("data.table")
+require("tcltk")
+
 ######### External function sourcing ########## 
 #load external functions
 source("R/file-structure-functions.R")
@@ -165,14 +171,6 @@ if(!exists("dataUserProfile")){
                                        yes = dataFolderPath, no = ""))
   
   #import data files
-  # dataUserProfile <- 
-  #   readr::read_tsv(filenameUserProfile, 
-  #                    # col_types = list(mailing_address = col_skip()))
-  #                   col_types = cols_only(id = "i", user_id = "i", gender = "c",
-  #                                         year_of_birth = "c", level_of_education = "c",
-  #                                         country = "c"))
-  
-  library(data.table)
   dataUserProfile <- fread(filenameUserProfile, 
                            select = c("id", "user_id", "gender",
                                       "year_of_birth", "level_of_education", "country"),
@@ -182,7 +180,8 @@ if(!exists("dataUserProfile")){
 
 
 #Retaining only relevant clickstream columns
-data_preprocessed <- data_preprocessed[names(data_preprocessed) %in% c("student_id","module_number","time")]
+data_preprocessed <- data_preprocessed[names(data_preprocessed) %in% 
+                                         c("student_id","module_number","time")]
 
 #read in the user profile data 
 # dataUserProfile <- dataUserProfile[names(dataUserProfile) %in% c("id", "user_id", "gender", "mailing_address", "year_of_birth", "level_of_education", "country")]
@@ -223,8 +222,10 @@ cat("\nExtracting clickstream for male learners (",length(maleID_List),"learners
 # pb$tick(0)  #start the progress bar
 for(ID in maleID_List)
 {
-  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ #ensure that the ID exists in the clickstream data
-    data_preprocessedMale <- rbind(data_preprocessedMale, subset(data_preprocessed, data_preprocessed$student_id == ID))
+  #ensure that the ID exists in the clickstream data
+  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ 
+    data_preprocessedMale <- rbind(data_preprocessedMale, 
+                                   subset(data_preprocessed, data_preprocessed$student_id == ID))
   }
   else{ #save to a list of males with no clickstream data (never accessed the course)
     noAccessMales <- c(noAccessMales, ID)
@@ -258,8 +259,10 @@ cat("\nExtracting clickstream for female learners (",length(femaleID_List),"lear
 # pb$tick(0)
 for(ID in femaleID_List)
 {
-  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ #ensure that the ID exists in the clickstream data
-    data_preprocessedFemale <- rbind(data_preprocessedFemale, subset(data_preprocessed, data_preprocessed$student_id == ID))
+  #ensure that the ID exists in the clickstream data
+  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ 
+    data_preprocessedFemale <- rbind(data_preprocessedFemale, 
+                                     subset(data_preprocessed, data_preprocessed$student_id == ID))
   }
   else{ #save to a list of females with no clickstream data (never accessed the course)
     noAccessFemales <- c(noAccessFemales, ID)
@@ -339,19 +342,26 @@ write.csv(x = data_preprocessedMale,   file = file.path(subDirPath,
 
 
 #print and save gendered no access data
-print(paste0("Percentage of females with no access data: ", 
-             sprintf("%.1f", length(noAccessFemales)/nrow(femaleSubset) * 100, "%", 
-                     collapse = "")))
-print(paste0("Percentage of males with no access data: ", 
-             sprintf("%.1f", length(noAccessMales)/nrow(maleSubset) * 100, "%", 
-                     collapse = "")))
+noAccessFemalesPct <- length(noAccessFemales)/nrow(femaleSubset) * 100
+noAccessFemalesPct <- sprintf("%.1f", noAccessFemalesPct, "%", collapse = "")
+noAccessMalesPct <- length(noAccessMales)/nrow(maleSubset) * 100
+noAccessMalesPct <- sprintf("%.1f", noAccessMalesPct, "%", collapse = "")
+
+cat(paste0("Percentage of registered female learners who never accessed the course: ", 
+             noAccessFemalesPct, "%"), quote = F)
+cat(paste0("Percentage of registered male learners who never accessed the course: ", 
+             noAccessMalesPct, "%"), quote = F)
 
 names(noAccessFemales) <- c("Count","student_id")
 names(noAccessMales) <- c("Count","student_id")
 
-write.csv(x = noAccessFemales, file = file.path(subDirPath, "noAccess_females_UIDs.csv", 
+write.csv(x = noAccessFemales, file = file.path(subDirPath, 
+                                                paste0("noAccess_females_UIDs_", 
+                                                       noAccessFemalesPct, " pct of regs.csv"),
                                                 fsep = "/"))
-write.csv(x = noAccessMales,   file = file.path(subDirPath, "noAccess_males_UIDs.csv",   
+write.csv(x = noAccessMales,   file = file.path(subDirPath, 
+                                                paste0("noAccess_males_UIDs_", 
+                                                       noAccessMalesPct, " pct of regs.csv"),
                                                 fsep = "/"))
 
 

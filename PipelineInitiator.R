@@ -109,7 +109,7 @@ source("R/file-structure-functions.R")
 #start a timer to track how long the pipeline takes to execute
 start <-  proc.time() #save the time (to report the pipeline's running time at the end of the script)
 
-#get data file locations from user
+#get data file locations from user ####
   #get JSON
   #Locate the JSON course structure data file to process (with sanitized user input)
   filenameJSON <- 
@@ -144,7 +144,7 @@ start <-  proc.time() #save the time (to report the pipeline's running time at t
   
   
   
-  #import data files
+  #import data files ####
   data_courseStructure <- jsonlite::fromJSON(filenameJSON)
   data_moduleAccess <- readr::read_tsv(filename_moduleAccess)
   dataUserProfile <- 
@@ -159,7 +159,7 @@ start <-  proc.time() #save the time (to report the pipeline's running time at t
   #in scripts, check if the data is in the environment, if so then continue automatically, if not then request it
 
 
-#source (run) the pipeline script files in sequence
+#source (run) the pipeline script files in sequence   ####
 source("1_extractModules.R")
 source("2_Preprocessing.R")
 source("2b_genderedSubsets.R")

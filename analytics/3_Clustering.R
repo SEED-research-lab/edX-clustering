@@ -156,6 +156,8 @@ if(!WorkingDirectoryCheck(expectedFile)){
 
 ######### Load required libraries ##########
 require("dplyr")
+require("tcltk")
+
 
 
 
@@ -307,7 +309,9 @@ Enter '1' or {nothing} for all learners,  :
   else if(userSubsetSelection == 4){  #dataset: live learners
     dataSetName <- "live"
     filenameUserFilter <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
-                                         filename = "userList1_live.csv")
+                                         filename = 
+                                           list.files(path = "2_PreprocessingOutput", 
+                                                      pattern = "^userList1"))
     
     #check to see if selected file has required column
     fileContentsCheck <- CSV_ContentCheck(CSV_path = filenameUserFilter,
@@ -325,7 +329,9 @@ Enter '1' or {nothing} for all learners,  :
     dataSetName <- "late"
     
     filenameUserFilter <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
-                                                    filename = "userList2_late.csv")
+                                                    filename = 
+                                                      list.files(path = "2_PreprocessingOutput", 
+                                                                 pattern = "^userList2"))
     
     #check to see if selected file has required column
     fileContentsCheck <- CSV_ContentCheck(CSV_path = filenameUserFilter,
@@ -343,7 +349,9 @@ Enter '1' or {nothing} for all learners,  :
     dataSetName <- "archive"
 
     filenameUserFilter <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
-                                                    filename = "userList3_archive.csv")
+                                                    filename = 
+                                                      list.files(path = "2_PreprocessingOutput", 
+                                                                 pattern = "^userList3"))
     
     #check to see if selected file has required column
     fileContentsCheck <- CSV_ContentCheck(CSV_path = filenameUserFilter,
@@ -367,7 +375,8 @@ Enter '1' or {nothing} for all learners,  :
     filenameUserFilter <- 
       SelectFile(prompt = "*****Select a CSV file with the student_id values to cluster.*****  \n     (The IDs need to be in a column named 'student_id'.)", 
                  defaultFilename = ".csv",
-                 filenamePrefix = filenamePrefix, 
+                 filenamePrefix = ifelse(exists("filenamePrefix"), 
+                                         yes = filenamePrefix, no = ""), 
                  fileTypeMatrix = matrix(c("CSV", ".csv"), 1, 2, byrow = TRUE),
                  dataFolderPath = DirCheckCreate("2_PreprocessingOutput"))
 
@@ -383,12 +392,6 @@ Enter '1' or {nothing} for all learners,  :
     
     break
     }
-    
-    #read in the clickstream data 
-    data_moduleAccess <- readr::read_tsv(file = filenameClickstream)
-    
-    
-    
   }#repeat if none of the conditions were met (i.e., user input was invalid)
   
 
@@ -405,8 +408,8 @@ data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
 
 
 ##filter "preprocessed_data.csv" to only users on the UID list
-  if(length(userIDsToInclude)>0){  #retain relevant users 
-    #retain relevant users (if a custom filter list was provided)(if a custom filter list was provided)
+  if(length(userIDsToInclude)>0){ 
+    #retain relevant users (if a custom filter list was provided)
     data_preprocessed <- data_preprocessed[data_preprocessed$student_id %in% 
                                              userIDsToInclude,]
   }
@@ -448,7 +451,9 @@ setwd(subDirPath)
 
 
 ######### Calculating number of unique module accesses for each student and saving to file########
-if(priorRunMatch & exists("data_access") & exists("uniqueIDs")){
+if(priorRunMatch & 
+   exists("data_access") & 
+   exists("uniqueIDs")){
   cat(paste0("\nAccess events for ", length(uniqueIDs), " learner available from prior run.... Continuing\n"))
 }else{
   uniqueIDs <- unique(data_preprocessed$temp_student_id)
@@ -476,7 +481,8 @@ if(priorRunMatch & exists("data_access") & exists("uniqueIDs")){
       }
   
       #print function
-      updateVars <- DisplayPercentComplete(dataFrame = unique(data_preprocessed$temp_student_id), 
+      updateVars <- DisplayPercentComplete(dataFrame = 
+                                             unique(data_preprocessed$temp_student_id), 
                                            iCount, pct)
   
       #update status variables (for next iteration)
@@ -487,7 +493,6 @@ if(priorRunMatch & exists("data_access") & exists("uniqueIDs")){
       cat(updateVars$toPrint)
   }
   cat("\nDone! Saving to file...")
-  
   
   #save the appropriate access data to a CSV file
     write.csv(x = data_access,
@@ -769,15 +774,21 @@ for(k in cluster_order)
   curClusterUsers <- select(curClusterUsers, "temp_student_id", 
                             "number_accesses", "student_id")  
 
+  
+  curClusterUsersPct <- nrow(curClusterUsers)/nrow(data_access) * 100
+  curClusterUsersPct <- sprintf("%.1f", curClusterUsersPct, "%", collapse = "")
+  
   if(counter == 1) {
     write.csv(x = curClusterUsers,
               paste0("access_data. ", dataSetName, ". cluster_", 
-                     counter, " (of ", length(cluster_order), ") (most engaged).csv"),
+                     counter, " (of ", length(cluster_order), 
+                     ") (most engaged) (", curClusterUsersPct, " pct).csv"),
               row.names = FALSE)
   }else {
     write.csv(x = curClusterUsers,
               paste0("access_data. ", dataSetName, ". cluster_", 
-                     counter, " (of ", length(cluster_order), ").csv"),
+                     counter, " (of ", length(cluster_order), 
+                     ") (", curClusterUsersPct, " pct).csv"),
 
               row.names = FALSE)
   }

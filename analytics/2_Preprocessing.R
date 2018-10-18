@@ -121,6 +121,12 @@ if(!WorkingDirectoryCheck(expectedFile)){
 }
 
 
+######### Load required libraries ##########
+require("data.table")
+require("tcltk")
+
+
+
 ######### External function sourcing ########## 
 #load external functions
 source("R/file-structure-functions.R")
@@ -139,14 +145,35 @@ start <-  proc.time() #save the time (to compute elapsed time of script)
 
 
 ######### Reading files, converting to dataframe object, eliminating irrelevant columns#####
+#Locate the USER PROFILE data file to process (with sanatized user input)
+if(!exists("dataUserProfile")){
+  filenameUserProfile <- 
+    SelectFile(prompt = "*****Select the SQL USER PROFILE data file.*****  (It should end with 'auth_userprofile-prod-analytics.sql')", 
+               defaultFilename = "auth_userprofile-prod-analytics.sql",
+               filenamePrefix = ifelse(exists("filenamePrefix"), 
+                                       yes = filenamePrefix, no = ""), 
+               fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
+               dataFolderPath = ifelse(exists("dataFolderPath"), 
+                                       yes = dataFolderPath, no = ""))
+  
+  #import data files
+  dataUserProfile <- fread(filenameUserProfile, 
+                           select = c("id", "user_id", "gender",
+                                      "year_of_birth", "level_of_education", "country"),
+                           quote = "")
+  
+}
+
 #Locate the clickstream data file to process (with sanitized user input)
 if(!exists("data_moduleAccess")){
   filenameClickstream <- 
     SelectFile(prompt = "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')", 
                defaultFilename = "courseware_studentmodule-prod-analytics.sql",
-               filenamePrefix = filenamePrefix, 
+               filenamePrefix = ifelse(exists("filenamePrefix"), 
+                                       yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-               dataFolderPath = dataFolderPath)
+               dataFolderPath = ifelse(exists("dataFolderPath"), 
+                                       yes = dataFolderPath, no = ""))
   
   
   #read in the clickstream data 
@@ -154,7 +181,8 @@ if(!exists("data_moduleAccess")){
 }
 
 # extract needed columns
-data_moduleAccess <- data_moduleAccess[names(data_moduleAccess) %in% c("module_id","student_id","created")]
+data_moduleAccess <- data_moduleAccess[names(data_moduleAccess) %in% 
+                                         c("module_id","student_id","created")]
 
 #read in the ordered module information
 moduleOrderFilePath <- FileExistCheck_workingDir(subDir = "1_extractModulesOutput", 
@@ -213,7 +241,8 @@ time=as.POSIXct(data_moduleAccess$created,format="%m/%d/%Y %H:%M")
 data_moduleAccess<-cbind(data_moduleAccess,time)
 
 ##Keeping only releveant columns
-data_moduleAccess<-data_moduleAccess[names(data_moduleAccess) %in% c("student_id","time","marker_list")]
+data_moduleAccess<-data_moduleAccess[names(data_moduleAccess) %in% 
+                                       c("student_id","time","marker_list")]
 
 ## ===================================================== ##
 
@@ -224,21 +253,31 @@ data_moduleAccess<-data_moduleAccess[order(data_moduleAccess$student_id,decreasi
 
 #u_id is a column containing student_id of each clickstream event mapped to an integer
 #Each student is assigned a unique integer
+#create progress status variables for male processing loop
+iCount <- 1 #loop counter for completion updates
+pct <- 0  #percentage complete tracker
 u_id=c()
-counter=1
+
 for(i in sort(unique(data_moduleAccess$student_id),decreasing=F))
 {
   temp_df=subset(data_moduleAccess,data_moduleAccess$student_id==i)
   
-  se=rep(counter,nrow(temp_df))
+  se=rep(iCount,nrow(temp_df))
   
   u_id=c(u_id,se)
   
-  counter=counter+1
+  
+  #update the progress for every 1% complete
+  iCount <- iCount + 1  
+  if(iCount%%as.integer((length(unique(data_moduleAccess$student_id)))/100) == 0){
+    pct <- pct + 1
+    cat("\rAssigning students unique value: ", pct, "% complete", sep = "")
+  }
 }
+cat("\nDone!\n")
 
 #Adding u_id column to data_moduleAccess
-data_moduleAccess<-cbind(data_moduleAccess,u_id)
+data_moduleAccess<-cbind(data_moduleAccess, u_id)
 
 
 ## ===================================================== ##
@@ -246,10 +285,46 @@ data_moduleAccess<-cbind(data_moduleAccess,u_id)
 
 
 
-######### Retaining relevant columns, renaming columns and writing to CSV file##############
+######### Retaining relevant columns ##############
 
-data_moduleAccess<-data_moduleAccess[names(data_moduleAccess) %in% c("student_id","marker_list","u_id","time")]
+data_moduleAccess<-data_moduleAccess[names(data_moduleAccess) %in% 
+                                       c("student_id","marker_list","u_id","time")]
 names(data_moduleAccess)<-c("student_id","module_number","time","temp_student_id")
+
+
+######### No access users ID list ##############
+#create 2 lists 
+#(1) all known unique student IDs  and 
+#(2) empty list to save users without clickstream data (never accessed the course)
+ID_List <- unique(dataUserProfile$user_id)
+noAccess <- c()
+
+
+#create progress status variables for male processing loop
+iCount <- 0 #loop counter for completion updates
+pct <- 0  #percentage complete tracker
+start <-  proc.time() #save the time (to compute elapsed time of loop)
+
+# look for registered user who never accessed
+for(ID in ID_List){
+  #save to a list of  with no clickstream data (never accessed the course)
+  if(nrow(subset(data_moduleAccess, data_moduleAccess$student_id == ID)) == 0){ 
+    noAccess <- c(noAccess, ID)
+  }
+  
+  #update the progress for every 1% complete
+  iCount <- iCount + 1  
+  if(iCount%%as.integer((length(ID_List))/100) == 0){
+    pct <- pct + 1
+    cat("\rLooking for no access users: ", pct, "% complete", sep = "")
+  }
+}
+
+cat("\nDone!\n")
+#print the amount of time the previous loop required
+cat("\n\n\nNo access learner processing time details (in sec):\n")
+print(proc.time() - start)
+
 
 
 ######### Write data to files ###############
@@ -257,8 +332,25 @@ names(data_moduleAccess)<-c("student_id","module_number","time","temp_student_id
 subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
 
 #write a CSV file for the next step in processing. 
-cat("\nSaving CSV file.")
-write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), x = data_moduleAccess)
+cat("\nSaving CSV file.\n")
+write.csv(file = file.path(subDirPath, "preprocessed_data.csv", fsep = "/"), 
+          x = data_moduleAccess)
+
+
+
+#print and save no access data
+noAccessPct <- length(noAccess)/length(ID_List) * 100
+noAccessPct <- sprintf("%.1f", noAccessPct, "%", collapse = "")
+
+cat(paste0("Percentage of registered learners who never accessed the course: ", 
+             noAccessPct, "%"), quote = F)
+names(noAccess) <- c("Count","student_id")
+
+write.csv(x = noAccess, file = file.path(subDirPath, 
+                                         paste0("noAccess_all_UIDs_", 
+                                                noAccessPct, " pct of regs.csv"), 
+                                         fsep = "/"))
+
 
 
 ######### Notify user and Clear the environment  #############

@@ -197,7 +197,9 @@ for (i in UIDs_all) {
     }
   
     #print function
-    updateVars <- DisplayPercentComplete(dataFrame = UIDs_all, iCount, pct, displayText = "Sorting learners. Working through ID list: ")
+    updateVars <- DisplayPercentComplete(dataFrame = UIDs_all, 
+                                         iCount, pct, 
+                                         displayText = "Sorting learners. Working through ID list: ")
   
     #update status variables (for next iteration)
     iCount <- updateVars$iCount
@@ -212,16 +214,35 @@ for (i in UIDs_all) {
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
 subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
 
-#write a CSV file for the next step in processing. 
-cat("\nSaving CSV file.")
-write.csv(file = file.path(subDirPath, "userList0_pre-courseUsers.csv", fsep = "/"), 
-          x = data0_preCourseUsers)
-write.csv(file = file.path(subDirPath, "userList1_live.csv", fsep = "/"), 
-          x = data1_liveUsers)
-write.csv(file = file.path(subDirPath, "userList2_late.csv", fsep = "/"), 
-          x = data2_lateUsers)
-write.csv(file = file.path(subDirPath, "userList3_archive.csv", fsep = "/"), 
-          x = data3_archiveUsers)
+
+#calc percentages for each group
+list0Pct <- nrow(data0_preCourseUsers)/length(UIDs_all) * 100
+list0Pct <- sprintf("%.1f", list0Pct, "%", collapse = "")
+list1Pct <- nrow(data1_liveUsers)/length(UIDs_all) * 100
+list1Pct <- sprintf("%.1f", list1Pct, "%", collapse = "")
+list2Pct <- nrow(data2_lateUsers)/length(UIDs_all) * 100
+list2Pct <- sprintf("%.1f", list2Pct, "%", collapse = "")
+list3Pct <- nrow(data3_archiveUsers)/length(UIDs_all) * 100
+list3Pct <- sprintf("%.1f", list3Pct, "%", collapse = "")
+
+#write CSV files for the next step in processing. 
+cat("\nSaving CSV files.")
+write.csv(x = data0_preCourseUsers,
+          file = file.path(subDirPath, 
+                           paste0("userList0_pre-courseUsers (", 
+                                  list0Pct, " pct).csv"), fsep = "/"))
+write.csv(x = data1_liveUsers,
+          file = file.path(subDirPath, 
+                           paste0("userList1_live (", 
+                                  list1Pct, " pct).csv"), fsep = "/"))
+write.csv(x = data2_lateUsers,
+          file = file.path(subDirPath, 
+                           paste0("userList2_late (", 
+                                  list2Pct, " pct).csv"), fsep = "/"))
+write.csv(x = data3_archiveUsers,
+          file = file.path(subDirPath, 
+                           paste0("userList3_archive (", 
+                                  list3Pct, " pct).csv"), fsep = "/"))
 
 
 
