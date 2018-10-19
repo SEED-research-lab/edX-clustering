@@ -57,7 +57,9 @@
 
 
 ######### Clean the environment ########## 
-rm(list=setdiff(ls(), c("data_moduleAccess", "dataUserProfile")))
+varsToRetain <- c("varsToRetain", "data_moduleAccess", "data_courseStructure", 
+                  "dataUserProfile", "filenamePrefix", "dataFolderPath", "courseName")
+rm(list=setdiff(ls(), varsToRetain))
 
 ######### Internal functions ########## 
 #Function: Interactively select working directory (OS independent, but not available for RStudio Server)
@@ -143,6 +145,11 @@ source("R/file-structure-functions.R")
 start <-  proc.time() #save the time (to compute elapsed time of script)
 
 
+## Check for pre-defined starting directory and course prefix ####
+if(!exists("filenamePrefix")) filenamePrefix <- NULL
+if(!exists("dataFolderPath")) dataFolderPath <- NULL
+if(!exists("courseName")) courseName <- NULL
+
 
 ######### Reading files, converting to dataframe object, eliminating irrelevant columns#####
 #Locate the USER PROFILE data file to process (with sanatized user input)
@@ -185,7 +192,10 @@ data_moduleAccess <- data_moduleAccess[names(data_moduleAccess) %in%
                                          c("module_id","student_id","created")]
 
 #read in the ordered module information
-moduleOrderFilePath <- FileExistCheck_workingDir(subDir = "1_extractModulesOutput", 
+DirCheckCreate(subDir = courseName)
+subDirPath <- DirCheckCreate(subDir = file.path(courseName, "1_extractModulesOutput"))
+moduleOrderFilePath <- FileExistCheck_workingDir(subDir = subDirPath, 
+                                                 fullPathPassed = T,
                                                  filename = "module_order_file.csv")
 #exit script if file not found, otherwise continue
 ifelse(test = moduleOrderFilePath == FALSE, yes = return(), no = "")
@@ -329,7 +339,8 @@ print(proc.time() - start)
 
 ######### Write data to files ###############
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
-subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
+DirCheckCreate(subDir = courseName)
+subDirPath <- DirCheckCreate(subDir = file.path(courseName, "2_PreprocessingOutput"))
 
 #write a CSV file for the next step in processing. 
 cat("\nSaving CSV file.\n")
@@ -353,12 +364,11 @@ write.csv(x = noAccess, file = file.path(subDirPath,
 
 
 
-######### Notify user and Clear the environment  #############
+######### Notify user and Clean the environment  #############
 #print the amount of time the script required
 cat("\n\n\nScript (2_Preprocessing.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
-#Clear environment variables
-rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
-
+#Clean environment variables
+rm(list=setdiff(ls(), varsToRetain))
 

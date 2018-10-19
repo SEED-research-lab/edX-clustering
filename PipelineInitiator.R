@@ -99,6 +99,9 @@ orig.dir <- getwd()
 analyticsPath <- file.path(orig.dir, "analytics")
 setwd(analyticsPath)
 
+## _Load required libraries ##########
+require("stringr")
+
 ## _External function sourcing ########## 
 #load external functions
 source("R/file-structure-functions.R")
@@ -109,18 +112,30 @@ source("R/file-structure-functions.R")
 #start a timer to track how long the pipeline takes to execute
 start <-  proc.time() #save the time (to report the pipeline's running time at the end of the script)
 
-#get data file locations from user ####
+## Check for pre-defined starting directory and course prefix ####
+if(!exists("filenamePrefix")) filenamePrefix <- NULL
+if(!exists("dataFolderPath")) dataFolderPath <- NULL
+if(!exists("courseName")) courseName <- NULL
+
+
+## get data file locations from user ####
   #get JSON
   #Locate the JSON course structure data file to process (with sanitized user input)
   filenameJSON <- 
     SelectFile(prompt = "*****Select the JSON COURSE STRUCTURE file.*****  (It should end with 'course_structure-prod-analytics.json')", 
                defaultFilename = "course_structure-prod-analytics.json", 
-               fileTypeMatrix = matrix(c("JSON", ".json"), 1, 2, byrow = TRUE))
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
+                                       yes = filenamePrefix, no = ""), 
+               fileTypeMatrix = matrix(c("JSON", ".json"), 1, 2, byrow = TRUE),
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
+                                       yes = dataFolderPath, no = ""))
 
   
   #extract course prefix; extract the folder path
-  filenamePrefix <- gsub("course_structure-prod-analytics.json$",
-                         "",basename(filenameJSON))
+  filenamePrefix <- str_extract(string = basename(filenameJSON), 
+                                pattern = ".*(?=course_structure-prod-analytics.json$)")
+  courseName <- str_extract(string = filenamePrefix, 
+                            pattern = "^[:alnum:]*-[:alnum:]*(?=-)")
   dataFolderPath <- dirname(filenameJSON)
   
   
@@ -129,18 +144,22 @@ start <-  proc.time() #save the time (to report the pipeline's running time at t
   filename_moduleAccess <- 
     SelectFile(prompt = "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')", 
                defaultFilename = "courseware_studentmodule-prod-analytics.sql",
-               filenamePrefix = filenamePrefix, 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
+                                       yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-               dataFolderPath = dataFolderPath)
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
+                                       yes = dataFolderPath, no = ""))
   
   
   #Locate the USER PROFILE data file to process (with sanatized user input)
   filenameUserProfile <- 
     SelectFile(prompt = "*****Select the SQL USER PROFILE data file.*****  (It should end with 'auth_userprofile-prod-analytics.sql')", 
                defaultFilename = "auth_userprofile-prod-analytics.sql",
-               filenamePrefix = filenamePrefix, 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
+                                       yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-               dataFolderPath = dataFolderPath)
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
+                                       yes = dataFolderPath, no = ""))
   
   
   
@@ -154,7 +173,7 @@ start <-  proc.time() #save the time (to report the pipeline's running time at t
                       quote = "")
   
 
-
+DirCheckCreate(subDir = courseName)
 
 
 #source (run) the pipeline script files in sequence   ####

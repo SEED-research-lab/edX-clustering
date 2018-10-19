@@ -92,13 +92,17 @@ ExpectedFileCheck <- function(selectedFilename, expectedFileEnding) {
 
 
 #Function: Check for existance of file in working directory
-FileExistCheck_workingDir <- function(subDir, filename) {
+FileExistCheck_workingDir <- function(subDir, filename, fullPathPassed = FALSE) {
   
   #set parameters for file location
   mainDir <- getwd()
   
   #store the file path
-  filePath <- file.path(mainDir, subDir, filename, fsep = "/")
+  if(fullPathPassed){
+    filePath <- file.path(subDir, filename, fsep = "/")
+  }else{
+      filePath <- file.path(mainDir, subDir, filename, fsep = "/")
+  }
   
   #check for existance of file
   if(file.exists(filePath)){
@@ -183,19 +187,22 @@ SelectFile <- function(prompt = NULL, defaultFilename = NULL,
     repeat{
     cat("\n", prompt)
     #beepr::beep(sound = 10)   #notify user to provide input
-    # filenameJSON <- file.choose() #commented out, but may still be needed if working in RStudio server environment
+    # filename <- file.choose() #commented out, but may still be needed if working in RStudio server environment
     filename <- tcltk::tk_choose.files(caption = prompt, 
-                                           default = paste0(filenamePrefix, 
-                                                            defaultFilename),
-                                           filter = fileTypeMatrix,
-                                           multi = FALSE)
+                                       default = paste0(filenamePrefix, 
+                                                        defaultFilename),
+                                       filter = fileTypeMatrix,
+                                       multi = FALSE)
     filenameCheckResult <- ExpectedFileCheck(selectedFilename = filename, 
                                              expectedFileEnding = defaultFilename)
     
-    
-    filenamePrefix <<- gsub(defaultFilename,
-                           "",basename(filename))
+    require(stringr)
+    filenamePrefix <<- str_extract(string = basename(filename), 
+                                  pattern = paste0(".*(?=", defaultFilename, "$)"))
+    courseName <<- str_extract(string = filenamePrefix, 
+                              pattern = "^[:alnum:]*-[:alnum:]*(?=-)")
     dataFolderPath <<- dirname(filename)
+
     
     if(filenameCheckResult == "matched"){
       #filename matched expected string, continue with script

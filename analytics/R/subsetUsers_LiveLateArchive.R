@@ -140,8 +140,9 @@ setwd(analyticsPath)
   
 #read in the clickstream data
   #check for preprocessed datafile existence
-  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
-                                             filename = "preprocessed_data.csv")
+  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = subDir2Path,
+                                                        fullPathPassed = T,
+                                                        filename = "preprocessed_data.csv")
   #exit script if file not found, otherwise continue
   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
   #read in data from the appropriate learner (sub)set
@@ -212,7 +213,8 @@ for (i in UIDs_all) {
 
 ######### Write data to files ###############
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
-subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
+DirCheckCreate(subDir = courseName)
+subDirPath <- DirCheckCreate(subDir = file.path(courseName, "2_PreprocessingOutput"))
 
 
 #calc percentages for each group

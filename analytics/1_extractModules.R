@@ -73,7 +73,9 @@
 
 
 ######### Clean the environment ########## 
-rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
+varsToRetain <- c("varsToRetain", "data_moduleAccess", "data_courseStructure", 
+                  "dataUserProfile", "filenamePrefix", "dataFolderPath", "courseName")
+rm(list=setdiff(ls(), varsToRetain))
 
 ######### Internal functions ########## 
 #Function: Recursive child search to build the course hierarchy
@@ -184,6 +186,7 @@ start <-  proc.time() #save the time (to compute elapsed time of script)
 ## Check for pre-defined starting directory and course prefix ####
 if(!exists("filenamePrefix")) filenamePrefix <- NULL
 if(!exists("dataFolderPath")) dataFolderPath <- NULL
+if(!exists("courseName")) courseName <- NULL
 
 
 ######### Import course structure JSON file data #####
@@ -317,7 +320,8 @@ courseHierarchy <- cbind(courseHierarchy,module_no)
 # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
 source("R/file-structure-functions.R")
-subDirPath <- DirCheckCreate(subDir = "1_extractModulesOutput")
+DirCheckCreate(subDir = courseName)
+subDirPath <- DirCheckCreate(subDir = file.path(courseName, "1_extractModulesOutput"))
 
 
 
@@ -359,8 +363,7 @@ write.csv(file = file.path(subDirPath, paste0(filenamePrefix, ".csv"), fsep = "/
 cat("\n\n\nScript (1_extractModules.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
-#Clear environment variables
-rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile",
-                        "filenamePrefix", "dataFolderPath")))
+#Clearn environment variables
+rm(list=setdiff(ls(), varsToRetain))
 
 

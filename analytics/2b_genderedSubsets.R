@@ -56,8 +56,9 @@
 
 
 ######### Clean the environment ########## 
-rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
-
+varsToRetain <- c("varsToRetain", "data_moduleAccess", "data_courseStructure", 
+                  "dataUserProfile", "filenamePrefix", "dataFolderPath", "courseName")
+rm(list=setdiff(ls(), varsToRetain))
 
 ######### Internal functions ########## 
 #Function: Interactively select working directory (OS independent, but not available for RStudio Server)
@@ -142,7 +143,10 @@ source("R/file-structure-functions.R")
 #start a timer to track how long the script takes to execute
 scriptStart <-  proc.time() #save the time (to compute elapsed time of script)
 
-
+## Check for pre-defined starting directory and course prefix ####
+if(!exists("filenamePrefix")) filenamePrefix <- NULL
+if(!exists("dataFolderPath")) dataFolderPath <- NULL
+if(!exists("courseName")) courseName <- NULL
 
 
 ######### Reading files, converting to dataframe object, identify users with gender data #####
@@ -152,8 +156,11 @@ if(exists("data_moduleAccess")){
   data_preprocessed <- data_moduleAccess
   rm(data_moduleAccess)
 }else{
-  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput", 
-                                             filename = "preprocessed_data.csv")
+  DirCheckCreate(subDir = courseName)
+  subDirPath <- DirCheckCreate(subDir = file.path(courseName,"2_PreprocessingOutput"))
+  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = subDirPath, 
+                                                        fullPathPassed = T,
+                                                        filename = "preprocessed_data.csv")
   #exit script if file not found, otherwise continue
   ifelse(test = (preprocessedDataFilePath == FALSE), yes = return(), no = "")
   data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
@@ -329,7 +336,8 @@ data_preprocessedMale   <- ConvertStudentID(data_preprocessedMale)
 ######### saving files and printing final printouts  #####
 
 ######### Write data to files ###############
-subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
+DirCheckCreate(subDir = courseName)
+subDirPath <- DirCheckCreate(subDir = file.path(courseName, "1_extractModulesOutput"))
 
 #save gendered clickstream data 
 cat("\nSaving CSV files.\n\n")
@@ -371,5 +379,5 @@ write.csv(x = noAccessMales,   file = file.path(subDirPath,
 cat("\n\n\nScript (2b_genderedSubsets.R) processing time details (in sec):\n")
 print(proc.time() - scriptStart)
 
-rm(list=ls())   #Clear environment variables
-
+#Clear environment variables
+rm(list=setdiff(ls(), varsToRetain))
