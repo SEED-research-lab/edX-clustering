@@ -41,11 +41,11 @@ DirCheckCreate <- function(subDir) {
   
   #check for/create subdirectory
   if(!dir.exists(file.path(mainDir, subDir))){
-    cat(paste0("The directory '", subDir, "' does NOT exist in '", mainDir, "' -- creating directory\n"))
+    cat(paste0("\nThe directory '", subDir, "' does NOT exist in '", mainDir, "' -- creating directory\n"))
     dir.create(file.path(mainDir, subDir))
     subDirPath <- file.path(mainDir, subDir)
   }else{
-    cat(paste0("The directory '", subDir, "' exists in '", mainDir, "' -- continuing script\n"))
+    cat(paste0("\nThe directory '", subDir, "' exists in '", mainDir, "' -- continuing script\n"))
     subDirPath <- file.path(mainDir, subDir)
   }
   return(subDirPath)
@@ -92,13 +92,17 @@ ExpectedFileCheck <- function(selectedFilename, expectedFileEnding) {
 
 
 #Function: Check for existance of file in working directory
-FileExistCheck_workingDir <- function(subDir, filename) {
+FileExistCheck_workingDir <- function(filename, subDir = "", fullPathPassed = FALSE) {
   
   #set parameters for file location
   mainDir <- getwd()
   
   #store the file path
-  filePath <- file.path(mainDir, subDir, filename, fsep = "/")
+  if(fullPathPassed){
+    filePath <- file.path(subDir, filename, fsep = "/")
+  }else{
+      filePath <- file.path(mainDir, subDir, filename, fsep = "/")
+  }
   
   #check for existance of file
   if(file.exists(filePath)){
@@ -183,14 +187,22 @@ SelectFile <- function(prompt = NULL, defaultFilename = NULL,
     repeat{
     cat("\n", prompt)
     #beepr::beep(sound = 10)   #notify user to provide input
-    # filenameJSON <- file.choose() #commented out, but may still be needed if working in RStudio server environment
+    # filename <- file.choose() #commented out, but may still be needed if working in RStudio server environment
     filename <- tcltk::tk_choose.files(caption = prompt, 
-                                           default = paste0(filenamePrefix, 
-                                                            defaultFilename),
-                                           filter = fileTypeMatrix,
-                                           multi = FALSE)
+                                       default = paste0(filenamePrefix, 
+                                                        defaultFilename),
+                                       filter = fileTypeMatrix,
+                                       multi = FALSE)
     filenameCheckResult <- ExpectedFileCheck(selectedFilename = filename, 
                                              expectedFileEnding = defaultFilename)
+    
+    require(stringr)
+    filenamePrefix <<- str_extract(string = basename(filename), 
+                                  pattern = paste0(".*(?=", defaultFilename, "$)"))
+    courseName <<- str_extract(string = filenamePrefix, 
+                               pattern = "^[^-]*-[^-]*(?=-)")
+    dataFolderPath <<- dirname(filename)
+
     
     if(filenameCheckResult == "matched"){
       #filename matched expected string, continue with script

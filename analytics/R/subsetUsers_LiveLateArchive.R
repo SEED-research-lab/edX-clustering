@@ -50,8 +50,10 @@
 
 ######### Load required libraries ##########
 require(lubridate)  #working with dates
-require(plyr)       #data wrangling
+require(dplyr)       #data wrangling
 require(beepr)     #user notifications
+require(readxl)
+require(stringr)
 
 
 
@@ -124,24 +126,64 @@ setwd(analyticsPath)
 ## Main ####
 ## 
 
-#set date thresholds for course start, late enrollers, and archive learners
-  #get dates from user 
-  #TODO(sanitize/verify input)
-  inputDate1_courseStart <- readline(prompt="Enter course START date (YYYY-MM-DD): ")
-  # inputdate2_lateStart <- readline(prompt="Enter course START date (YYYY-MM-DD): ")
-  inputdate3_courseEnd <- readline(prompt="Enter course END date (YYYY-MM-DD): ")
+# set date thresholds for course start, late enrollers, and archive learners ####
+  #default to asking user for dates
+  getUserDates <- TRUE
 
-  #build dates
-  date1_liveStart <- ymd_hms(paste0(inputDate1_courseStart, " 00:00:00 UTC")) #course start date
-  date2_lateStart <- date1_liveStart+ddays(15) #late date is 15 days after the course start (as found in Douglas, K., Aggarwal, H., Williams, T. V., Fan, Y., & Bermel, P. (2018). Comparison of live, late and archived mode learner behavior in an advanced engineering MOOC. In Frontiers in Education Conference. San Jose, CA, USA.)
-  date3_archiveStart <- ymd_hms(paste0(inputdate3_courseEnd, " 00:00:00 UTC"))+ddays(1) #day after course end date
+  # see if file with dates exists
+  if(!isFALSE(FileExistCheck_workingDir(filename = "purduex_course_dates.xlsx"))){
+    #read data
+    courseDates <- read_xlsx(path = "purduex_course_dates.xlsx", col_names = T)
+    #find course number
+    courseNumber <- str_extract(pattern = "(?<=-).*", string = courseName)
+    
+    #if course number found in date data
+    if(is.na(courseNumber)) break
+    
+    #extract dates
+    date1_liveStart <- filter(courseDates, ID == courseNumber)$START_DATE
+    date2_lateStart <- date1_liveStart+ddays(15) #late date is 15 days after the course start (as found in Douglas, K., Aggarwal, H., Williams, T. V., Fan, Y., & Bermel, P. (2018). Comparison of live, late and archived mode learner behavior in an advanced engineering MOOC. In Frontiers in Education Conference. San Jose, CA, USA.)
+    date3_archiveStart <- filter(courseDates, ID == courseNumber)$END_DATE
+    
+    #if all three dates are valid then use these dates (don't request user input)
+    if(length(date1_liveStart)==1 &
+       length(date2_lateStart)==1 &
+       length(date3_archiveStart)==1){
+      getUserDates <- FALSE
+    }
+  }
 
+  if(getUserDates){
   
+    #get dates from user (with sanitized input)
+    repeat{
+      inputDate1_courseStart <- readline(prompt="Enter course START date (MM/DD/YYYY): ")
+      if(grepl(pattern = "^[[:digit:]]{1,2}/[[:digit:]]{1,2}/[[:digit:]]{4}", 
+               x = inputDate1_courseStart)){
+        break
+      }
+    }
+    # inputdate2_lateStart <- readline(prompt="Enter course START date (MM/DD/YYYY): ")
+    repeat{
+      inputdate3_courseEnd <- readline(prompt="Enter course END date (MM/DD/YYYY): ")
+      if(grepl(pattern = "^[[:digit:]]{1,2}/[[:digit:]]{1,2}/[[:digit:]]{4}", 
+               x = inputDate1_courseStart)){
+        break
+      }
+    }
+    
+    #build dates
+    date1_liveStart <- mdy_hms(paste0(inputDate1_courseStart, " 00:00:00 UTC")) #course start date
+    date2_lateStart <- date1_liveStart+ddays(15) #late date is 15 days after the course start (as found in Douglas, K., Aggarwal, H., Williams, T. V., Fan, Y., & Bermel, P. (2018). Comparison of live, late and archived mode learner behavior in an advanced engineering MOOC. In Frontiers in Education Conference. San Jose, CA, USA.)
+    date3_archiveStart <- mdy_hms(paste0(inputdate3_courseEnd, " 00:00:00 UTC"))+ddays(1) #day after course end date
+
+  } #end else for user input of date
   
 #read in the clickstream data
   #check for preprocessed datafile existence
-  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput",
-                                             filename = "preprocessed_data.csv")
+  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = subDir2Path,
+                                                        fullPathPassed = T,
+                                                        filename = "preprocessed_data.csv")
   #exit script if file not found, otherwise continue
   ifelse(preprocessedDataFilePath == FALSE, yes = return(), no = "")
   #read in data from the appropriate learner (sub)set
@@ -197,7 +239,9 @@ for (i in UIDs_all) {
     }
   
     #print function
-    updateVars <- DisplayPercentComplete(dataFrame = UIDs_all, iCount, pct, displayText = "Sorting learners. Working through ID list: ")
+    updateVars <- DisplayPercentComplete(dataFrame = UIDs_all, 
+                                         iCount, pct, 
+                                         displayText = "Sorting learners. Working through ID list: ")
   
     #update status variables (for next iteration)
     iCount <- updateVars$iCount
@@ -210,18 +254,38 @@ for (i in UIDs_all) {
 
 ######### Write data to files ###############
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
-subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
+DirCheckCreate(subDir = courseName)
+subDirPath <- DirCheckCreate(subDir = file.path(courseName, "2_PreprocessingOutput"))
 
-#write a CSV file for the next step in processing. 
-cat("\nSaving CSV file.")
-write.csv(file = file.path(subDirPath, "userList0_pre-courseUsers.csv", fsep = "/"), 
-          x = data0_preCourseUsers)
-write.csv(file = file.path(subDirPath, "userList1_live.csv", fsep = "/"), 
-          x = data1_liveUsers)
-write.csv(file = file.path(subDirPath, "userList2_late.csv", fsep = "/"), 
-          x = data2_lateUsers)
-write.csv(file = file.path(subDirPath, "userList3_archive.csv", fsep = "/"), 
-          x = data3_archiveUsers)
+
+#calc percentages for each group
+list0Pct <- nrow(data0_preCourseUsers)/length(UIDs_all) * 100
+list0Pct <- sprintf("%.1f", list0Pct, "%", collapse = "")
+list1Pct <- nrow(data1_liveUsers)/length(UIDs_all) * 100
+list1Pct <- sprintf("%.1f", list1Pct, "%", collapse = "")
+list2Pct <- nrow(data2_lateUsers)/length(UIDs_all) * 100
+list2Pct <- sprintf("%.1f", list2Pct, "%", collapse = "")
+list3Pct <- nrow(data3_archiveUsers)/length(UIDs_all) * 100
+list3Pct <- sprintf("%.1f", list3Pct, "%", collapse = "")
+
+#write CSV files for the next step in processing. 
+cat("\nSaving CSV files.")
+write.csv(x = data0_preCourseUsers,
+          file = file.path(subDirPath, 
+                           paste0("userList0_pre-courseUsers (", 
+                                  list0Pct, " pct).csv"), fsep = "/"))
+write.csv(x = data1_liveUsers,
+          file = file.path(subDirPath, 
+                           paste0("userList1_live (", 
+                                  list1Pct, " pct).csv"), fsep = "/"))
+write.csv(x = data2_lateUsers,
+          file = file.path(subDirPath, 
+                           paste0("userList2_late (", 
+                                  list2Pct, " pct).csv"), fsep = "/"))
+write.csv(x = data3_archiveUsers,
+          file = file.path(subDirPath, 
+                           paste0("userList3_archive (", 
+                                  list3Pct, " pct).csv"), fsep = "/"))
 
 
 

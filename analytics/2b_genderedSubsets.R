@@ -56,8 +56,9 @@
 
 
 ######### Clean the environment ########## 
-rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
-
+varsToRetain <- c("varsToRetain", "data_moduleAccess", "data_courseStructure", 
+                  "dataUserProfile", "filenamePrefix", "dataFolderPath", "courseName")
+rm(list=setdiff(ls(), varsToRetain))
 
 ######### Internal functions ########## 
 #Function: Interactively select working directory (OS independent, but not available for RStudio Server)
@@ -122,6 +123,12 @@ if(!WorkingDirectoryCheck(expectedFile)){
 }
 
 
+
+
+######### Load required libraries ##########
+require("data.table")
+require("tcltk")
+
 ######### External function sourcing ########## 
 #load external functions
 source("R/file-structure-functions.R")
@@ -136,7 +143,10 @@ source("R/file-structure-functions.R")
 #start a timer to track how long the script takes to execute
 scriptStart <-  proc.time() #save the time (to compute elapsed time of script)
 
-
+## Check for pre-defined starting directory and course prefix ####
+if(!exists("filenamePrefix")) filenamePrefix <- NULL
+if(!exists("dataFolderPath")) dataFolderPath <- NULL
+if(!exists("courseName")) courseName <- NULL
 
 
 ######### Reading files, converting to dataframe object, identify users with gender data #####
@@ -146,8 +156,11 @@ if(exists("data_moduleAccess")){
   data_preprocessed <- data_moduleAccess
   rm(data_moduleAccess)
 }else{
-  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = "2_PreprocessingOutput", 
-                                             filename = "preprocessed_data.csv")
+  DirCheckCreate(subDir = courseName)
+  subDirPath <- DirCheckCreate(subDir = file.path(courseName,"2_PreprocessingOutput"))
+  preprocessedDataFilePath <- FileExistCheck_workingDir(subDir = subDirPath, 
+                                                        fullPathPassed = T,
+                                                        filename = "preprocessed_data.csv")
   #exit script if file not found, otherwise continue
   ifelse(test = (preprocessedDataFilePath == FALSE), yes = return(), no = "")
   data_preprocessed <- readr::read_csv(preprocessedDataFilePath)
@@ -158,21 +171,13 @@ if(!exists("dataUserProfile")){
   filenameUserProfile <- 
     SelectFile(prompt = "*****Select the SQL USER PROFILE data file.*****  (It should end with 'auth_userprofile-prod-analytics.sql')", 
                defaultFilename = "auth_userprofile-prod-analytics.sql",
-               filenamePrefix = ifelse(exists("filenamePrefix"), 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
                                        yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-               dataFolderPath = ifelse(exists("dataFolderPath"), 
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
                                        yes = dataFolderPath, no = ""))
   
   #import data files
-  # dataUserProfile <- 
-  #   readr::read_tsv(filenameUserProfile, 
-  #                    # col_types = list(mailing_address = col_skip()))
-  #                   col_types = cols_only(id = "i", user_id = "i", gender = "c",
-  #                                         year_of_birth = "c", level_of_education = "c",
-  #                                         country = "c"))
-  
-  library(data.table)
   dataUserProfile <- fread(filenameUserProfile, 
                            select = c("id", "user_id", "gender",
                                       "year_of_birth", "level_of_education", "country"),
@@ -182,7 +187,8 @@ if(!exists("dataUserProfile")){
 
 
 #Retaining only relevant clickstream columns
-data_preprocessed <- data_preprocessed[names(data_preprocessed) %in% c("student_id","module_number","time")]
+data_preprocessed <- data_preprocessed[names(data_preprocessed) %in% 
+                                         c("student_id","module_number","time")]
 
 #read in the user profile data 
 # dataUserProfile <- dataUserProfile[names(dataUserProfile) %in% c("id", "user_id", "gender", "mailing_address", "year_of_birth", "level_of_education", "country")]
@@ -223,8 +229,10 @@ cat("\nExtracting clickstream for male learners (",length(maleID_List),"learners
 # pb$tick(0)  #start the progress bar
 for(ID in maleID_List)
 {
-  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ #ensure that the ID exists in the clickstream data
-    data_preprocessedMale <- rbind(data_preprocessedMale, subset(data_preprocessed, data_preprocessed$student_id == ID))
+  #ensure that the ID exists in the clickstream data
+  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ 
+    data_preprocessedMale <- rbind(data_preprocessedMale, 
+                                   subset(data_preprocessed, data_preprocessed$student_id == ID))
   }
   else{ #save to a list of males with no clickstream data (never accessed the course)
     noAccessMales <- c(noAccessMales, ID)
@@ -253,13 +261,15 @@ start <-  proc.time() #save the time (to compute elapsed time of loop)
 #   total = 100, clear = FALSE, width= 120)
 
 #build up a dataframe with all rows of each female user's clickstream data
-cat("\nExtracting clickstream for female learners (",length(femaleID_List),"learners )...\n\n")
+cat("\nExtracting clickstream for female learners (",length(femaleID_List),"learners )...\n")
 
 # pb$tick(0)
 for(ID in femaleID_List)
 {
-  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ #ensure that the ID exists in the clickstream data
-    data_preprocessedFemale <- rbind(data_preprocessedFemale, subset(data_preprocessed, data_preprocessed$student_id == ID))
+  #ensure that the ID exists in the clickstream data
+  if(nrow(subset(data_preprocessed, data_preprocessed$student_id == ID)) > 0){ 
+    data_preprocessedFemale <- rbind(data_preprocessedFemale, 
+                                     subset(data_preprocessed, data_preprocessed$student_id == ID))
   }
   else{ #save to a list of females with no clickstream data (never accessed the course)
     noAccessFemales <- c(noAccessFemales, ID)
@@ -326,7 +336,8 @@ data_preprocessedMale   <- ConvertStudentID(data_preprocessedMale)
 ######### saving files and printing final printouts  #####
 
 ######### Write data to files ###############
-subDirPath <- DirCheckCreate(subDir = "2_PreprocessingOutput")
+DirCheckCreate(subDir = courseName)
+subDirPath <- DirCheckCreate(subDir = file.path(courseName, "1_extractModulesOutput"))
 
 #save gendered clickstream data 
 cat("\nSaving CSV files.\n\n")
@@ -339,19 +350,26 @@ write.csv(x = data_preprocessedMale,   file = file.path(subDirPath,
 
 
 #print and save gendered no access data
-print(paste0("Percentage of females with no access data: ", 
-             sprintf("%.1f", length(noAccessFemales)/nrow(femaleSubset) * 100, "%", 
-                     collapse = "")))
-print(paste0("Percentage of males with no access data: ", 
-             sprintf("%.1f", length(noAccessMales)/nrow(maleSubset) * 100, "%", 
-                     collapse = "")))
+noAccessFemalesPct <- length(noAccessFemales)/nrow(femaleSubset) * 100
+noAccessFemalesPct <- sprintf("%.1f", noAccessFemalesPct, "%", collapse = "")
+noAccessMalesPct <- length(noAccessMales)/nrow(maleSubset) * 100
+noAccessMalesPct <- sprintf("%.1f", noAccessMalesPct, "%", collapse = "")
+
+cat(paste0("\nPercentage of registered female learners who never accessed the course: ", 
+             noAccessFemalesPct, "%"))
+cat(paste0("\nPercentage of registered male learners who never accessed the course: ", 
+             noAccessMalesPct, "%"))
 
 names(noAccessFemales) <- c("Count","student_id")
 names(noAccessMales) <- c("Count","student_id")
 
-write.csv(x = noAccessFemales, file = file.path(subDirPath, "noAccess_females_UIDs.csv", 
+write.csv(x = noAccessFemales, file = file.path(subDirPath, 
+                                                paste0("noAccess_females_UIDs_", 
+                                                       noAccessFemalesPct, " pct of female regs.csv"),
                                                 fsep = "/"))
-write.csv(x = noAccessMales,   file = file.path(subDirPath, "noAccess_males_UIDs.csv",   
+write.csv(x = noAccessMales,   file = file.path(subDirPath, 
+                                                paste0("noAccess_males_UIDs_", 
+                                                       noAccessMalesPct, " pct of male regs.csv"),
                                                 fsep = "/"))
 
 
@@ -361,5 +379,5 @@ write.csv(x = noAccessMales,   file = file.path(subDirPath, "noAccess_males_UIDs
 cat("\n\n\nScript (2b_genderedSubsets.R) processing time details (in sec):\n")
 print(proc.time() - scriptStart)
 
-rm(list=ls())   #Clear environment variables
-
+#Clear environment variables
+rm(list=setdiff(ls(), varsToRetain))

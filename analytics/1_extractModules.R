@@ -73,7 +73,9 @@
 
 
 ######### Clean the environment ########## 
-rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
+varsToRetain <- c("varsToRetain", "data_moduleAccess", "data_courseStructure", 
+                  "dataUserProfile", "filenamePrefix", "dataFolderPath", "courseName")
+rm(list=setdiff(ls(), varsToRetain))
 
 ######### Internal functions ########## 
 #Function: Recursive child search to build the course hierarchy
@@ -161,6 +163,11 @@ if(!WorkingDirectoryCheck(expectedFile)){
 }
 
 
+
+######### Load required libraries ##########
+require("tcltk")
+
+
 ######### External function sourcing ########## 
 #load external functions
 source("R/file-structure-functions.R")
@@ -176,6 +183,11 @@ source("R/file-structure-functions.R")
 #start a timer to track how long the script takes to execute
 start <-  proc.time() #save the time (to compute elapsed time of script)
 
+## Check for pre-defined starting directory and course prefix ####
+if(!exists("filenamePrefix")) filenamePrefix <- NULL
+if(!exists("dataFolderPath")) dataFolderPath <- NULL
+if(!exists("courseName")) courseName <- NULL
+
 
 ######### Import course structure JSON file data #####
 #Locate the JSON course structure data file to process (with sanitized user input)
@@ -183,9 +195,11 @@ if(!exists("data_courseStructure")){
   filenameJSON <- 
     SelectFile(prompt = "*****Select the JSON COURSE STRUCTURE file.*****  (It should end with 'course_structure-prod-analytics.json')", 
                defaultFilename = "course_structure-prod-analytics.json", 
-               filenamePrefix = filenamePrefix, 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
+                                       yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("JSON", ".json"), 1, 2, byrow = TRUE),
-               dataFolderPath = dataFolderPath)
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
+                                       yes = dataFolderPath, no = ""))
   
   #import the JSON data file
   data_courseStructure <- jsonlite::fromJSON(filenameJSON)
@@ -196,9 +210,11 @@ if(!exists("data_moduleAccess")){
   filenameClickstream <- 
     SelectFile(prompt = "*****Select the SQL CLICKSTREAM data file.*****  (It should end with 'courseware_studentmodule-prod-analytics.sql')", 
                defaultFilename = "courseware_studentmodule-prod-analytics.sql",
-               filenamePrefix = filenamePrefix, 
+               filenamePrefix = ifelse(exists("filenamePrefix") & !is.null(filenamePrefix), 
+                                       yes = filenamePrefix, no = ""), 
                fileTypeMatrix = matrix(c("SQL", ".sql"), 1, 2, byrow = TRUE),
-               dataFolderPath = dataFolderPath)
+               dataFolderPath = ifelse(exists("dataFolderPath") & !is.null(dataFolderPath), 
+                                       yes = dataFolderPath, no = ""))
   
   
   #read in the clickstream data 
@@ -263,16 +279,20 @@ typicallyUnusedModules <- data.frame()
 moduleList <- unique(courseHierarchy$module_id)
 for(module in moduleList)
 {
-  #if no rows are found in the clickstream data that match the current module, then delete module row
-  if(nrow(subset(data_moduleAccess, data_moduleAccess$module_id == module))==0)
+  #delete module row if 
+    # no events are found in the clickstream data that match the current module
+    # or
+    # module type is "vertical"
+  if((nrow(subset(data_moduleAccess, data_moduleAccess$module_id == module)) == 0) |
+     (grepl(pattern = "vertical", x = module) == TRUE))
   {
     DeletedModules <- rbind(DeletedModules, 
                             subset(courseHierarchy,courseHierarchy$module_id == module))
     courseHierarchy <- courseHierarchy[courseHierarchy$module_id != module,]
   }
   
-  #create a log of modules that were accessed by  fewer than 'accessMin' learners
-  accessMin <- 10
+  #create a log of modules that were accessed by fewer than 0.1% of learners
+  accessMin <- round(0.001 * length(unique(data_moduleAccess$student_id)))
   if(nrow(subset(data_moduleAccess, 
                  data_moduleAccess$module_id == module)) < accessMin)
   {
@@ -289,7 +309,7 @@ for(module in moduleList)
 
 #create vector with sequential numbers to add as a column in courseHierarchy
 numModules <- nrow(courseHierarchy)
-module_no <- 0:(numModules -1)
+module_no <- 0:(numModules - 1)
 module_no <- as.data.frame(module_no)
 #add it to the dataframe
 courseHierarchy <- cbind(courseHierarchy,module_no)
@@ -299,7 +319,9 @@ courseHierarchy <- cbind(courseHierarchy,module_no)
 ## trying to get this working from an external function
 # if(!exists("DirCheckCreate", mode="function")) source(file.path(getwd(), "analytics", "fun_DirCheckCreate.R", fsep = "/"))
 #call function to check for the existance of the subdirectory; create it if it doesn't exist
-subDirPath <- DirCheckCreate(subDir = "1_extractModulesOutput")
+source("R/file-structure-functions.R")
+DirCheckCreate(subDir = courseName)
+subDirPath <- DirCheckCreate(subDir = file.path(courseName, "1_extractModulesOutput"))
 
 
 
@@ -321,8 +343,13 @@ write.csv(file = file.path(subDirPath, "module_order_file.csv", fsep = "/"),
 write.csv(file = file.path(subDirPath, "modules_deleted.csv", fsep = "/"),
           x = DeletedModules, quote = c(modTitleColIndex))
 write.csv(file = file.path(subDirPath, 
-                           paste0("modules_with_fewer_than_", accessMin, "_accesses.csv"), fsep = "/"),
+                           paste0("modules_with_fewer_than_", accessMin, "_accesses.csv"), 
+                           fsep = "/"),
           x = typicallyUnusedModules, quote = c(modTitleColIndex))
+
+#save the course prefix
+write.csv(file = file.path(subDirPath, paste0(filenamePrefix, ".csv"), fsep = "/"),
+          x = filenamePrefix)
 
 
 ######### Notify user and Clear the environment  #############
@@ -336,7 +363,7 @@ write.csv(file = file.path(subDirPath,
 cat("\n\n\nScript (1_extractModules.R) processing time details (in sec):\n")
 print(proc.time() - start)
 
-#Clear environment variables
-rm(list=setdiff(ls(), c("data_moduleAccess", "data_courseStructure", "dataUserProfile")))
+#Clearn environment variables
+rm(list=setdiff(ls(), varsToRetain))
 
 
