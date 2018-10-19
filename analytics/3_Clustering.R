@@ -200,7 +200,7 @@ if(is.null(courseName)){
                                        yes = dataFolderPath, no = ""))
   
   courseName <- str_extract(string = filenamePrefix, 
-                             pattern = "^[:alnum:]*-[:alnum:]*(?=-)")
+                            pattern = "^[^-]*-[^-]*(?=-)")
 }
 
 # create path to preprocessed data
