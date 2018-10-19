@@ -92,7 +92,7 @@ ExpectedFileCheck <- function(selectedFilename, expectedFileEnding) {
 
 
 #Function: Check for existance of file in working directory
-FileExistCheck_workingDir <- function(subDir, filename, fullPathPassed = FALSE) {
+FileExistCheck_workingDir <- function(filename, subDir = "", fullPathPassed = FALSE) {
   
   #set parameters for file location
   mainDir <- getwd()
@@ -200,7 +200,7 @@ SelectFile <- function(prompt = NULL, defaultFilename = NULL,
     filenamePrefix <<- str_extract(string = basename(filename), 
                                   pattern = paste0(".*(?=", defaultFilename, "$)"))
     courseName <<- str_extract(string = filenamePrefix, 
-                              pattern = "^[:alnum:]*-[:alnum:]*(?=-)")
+                               pattern = "^[^-]*-[^-]*(?=-)")
     dataFolderPath <<- dirname(filename)
 
     

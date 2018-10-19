@@ -135,7 +135,7 @@ if(!exists("courseName")) courseName <- NULL
   filenamePrefix <- str_extract(string = basename(filenameJSON), 
                                 pattern = ".*(?=course_structure-prod-analytics.json$)")
   courseName <- str_extract(string = filenamePrefix, 
-                            pattern = "^[:alnum:]*-[:alnum:]*(?=-)")
+                            pattern = "^[^-]*-[^-]*(?=-)")
   dataFolderPath <- dirname(filenameJSON)
   
   

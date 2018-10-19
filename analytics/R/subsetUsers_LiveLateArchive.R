@@ -50,8 +50,10 @@
 
 ######### Load required libraries ##########
 require(lubridate)  #working with dates
-require(plyr)       #data wrangling
+require(dplyr)       #data wrangling
 require(beepr)     #user notifications
+require(readxl)
+require(stringr)
 
 
 
@@ -124,19 +126,58 @@ setwd(analyticsPath)
 ## Main ####
 ## 
 
-#set date thresholds for course start, late enrollers, and archive learners
-  #get dates from user 
-  #TODO(sanitize/verify input)
-  inputDate1_courseStart <- readline(prompt="Enter course START date (YYYY-MM-DD): ")
-  # inputdate2_lateStart <- readline(prompt="Enter course START date (YYYY-MM-DD): ")
-  inputdate3_courseEnd <- readline(prompt="Enter course END date (YYYY-MM-DD): ")
+# set date thresholds for course start, late enrollers, and archive learners ####
+  #default to asking user for dates
+  getUserDates <- TRUE
 
-  #build dates
-  date1_liveStart <- ymd_hms(paste0(inputDate1_courseStart, " 00:00:00 UTC")) #course start date
-  date2_lateStart <- date1_liveStart+ddays(15) #late date is 15 days after the course start (as found in Douglas, K., Aggarwal, H., Williams, T. V., Fan, Y., & Bermel, P. (2018). Comparison of live, late and archived mode learner behavior in an advanced engineering MOOC. In Frontiers in Education Conference. San Jose, CA, USA.)
-  date3_archiveStart <- ymd_hms(paste0(inputdate3_courseEnd, " 00:00:00 UTC"))+ddays(1) #day after course end date
+  # see if file with dates exists
+  if(!isFALSE(FileExistCheck_workingDir(filename = "purduex_course_dates.xlsx"))){
+    #read data
+    courseDates <- read_xlsx(path = "purduex_course_dates.xlsx", col_names = T)
+    #find course number
+    courseNumber <- str_extract(pattern = "(?<=-).*", string = courseName)
+    
+    #if course number found in date data
+    if(is.na(courseNumber)) break
+    
+    #extract dates
+    date1_liveStart <- filter(courseDates, ID == courseNumber)$START_DATE
+    date2_lateStart <- date1_liveStart+ddays(15) #late date is 15 days after the course start (as found in Douglas, K., Aggarwal, H., Williams, T. V., Fan, Y., & Bermel, P. (2018). Comparison of live, late and archived mode learner behavior in an advanced engineering MOOC. In Frontiers in Education Conference. San Jose, CA, USA.)
+    date3_archiveStart <- filter(courseDates, ID == courseNumber)$END_DATE
+    
+    #if all three dates are valid then use these dates (don't request user input)
+    if(length(date1_liveStart)==1 &
+       length(date2_lateStart)==1 &
+       length(date3_archiveStart)==1){
+      getUserDates <- FALSE
+    }
+  }
 
+  if(getUserDates){
   
+    #get dates from user (with sanitized input)
+    repeat{
+      inputDate1_courseStart <- readline(prompt="Enter course START date (MM/DD/YYYY): ")
+      if(grepl(pattern = "^[[:digit:]]{1,2}/[[:digit:]]{1,2}/[[:digit:]]{4}", 
+               x = inputDate1_courseStart)){
+        break
+      }
+    }
+    # inputdate2_lateStart <- readline(prompt="Enter course START date (MM/DD/YYYY): ")
+    repeat{
+      inputdate3_courseEnd <- readline(prompt="Enter course END date (MM/DD/YYYY): ")
+      if(grepl(pattern = "^[[:digit:]]{1,2}/[[:digit:]]{1,2}/[[:digit:]]{4}", 
+               x = inputDate1_courseStart)){
+        break
+      }
+    }
+    
+    #build dates
+    date1_liveStart <- mdy_hms(paste0(inputDate1_courseStart, " 00:00:00 UTC")) #course start date
+    date2_lateStart <- date1_liveStart+ddays(15) #late date is 15 days after the course start (as found in Douglas, K., Aggarwal, H., Williams, T. V., Fan, Y., & Bermel, P. (2018). Comparison of live, late and archived mode learner behavior in an advanced engineering MOOC. In Frontiers in Education Conference. San Jose, CA, USA.)
+    date3_archiveStart <- mdy_hms(paste0(inputdate3_courseEnd, " 00:00:00 UTC"))+ddays(1) #day after course end date
+
+  } #end else for user input of date
   
 #read in the clickstream data
   #check for preprocessed datafile existence

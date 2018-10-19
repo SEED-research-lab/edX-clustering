@@ -784,13 +784,13 @@ if(clusterTypeSelection==1)
 ## Ordering clusters ####
 #Ordering clusters in decreasing order of accesses, heaviest user cluster comes first
 #  cluster_order contains the cluster_id's ordered in increasing order of access activity
-source("../R/OrderClusters.R")
+source("../../R/OrderClusters.R")
 cluster_order <- OrderClusters(data_access = data_access,
                                K = K)
 
 
 ## Plotting clusters ####
-source("../R/PlotClusters.R")
+source("../../R/PlotClusters.R")
 PlotClusters(clusterTypeName = clusterTypeName,
              K = K,
              data_preprocessed = data_preprocessed,
@@ -879,7 +879,13 @@ for(k in cluster_order)
   #print p-values
   message("As a table, p-values between cluster pairs are:\n")
   print(Mann_Whit_pValues)
-
+  
+  #save p-values
+  write.csv(x = Mann_Whit_pValues,
+            paste0("Mann_Whit_pValues. ", dataSetName, " (", length(cluster_order), 
+                   ").csv"),
+            row.names = FALSE)
+  
 ## Save the work environment
 save.image(file = paste0("environmentVariables. ", dataSetName, " (", length(cluster_order), ").RData"), 
            compress = T)
