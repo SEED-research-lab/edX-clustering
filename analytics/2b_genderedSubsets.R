@@ -337,7 +337,7 @@ data_preprocessedMale   <- ConvertStudentID(data_preprocessedMale)
 
 ######### Write data to files ###############
 DirCheckCreate(subDir = courseName)
-subDirPath <- DirCheckCreate(subDir = file.path(courseName, "1_extractModulesOutput"))
+subDirPath <- DirCheckCreate(subDir = file.path(courseName, "2_PreprocessingOutput"))
 
 #save gendered clickstream data 
 cat("\nSaving CSV files.\n\n")

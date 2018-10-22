@@ -106,8 +106,8 @@ PlotClusters <- function(clusterTypeName, K, data_preprocessed,
   for(k in cluster_order)
   {
     cat("\nPlotting cluster:", k)
-    #Subset of students belonging to cluster_id=k
-    temp <- subset(data_access,data_access$cluster_id==k)
+    #Subset of students belonging to temp_cluster=k
+    temp <- subset(data_access,data_access$temp_cluster==k)
     
     #for loop iterating over every clickstream event in subset obtained above
     for(j in 1:nrow(temp)){

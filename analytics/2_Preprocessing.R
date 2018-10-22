@@ -354,7 +354,7 @@ noAccessPct <- length(noAccess)/length(ID_List) * 100
 noAccessPct <- sprintf("%.1f", noAccessPct, "%", collapse = "")
 
 cat(paste0("Percentage of registered learners who never accessed the course: ", 
-             noAccessPct, "%"), quote = F)
+             noAccessPct, "%"))
 names(noAccess) <- c("Count","student_id")
 
 write.csv(x = noAccess, file = file.path(subDirPath, 

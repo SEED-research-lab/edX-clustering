@@ -127,6 +127,9 @@ WorkingDirectoryCheck <- function(expectedFile) {
     } else if(file.exists(file.path(dirname(getwd()), expectedFile))){
       setwd(dirname(getwd()))   #set wd to parent directory of current wd
       return(TRUE)
+    } else if(file.exists(file.path(dirname(dirname(getwd())), expectedFile))){
+      setwd(dirname(dirname(getwd())))  #set wd to parent's parent directory of current wd
+      return(TRUE)
     } else{
       #return FALSE if the file does not exist in the current WD (or other obvious locations)
       return(FALSE)
@@ -228,12 +231,21 @@ repeat{
   clusterTypeSelection <- readline(prompt="Enter '1' or {nothing} for K-means clustering, 
       '2' for c-means (fuzzy) clustering: ");
   
-  if(clusterTypeSelection == 1 ||   #valid clustering method selected
-     clusterTypeSelection == 2){
+  if(clusterTypeSelection == 1 |   #k-means clustering method selected
+     clusterTypeSelection == ""){
+    
+    clusterTypeSelection = 1  
+    ##Set label
+    clusterTypeName <- "k-means clustering"
+    clusterTypeNameShort <- "k-means"
+    
     #exit loop and continue script
     break
-  }else if(clusterTypeSelection == ""){  #defalt to k-means
-    clusterTypeSelection = 1
+  }else if(clusterTypeSelection == 2){  #c-means
+    ##Set label
+    clusterTypeName <- "fuzzy (c-means) clustering"
+    clusterTypeNameShort <- "c-means"
+    
     #exit loop and continue script
     break
   }
@@ -528,12 +540,9 @@ if(priorRunMatch &
       #print update
       cat(updateVars$toPrint)
   }
-  cat("\nDone! Saving to file...")
+  cat("\nDone!")
   
-  #save the appropriate access data to a CSV file
-    write.csv(x = data_access,
-              file = paste0("access_data. ", dataSetName, ".csv"),
-              row.names = FALSE)
+
 }#end data_access conditional
 
 ## ===================================================== ##
@@ -559,7 +568,7 @@ if(priorRunMatch & exists("gap_values")){
   x=1:10
   pdf.options(reset = TRUE)
   #set the PDF name
-  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "k-means_gap_plot.pdf"))
+  pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", clusterTypeNameShort, "_gap_plot.pdf"))
   #set plot options (including descriptive subtitle)
   plot(x = x, y = gap_values, col="black", 
        xlim = c(0,10), ylim = c(0,1),
@@ -576,10 +585,6 @@ if(priorRunMatch & exists("gap_values")){
 
 if(clusterTypeSelection==1)
 {
-  ##Set label
-  clusterTypeName <- "k-means clustering"
-
-
   ## **Generate elbow plot from access data using K=1 to K=10 (K = number of clusters) ####
   ## Thorndike, R. L. (1953). Who belongs in the family? Psychometrika, 18(4), 267–276. https://doi.org/10.1007/BF02289263
   if(exists("elbow_plot_values")){
@@ -606,7 +611,7 @@ if(clusterTypeSelection==1)
     x=1:10
     pdf.options(reset = TRUE)
     #set the PDF name
-    pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", "k-means_elbow_plot.pdf"))
+    pdf(paste0(dataSetDescription, ". ", dataSetName, ". ", clusterTypeNameShort, "_elbow_plot.pdf"))
     #create plot option (including descriptive subtitle)
     plot(x = x, y = elbow_plot_values, col="blue", type="l",
          xlim=c(0,10), ylim=c(0,1.2), xlab="Number of clusters",
@@ -616,7 +621,7 @@ if(clusterTypeSelection==1)
                      dataSetDescription))
   
     dev.off()
-    cat("\nDone!")
+    cat("\nDone!\n\n")
   }#end elbow plot
   
 
@@ -629,15 +634,25 @@ if(clusterTypeSelection==1)
     percent_inc <- (elbow_plot_values[i]-elbow_plot_values[i-1])/elbow_plot_values[i-1]
     if(percent_inc<0.02)
     {
-      print(paste("Recommendation for number of clusters using elbow plot:     ", i-1),
+      optimal_clusters_elbow <- i-1
+      print(paste("Recommendation for number of clusters using elbow plot:     ", 
+                  optimal_clusters_elbow),
             quote=FALSE)
-      break
+      
+      #rename plot file to include recommendation
+      file.rename(from = paste0(dataSetDescription, ". ", dataSetName, ". ", 
+                                clusterTypeNameShort, "_elbow_plot.pdf"), 
+                  to = paste0(dataSetDescription, ". ", dataSetName, ". ", 
+                              clusterTypeNameShort, "_elbow_plot (", 
+                              optimal_clusters_elbow, " rec).pdf"))
+      
+      break  # exit for loop
     }
   }
 
   ##Make recommendation for number of clusters based on gap statistics (first peak in plot)
-  optimal_clusters <- c()
-  counter <- 0
+  # optimal_clusters <- c()
+  # counter <- 0
   for(i in 2:9)
   {
     if(gap_values[i-1]<gap_values[i] & gap_values[i+1]<gap_values[i])
@@ -652,10 +667,19 @@ if(clusterTypeSelection==1)
       # break
       # }
     {
-      print(paste("Recommendation for number of clusters using gap statistics: ", i),
+      optimal_clusters_gap <- i
+      print(paste("Recommendation for number of clusters using gap statistics: ", 
+                  optimal_clusters_gap),
             quote=FALSE)
-
-      break
+      
+      #rename plot file to include recommendation
+      file.rename(from = paste0(dataSetDescription, ". ", dataSetName, ". ", 
+                                clusterTypeNameShort, "_gap_plot.pdf"), 
+                  to = paste0(dataSetDescription, ". ", dataSetName, ". ", 
+                              clusterTypeNameShort, "_gap_plot (", 
+                              optimal_clusters_gap, " rec).pdf"))
+      
+      break  #escape for loop
     }
   }
 
@@ -684,11 +708,11 @@ if(clusterTypeSelection==1)
   #Performing K-means clustering on access data using user's choice of K
   K_m <- kmeans(data_access$number_accesses,
                 centers=K,iter.max=100,algorithm="Lloyd")
-  cluster_id <- K_m$cluster
+  temp_cluster <- K_m$cluster
 
-  #Binding cluster_id of each student to data_access
-  data_access$cluster_id <- NULL
-  data_access <- cbind(data_access, cluster_id)
+  #Binding temp_cluster of each student to data_access
+  data_access$temp_cluster <- NULL
+  data_access <- cbind(data_access, temp_cluster)
 
   #Ordering data_access in increasing order of number of unique accesses of students
   data_access <- data_access[order(data_access$number_accesses,
@@ -703,9 +727,6 @@ if(clusterTypeSelection==1)
   ######### If c-means (fuzzy means) chosen #####################################################
 } else if(clusterTypeSelection==2)
 {
-
-  ##Set label
-  clusterTypeName <- "c-means (fuzzy) clustering"
 
   # ## **Generate gap plot from access data for K = 1 to 10 (K = number of clusters) ####
   # cat("\nGenerating gap plot...")
@@ -767,10 +788,10 @@ if(clusterTypeSelection==1)
   #Performing C-means clustering on access data using user's choice of K clusters
   C_m <- e1071::cmeans(as.matrix(data_access$number_accesses),
                        centers=K)
-  cluster_id <- C_m$cluster
-  #Binding cluster_id of each student to data_access
-  data_access$cluster_id <- NULL
-  data_access <- cbind(data_access, cluster_id)
+  temp_cluster <- C_m$cluster
+  #Binding temp_cluster of each student to data_access
+  data_access$temp_cluster <- NULL
+  data_access <- cbind(data_access, temp_cluster)
   #Ordering data_access in increasing order of number of unique accesses of students
   data_access <- data_access[order(data_access$number_accesses,
                                    decreasing=F),]
@@ -783,7 +804,7 @@ if(clusterTypeSelection==1)
 
 ## Ordering clusters ####
 #Ordering clusters in decreasing order of accesses, heaviest user cluster comes first
-#  cluster_order contains the cluster_id's ordered in increasing order of access activity
+#  cluster_order contains the temp_cluster's ordered in increasing order of access activity
 source("../../R/OrderClusters.R")
 cluster_order <- OrderClusters(data_access = data_access,
                                K = K)
@@ -800,17 +821,46 @@ PlotClusters(clusterTypeName = clusterTypeName,
              dataSetName = dataSetName,
              dataSetDescription = dataSetDescription)
 
-## Saving UserIDs for each cluster ####
+# 
+# ## Store ordered clusters to save
+# data_access <- cbind(data_access, cluster = cluster_order[k])
+# 
+# 
+# #only retain necessisary columns
+# data_access <- select(data_access, "temp_student_id", 
+#                           "number_accesses", "student_id", "cluster")  
+
+
+
+## save correct cluster numbers ####
+counter <- length(cluster_order)  #a counter for indicating most to least engaged clusters
+data_access2 <- data.frame()    #place to save correct cluster numbers
+
+for(k in cluster_order)
+{
+  #extract the users who are in this cluster
+  data_access_temp <- subset(data_access,data_access$temp_cluster==k) 
+  #Store ordered clusters to save
+  data_access_temp <- cbind(data_access_temp, cluster = counter)
+  data_access2 <- rbind(data_access2, data_access_temp)
+  
+  counter <- counter - 1
+}
+
+rm(data_access_temp)
+
+
+## Save files ####
+# Saving UserIDs for each cluster 
 counter <- length(cluster_order)  #a counter for indicating most to least engaged clusters
 
 for(k in cluster_order)
 {
   #extract the users who are in this cluster
-  curClusterUsers <- subset(data_access,data_access$cluster_id==k)  
+  curClusterUsers <- subset(data_access2,data_access2$temp_cluster==k)  
   #only retain necessisary columns
   curClusterUsers <- select(curClusterUsers, "temp_student_id", 
-                            "number_accesses", "student_id")  
-
+                            "number_accesses", "student_id", "cluster")  
   
   curClusterUsersPct <- nrow(curClusterUsers)/nrow(data_access) * 100
   curClusterUsersPct <- sprintf("%.1f", curClusterUsersPct, "%", collapse = "")
@@ -834,12 +884,22 @@ for(k in cluster_order)
 }
 
 
+#only retain necessisary columns
+data_access2 <- select(data_access2, "temp_student_id", 
+                           "number_accesses", "student_id", "cluster")  
+
+# save the access data to a CSV file
+write.csv(x = data_access2,
+          file = paste0("access_data. ", dataSetName, 
+                        " (", length(cluster_order), ").csv"),
+          row.names = FALSE)
+
 
 # Significance tests ####
   # Kruskal-Wallis test to show that clustering is statistically significant
   cat("\n\nThe results of hypothesis testing on access events between clusters: ")
   
-  Krus_Wal <- kruskal.test(data_access$number_accesses ~ data_access$cluster_id,
+  Krus_Wal <- kruskal.test(data_access$number_accesses ~ data_access$temp_cluster,
                            data = data_access)
   message("\nThe p-value for Kruskal-Wallis test for access events between clusters is ", 
           Krus_Wal$p.value,". (The chi-squared statistic is ", Krus_Wal$statistic[[1]], ".)")
@@ -853,8 +913,8 @@ for(k in cluster_order)
     for(j in (i+1):K)
     {
       data_subset <- subset(data_access,
-                            data_access$cluster_id==i | data_access$cluster_id==j)
-      Mann_Whit <- wilcox.test(data_subset$number_accesses~data_subset$cluster_id,data=data_subset)
+                            data_access$temp_cluster==i | data_access$temp_cluster==j)
+      Mann_Whit <- wilcox.test(data_subset$number_accesses~data_subset$temp_cluster,data=data_subset)
       message("Mann_Whit p-value between clusters ",i," and ",j,": " , Mann_Whit$p.value)
       Mann_Whit_pValues[i,j] <- Mann_Whit$p.value   #store p-values
 
