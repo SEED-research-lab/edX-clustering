@@ -44,7 +44,7 @@
 #       PDF figures: clustering plot, elbow plot, gap plot
 #       CSV data: access data for all users, gender specified users, and cluster groups
 #
-# Package dependencies: readr, cluster, e1071, dplyr, [tcltk, #beepr]
+# Package dependencies: readr, cluster, e1071, dplyr, tcltk, beepr
 #
 # Changelog:
 #     2017.04.13    Added gendered clickstream user choices
@@ -89,7 +89,7 @@
 
 
 ######### Clean the environment ##########
-varsToRetain <- c("varsToRetain", "data_preprocessed",
+varsToRetain <- c("pre_specify", "varsToRetain", "data_preprocessed",
                   "filenamePrefix", "dataFolderPath", "courseName",
                   "gap_values", "data_access", "uniqueIDs", "elbow_plot_values")
 rm(list=setdiff(ls(), varsToRetain))
@@ -216,20 +216,39 @@ if(exists("data_preprocessed")){
 }
 
 
-######### User providing dataset details #####
-beepr::beep(sound = 10)   #notify user to provide input
-cat("\nEnter a description of this datasest (to be included on graphs).
-    (suggested format: [Data source, e.g., edX], [Course number, e.g., nano515x], [Data date, e.g., Data from 2016.11.18])")
-dataSetDescription <- readline(prompt="Description: ");
+#### Check if user already chose options to run script (in the initiator script) ####
+# set variable to false if it doesn't exist
+if(!exists("pre_specify")) pre_specify <- FALSE
 
+# load pre-selection data if needed
+if(pre_specify == TRUE){
+  path <- FileExistCheck_workingDir(filename = "initiator_userPreselectionValues.RData")
+  
+  #if the path exists, load the data
+  if(path != FALSE){
+    load(file = path)
+  }else{
+    pre_specify = FALSE
+  }
+}
+
+######### User providing dataset details #####
+if(pre_specify == FALSE){
+  beepr::beep(sound = 10)   #notify user to provide input
+  cat("\nEnter a description of this datasest (to be included on graphs).
+      (suggested format: [Data source, e.g., edX], [Course number, e.g., nano515x], [Data date, e.g., Data from 2016.11.18])")
+  dataSetDescription <- readline(prompt="Description: ");
+}
 
 
 ######### Choose clustering technique ##########################################
 #Choose clustering method (repeating to sanitize user input)
 repeat{
-  beepr::beep(sound = 10)   #notify user to provide input
-  clusterTypeSelection <- readline(prompt="Enter '1' or {nothing} for K-means clustering, 
+  if(pre_specify == FALSE){
+    beepr::beep(sound = 10)   #notify user to provide input
+    clusterTypeSelection <- readline(prompt="Enter '1' or {nothing} for K-means clustering, 
       '2' for c-means (fuzzy) clustering: ");
+  }
   
   if(clusterTypeSelection == 1 |   #k-means clustering method selected
      clusterTypeSelection == ""){
@@ -256,9 +275,11 @@ repeat{
 ######### Calculate Live, late, archive groups #################################
 #  (repeating to sanitize user input)
 repeat{
-  beepr::beep(sound = 10)   #notify user to provide input
-  inputLLA <- readline(prompt="Enter '1' to find live, late, and archive groups,  
+  if(pre_specify == FALSE){
+    beepr::beep(sound = 10)   #notify user to provide input
+    inputLLA <- readline(prompt="Enter '1' to find live, late, and archive groups,  
       '2' or {nothing} to skip  ");
+  }
   
   if(inputLLA == 1){  #find user groups
     source("R/subsetUsers_LiveLateArchive.R")
@@ -279,15 +300,17 @@ repeat{
 repeat{
   userIDsToInclude <- as.numeric(NULL)  #create empty list of userIDs
   
-  beepr::beep(sound = 10)   #notify user to provide input
-  userSubsetSelection <- readline(prompt="
-Enter '1' or {nothing} for all learners,  :
+  if(pre_specify == FALSE){
+    beepr::beep(sound = 10)   #notify user to provide input
+    userSubsetSelection <- readline(prompt="\n Who to cluster?: 
+Enter '1' or {nothing} for all learners,  
       '2' or 'f' for female learners,
       '3' or 'm' for male learners,
       '4' live learners,
       '5' late learners,
       '6' archive learners,
-      '7' or 'c' to provide a custom ID list");
+      '7' or 'c' custom ID list");
+  }
 
   
 
@@ -690,14 +713,16 @@ if(clusterTypeSelection==1)
 
 
   ##Get user input for number of clusters
-  repeat{
-    beepr::beep(sound = 10)   #notify user to provide input
-    K <- readline("Enter the desired number of clusters (maximum 10): ");
-    K <- as.integer(K);
-    
-    ifelse(!is.na(K) & (K > 0) & (K <= 10), 
-           yes = break, 
-           no = print("Please enter a valid number.", quote=FALSE))
+  if(pre_specify == FALSE){
+    repeat{
+      beepr::beep(sound = 10)   #notify user to provide input
+      K <- readline("Enter the desired number of clusters (maximum 10): ");
+      K <- as.integer(K);
+      
+      ifelse(!is.na(K) & (K > 0) & (K <= 10), 
+             yes = break, 
+             no = print("Please enter a valid number.", quote=FALSE))
+    }
   }
 
   #Ordering data_access in increasing order of temporary student id (integer id created for each student in preprocessing)
@@ -776,9 +801,11 @@ if(clusterTypeSelection==1)
   #                         'dataSetDescription', 'dataSetName', 'start')))
 
   ##User input for number of clusters
-  beepr::beep(sound = 10)   #notify user to provide input
-  K <- readline("Enter the desired number of clusters (maximum 10): ");
-  K <- as.integer(K);
+  if(pre_specify == FALSE){
+    beepr::beep(sound = 10)   #notify user to provide input
+    K <- readline("Enter the desired number of clusters (maximum 10): ");
+    K <- as.integer(K);
+  }
 
 
 

@@ -32,7 +32,7 @@
 #       {org}-{course}-{date}-auth_userprofile-prod-analytics.sql (source: edX)
 #       preprocessed_data.csv (source: pipeline script 2_Preprocessing.R)
 # 
-# Package dependancies: readr, [beepr]
+# Package dependancies: readr, beepr
 #
 # Changelog:
 #     2017.04.13    initial creation
@@ -56,7 +56,7 @@
 
 
 ######### Clean the environment ########## 
-varsToRetain <- c("varsToRetain", "data_moduleAccess", "data_courseStructure", 
+varsToRetain <- c("pre_specify", "varsToRetain", "data_moduleAccess", "data_courseStructure", 
                   "dataUserProfile", "filenamePrefix", "dataFolderPath", "courseName")
 rm(list=setdiff(ls(), varsToRetain))
 

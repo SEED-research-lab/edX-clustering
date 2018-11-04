@@ -73,7 +73,7 @@
 
 
 ######### Clean the environment ########## 
-varsToRetain <- c("varsToRetain", "data_moduleAccess", "data_courseStructure", 
+varsToRetain <- c("pre_specify", "varsToRetain", "data_moduleAccess", "data_courseStructure", 
                   "dataUserProfile", "filenamePrefix", "dataFolderPath", "courseName")
 rm(list=setdiff(ls(), varsToRetain))
 

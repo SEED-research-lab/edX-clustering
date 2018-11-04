@@ -30,11 +30,12 @@
 #       {org}-{course}-{date}-courseware_studentmodule-prod-analytics.sql (source: edX)
 #       {org}-{course}-{date}-auth_userprofile-prod-analytics.sql         (source: edX)
 #       
-# Package dependencies: [none]
+# Package dependencies: cluster, e1071, tidyverse, readxl, jsonlite, readr, tcltk, beepr, data.table
 #
 # Changelog:
 #     2017.07.14.   Initial version
 #     2017.08.06.   Update to comments; spell check
+#     2018.11.04.   Automation updates
 #     
 #
 # Feature wish list:  (*: planned but not complete)
@@ -176,6 +177,115 @@ if(!exists("courseName")) courseName <- NULL
 DirCheckCreate(subDir = courseName)
 
 
+#ask user if they want to pre-specify the clustering technique and number of clusters
+repeat{
+  beepr::beep(sound = 10)   #notify user to provide input
+  pre_specify <- readline(prompt="Would you like to PRE-SPECIFY the clustering technique, population, and number of clusters? (Y/N): 
+                          (CAUTION: not recommended if ideal number of clusters for data is not yet known)");
+
+    if(pre_specify == "y" || pre_specify == "Y"){  
+      pre_specify <- TRUE
+      
+      ######### User providing dataset details #####
+      beepr::beep(sound = 10)   #notify user to provide input
+      cat("\nEnter a description of this datasest (to be included on graphs).
+    (suggested format: [Data source, e.g., edX], [Course number, e.g., nano515x], [Data date, e.g., Data from 2016.11.18])")
+      dataSetDescription <- readline(prompt="Description: ");
+      
+      
+      
+      ## get clustering technique
+      repeat{
+        clusterTypeSelection <- readline(prompt="\nEnter '1' or {nothing} for K-means clustering, 
+      '2' for c-means (fuzzy) clustering: ");
+
+        #exit loop and continue script if input valid
+        if(clusterTypeSelection == 1  | 
+           clusterTypeSelection == "" |   
+           clusterTypeSelection == 2  ){
+          break
+        }
+        beepr::beep(sound = 10)   #notify user to provide input
+      }   #repeat if none of the conditions were met (i.e., user input was invalid)
+      
+      
+      ##Get user input for number of clusters
+      repeat{
+        K <- readline("\nEnter the desired number of clusters (maximum 10): ");
+        K <- as.integer(K);
+        
+        ifelse(!is.na(K) & (K > 0) & (K <= 10), 
+               yes = break, 
+               no = print("Please enter a valid number.", quote=FALSE))
+      }
+      
+      
+      
+      ## get population
+      repeat{
+        userSubsetSelection <- readline(prompt="\n Who to cluster?: 
+Enter '1' or {nothing} for all learners,  
+      '2' or 'f' for female learners,
+      '3' or 'm' for male learners,
+      '4' live learners,
+      '5' late learners,
+      '6' archive learners,
+      '7' or 'c' custom ID list");
+
+        
+        # set if the user subgroups should be calculated based on selection
+        if(userSubsetSelection == 4 | 
+           userSubsetSelection == 5 |
+           userSubsetSelection == 6){
+          inputLLA <- '1' #set to find live, late, and archive groups,  
+          
+        }else{
+          inputLLA <- '2' #don't find live, late, and archive groups,  
+        }
+
+        #exit loop and continue script if input valid
+        if(userSubsetSelection == 1 | userSubsetSelection == "" |
+           userSubsetSelection == 2 | userSubsetSelection == 'f' | userSubsetSelection == 'F' |
+           userSubsetSelection == 3 | userSubsetSelection == 'm' | userSubsetSelection == 'M' |
+           userSubsetSelection == 4 | 
+           userSubsetSelection == 5 |
+           userSubsetSelection == 6 | 
+           userSubsetSelection == 7 | userSubsetSelection == 'c'){
+          break
+        }
+        beepr::beep(sound = 10)   #notify user to provide input
+      }   #repeat if none of the conditions were met (i.e., user input was invalid)
+      
+      #save selections to file to be recalled in 3_Clustering.R
+      save(list = c("dataSetDescription", "clusterTypeSelection", "K", "userSubsetSelection", "inputLLA"), 
+           file = "initiator_userPreselectionValues.RData")
+      
+      break
+      
+    }else if(pre_specify == "n" || pre_specify == "N"){  
+    pre_specify <- FALSE
+    
+    dataSetDescription   <- NULL
+    clusterTypeSelection <- NULL
+    K                    <- NULL
+    userSubsetSelection  <- NULL
+    inputLLA             <- NULL
+    
+    save(list = c("dataSetDescription", "clusterTypeSelection", "K", "userSubsetSelection", "inputLLA"), 
+         file = "initiator_userPreselectionValues.RData")
+    
+    break
+  }
+  else{
+    message("Please enter either 'Y' or 'N'.\n")
+  }
+  
+} # repeat if invalid input provided
+
+
+
+
+
 #source (run) the pipeline script files in sequence   ####
 source("1_extractModules.R")
 source("2_Preprocessing.R")
@@ -186,8 +296,11 @@ message("\n**** Cluster graph created! ****\n")
 
 #ask user if additional cluster charts are desired, if so run '3_Clustering.R' again
 repeat{
-  #beepr::beep(sound = 10)   #notify user to provide input
+  beepr::beep(sound = 10)   #notify user to provide input
   continueClustering <- readline(prompt="Would you like to create another cluster graph from this data? (Y/N): ");
+  
+  # delete the pre-selection data file
+  if (file.exists("initiator_userPreselectionValues.RData")) file.remove("initiator_userPreselectionValues.RData")
   
   #if user selected to create an additional cluster graph
   if(continueClustering == "y" || continueClustering == "Y"){  
