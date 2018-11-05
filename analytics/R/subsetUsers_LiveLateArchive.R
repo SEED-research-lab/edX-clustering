@@ -39,6 +39,8 @@
 #
 # Changelog:
 #     2018.04.22. Initial code
+#     2018.11.04. Fixed a bug that had swapped the list of live and archive learners
+#                   (any lists generated before this date are incorrect)
 #
 # Feature wish list:  (*: planned but not complete)
 #                   *
@@ -217,13 +219,13 @@ for (i in UIDs_all) {
   #save user to proper enrollment group based on the threshold dates
   if(curUserData$time[1] >= date3_archiveStart){
     #save user in the archive group if first interaction is after course closes
-    data1_liveUsers <- rbind(data1_liveUsers, curUserData)
+    data3_archiveUsers <- rbind(data3_archiveUsers, curUserData)
   }else if(curUserData$time[1] >= date2_lateStart){
     #save user in the late group if first interaction is after the late date
     data2_lateUsers <- rbind(data2_lateUsers, curUserData)
   }else if(curUserData$time[1] >= date1_liveStart){
     #save user in the live group if first interaction is after the course start
-    data3_archiveUsers <- rbind(data3_archiveUsers, curUserData)
+    data1_liveUsers <- rbind(data1_liveUsers, curUserData)
   }else{
     #save user in the list of users who aren't students if first 
     #   recorded event predated the course start date
@@ -289,4 +291,3 @@ write.csv(x = data3_archiveUsers,
 
 
 
-beepr::beep(sound = 10)   #notify user of script completion

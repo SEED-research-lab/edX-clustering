@@ -73,7 +73,7 @@
 
 
 ######### Clean the environment ########## 
-varsToRetain <- c("varsToRetain", "data_moduleAccess", "data_courseStructure", 
+varsToRetain <- c("pre_specify", "varsToRetain", "data_moduleAccess", "data_courseStructure", 
                   "dataUserProfile", "filenamePrefix", "dataFolderPath", "courseName")
 rm(list=setdiff(ls(), varsToRetain))
 
@@ -347,10 +347,13 @@ write.csv(file = file.path(subDirPath,
                            fsep = "/"),
           x = typicallyUnusedModules, quote = c(modTitleColIndex))
 
-#save the course prefix
-write.csv(file = file.path(subDirPath, paste0(filenamePrefix, ".csv"), fsep = "/"),
+#save the course prefix and name in the parent directory
+write.csv(file = file.path(dirname(subDirPath), paste0(filenamePrefix, ".csv"), fsep = "/"),
           x = filenamePrefix)
 
+courseTitle <- courseHierarchy[1, "module_title"]
+write.csv(file = file.path(dirname(subDirPath), paste0(courseTitle, ".csv"), fsep = "/"),
+          x = courseTitle)
 
 ######### Notify user and Clear the environment  #############
 # beepr::beep(sound = 10)   #notify user script is complete
