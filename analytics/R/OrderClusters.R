@@ -33,7 +33,7 @@
 OrderClusters <- function(data_access, K) {
   # Ordering clusters in decreasing order of accesses, heaviest user cluster comes first and so on
   #  mean_accesses is a list of the average number of accesses per user in each cluster
-  #  cluster_order contains the cluster_id's ordered in increasing order of access activity
+  #  cluster_order contains the temp_cluster's ordered in increasing order of access activity
   # arguments: 
   #   data_access : 
   #   K : number of clusters
@@ -42,11 +42,11 @@ OrderClusters <- function(data_access, K) {
 
   counter <- 1
   mean_accesses <- c()  # list of the average number of accesses per user in each cluster
-  cluster_order <- c()  # cluster_id's ordered in increasing order of access activity
+  cluster_order <- c()  # temp_cluster's ordered in increasing order of access activity
   
   for(i in 1:K)
   {
-    temp <- subset(data_access,data_access$cluster_id==i)
+    temp <- subset(data_access,data_access$temp_cluster==i)
     mean_accesses <- c(mean_accesses,mean(temp$number_accesses))
   }
   mean_accesses_sorted <- sort(mean_accesses,decreasing=F)

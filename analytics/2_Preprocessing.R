@@ -1,9 +1,9 @@
 ## ===================================================== ##
-# Title:        Main Preprocessing of Clickstream Data ####
+# Title:        Main Preprocessing of Module Interaction Data ####
 # Project:      edX data pipeline for course user clustering analytics
 #               https://tzwilliams.github.io/edX-clustering/
 # 
-# Copyright 2017 Krishna Madhavan
+# Copyright 2017-2020 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
 #     you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@
 #       module_order_file.csv (source: pipeline script 1_extractModules.R)
 # 
 # 
-# Package dependencies: readr, [tcltk, beepr]
+# Package dependencies: readr, tcltk, beepr, data.table
 #
 # Changelog:
 #     2017.04.13.   Added GUI user selection of Clickstream file
@@ -57,7 +57,7 @@
 
 
 ######### Clean the environment ########## 
-varsToRetain <- c("varsToRetain", "data_moduleAccess", "data_courseStructure", 
+varsToRetain <- c("pre_specify", "varsToRetain", "data_moduleAccess", "data_courseStructure", 
                   "dataUserProfile", "filenamePrefix", "dataFolderPath", "courseName")
 rm(list=setdiff(ls(), varsToRetain))
 
@@ -354,7 +354,7 @@ noAccessPct <- length(noAccess)/length(ID_List) * 100
 noAccessPct <- sprintf("%.1f", noAccessPct, "%", collapse = "")
 
 cat(paste0("Percentage of registered learners who never accessed the course: ", 
-             noAccessPct, "%"), quote = F)
+             noAccessPct, "%"))
 names(noAccess) <- c("Count","student_id")
 
 write.csv(x = noAccess, file = file.path(subDirPath, 
