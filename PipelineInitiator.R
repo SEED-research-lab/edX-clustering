@@ -38,8 +38,6 @@
 #     
 #
 # Feature wish list:  (*: planned but not complete)
-#                   * have user provide paths to the edX data files here (once)
-#                   * pass selected data file paths between sourced scripts
 #                   * remove unnecessary packages from the PackRat library
 #                   * allow user to give a timeframe of events to include
 ## ===================================================== ##
