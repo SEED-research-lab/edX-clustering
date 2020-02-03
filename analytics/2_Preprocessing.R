@@ -1,9 +1,9 @@
 ## ===================================================== ##
-# Title:        Main Preprocessing of Clickstream Data ####
+# Title:        Main Preprocessing of Module Interaction Data ####
 # Project:      edX data pipeline for course user clustering analytics
 #               https://tzwilliams.github.io/edX-clustering/
 # 
-# Copyright 2017 Krishna Madhavan
+# Copyright 2017-2020 Krishna Madhavan
 # 
 #     Licensed under the Apache License, Version 2.0 (the "License");
 #     you may not use this file except in compliance with the License.
