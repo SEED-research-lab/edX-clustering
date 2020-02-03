@@ -4,8 +4,7 @@ edX Course Usage Clustering Pipeline
 Authors:      Krishna Madhavan, Kerrie Douglas, Doipayan Roy, and Taylor Williams  
 Affiliation:  Purdue University
 
-_&lt;<https://tzwilliams.github.io/edX-clustering/>&gt;_  
-_&lt;<https://github.com/tzwilliams/edX-clustering>&gt;_
+_&lt;<https://github.com/SEED-research-lab/edX-clustering>&gt;_
 
 Please note that this project is still under active development.  As is, the code is highly experimental and will need to be cleaned before production use.
 
